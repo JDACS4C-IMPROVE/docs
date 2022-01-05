@@ -7,8 +7,8 @@ MacOS
 .. toctree::
    :maxdepth: 1
 
-    prerequisites-mac
-    improve-mac
+   prerequisites-mac
+   improve-mac
 
 Ubuntu
 ------
@@ -16,5 +16,5 @@ Ubuntu
 .. toctree::
    :maxdepth: 1
 
-   prerequisistes-ubuntu
+   prerequisites-ubuntu
    improve-ubuntu
