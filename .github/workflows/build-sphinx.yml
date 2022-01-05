@@ -10,6 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+    - uses: actions/checkout@v1
+
+    - uses: ammaraskar/sphinx-action@master
+      with:
+        docs-folder: "_build"
 
     - name: Commit documentation changes
       run: |
