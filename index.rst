@@ -10,11 +10,5 @@ Welcome to IMPROVE's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   content/whatis
 
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
