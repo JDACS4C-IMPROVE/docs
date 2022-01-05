@@ -11,4 +11,5 @@ Welcome to IMPROVE's documentation!
    :caption: Contents:
 
    content/whatis
+   content/install
 
