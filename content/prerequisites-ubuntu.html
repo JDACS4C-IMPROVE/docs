@@ -78,6 +78,12 @@
 <h1>Installing Ubuntu prerequisites<a class="headerlink" href="#installing-ubuntu-prerequisites" title="Permalink to this headline">¶</a></h1>
 <p>The IMPROVE framework relies on Singularity containers. To install singularity on Ubuntu 20.04.3, the following commands were used.</p>
 <p>add the NeuroDebian repository to your native package management system, and you will be able to install neuroscience software the same way as any other package.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget -O- http://neuro.debian.net/lists/focal.us-tn.full <span class="p">|</span> sudo tee /etc/apt/sources.list.d/neurodebian.sources.list
+sudo apt-key adv --recv-keys --keyserver hkps://keyserver.ubuntu.com 0xA5D32F012649A5A9
+sudo apt-get update
+sudo apt-get install singularity-container
+</pre></div>
+</div>
 <p>These instructions were obatined from <a class="reference external" href="http://neuro.debian.net/install_pkg.html?p=singularity-container">http://neuro.debian.net/install_pkg.html?p=singularity-container</a></p>
 </div>
 
