@@ -1,5 +1,5 @@
-What is IMPROVE project?
-========================
+What is the IMPROVE project?
+============================
 
 Background
 ----------
