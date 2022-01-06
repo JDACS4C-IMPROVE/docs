@@ -12,6 +12,7 @@ Welcome to IMPROVE's documentation!
 
    content/whatis
    content/install
+   content/add_model
 
 
 Access the code base https://github.com/JDACS4C-IMPROVE/
