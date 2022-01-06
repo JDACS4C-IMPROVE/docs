@@ -14,6 +14,6 @@ Welcome to IMPROVE's documentation!
    content/install
 
 
-Access the code base https://github.comn/JDACS4C-IMPROVE/
+Access the code base https://github.com/JDACS4C-IMPROVE/
 
 
