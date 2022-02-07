@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Installing Ubuntu prerequisites &mdash; IMPROVE 0.1 documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <title>Models &mdash; IMPROVE 0.1 documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
@@ -16,8 +16,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Installing IMPROVE on Ubuntu" href="improve-ubuntu.html" />
-    <link rel="prev" title="Installing IMPROVE on a Mac" href="improve-mac.html" /> 
+    <link rel="prev" title="Installing IMPROVE on Ubuntu" href="improve-ubuntu.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -38,16 +37,8 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="whatis.html">What is the IMPROVE project?</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="install.html">Installing IMPROVE</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="install.html#macos">MacOS</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="install.html#ubuntu">Ubuntu</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Installing Ubuntu prerequisites</a></li>
-<li class="toctree-l3"><a class="reference internal" href="improve-ubuntu.html">Installing IMPROVE on Ubuntu</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="models.html">Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installing IMPROVE</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Models</a></li>
 </ul>
 
         </div>
@@ -64,10 +55,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="install.html">Installing IMPROVE</a> &raquo;</li>
-      <li>Installing Ubuntu prerequisites</li>
+      <li>Models</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/content/prerequisites-ubuntu.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/content/models.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -75,25 +65,15 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="installing-ubuntu-prerequisites">
-<h1>Installing Ubuntu prerequisites<a class="headerlink" href="#installing-ubuntu-prerequisites" title="Permalink to this headline">¶</a></h1>
-<p>The IMPROVE framework relies on Singularity containers. To install singularity on Ubuntu 20.04.3, the following commands were used.</p>
-<p>add the NeuroDebian repository to your native package management system, and you will be able to install neuroscience software the same way as any other package.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget -O- http://neuro.debian.net/lists/focal.us-tn.full <span class="p">|</span> sudo tee /etc/apt/sources.list.d/neurodebian.sources.list
-sudo apt-key adv --recv-keys --keyserver hkps://keyserver.ubuntu.com 0xA5D32F012649A5A9
-sudo apt-get update
-sudo apt-get install singularity-container
-</pre></div>
-</div>
-<p>These instructions were obatined from <a class="reference external" href="http://neuro.debian.net/install_pkg.html?p=singularity-container">http://neuro.debian.net/install_pkg.html?p=singularity-container</a></p>
+  <div class="section" id="models">
+<h1>Models<a class="headerlink" href="#models" title="Permalink to this headline">¶</a></h1>
 </div>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="improve-mac.html" class="btn btn-neutral float-left" title="Installing IMPROVE on a Mac" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="improve-ubuntu.html" class="btn btn-neutral float-right" title="Installing IMPROVE on Ubuntu" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="improve-ubuntu.html" class="btn btn-neutral float-left" title="Installing IMPROVE on Ubuntu" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>
