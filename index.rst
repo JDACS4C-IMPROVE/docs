@@ -12,6 +12,7 @@ Welcome to IMPROVE's documentation!
 
    content/whatis
    content/install
+   content/models
    content/add_model
 
 
