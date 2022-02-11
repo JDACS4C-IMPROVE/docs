@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Models &mdash; IMPROVE 0.1 documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <title>HiDRA &mdash; IMPROVE 0.1 documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
@@ -16,8 +16,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="HiDRA" href="hidra.html" />
-    <link rel="prev" title="Installing IMPROVE on Ubuntu" href="improve-ubuntu.html" /> 
+    <link rel="prev" title="Models" href="models.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -39,9 +38,12 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="whatis.html">What is the IMPROVE project?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installing IMPROVE</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Models</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#current-models">Current Models</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="hidra.html">HiDRA</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="models.html">Models</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="models.html#current-models">Current Models</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">HiDRA</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#hierarchical-network-for-drug-response-prediction-with-attention">Hierarchical Network for Drug Response Prediction with Attention</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -62,9 +64,10 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Models</li>
+          <li><a href="models.html">Models</a> &raquo;</li>
+      <li>HiDRA</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/content/models.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/content/hidra.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -72,14 +75,28 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="models">
-<h1>Models<a class="headerlink" href="#models" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="current-models">
-<h2>Current Models<a class="headerlink" href="#current-models" title="Permalink to this headline">¶</a></h2>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="hidra.html">HiDRA</a></li>
+  <div class="section" id="hidra">
+<h1>HiDRA<a class="headerlink" href="#hidra" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="hierarchical-network-for-drug-response-prediction-with-attention">
+<h2>Hierarchical Network for Drug Response Prediction with Attention<a class="headerlink" href="#hierarchical-network-for-drug-response-prediction-with-attention" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="structure">
+<h3>Structure<a class="headerlink" href="#structure" title="Permalink to this headline">¶</a></h3>
+<p>HiDRA consists of four smaller networks: a drug feature encoding network, which takes SMILES strings converted to Morgan fingerprints; a set of gene-level networks which encode expression data for genes in each pathway; a pathway-level network that takes in output of the individual gene-level networks; and a prediction network that uses drug encodings and pathway output to predict ln(IC50). Each sub-network consists of two dense layers and an attention module (tanh + softmax activation).</p>
+</div>
+<div class="section" id="input">
+<h3>Input<a class="headerlink" href="#input" title="Permalink to this headline">¶</a></h3>
+<p>HiDRA uses cell line expression data, drug SMILES, and drug/cell line IC50 pairs to predict ln(IC50) values for new pairs. Required files are:</p>
+<ul class="simple">
+<li><p>RMA normalized expression data for 968 cell lines from <a class="reference external" href="https://www.cancerrxgene.org/gdsc1000/GDSC1000_WebResources//Data/preprocessed/Cell_line_RMA_proc_basalExp.txt.zip">GDSC1000</a>.</p></li>
+<li><p>Metadata file for cell lines</p></li>
+<li><p>SMILES strings for 235 drugs in GDSC1000 data</p></li>
+<li><p>Drug/cell line IC50 pairs</p></li>
+<li><p>Pathway-to-gene file from KEGG</p></li>
 </ul>
+<div class="section" id="reference">
+<h4>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h4>
+<p>Jin I, Nam H. HiDRA: Hierarchical Network for Drug Response Prediction with Attention. <em>Journal of Chemical Information and Modeling</em>. 2021 Aug 3;61(8):3858-67.</p>
+</div>
 </div>
 </div>
 </div>
@@ -88,8 +105,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="improve-ubuntu.html" class="btn btn-neutral float-left" title="Installing IMPROVE on Ubuntu" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="hidra.html" class="btn btn-neutral float-right" title="HiDRA" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="models.html" class="btn btn-neutral float-left" title="Models" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>
