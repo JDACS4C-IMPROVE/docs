@@ -9,3 +9,4 @@ Current Models
 
    GraphDRP
    hidra
+   MODEL_NAME
