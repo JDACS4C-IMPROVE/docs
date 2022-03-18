@@ -32,6 +32,11 @@ Three evaluation schemes were used for performance evaluation.
 - Cell blind: no overlap on cell lines in train, validation, and test sets.
 - Drug blind: no overlap on drugs in train, validation, and test sets. 
 
+URLs
+============
+- Original GitHub: https://github.com/hauldhut/GraphDRP
+- IMPROVE GitHub: https://github.com/JDACS4C-IMPROVE/GraphDRP/tree/improve
+
 Reference
 ---------
 Nguyen, T.-T. et al. Graph convolutional networks for drug response prediction. *IEEE/ACM Trans Comput Biol Bioinform*. Jan-Feb 2022;19(1):146-154.
