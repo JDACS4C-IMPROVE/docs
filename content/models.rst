@@ -10,4 +10,5 @@ Current Models
    GraphDRP
    hidra
    igtd
+   DeepCDR
    MODEL_NAME
