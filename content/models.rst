@@ -9,4 +9,5 @@ Current Models
 
    GraphDRP
    hidra
+   igtd
    MODEL_NAME
