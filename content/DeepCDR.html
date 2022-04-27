@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>IGTD &mdash; IMPROVE 0.1 documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <title>DeepCDR &mdash; IMPROVE 0.1 documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
@@ -44,8 +44,8 @@
 <li class="toctree-l3"><a class="reference internal" href="GraphDRP.html">GraphDRP</a></li>
 <li class="toctree-l3"><a class="reference internal" href="hidra.html">HiDRA</a></li>
 <li class="toctree-l3"><a class="reference internal" href="igtd.html">IGTD</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">IGTD</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#name-of-the-paper">Name of the paper</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">DeepCDR</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#deepcdr-a-hybrid-graph-convolutional-network-for-predicting-cancer-drug-response">DeepCDR: A Hybrid Graph Convolutional Network For Predicting Cancer Drug Response</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="MODEL_NAME.html">MODEL_NAME</a></li>
@@ -70,7 +70,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="models.html">Models</a> &raquo;</li>
-      <li>IGTD</li>
+      <li>DeepCDR</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/content/DeepCDR.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -80,35 +80,48 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="igtd">
-<h1>IGTD<a class="headerlink" href="#igtd" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="name-of-the-paper">
-<h2>Name of the paper<a class="headerlink" href="#name-of-the-paper" title="Permalink to this headline">¶</a></h2>
+  <div class="section" id="deepcdr">
+<h1>DeepCDR<a class="headerlink" href="#deepcdr" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="deepcdr-a-hybrid-graph-convolutional-network-for-predicting-cancer-drug-response">
+<h2>DeepCDR: A Hybrid Graph Convolutional Network For Predicting Cancer Drug Response<a class="headerlink" href="#deepcdr-a-hybrid-graph-convolutional-network-for-predicting-cancer-drug-response" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="structure">
 <h3>Structure<a class="headerlink" href="#structure" title="Permalink to this headline">¶</a></h3>
-<p>Description of the model architecture.</p>
+<p>The DeepCDR model has four subnetworks for processing drugs, transcripts, mutations, and DNA methylations. The subnetwork for drugs has three graph convolution layers. The subnetworks for transcripts and DNA methylations have two dense layers. The subnetwork for mutations has two 1D convolution layers and one dense layer. The concatenated features from four different modalities are then forwarded to 1D CNN layers for prediction.</p>
 </div>
 <div class="section" id="data-sources">
 <h3>Data Sources<a class="headerlink" href="#data-sources" title="Permalink to this headline">¶</a></h3>
-<p>List of all the data sources that have been used to generate datasets for model development or testing (e.g., CCLE, GDSCv1, GDSCv2, PubChem).</p>
+<ul class="simple">
+<li><p>IC50 drug response data from the Genomics of Drug Sensitivity in Cancer (GDSC)</p></li>
+<li><p>Cell line transcript, mutation, and methylation data from the Cancer Cell Line Encyclopedia (CCLE)</p></li>
+<li><p>Patient transcript, mutation, and methylation data and associated drug responses from the Cancer Genome Atlas (TCGA).</p></li>
+</ul>
 </div>
 <div class="section" id="data-and-preprocessing">
 <h3>Data and preprocessing<a class="headerlink" href="#data-and-preprocessing" title="Permalink to this headline">¶</a></h3>
-<p>Description of the processes required to generate the datasests for model development and testing.</p>
+<ul class="simple">
+<li><p>The GDSC drug response data included 107,446 instances across 561 cancer cell lines and 238 drugs. Drug response was measured by IC50.</p></li>
+<li><p>For multi-omics profiles of cancer cell lines, data related to 697 genes included in the COSMIC Cancer Gene Census were considered. For genomic mutation data, 34,673 unique mutation positions including SNPs and Indels within the above genes were collected. The genomic mutations of each cancer cell line were represented as a binary feature vector in which ’1’ denoted a mutated position and ‘0’ denoted a non-mutated position. For gene expression data, the TPM value of gene expression was log2 transformed and quantile normalized. The gene expression of each cell line was represented by a 697-dimensional feature vector. The DNA methylation data was obtained for the promoter 1 kb upstream TSS region. A median value interpolation was applied on the data to impute missing values. The methylation of each cell line was represented by a 808-dimensional feature vector.</p></li>
+<li><p>TCGA patients with cervical squamous cell carcinoma and endocervical adenocarcinoma were selected with two criterions. (i) The gene mutation, gene expression and DNA methylation data were available. (ii) The clinic annotation of drug response was also available. A dataset including 54 records across 31 patients and 12 drugs was collected. The molecular data were processed in a similar way as the cell line data.</p></li>
+</ul>
 </div>
 <div class="section" id="evaluation">
 <h3>Evaluation<a class="headerlink" href="#evaluation" title="Permalink to this headline">¶</a></h3>
-<p>Description of how the model is evaluted.</p>
+<ul class="simple">
+<li><p>Cross-validation analysis on GDSC data without hard partitioning on cell lines and drugs.</p></li>
+<li><p>Cross-validation analysis on GDSC data with hard partitioning on cell lines.</p></li>
+<li><p>Cross-validation analysis on GDSC data with hard partitioning on drugs.</p></li>
+<li><p>Validation of generalizability to TCGA patient data.</p></li>
+</ul>
 </div>
 <div class="section" id="urls">
 <h3>URLs<a class="headerlink" href="#urls" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p>Original GitHub: link to the original repo</p></li>
-<li><p>IMPROVE GitHub: link to the forked repo</p></li>
+<li><p>Original GitHub: <a class="reference external" href="https://github.com/kimmo1019/DeepCDR">https://github.com/kimmo1019/DeepCDR</a></p></li>
+<li><p>IMPROVE GitHub:</p></li>
 </ul>
 <div class="section" id="reference">
 <h4>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h4>
-<p>Citation of the paper.</p>
+<p>Liu et al., DeepCDR: a hybrid graph convolutional network for predicting cancer drug response, Bioinformatics, Volume 36, Issue Supplement_2, December 2020, Pages i911–i918,</p>
 </div>
 </div>
 </div>
