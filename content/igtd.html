@@ -44,7 +44,7 @@
 <li class="toctree-l3"><a class="reference internal" href="GraphDRP.html">GraphDRP</a></li>
 <li class="toctree-l3"><a class="reference internal" href="hidra.html">HiDRA</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">IGTD</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#name-of-the-paper">Name of the paper</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#converting-tabular-data-into-images-for-deep-learning-with-convolutional-neural-networks">Converting Tabular Data into Images for Deep Learning With Convolutional Neural Networks</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="DeepCDR.html">IGTD</a></li>
@@ -82,33 +82,36 @@
              
   <div class="section" id="igtd">
 <h1>IGTD<a class="headerlink" href="#igtd" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="name-of-the-paper">
-<h2>Name of the paper<a class="headerlink" href="#name-of-the-paper" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="converting-tabular-data-into-images-for-deep-learning-with-convolutional-neural-networks">
+<h2>Converting Tabular Data into Images for Deep Learning With Convolutional Neural Networks<a class="headerlink" href="#converting-tabular-data-into-images-for-deep-learning-with-convolutional-neural-networks" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="structure">
 <h3>Structure<a class="headerlink" href="#structure" title="Permalink to this headline">¶</a></h3>
-<p>Description of the model architecture.</p>
+<p>The IGTD package is composed of two components. The first component implements the IGTD approach to convert tabular data into images, which generates one heatmap for each sample. In the heatmaps, similar features are closely located, while dissimilar features are far apartr. The pixel intensity indicates the  value of the assoicated feature. The second component is a convolutional neural network (CNN). The CNN model has subnetworks for the input of multiple data modalities. Each subnetwork is composed of convolution layers processing the images of one data modality. Multiple kernels can be used simultaneously to encode the same image modality. After the concatenation of embedded features from multiple modalities, dense layers are used to further process the features to make predictions. Both regression and classification predictions are supported.</p>
 </div>
 <div class="section" id="data-sources">
 <h3>Data Sources<a class="headerlink" href="#data-sources" title="Permalink to this headline">¶</a></h3>
-<p>List of all the data sources that have been used to generate datasets for model development or testing (e.g., CCLE, GDSCv1, GDSCv2, PubChem).</p>
+<p>The Cancer Terapeutics Response Portal v2 (CTRP)
+The Genomics of Drug Sensitivity in Cancer (GDSC)</p>
 </div>
 <div class="section" id="data-and-preprocessing">
-<h3>Data and preprocessing<a class="headerlink" href="#data-and-preprocessing" title="Permalink to this headline">¶</a></h3>
-<p>Description of the processes required to generate the datasests for model development and testing.</p>
+<h3>Data and Preprocessing<a class="headerlink" href="#data-and-preprocessing" title="Permalink to this headline">¶</a></h3>
+<p>Genes were filtered according to their variations across gene expression profiles. 2,500 genes with the largest variances were selected and the gene expression profiles were converted into 50 * 50 images using the default parameter setting of IGTD method.</p>
+<p>Drug descriptors were filtered according to their variations across drugs. 2,500 descriptors with the largest variances were selected and the drug descriptor profiles were converted into 50 * 50 images using the default parameter setting of IGTD method.</p>
+<p>Drug response was measured by the area under the dose response curve (AUC) for the dose range of [10<sup>−10</sup> M, 10<sup>−4</sup> M]. The AUC value was then normalized by the dose range. After normalization, the AUC value is between 0 and 1. 0 indicates complete response and 1 indicates no response.</p>
 </div>
 <div class="section" id="evaluation">
 <h3>Evaluation<a class="headerlink" href="#evaluation" title="Permalink to this headline">¶</a></h3>
-<p>Description of how the model is evaluted.</p>
+<p>The model was evaluated through cross-validations on the CTRP and GDSC drug screening datasets, in which the same cell line or drug can appear simultaneously in the training, validation, and testing sets.</p>
 </div>
 <div class="section" id="urls">
 <h3>URLs<a class="headerlink" href="#urls" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p>Original GitHub: link to the original repo</p></li>
-<li><p>IMPROVE GitHub: link to the forked repo</p></li>
+<li><p>Original GitHub: <a class="reference external" href="https://github.com/zhuyitan/IGTD">https://github.com/zhuyitan/IGTD</a></p></li>
+<li><p>IMPROVE GitHub:</p></li>
 </ul>
 <div class="section" id="reference">
 <h4>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h4>
-<p>Citation of the paper.</p>
+<p>Zhu et al., Converting tabular data into images for deep learning with convolutional neural networks, Scientific Reports, vol. 11, article number: 11325 (2021)</p>
 </div>
 </div>
 </div>
