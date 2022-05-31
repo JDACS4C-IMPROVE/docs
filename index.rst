@@ -14,7 +14,7 @@ Welcome to IMPROVE's documentation!
    content/install
    content/models
    content/add_model
-
+   content/dataframes
 
 Access the code base https://github.com/JDACS4C-IMPROVE/
 
