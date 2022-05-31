@@ -12,7 +12,7 @@ Dataframes
      - Point of contact
      - Location
    * - CoolBeans
+     - 10 million
      - The coolest dataframe ever
      - Jane Doe
-     - /path/to/files
-
+     - path/to/files
