@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>What is the IMPROVE project? &mdash; IMPROVE 0.1 documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <title>Dataframes &mdash; IMPROVE 0.1 documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
@@ -39,10 +39,7 @@
 <li class="toctree-l1"><a class="reference internal" href="whatis.html">What is the IMPROVE project?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installing IMPROVE</a></li>
 <li class="toctree-l1"><a class="reference internal" href="models.html">Models</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">What is the IMPROVE project?</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#background">Background</a></li>
-</ul>
-</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Dataframes</a></li>
 </ul>
 
         </div>
@@ -59,7 +56,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>What is the IMPROVE project?</li>
+      <li>Dataframes</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/content/dataframes.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -69,15 +66,32 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="what-is-the-improve-project">
-<h1>What is the IMPROVE project?<a class="headerlink" href="#what-is-the-improve-project" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="background">
-<h2>Background<a class="headerlink" href="#background" title="Permalink to this headline">¶</a></h2>
-<p>From 2015 to 2020, the joint DOE-NCI Pilot 1 project has developed a foundational set of machine learning models, related research, and infrastructure for prediction of tumor drug response to single and combination agents. These models have been benchmarked against models in the literature, compared to dozens of alternative formulations (ranging from classical machine learning methods to deep learning), and evaluated on a broad range of available training data. Some of these models have become benchmarks for the ECP-CANDLE project (<a class="reference external" href="https://github.com/ECP-Candle/Benchmarks">https://github.com/ECP-Candle/Benchmarks</a>).</p>
-<p>There were many lessons learned during this work that led to the Innovative Methodologies and New Data for Predictive Oncology Model Evaluation (IMPROVE) project. For example, it became clear that while considerable progress has been made in the last decade by the cancer research community in the formulation and training of machine learning models for cancer, the community does not have a common set of well-documented and well-characterized approaches to constructing, training, and validating cancer drug response models.</p>
-<p>It is difficult to compare new modelling results in the literature with those from previous studies due to different choices of normalization, encoding, filtering, etc. In addition, there is a lack of well-curated and standardized training and testing datasets, and lack of broadly accepted featurization for both tumors associated data and representations of drugs. Understanding and recognizing new innovations in drug response modeling are less clear due to ongoing challenges with data quality and data integration.</p>
-<p>With the IMPROVE project, we address some of the challenges around model comparisons and dataset standardization and availability through the development and provision of a software framework to make it routine practice for the broader community (cancer research and other areas) to compare new machine learning modeling approaches to previous models in a rigorous and comprehensive fashion.</p>
-</div>
+  <div class="section" id="dataframes">
+<h1>Dataframes<a class="headerlink" href="#dataframes" title="Permalink to this headline">¶</a></h1>
+<table class="colwidths-given docutils align-default" id="id1">
+<caption><span class="caption-text">Available Dataframes</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Heading row 1, column 1</p></th>
+<th class="head"><p>Heading row 1, column 2</p></th>
+<th class="head"><p>Heading row 1, column 3</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Row 1, column 1</p></td>
+<td></td>
+<td><p>Row 1, column 3</p></td>
+</tr>
+<tr class="row-odd"><td><p>Row 2, column 1</p></td>
+<td><p>Row 2, column 2</p></td>
+<td><p>Row 2, column 3</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 
 
