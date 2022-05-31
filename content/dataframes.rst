@@ -1,6 +1,10 @@
 Dataframes
 ============================
 
+.wy-table-responsive table td,
+.wy-table-responsive table th {
+  white-space: normal;
+}
 
 .. list-table:: Available Dataframes
    :widths: 15 15 40 15 15
