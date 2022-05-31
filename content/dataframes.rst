@@ -3,15 +3,21 @@ Dataframes
 
 
 .. list-table:: Available Dataframes
-   :widths: 25 25 50
+   :widths: 15 15 40 15 15
    :header-rows: 1
 
-   * - Heading row 1, column 1
-     - Heading row 1, column 2
-     - Heading row 1, column 3
+   * - Name
+     - Num Samples
+     - Description
+     - Point of Contact
+     - Location
    * - Row 1, column 1
      -
      - Row 1, column 3
+     -
+     -
    * - Row 2, column 1
      - Row 2, column 2
      - Row 2, column 3
+     -
+     -
