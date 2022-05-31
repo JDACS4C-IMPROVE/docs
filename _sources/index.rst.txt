@@ -15,6 +15,7 @@ Welcome to IMPROVE's documentation!
    content/models
    content/add_model
    content/dataframes
+   content/acknowledgment
 
 Access the code base https://github.com/JDACS4C-IMPROVE/
 
