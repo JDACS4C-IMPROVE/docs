@@ -13,6 +13,8 @@ Curated community model are standardized using CANDLE libraries.
    ```
    cadre_candle.py --config_file some_file_name
    ```
+   
+   b. Non-standard keywords (meaning not represented in the candle keywords) shall be added to the additional_definitions so that they can be included in that they are properly passed to and parsed by the model.
 
 2. There must be a data_loader that is implemented by/in <model>.py or uses a candle default data_loader. The name shall conform to CANDLE standards.
 
