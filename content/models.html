@@ -93,7 +93,7 @@
 <span class="pre">cadre_candle.py</span> <span class="pre">--config_file</span> <span class="pre">some_file_name</span>
 <span class="pre">`</span></code></p>
 <ol class="loweralpha simple" start="2">
-<li><p>Non-standard keywords (meaning not represented in the candle keywords) shall be added to the additional_definitions so that they can be included in that they are properly passed to and parsed by the model.</p></li>
+<li><p>Non-standard keywords (meaning not represented in the candle keywords) shall be added to the additional_definitions so that they can be included in that they are properly passed to and parsed by the model.  If these keywords (arguments) are not in additional_definitions they can’t be changed from the command line.</p></li>
 </ol>
 </li>
 <li><p>There must be a data_loader that is implemented by/in &lt;model&gt;.py or uses a candle default data_loader. The name shall conform to CANDLE standards.</p></li>
