@@ -84,8 +84,15 @@
 <div class="section" id="curated-community-models">
 <h2>Curated community models<a class="headerlink" href="#curated-community-models" title="Permalink to this headline">¶</a></h2>
 <p>Curated community model are standardized using CANDLE libraries.</p>
-<ol class="arabic simple">
-<li><p>Standard candle arguement parser will be used.</p></li>
+<ol class="arabic">
+<li><p>Standard candle arguement parser will be used.</p>
+<ol class="loweralpha simple">
+<li><p>All model arguements are passed to the model by way of the candle –config_file option. For example:</p></li>
+</ol>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">cadre_candle.py</span> <span class="pre">--config_file</span> <span class="pre">some_file_name</span>
+<span class="pre">`</span></code></p>
+</li>
 <li><p>There must be a data_loader that is implemented by/in &lt;model&gt;.py or uses a candle default data_loader. The name shall conform to CANDLE standards.</p></li>
 <li><p>Models shall use candle checkpointing.</p></li>
 <li><p>There will be a data_loader that is implemented by/in the &lt;model&gt;.py file, or uses a candle default data_loader.</p></li>
