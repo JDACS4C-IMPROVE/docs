@@ -8,6 +8,12 @@ Curated community model are standardized using CANDLE libraries.
 
 1. Standard candle arguement parser will be used.
 
+   a. All model arguements are passed to the model by way of the candle --config_file option. For example:
+   
+   ```
+   cadre_candle.py --config_file some_file_name
+   ```
+
 2. There must be a data_loader that is implemented by/in <model>.py or uses a candle default data_loader. The name shall conform to CANDLE standards.
 
 3. Models shall use candle checkpointing.
