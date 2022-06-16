@@ -8,7 +8,7 @@ Curated community model are standardized using CANDLE libraries.
 
 1. Standard candle arguement parser will be used.
 
-   a. CANDLE keywords must be used for command line arguements if one exists. https://ecp-candle.github.io/Candle/tutorials/default_parameters.html
+   a. CANDLE keywords must be used for command line arguements if one exists.  If you have the Benchmarks repo, they can use them as examples, or run --help. SEE ALSO: https://ecp-candle.github.io/Candle/tutorials/default_parameters.html
    
    b. All model arguements are passed to the model by way of the candle --config_file option. For example:
    
