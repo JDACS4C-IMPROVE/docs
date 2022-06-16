@@ -8,7 +8,9 @@ Curated community model are standardized using CANDLE libraries.
 
 1. Standard candle arguement parser will be used.
 
-   a. All model arguements are passed to the model by way of the candle --config_file option. For example:
+   a. CABDKE keywords must be used if one exists. (need link to list)
+   
+   b. All model arguements are passed to the model by way of the candle --config_file option. For example:
    
    ```
    cadre_candle.py --config_file some_file_name
