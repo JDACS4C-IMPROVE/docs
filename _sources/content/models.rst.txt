@@ -44,4 +44,7 @@ Current Models
    
 GitHub Preparation Template
 -------------------------
-Refer to this [github-readme-template](https://github.com/JDACS4C-IMPROVE/docs/blob/main/content/github-readme-template.rst).
+.. toctree::
+   :maxdepth: 1
+   
+   github-readme-template
