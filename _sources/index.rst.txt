@@ -13,7 +13,8 @@ Welcome to IMPROVE's documentation!
    content/whatis
    content/install
    content/models
-   content/containers
+   content/running-containers
+   content/building-containers
    content/add_model
    content/dataframes
    content/acknowledgment
