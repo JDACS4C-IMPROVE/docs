@@ -41,3 +41,7 @@ Current Models
    igtd
    DeepCDR
    MODEL_NAME
+   
+GitHub Template
+--------------
+[Example template](github-readme-template.rst)
