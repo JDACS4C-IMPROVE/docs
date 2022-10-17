@@ -44,4 +44,6 @@ Current Models
    
 GitHub Template
 --------------
-[Example template](github-readme-template.rst)
+.. toctree::
+   :maxdepth: 1
+   github-readme-template
