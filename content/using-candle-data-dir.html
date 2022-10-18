@@ -74,18 +74,22 @@
              
   <div class="section" id="tutorial-candle-data-dir">
 <h1>Tutorial CANDLE_DATA_DIR<a class="headerlink" href="#tutorial-candle-data-dir" title="Permalink to this headline">¶</a></h1>
-<p>‘’’
-import candle
-import os</p>
-<p># Assumes CANDLE_DATA_DIR is an environment variable
-os.environ[‘CANDLE_DATA_DIR’] = ‘/tmp/data_dir’</p>
-<p>fname=’raw_data.tar.gz’
-origin=’<a class="reference external" href="ftp://ftp.mcs.anl.gov/pub/candle/public/improve/hidra/raw_data.tar.gz">ftp://ftp.mcs.anl.gov/pub/candle/public/improve/hidra/raw_data.tar.gz</a>’</p>
-<p># Download and unpack the data in CANDLE_DATA_DIR
-candle.file_utils.get_file(fname, origin)</p>
-<p># Do it again to confirm it’s not re-downloading
-candle.file_utils.get_file(fname, origin)
-‘’’</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">candle</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="c1"># Assumes CANDLE_DATA_DIR is an environment variable</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;CANDLE_DATA_DIR&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;/tmp/data_dir&#39;</span>
+
+<span class="n">fname</span><span class="o">=</span><span class="s1">&#39;raw_data.tar.gz&#39;</span>
+<span class="n">origin</span><span class="o">=</span><span class="s1">&#39;ftp://ftp.mcs.anl.gov/pub/candle/public/improve/hidra/raw_data.tar.gz&#39;</span>
+
+<span class="c1"># Download and unpack the data in CANDLE_DATA_DIR</span>
+<span class="n">candle</span><span class="o">.</span><span class="n">file_utils</span><span class="o">.</span><span class="n">get_file</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="n">origin</span><span class="p">)</span>
+
+<span class="c1"># Do it again to confirm it&#39;s not re-downloading</span>
+<span class="n">candle</span><span class="o">.</span><span class="n">file_utils</span><span class="o">.</span><span class="n">get_file</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="n">origin</span><span class="p">)</span>
+</pre></div>
+</div>
 </div>
 
 
