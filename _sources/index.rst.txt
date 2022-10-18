@@ -13,7 +13,7 @@ Welcome to IMPROVE's documentation!
    content/whatis
    content/install
    content/models
-   content/CANDLE_DATA_DIR
+   content/using-candle-data-dir
    content/running-containers
    content/building-containers
    content/deploying-containers
