@@ -37,6 +37,15 @@ are:
 So the above code block for input data could look something like the following when using
 the CANDLE initialize_parameters() method.
 
+So, if your <modelname>_default_model.txt contains
+
+.. code-block:: yaml
+
+  data_url='ftp://ftp.mcs.anl.gov/pub/candle/public/improve/tCNNS/'
+  train_data='tCNNS_preprocessed_data.tar.gz'
+
+Then your data management code in the model could loook like this:
+
 .. code-block:: python
 
   import candle
@@ -45,12 +54,14 @@ the CANDLE initialize_parameters() method.
   # Assumes CANDLE_DATA_DIR is an environment variable
   os.environ['CANDLE_DATA_DIR'] = '/tmp/data_dir'
   
+  #gParameters = candle.intialize_parameters()
+  
   data_url=gParameters['data_url']
   data_url=data_url+'/' if not data_url.endswith('/')
   
   train_data = gParameters['train_data']
-  val_data = gParameters['val_data']
-  test_data = gParameters['test_data']
+  #val_data = gParameters['val_data']
+  #test_data = gParameters['test_data']
   
   # Download and unpack the data in CANDLE_DATA_DIR
   candle.file_utils.get_file(train_data, data_url + train_data)
@@ -62,3 +73,5 @@ the CANDLE initialize_parameters() method.
   candle.file_utils.get_file(train_data, data_url + train_data)
   candle.file_utils.get_file(val_data, data_url + val_data)
   candle.file_utils.get_file(test_data, data_url + test_data)
+  
+  
