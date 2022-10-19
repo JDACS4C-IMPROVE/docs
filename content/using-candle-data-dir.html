@@ -74,6 +74,9 @@
              
   <div class="section" id="tutorial-candle-data-dir">
 <h1>Tutorial CANDLE_DATA_DIR<a class="headerlink" href="#tutorial-candle-data-dir" title="Permalink to this headline">¶</a></h1>
+<p>We can assume that CANDLE_DATA_DIR is an environment variable that contains a path
+to the data directory. In the example below, I set it manually inside the code so
+that the get_file function can be demonstrated.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">candle</span>
 <span class="kn">import</span> <span class="nn">os</span>
 
@@ -88,6 +91,43 @@
 
 <span class="c1"># Do it again to confirm it&#39;s not re-downloading</span>
 <span class="n">candle</span><span class="o">.</span><span class="n">file_utils</span><span class="o">.</span><span class="n">get_file</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="n">origin</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Generally, the input data is specified on the command line. For our purposes, it
+needs to be set in the default_model.txt config file. The relevant CANDLE params
+are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="o">--</span><span class="n">train_data</span> <span class="n">TRAIN_DATA</span><span class="p">]</span>
+<span class="p">[</span><span class="o">--</span><span class="n">val_data</span> <span class="n">VAL_DATA</span><span class="p">]</span>
+<span class="p">[</span><span class="o">--</span><span class="n">test_data</span> <span class="n">TEST_DATA</span><span class="p">]</span>
+<span class="p">[</span><span class="o">--</span><span class="n">output_dir</span> <span class="n">OUTPUT_DIR</span><span class="p">]</span>
+<span class="p">[</span><span class="o">--</span><span class="n">data_url</span> <span class="n">DATA_URL</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>So the above code block for input data could look something like the following when using
+the CANDLE initialize_parameters() method.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">candle</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="c1"># Assumes CANDLE_DATA_DIR is an environment variable</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;CANDLE_DATA_DIR&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;/tmp/data_dir&#39;</span>
+
+<span class="n">data_url</span><span class="o">=</span><span class="n">gParameters</span><span class="p">[</span><span class="s1">&#39;data_url&#39;</span><span class="p">]</span>
+<span class="n">data_url</span><span class="o">=</span><span class="n">data_url</span><span class="o">+</span><span class="s1">&#39;/&#39;</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">data_url</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+
+<span class="n">train_data</span> <span class="o">=</span> <span class="n">gParameters</span><span class="p">[</span><span class="s1">&#39;train_data&#39;</span><span class="p">]</span>
+<span class="n">val_data</span> <span class="o">=</span> <span class="n">gParameters</span><span class="p">[</span><span class="s1">&#39;val_data&#39;</span><span class="p">]</span>
+<span class="n">test_data</span> <span class="o">=</span> <span class="n">gParameters</span><span class="p">[</span><span class="s1">&#39;test_data&#39;</span><span class="p">]</span>
+
+<span class="c1"># Download and unpack the data in CANDLE_DATA_DIR</span>
+<span class="n">candle</span><span class="o">.</span><span class="n">file_utils</span><span class="o">.</span><span class="n">get_file</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span> <span class="n">data_url</span> <span class="o">+</span> <span class="n">train_data</span><span class="p">)</span>
+<span class="n">candle</span><span class="o">.</span><span class="n">file_utils</span><span class="o">.</span><span class="n">get_file</span><span class="p">(</span><span class="n">val_data</span><span class="p">,</span> <span class="n">data_url</span> <span class="o">+</span> <span class="n">val_data</span><span class="p">)</span>
+<span class="n">candle</span><span class="o">.</span><span class="n">file_utils</span><span class="o">.</span><span class="n">get_file</span><span class="p">(</span><span class="n">test_data</span><span class="p">,</span> <span class="n">data_url</span> <span class="o">+</span> <span class="n">test_data</span><span class="p">)</span>
+
+
+<span class="c1"># Do it again to confirm it&#39;s not re-downloading</span>
+<span class="n">candle</span><span class="o">.</span><span class="n">file_utils</span><span class="o">.</span><span class="n">get_file</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span> <span class="n">data_url</span> <span class="o">+</span> <span class="n">train_data</span><span class="p">)</span>
+<span class="n">candle</span><span class="o">.</span><span class="n">file_utils</span><span class="o">.</span><span class="n">get_file</span><span class="p">(</span><span class="n">val_data</span><span class="p">,</span> <span class="n">data_url</span> <span class="o">+</span> <span class="n">val_data</span><span class="p">)</span>
+<span class="n">candle</span><span class="o">.</span><span class="n">file_utils</span><span class="o">.</span><span class="n">get_file</span><span class="p">(</span><span class="n">test_data</span><span class="p">,</span> <span class="n">data_url</span> <span class="o">+</span> <span class="n">test_data</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
