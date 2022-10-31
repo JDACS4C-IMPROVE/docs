@@ -74,6 +74,9 @@
              
   <div class="section" id="tutorial-candle-data-dir">
 <h1>Tutorial CANDLE_DATA_DIR<a class="headerlink" href="#tutorial-candle-data-dir" title="Permalink to this headline">¶</a></h1>
+<p>Basically, CANDLE_DATA_DIR and datadir are different ways to define the base
+directory (and end up internally stored as datadir), cache_subdir is a way to
+define a subdirectory to put the data downloaded by get_file.</p>
 <p>We can assume that CANDLE_DATA_DIR is an environment variable that contains a path
 to the data directory. In the example below, I set it manually inside the code so
 that the get_file function can be demonstrated.</p>

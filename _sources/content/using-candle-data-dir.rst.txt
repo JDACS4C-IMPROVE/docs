@@ -1,6 +1,10 @@
 Tutorial CANDLE_DATA_DIR
 ==========
 
+Basically, CANDLE_DATA_DIR and datadir are different ways to define the base
+directory (and end up internally stored as datadir), cache_subdir is a way to
+define a subdirectory to put the data downloaded by get_file.
+
 We can assume that CANDLE_DATA_DIR is an environment variable that contains a path
 to the data directory. In the example below, I set it manually inside the code so
 that the get_file function can be demonstrated.
