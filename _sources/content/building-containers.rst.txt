@@ -9,6 +9,7 @@ Using bootstrap.sh
 -----------------------------
 
 .. code-block::
+
   Options:
     -n: Required. Name for the image
     -f: Build a base image for a framework. Acceptable values are: 'pytorch', 'tensorflow'. If -d option is specified, then -f is ignored.
@@ -29,7 +30,9 @@ In order to build a container from a definition file, you have to write that def
 Definition files for images should be committed to the definitions directory of the Singularity repository.
 
 Custom containers can be built using the bootstrap.sh command, for example:
+
 .. code-block::
+
   ./bootstrap.sh -d ../definitions/GraphDRP.def -n GraphDRP
 
 
@@ -40,6 +43,7 @@ When bootstrap.sh is done running with no errors, you will be automatically logg
 2.  From within the container, demonstrate that the train.sh runs the community model. In this case, CANDLE_DATA_DIR can be any path within the container. See: https://github.com/JDACS4C-IMPROVE/Singularity/blob/master/src/templates/train.sh
 
 .. code-block::
+
   CUDA_VISIBLE_DEVICES=0
   CANDLE_DATA_DIR=/candle_data_dir
   CANDLE_CONFIG=/usr/local/GraphDRP/graphdrp_default_model.txt
@@ -48,7 +52,9 @@ When bootstrap.sh is done running with no errors, you will be automatically logg
 
 
 3.  Denonstrate that train.sh can be invoked from outside the container. These variables are set outside the container and passed in. NOTE: the path that is assigned to CANDLE_CONFIG is relative to CANDLE_DATA_DIR.
+
 .. code-block::
+
   CUDA_VISIBLE_DEVICES=0
   CANDLE_DATA_DIR=/path/to/host/data_dir
   CANDLE_CONFIG=uno_default_model.txt
@@ -58,6 +64,8 @@ When bootstrap.sh is done running with no errors, you will be automatically logg
 In the above example, the model config file would exist in /path/to/host/data_dir/uno_default_model.txt on the host. Thus, the CANDLE_CONFIG is relative to CANDLE_DATA_DIR. You run train.sh from outside the container by invoking singularity:
 
 4. Build a non-writable image from the sandbox and run train.sh
+
 .. code-block::
+
   TODO: Document this
 

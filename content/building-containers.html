@@ -82,6 +82,14 @@
 <p><a class="reference external" href="https://github.com/JDACS4C-IMPROVE/Singularity/blob/master/README.building_container.md">https://github.com/JDACS4C-IMPROVE/Singularity/blob/master/README.building_container.md</a></p>
 <div class="section" id="using-bootstrap-sh">
 <h2>Using bootstrap.sh<a class="headerlink" href="#using-bootstrap-sh" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Options</span><span class="p">:</span>
+  <span class="o">-</span><span class="n">n</span><span class="p">:</span> <span class="n">Required</span><span class="o">.</span> <span class="n">Name</span> <span class="k">for</span> <span class="n">the</span> <span class="n">image</span>
+  <span class="o">-</span><span class="n">f</span><span class="p">:</span> <span class="n">Build</span> <span class="n">a</span> <span class="n">base</span> <span class="n">image</span> <span class="k">for</span> <span class="n">a</span> <span class="n">framework</span><span class="o">.</span> <span class="n">Acceptable</span> <span class="n">values</span> <span class="n">are</span><span class="p">:</span> <span class="s1">&#39;pytorch&#39;</span><span class="p">,</span> <span class="s1">&#39;tensorflow&#39;</span><span class="o">.</span> <span class="n">If</span> <span class="o">-</span><span class="n">d</span> <span class="n">option</span> <span class="ow">is</span> <span class="n">specified</span><span class="p">,</span> <span class="n">then</span> <span class="o">-</span><span class="n">f</span> <span class="ow">is</span> <span class="n">ignored</span><span class="o">.</span>
+  <span class="o">-</span><span class="n">d</span><span class="p">:</span> <span class="n">Path</span> <span class="n">to</span> <span class="n">Singularity</span> <span class="n">definition</span> <span class="n">file</span><span class="o">.</span> <span class="n">Builds</span> <span class="n">an</span> <span class="n">image</span> <span class="kn">from</span> <span class="nn">specified</span> <span class="n">definition</span>
+  <span class="o">-</span><span class="n">t</span><span class="p">:</span> <span class="n">Tag</span> <span class="k">for</span> <span class="n">Singularity</span> <span class="n">definition</span> <span class="n">file</span><span class="o">.</span> <span class="n">Active</span> <span class="n">only</span> <span class="k">for</span> <span class="o">-</span><span class="n">d</span> <span class="n">option</span><span class="o">.</span> <span class="n">Default</span> <span class="n">value</span> <span class="ow">is</span> <span class="mf">0.0</span><span class="o">.</span><span class="mi">1</span>
+  <span class="o">-</span><span class="n">h</span><span class="p">:</span> <span class="n">Help</span>
+</pre></div>
+</div>
 <p>Environmental variables are specified in a file ../config/improve.env</p>
 <p>Runtime variables are specified in a file ../config/run.config</p>
 </div>
@@ -89,8 +97,7 @@
 <h2>Building from definition file<a class="headerlink" href="#building-from-definition-file" title="Permalink to this headline">¶</a></h2>
 <p>In order to build a container from a definition file, you have to write that definintion file. There are definition files in the definitions directory of the Singularity repository. Your definition file can start by using a pre-built improve image that has tensorflow or pytorch already installed along with candle_lib, or your definition file can start by using a deep learning docker image from dockerhub such as tensorflow/tensorflow:latest-gpu.</p>
 <p>Definition files for images should be committed to the definitions directory of the Singularity repository.</p>
-<p>Custom containers can be built using the bootstrap.sh command, for example:
-.. code-block:</p>
+<p>Custom containers can be built using the bootstrap.sh command, for example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">bootstrap</span><span class="o">.</span><span class="n">sh</span> <span class="o">-</span><span class="n">d</span> <span class="o">../</span><span class="n">definitions</span><span class="o">/</span><span class="n">GraphDRP</span><span class="o">.</span><span class="k">def</span> <span class="o">-</span><span class="n">n</span> <span class="n">GraphDRP</span>
 </pre></div>
 </div>
@@ -99,8 +106,16 @@
 <li><p>Install dependencies and update definition file until the model is running.</p></li>
 <li><p>From within the container, demonstrate that the train.sh runs the community model. In this case, CANDLE_DATA_DIR can be any path within the container. See: <a class="reference external" href="https://github.com/JDACS4C-IMPROVE/Singularity/blob/master/src/templates/train.sh">https://github.com/JDACS4C-IMPROVE/Singularity/blob/master/src/templates/train.sh</a></p></li>
 </ol>
-<p>3.  Denonstrate that train.sh can be invoked from outside the container. These variables are set outside the container and passed in. NOTE: the path that is assigned to CANDLE_CONFIG is relative to CANDLE_DATA_DIR.
-.. code-block:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>CUDA_VISIBLE_DEVICES=0
+CANDLE_DATA_DIR=/candle_data_dir
+CANDLE_CONFIG=/usr/local/GraphDRP/graphdrp_default_model.txt
+
+train.sh $CUDA_VISIBLE_DEVICES $CANDLE_DATA_DIR $CANDLE_CONFIG
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Denonstrate that train.sh can be invoked from outside the container. These variables are set outside the container and passed in. NOTE: the path that is assigned to CANDLE_CONFIG is relative to CANDLE_DATA_DIR.</p></li>
+</ol>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>CUDA_VISIBLE_DEVICES=0
 CANDLE_DATA_DIR=/path/to/host/data_dir
 CANDLE_CONFIG=uno_default_model.txt
@@ -109,8 +124,9 @@ singularity exec --nv --bind $CANDLE_DATA_DIR:/candle_data_dir &lt;image or sand
 </pre></div>
 </div>
 <p>In the above example, the model config file would exist in /path/to/host/data_dir/uno_default_model.txt on the host. Thus, the CANDLE_CONFIG is relative to CANDLE_DATA_DIR. You run train.sh from outside the container by invoking singularity:</p>
-<p>4. Build a non-writable image from the sandbox and run train.sh
-.. code-block:</p>
+<ol class="arabic simple" start="4">
+<li><p>Build a non-writable image from the sandbox and run train.sh</p></li>
+</ol>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span><span class="p">:</span> <span class="n">Document</span> <span class="n">this</span>
 </pre></div>
 </div>
