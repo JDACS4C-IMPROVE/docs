@@ -12,8 +12,9 @@ Using bootstrap.sh
 
   Options:
     -n: Required. Name for the image
-    -f: Build a base image for a framework. Acceptable values are: 'pytorch', 'tensorflow'. If -d option is specified, then -f is ignored.
     -d: Path to Singularity definition file. Builds an image from specified definition
+    -f: Build a base image for a framework. Acceptable values are: 'pytorch', 'tensorflow'.
+        If -d option is specified, then -f is ignored.
     -t: Tag for Singularity definition file. Active only for -d option. Default value is 0.0.1
     -h: Help
 
