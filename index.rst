@@ -13,6 +13,7 @@ Welcome to IMPROVE's documentation!
    content/whatis
    content/install
    content/models
+   content/git-branch-tag-names
    content/using-candle-data-dir
    content/running-containers
    content/building-containers
