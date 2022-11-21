@@ -16,7 +16,9 @@ Example:
  
  .. code-block::
 
-  singularity exec --nv --bind /home/brettin/improve_data_dir:/candle_data_dir /software/improve/images/GraphDRP\:0.0.1-20221109.sif train.sh 2 /candle_data_dir GraphDRP/graphdrp_default_model.txt
+  singularity exec --nv --bind /home/brettin/improve_data_dir:/candle_data_dir \
+       /software/improve/images/GraphDRP:0.0.1-20221109.sif                    \
+       train.sh 2 /candle_data_dir GraphDRP/graphdrp_default_model.txt
 
 
 .. csv-table:: Options
@@ -39,7 +41,9 @@ Use Case 2: Train a model with the default model file.
 
   .. code-block::
 
-    singularity exec --nv --bind /home/brettin/candle_data_dir:/candle_data_dir                   \ /home/brettin/Singularity/sandboxes/GraphDRP-GraphDRP:0.0.1-20221028.   \ train.sh 2 /candle_data_dir
+    singularity exec --nv --bind /home/brettin/candle_data_dir:/candle_data_dir \
+        /home/brettin/Singularity/sandboxes/GraphDRP-GraphDRP:0.0.1-20221028    \
+        train.sh 2 /candle_data_dir
  
 Because the number of positional arguments to train.sh is 2, the default model file in the model directory inside the container is used. It still expects /candle_data_dir to be available inside the container as /candle_data_dir is prepended to input and output paths. The default model file would be the one used to closely reproduce the original authors results.
  
