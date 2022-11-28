@@ -13,20 +13,24 @@ Three standards needed to automate execution across a collection of models addre
 
 CANDLE
 ------
+.. toctree::
+   :maxdepth: 1
 
-The CANDLE libraries provide stable interfaces that standardize the interfaces of a set of otherwise heterogenous drug response prediction software.
+    The CANDLE libraries provide stable interfaces that standardize the interfaces of a set of otherwise heterogenous drug response prediction software.
 
-How to write CANDLE-compliant deep learning code
+    How to write CANDLE-compliant deep learning code
 
-- https://ecp-candle.github.io/Candle/tutorials/writing_candle_code.html
+    - https://ecp-candle.github.io/Candle/tutorials/writing_candle_code.html
 
-The candle_lib API documentation
+    The candle_lib API documentation
 
-- https://ecp-candle.github.io/Candle/candle_lib
+    - https://ecp-candle.github.io/Candle/candle_lib
 
 Examples
 --------
+.. toctree::
+   :maxdepth: 1
 
-ADRP is a simple fully connected network that trains on drug descriptors using a binding score to a SARS-CoV-2 protein receptor as the label.
+    ADRP is a simple fully connected network that trains on drug descriptors using a binding score to a SARS-CoV-2 protein receptor as the label.
 
-    https://ecp-candle.github.io/Candle/tutorials/index.html#examples
+    -  https://ecp-candle.github.io/Candle/tutorials/index.html#examples
