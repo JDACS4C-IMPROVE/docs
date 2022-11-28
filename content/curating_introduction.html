@@ -40,14 +40,9 @@
 <li class="toctree-l1"><a class="reference internal" href="whatis.html">What is the IMPROVE project?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installing IMPROVE</a></li>
 <li class="toctree-l1"><a class="reference internal" href="models.html">Models</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction to Curating a Community Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#candle">CANDLE</a><ul>
-<li class="toctree-l2"><a class="reference external" href=" - https://ecp-candle.github.io/Candle/tutorials/writing_candle_code.html"> - https://ecp-candle.github.io/Candle/tutorials/writing_candle_code.html</a></li>
-<li class="toctree-l2"><a class="reference external" href=" - https://ecp-candle.github.io/Candle/candle_lib"> - https://ecp-candle.github.io/Candle/candle_lib</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="#examples">Examples</a><ul>
-<li class="toctree-l2"><a class="reference external" href=" -  https://ecp-candle.github.io/Candle/tutorials/index.html#examples"> -  https://ecp-candle.github.io/Candle/tutorials/index.html#examples</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction to Curating a Community Model</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#candle">CANDLE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="curating.html">Curating a Community Model</a></li>
@@ -93,21 +88,23 @@
 <li><p>Model hyperparameter keywords then map to the command line parameter keywords you can specify in a (model) file. Generally, each should contain at least a default model file containing the hyperparameter keywords and values from the original publication.</p></li>
 <li><p>The validation loss is generally the return value of the call to run() or main(). The model weights through the candle library checkpointing. RETURN VALUE DOCUMENTATION.</p></li>
 </ol>
-</div>
 <div class="section" id="candle">
-<h1>CANDLE<a class="headerlink" href="#candle" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference external" href=" - https://ecp-candle.github.io/Candle/tutorials/writing_candle_code.html"> - https://ecp-candle.github.io/Candle/tutorials/writing_candle_code.html</a></li>
-<li class="toctree-l1"><a class="reference external" href=" - https://ecp-candle.github.io/Candle/candle_lib"> - https://ecp-candle.github.io/Candle/candle_lib</a></li>
+<h2>CANDLE<a class="headerlink" href="#candle" title="Permalink to this headline">¶</a></h2>
+<p>The CANDLE libraries provide stable interfaces that standardize the interfaces of a set of otherwise heterogenous drug response prediction software.</p>
+<p>How to write CANDLE-compliant deep learning code</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://ecp-candle.github.io/Candle/tutorials/writing_candle_code.html">https://ecp-candle.github.io/Candle/tutorials/writing_candle_code.html</a></p></li>
+</ul>
+<p>The candle_lib API documentation</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://ecp-candle.github.io/Candle/candle_lib">https://ecp-candle.github.io/Candle/candle_lib</a></p></li>
 </ul>
 </div>
-</div>
 <div class="section" id="examples">
-<h1>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference external" href=" -  https://ecp-candle.github.io/Candle/tutorials/index.html#examples"> -  https://ecp-candle.github.io/Candle/tutorials/index.html#examples</a></li>
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>ADRP is a simple fully connected network that trains on drug descriptors using a binding score to a SARS-CoV-2 protein receptor as the label.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://ecp-candle.github.io/Candle/tutorials/index.html#examples">https://ecp-candle.github.io/Candle/tutorials/index.html#examples</a></p></li>
 </ul>
 </div>
 </div>
