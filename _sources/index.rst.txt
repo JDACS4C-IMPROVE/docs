@@ -12,7 +12,10 @@ Welcome to IMPROVE's documentation!
 
    content/whatis
    content/install
+   content/introduction
    content/models
+   content/curating_introduction
+   content/curating
    content/git-branch-tag-names
    content/using-candle-data-dir
    content/running-containers
