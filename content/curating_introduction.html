@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Acknowledgments &mdash; IMPROVE 0.1 documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <title>Introduction to Curating a Community Model &mdash; IMPROVE 0.1 documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
@@ -16,7 +16,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="Dataframes" href="dataframes.html" /> 
+    <link rel="next" title="Curating a Community Model" href="curating.html" />
+    <link rel="prev" title="UNO" href="github-readme-template.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -39,9 +40,9 @@
 <li class="toctree-l1"><a class="reference internal" href="whatis.html">What is the IMPROVE project?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installing IMPROVE</a></li>
 <li class="toctree-l1"><a class="reference internal" href="models.html">Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="curating_introduction.html">Introduction to Curating a Community Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="curating_introduction.html#candle">CANDLE</a></li>
-<li class="toctree-l1"><a class="reference internal" href="curating_introduction.html#examples">Examples</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction to Curating a Community Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#candle">CANDLE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#examples">Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="curating.html">Curating a Community Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="git-branch-tag-names.html">GitHub branch and tag names and definitions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using-candle-data-dir.html">Tutorial CANDLE_DATA_DIR</a></li>
@@ -49,7 +50,7 @@
 <li class="toctree-l1"><a class="reference internal" href="building-containers.html">How to build a container</a></li>
 <li class="toctree-l1"><a class="reference internal" href="deploying-containers.html">How to deploy a container</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dataframes.html">Dataframes</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Acknowledgments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acknowledgment.html">Acknowledgments</a></li>
 </ul>
 
         </div>
@@ -66,9 +67,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a></li>
-      <li class="breadcrumb-item active">Acknowledgments</li>
+      <li class="breadcrumb-item active">Introduction to Curating a Community Model</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/content/acknowledgment.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/content/curating_introduction.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -76,16 +77,42 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="acknowledgments">
-<h1>Acknowledgments<a class="headerlink" href="#acknowledgments" title="Permalink to this headline">¶</a></h1>
-<p>This has been funded in whole or in part with Federal funding by the NCI-DOE Collaboration established by the U.S. Department of Energy (DOE) and the National Cancer Institute (NCI) of the National Institutes of Health, Cancer Moonshot Task Order No. 75N91019F00134 and under Frederick National Laboratory for Cancer Research Contract 75N91019D00024. This work was performed under the auspices of the U.S. Department of Energy by Argonne National Laboratory under Contract DE-AC02-06-CH11357, Lawrence Livermore National Laboratory under Contract DE-AC52-07NA27344, Los Alamos National Laboratory under Contract 89233218CNA000001, and Oak Ridge National Laboratory under Contract DE-AC05-00OR22725.</p>
+  <div class="section" id="introduction-to-curating-a-community-model">
+<h1>Introduction to Curating a Community Model<a class="headerlink" href="#introduction-to-curating-a-community-model" title="Permalink to this headline">¶</a></h1>
+<p>A central goal of the IMPROVE framework is the automated execution of community drug response models so that they can be compared to each other under a wide range of conditions.</p>
+<p>Three standards needed to automate execution across a collection of models address command line parameters, model hyperparameters, and the return value from a successful training process.</p>
+<ol class="arabic simple">
+<li><p>Standard command line parameters are needed so that code that calls to multiple models can be simplified by only knowing one set of command line parameter keywords.</p></li>
+<li><p>Model hyperparameter keywords then map to the command line parameter keywords you can specify in a (model) file. Generally, each should contain at least a default model file containing the hyperparameter keywords and values from the original publication.</p></li>
+<li><p>The validation loss is generally the return value of the call to run() or main(). The model weights through the candle library checkpointing. RETURN VALUE DOCUMENTATION.</p></li>
+</ol>
+</div>
+<div class="section" id="candle">
+<h1>CANDLE<a class="headerlink" href="#candle" title="Permalink to this headline">¶</a></h1>
+<p>The CANDLE libraries provide stable interfaces that standardize the interfaces of a set of otherwise heterogenous drug response prediction software.</p>
+<p>How to write CANDLE-compliant deep learning code</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://ecp-candle.github.io/Candle/tutorials/writing_candle_code.html">https://ecp-candle.github.io/Candle/tutorials/writing_candle_code.html</a></p></li>
+</ul>
+<p>The candle_lib API documentation</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://ecp-candle.github.io/Candle/candle_lib">https://ecp-candle.github.io/Candle/candle_lib</a></p></li>
+</ul>
+</div>
+<div class="section" id="examples">
+<h1>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h1>
+<p>ADRP is a simple fully connected network that trains on drug descriptors using a binding score to a SARS-CoV-2 protein receptor as the label.</p>
+<blockquote>
+<div><p><a class="reference external" href="https://ecp-candle.github.io/Candle/tutorials/index.html#examples">https://ecp-candle.github.io/Candle/tutorials/index.html#examples</a></p>
+</div></blockquote>
 </div>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="dataframes.html" class="btn btn-neutral float-left" title="Dataframes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="github-readme-template.html" class="btn btn-neutral float-left" title="UNO" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="curating.html" class="btn btn-neutral float-right" title="Curating a Community Model" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
