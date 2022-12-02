@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GitHub branch and tag names and definitions &mdash; IMPROVE 0.1 documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <title>Benchmarks &mdash; IMPROVE 0.1 documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
@@ -16,8 +16,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Tutorial CANDLE_DATA_DIR" href="using-candle-data-dir.html" />
-    <link rel="prev" title="Curating a Community Model" href="curating.html" /> 
+    <link rel="next" title="Acknowledgments" href="acknowledgment.html" />
+    <link rel="prev" title="How to deploy a container" href="deploying-containers.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -42,12 +42,12 @@
 <li class="toctree-l1"><a class="reference internal" href="models.html">Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="curating_introduction.html">Introduction to Curating a Community Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="curating.html">Curating a Community Model</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">GitHub branch and tag names and definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="git-branch-tag-names.html">GitHub branch and tag names and definitions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using-candle-data-dir.html">Tutorial CANDLE_DATA_DIR</a></li>
 <li class="toctree-l1"><a class="reference internal" href="running-containers.html">How to run a container</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building-containers.html">How to build a container</a></li>
 <li class="toctree-l1"><a class="reference internal" href="deploying-containers.html">How to deploy a container</a></li>
-<li class="toctree-l1"><a class="reference internal" href="benchmarks.html">Benchmarks</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Benchmarks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="acknowledgment.html">Acknowledgments</a></li>
 </ul>
 
@@ -65,9 +65,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a></li>
-      <li class="breadcrumb-item active">GitHub branch and tag names and definitions</li>
+      <li class="breadcrumb-item active">Benchmarks</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/content/git-branch-tag-names.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/content/benchmarks.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -75,28 +75,49 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="github-branch-and-tag-names-and-definitions">
-<h1>GitHub branch and tag names and definitions<a class="headerlink" href="#github-branch-and-tag-names-and-definitions" title="Permalink to this headline">¶</a></h1>
-<p>Github Branch and Tag Definitions</p>
-<p>Branches:</p>
-<p>main, master - The branch representing the original forked code.</p>
-<p>improve - This is the improve release branch. Only the release engineer(s) will have write permissions on this branch.</p>
-<p>develop - This is the branch that improve developers work on.</p>
-<p>Tags</p>
-<p>Release tags will be used to mark releases, which will be on the improve branch. Releases tags follow the v0.0.0 nomenclature.</p>
-<p>An optional annotated tag can be added to the model on the develop branch when the code is determined to be reproducing the original results (within reasonable limits). For consistency sake, we are recommending that the tag name be “validated”. Hence a command to tag the develop branch when it is believed that we have reproduced the results is</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">tag</span> <span class="o">-</span><span class="n">a</span> <span class="n">valiated</span>
-</pre></div>
-</div>
-<p>The -a will cause git to prompt you for annotation, which would be something like “The author reported an MSE of 1.141 and we obtrained an MSE of 1.145”. Of course the specific message (annotation) will be model specific, and the tag name will be “validated”.</p>
+  <div class="section" id="benchmarks">
+<h1>Benchmarks<a class="headerlink" href="#benchmarks" title="Permalink to this headline">¶</a></h1>
+<p>Some text to describe this page.</p>
+<table class="colwidths-given docutils align-default" id="id1">
+<caption><span class="caption-text">Available Dataframes</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 40%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Num Samples</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Point of Contact</p></th>
+<th class="head"><p>Location</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Attn 100foldValidation</p></td>
+<td><p>Varies</p></td>
+<td><p>These dataframes were used for the Attn 100 fold cross-validation classifiation study.</p></td>
+<td><p>Tom Brettin</p></td>
+<td><p>/vol/ml/hsyoo/100foldValidation/</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 </div>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="curating.html" class="btn btn-neutral float-left" title="Curating a Community Model" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="using-candle-data-dir.html" class="btn btn-neutral float-right" title="Tutorial CANDLE_DATA_DIR" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="deploying-containers.html" class="btn btn-neutral float-left" title="How to deploy a container" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="acknowledgment.html" class="btn btn-neutral float-right" title="Acknowledgments" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
