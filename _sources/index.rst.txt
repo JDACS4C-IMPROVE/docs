@@ -21,6 +21,7 @@ Welcome to IMPROVE's documentation!
    content/building-containers
    content/deploying-containers
    content/add_model
+   content/drp_overview
    content/model_curation
    content/curated_models
    content/benchmarks
