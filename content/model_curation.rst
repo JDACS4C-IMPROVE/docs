@@ -9,6 +9,12 @@ Model curation generally involves three primary steps as described in this secti
 ---------------------
 Once you a chose a model to work on, you need to ensure the code is in good state and usable for your analysis. In this step, you may find it useful to reach out to the authors of the repo for help and clarifications.
 
+* Fork the model repo
+* Create develop branch where you will modify the code
+* Setup the Python computational environment
+* Run the model with the original data provided with the repo
+* Validate that the results make sense (e.g., reproducible)
+
 2. CANDLE
 ------------------------
 **TODO** all docs relevent to CANLDEizing models.
