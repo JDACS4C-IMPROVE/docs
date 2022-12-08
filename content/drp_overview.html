@@ -98,7 +98,7 @@ The function <span class="math notranslate nohighlight">\(f\)</span> is implemen
 This formulation is for pan-cancer and multi-drug prediction model where both cancer and drug representations are needed to predict response.
 A special case is drug-specific models designed to make predictions for a drug or drug family (e.g., drugs with the same mechanism of action (MoA)). These models learn from cancer features only and can be formulated as <span class="math notranslate nohighlight">\(r=f_D(c)\)</span>.</p>
 <div class="figure align-center" id="id1">
-<a class="reference internal image-reference" href="content/../images/NN_architecture.png"><img alt="content/../images/NN_architecture.png" src="content/../images/NN_architecture.png" style="width: 350px;" /></a>
+<a class="reference internal image-reference" href="../_images/NN_architecture.png"><img alt="../_images/NN_architecture.png" src="../_images/NN_architecture.png" style="width: 350px;" /></a>
 <p class="caption"><span class="caption-text">A neural network architecture for cancer drug response prediction (DRP). The model is pan-cancer and multi-drug where both cancer and drug representations are used to predict the response.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 </div>
@@ -109,7 +109,7 @@ A special case is drug-specific models designed to make predictions for a drug o
 <p>Drug screening experiments can be performed with various pre-clinical cancer models such as cell lines, organoids, and xenografts, where cancer samples are screened against a library of drug compounds. Regardless of specific cancer models, the screening space can be characterized by the involved drugs and cancers. The 2-D matrix illustrates such a space composed of a finite number of known cancer cases and drugs, where the marked coordinates symbolize that treatment responses are available for these combinations.
 Results of the screening experiments can be organized in a table format, represting the <strong>response data</strong> .</p>
 <div class="figure align-center" id="id2">
-<a class="reference internal image-reference" href="content/../images/Screening_data.png"><img alt="content/../images/Screening_data.png" src="content/../images/Screening_data.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Screening_data.png"><img alt="../_images/Screening_data.png" src="../_images/Screening_data.png" style="width: 500px;" /></a>
 <p class="caption"><span class="caption-text">Several drug and cancer feature representations that are used as input features for a DRP model.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 </div>
@@ -119,7 +119,7 @@ Results of the screening experiments can be organized in a table format, represt
 In most DRP models, cancer is represented using various omics data types which are often provided with public drug screening studies (e.g., CCLE, GDSC). In certain, however, additional bioinformatics processing methods are applied to further preprocess the omics for the downstream ML analysis.
 The drugs are generallity represtend with SMILES strings, fingerprints (binary vectors), descriptors, and molecular graph structures. These representations can be calculated using open-source cheminformatics software packages such as RDKit and Mordred.</p>
 <div class="figure align-center" id="id3">
-<a class="reference internal image-reference" href="content/../images/Feature_representations.png"><img alt="content/../images/Feature_representations.png" src="content/../images/Feature_representations.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Feature_representations.png"><img alt="../_images/Feature_representations.png" src="../_images/Feature_representations.png" style="width: 500px;" /></a>
 <p class="caption"><span class="caption-text">Drug and cancer feature representaions.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 </div>
