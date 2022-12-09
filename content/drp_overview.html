@@ -95,11 +95,11 @@
 <h2>Modeling drug response<a class="headerlink" href="#modeling-drug-response" title="Permalink to this headline">¶</a></h2>
 <p>A drug response prediction (DRP) model can be represented by <span class="math notranslate nohighlight">\(r = f(d, c)\)</span>, where <span class="math notranslate nohighlight">\(f\)</span> is the analytical model designed to predict the response <span class="math notranslate nohighlight">\(r\)</span> of cancer <span class="math notranslate nohighlight">\(c\)</span> to the treatment by drug <span class="math notranslate nohighlight">\(d\)</span>.
 The function <span class="math notranslate nohighlight">\(f\)</span> is implemented with a neural network (NN) architecture.
-This formulation is for pan-cancer and multi-drug prediction model where both cancer and drug representations are needed to predict response.
+This formulation is for pan-cancer and pan-drug prediction model where both cancer and drug representations are needed to predict response.
 A special case is drug-specific models designed to make predictions for a drug or drug family (e.g., drugs with the same mechanism of action (MoA)). These models learn from cancer features only and can be formulated as <span class="math notranslate nohighlight">\(r=f_D(c)\)</span>.</p>
 <div class="figure align-center" id="id1">
 <a class="reference internal image-reference" href="../_images/NN_architecture.png"><img alt="../_images/NN_architecture.png" src="../_images/NN_architecture.png" style="width: 350px;" /></a>
-<p class="caption"><span class="caption-text">A neural network architecture for cancer drug response prediction (DRP). The model is pan-cancer and multi-drug where both cancer and drug representations are used to predict the response.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">A neural network architecture for cancer drug response prediction (DRP). The model is pan-cancer and pan-drug where both cancer and drug representations are used to predict the response.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="data">
@@ -107,38 +107,38 @@ A special case is drug-specific models designed to make predictions for a drug o
 <div class="section" id="screening-data">
 <h3>Screening data<a class="headerlink" href="#screening-data" title="Permalink to this headline">¶</a></h3>
 <p>Drug screening experiments can be performed with various pre-clinical cancer models such as cell lines, organoids, and xenografts, where cancer samples are screened against a library of drug compounds. Regardless of specific cancer models, the screening space can be characterized by the involved drugs and cancers. The 2-D matrix illustrates such a space composed of a finite number of known cancer cases and drugs, where the marked coordinates symbolize that treatment responses are available for these combinations.
-Results of the screening experiments can be organized in a table format, represting the <strong>response data</strong> .</p>
+Drug sensitivity results of screening experiments can be organized in a table format, represting the <strong>response data</strong> .</p>
 <div class="figure align-center" id="id2">
 <a class="reference internal image-reference" href="../_images/Screening_data.png"><img alt="../_images/Screening_data.png" src="../_images/Screening_data.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-text">Several drug and cancer feature representations that are used as input features for a DRP model.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Drug screening experiments can be performed with several pre-clinical cancer models.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="feature-representations">
 <h3>Feature representations<a class="headerlink" href="#feature-representations" title="Permalink to this headline">¶</a></h3>
-<p>The different cancers and drugs in a screening experiment can be numerically described using various representations that can serve as features in a DL model.
-In most DRP models, cancer is represented using various omics data types which are often provided with public drug screening studies (e.g., CCLE, GDSC). In certain, however, additional bioinformatics processing methods are applied to further preprocess the omics for the downstream ML analysis.
-The drugs are generallity represtend with SMILES strings, fingerprints (binary vectors), descriptors, and molecular graph structures. These representations can be calculated using open-source cheminformatics software packages such as RDKit and Mordred.</p>
+<p>The different cancers and drugs in a screening experiment can be numerically described using various representations that can be supplied as features to a DL model.
+In most DRP models, cancer is represented using various omics data types which are often provided with public drug screening studies (e.g., CCLE, GDSC). In certain cases, however, additional bioinformatics processing steps are applied to further preprocess omics data for the downstream ML analysis.
+The drugs are generallity represtend with SMILES strings, fingerprints, descriptors, and molecular graph structures. These representations can be calculated using open-source cheminformatics software packages such as RDKit and Mordred.</p>
 <div class="figure align-center" id="id3">
 <a class="reference internal image-reference" href="../_images/Feature_representations.png"><img alt="../_images/Feature_representations.png" src="../_images/Feature_representations.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-text">Drug and cancer feature representaions.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Several drug and cancer feature representations that are used as input features for a DRP model.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="raw-drp-data">
 <h3>Raw DRP data<a class="headerlink" href="#raw-drp-data" title="Permalink to this headline">¶</a></h3>
-<p>The data required to develop (train and validate) a DRP model, consists of three primary components:
-1) response data
-2) cancer representations
-3) drug representations
+<p>The data required to develop (train and validate) a pan-cancer and pan-drug DRP model, consists of three primary components: 1) response data, 2) cancer representation, and 3) drug representation.
 These data are generally stored in tabular structures.
 In the context of the DRP problem, we define these data structures as <strong>raw DRP data</strong>.</p>
+<div class="figure align-center" id="id4">
+<a class="reference internal image-reference" href="../_images/Raw_data.png"><img alt="../_images/Raw_data.png" src="../_images/Raw_data.png" style="width: 600px;" /></a>
+<p class="caption"><span class="caption-text">Raw DRP data.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</div>
 </div>
 <div class="section" id="ml-data">
 <h3>ML data<a class="headerlink" href="#ml-data" title="Permalink to this headline">¶</a></h3>
 <p>Deep learning (DL) models built using popular DL frameworks can take various types of data from simple CSV to more complex structures such as TFRecords.
-Constructing datasets for DRP models generally requires combining heterogeneous data such as cancer and drug information and treatment response values (see the definition of <strong>raw DRP data</strong>.
+Constructing datasets for DL-based DRP models generally requires combining heterogeneous data such as cancer and drug information and treatment response values.
 In this context, we distinguish between two types of data, <strong>raw DRP data</strong> (described above) and <strong>ML data</strong>.
-ML data refers to data files that can be directly supplied to models for training and testing (e.g., TFRecords with TensorFlow, <strong>.pt</strong> with PyTorch).</p>
-<p>Preprocessing scripts are often required to generate ML data from raw data. However, not all public repositories provide the necessary scripts.</p>
+ML data refers to data files that can be directly supplied to DL models for training and testing (e.g., TFRecord files with TensorFlow, <strong>pt</strong> files with PyTorch). Preprocessing scripts are often required to generate ML data from raw data. Note however, not all public repositories provide the necessary scripts.</p>
 </div>
 </div>
 </div>
