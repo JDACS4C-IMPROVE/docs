@@ -17,8 +17,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="UNO" href="github-readme-template.html" />
-    <link rel="prev" title="Models" href="models.html" /> 
+    <link rel="next" title="HiDRA" href="HiDRA.html" />
+    <link rel="prev" title="DeepTTC" href="DeepTTC.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -40,18 +40,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="whatis.html">What is the IMPROVE project?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installing IMPROVE</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="models.html">Models</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="models.html#curated-community-models">Curated community models</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="models.html#current-models">Current Models</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">GraphDRP</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#graph-convolutional-networks-for-drug-response-prediction">Graph Convolutional Networks for Drug Response Prediction</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="models.html#github-preparation-template">GitHub Preparation Template</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="models.html">Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="curating_introduction.html">Introduction to Curating a Community Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="curating.html">Curating a Community Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="git-branch-tag-names.html">GitHub branch and tag names and definitions</a></li>
@@ -61,7 +50,27 @@
 <li class="toctree-l1"><a class="reference internal" href="deploying-containers.html">How to deploy a container</a></li>
 <li class="toctree-l1"><a class="reference internal" href="drp_overview.html">Drug Response Prediction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="model_curation.html">Model Curation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="curated_models.html">Curated Models</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="curated_models.html">Curated Models</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="DeepTTC.html">DeepTTC</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">GraphDRP</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data">Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#data-sources">Data sources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#raw-data">Raw data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ml-data">ML data</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#evaluation">Evaluation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#urls">URLs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="HiDRA.html">HiDRA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="IGTD.html">IGTD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Paccman_MCA.html">Paccman_MCA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MODEL_TEMPLATE.html">MODEL TEMPLATE</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="benchmarks.html">Benchmarks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="acknowledgment.html">Acknowledgments</a></li>
 </ul>
@@ -80,7 +89,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a></li>
-          <li class="breadcrumb-item"><a href="models.html">Models</a></li>
+          <li class="breadcrumb-item"><a href="curated_models.html">Curated Models</a></li>
       <li class="breadcrumb-item active">GraphDRP</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/content/GraphDRP.rst.txt" rel="nofollow"> View page source</a>
@@ -93,49 +102,69 @@
              
   <div class="section" id="graphdrp">
 <h1>GraphDRP<a class="headerlink" href="#graphdrp" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="graph-convolutional-networks-for-drug-response-prediction">
-<h2>Graph Convolutional Networks for Drug Response Prediction<a class="headerlink" href="#graph-convolutional-networks-for-drug-response-prediction" title="Permalink to this headline">¶</a></h2>
+<p>Graph Convolutional Networks for Drug Response Prediction</p>
 <div class="section" id="structure">
-<h3>Structure<a class="headerlink" href="#structure" title="Permalink to this headline">¶</a></h3>
-<p>GraphDRP consists of two subnetworks that learn from input features of cancer cell lines (CCLs) and drugs to predict drug response. The encoded representations by the subnetworks are concatenated and passed through dense layers for the prediction of IC50. The CCLs are represented with 735 binary features including variant and copy number alterations. The drugs are represented with graph structures where nodes represent the atoms of drug molecules and edges represent the bonds. Each atom is represented by 78 features. The CCL subnetwork consists of three 1-D CNNs followed by dense layers. For the drug subnetworks, four different configurations of graph neural networks (GNN) have been explored, including GCN, GAT, and GIN.</p>
+<h2>Structure<a class="headerlink" href="#structure" title="Permalink to this headline">¶</a></h2>
+<p>GraphDRP consists of two subnetworks that learn from input features of cancer cell lines (CCLs) and drugs to predict IC50, a dose-independent treatment response. The encoded feature representations by the two subnetworks are concatenated and passed through dense layers for the prediction of IC50. Each CCL is represented by a vector of 735 binary features including variant conding and copy number alterations. Each drug is represented with a graph molecular structure where nodes and edges represent, respectively, the atoms and bonds of the a molecule (each atom is represented by 78 features). The CCL subnetwork consists of three 1-D CNNs followed by dense layers. For the drug subnetworks, four different configurations of graph neural network (GNN) modules have been explored, including GCN, GAT, and GIN.</p>
 </div>
+<div class="section" id="data">
+<h2>Data<a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="data-sources">
-<h3>Data Sources<a class="headerlink" href="#data-sources" title="Permalink to this headline">¶</a></h3>
+<h3>Data sources<a class="headerlink" href="#data-sources" title="Permalink to this headline">¶</a></h3>
+<p>The primary data sources that have been used to construct ML datasets include:</p>
 <ul class="simple">
-<li><p>GDSC version 6.0 (also called GDSC1000)</p></li>
-<li><p>PubChem</p></li>
+<li><p>GDSC version 6.0 (cell line and drug ids, treatment response, cell line omics data)</p></li>
+<li><p>PubChem (drug SMILES)</p></li>
 </ul>
 </div>
-<div class="section" id="data-and-preprocessing">
-<h3>Data and preprocessing<a class="headerlink" href="#data-and-preprocessing" title="Permalink to this headline">¶</a></h3>
-<p>CCL features and response data were downloaded from the GDSC website.</p>
+<div class="section" id="raw-data">
+<h3>Raw data<a class="headerlink" href="#raw-data" title="Permalink to this headline">¶</a></h3>
+<p>The raw data is downloaded from GDSC website (version 6.0):</p>
+<ol class="arabic simple">
+<li><p>Dose-independent drug response values. <cite>PANCANCER_IC.csv</cite>: drug and cell ids, IC50 values and other metadata (223 drugs and 948 cell lines).</p></li>
+<li><p>Cancer sample information. <cite>PANCANCER_Genetic_feature.csv</cite>: 735 binary features that include coding variants and copy number alterations.</p></li>
+<li><p>Drug information. <cite>drug_smiles.csv</cite>: SMILES strings of drug molecules. The SMILES were retrieved from PubChem using CIDs (Druglist.csv). The script <cite>preprocess.py</cite> provides functions to generate this file.</p></li>
+</ol>
+<p>All these data types were provided with the GraphDRP repo and are available in <a class="reference external" href="https://ftp.mcs.anl.gov/pub/candle/public/improve/model_curation_data/GraphDRP/data/">this ftp location</a>.</p>
+</div>
+<div class="section" id="ml-data">
+<h3>ML data<a class="headerlink" href="#ml-data" title="Permalink to this headline">¶</a></h3>
+<p>The script <a class="reference external" href="https://github.com/JDACS4C-IMPROVE/GraphDRP/blob/develop/preprocess.py">preprocess.py</a> uses raw data to generate ML data that can be used to train and test with GraphDRP. The necessary raw data are automatically downloaded from the FTP server using a <cite>candle_lib</cite> utility function <cite>get_file()</cite> and processed:</p>
 <ul class="simple">
-<li><p>Cell lines features. 735 binary features that include mutations and copy number alterations were downloaded for <a class="reference external" href="https://www.cancerrxgene.org/downloads/genetic_features?mutation=both&amp;screening_set=GDSC1">GDSC1</a> (PANCANCER_Genetic_feature.csv).</p></li>
-<li><p>Drug features. Drug SMILES (drug_smiles.csv) were retrieved from the PubChem using CIDs (Druglist.csv).</p></li>
-<li><p>Response values. The raw IC50 values (PANCANCER_IC.csv) were transformed with 1 / (1 + pow(math.exp(float(ic50)), -0.1)) (see preprocess.py).</p></li>
-<li><p>Data structures that can be used with PyTorch Geometric were created containing cell and drug features, and response values.</p></li>
+<li><p><strong>Response data</strong>. IC50 values (PANCANCER_IC.csv) are transformed using 1 / (1 + pow(math.exp(float(ic50)), -0.1)).</p></li>
+<li><p><strong>Cancer features</strong>. 735 binary features, including mutations and copy number alterations, are not modified.</p></li>
+<li><p><strong>Drug features</strong>. SMILES string of each drug is converted into graph structure where nodes represent atoms and edges represent the bonds (each atom is represented by 78 features).</p></li>
 </ul>
+<p>The user can specify one of three data splitting strategies: 1) mixed set (random split), 2) cell-blind (hard partition on cell line samples), 3) drug-blind (hard partition on drugs).
+In either case, the script generates three files, <cite>train_data.pt</cite>, <cite>val_data.pt</cite>, and <cite>test_data.pt</cite> with 0.8/0.1/0.1 ratio, and saves them in appropriate directories:</p>
+<ul class="simple">
+<li><p>./data_processed/&lt;split_strategy&gt;/processed/train_data.pt</p></li>
+<li><p>./data_processed/&lt;split_strategy&gt;/processed/val_data.pt</p></li>
+<li><p>./data_processed/&lt;split_strategy&gt;/processed/test_data.pt</p></li>
+</ul>
+<p>Bash script <a class="reference external" href="https://github.com/JDACS4C-IMPROVE/GraphDRP/blob/develop/preprocess_batch.sh">preprocess_batch.sh</a> generates the nine possible ML data configurations (i.e., 3 files for each splitting strategy). All the ML data files for the three splitting strategies are available in <a class="reference external" href="https://ftp.mcs.anl.gov/pub/candle/public/improve/model_curation_data/GraphDRP/data_processed/">this ftp location</a>.</p>
+</div>
 </div>
 <div class="section" id="evaluation">
-<h3>Evaluation<a class="headerlink" href="#evaluation" title="Permalink to this headline">¶</a></h3>
-<p>Three evaluation schemes were used for performance evaluation.</p>
+<h2>Evaluation<a class="headerlink" href="#evaluation" title="Permalink to this headline">¶</a></h2>
+<p>Three evaluation schemes were used for the analysis of prediction performance.</p>
 <ul class="simple">
-<li><p>Mixed: cell lines and drugs can appear in train, validation, and test sets.</p></li>
-<li><p>Cell blind: no overlap on cell lines in train, validation, and test sets.</p></li>
-<li><p>Drug blind: no overlap on drugs in train, validation, and test sets.</p></li>
+<li><p>Mixed set: cell lines and drugs can appear in train, validation, and test sets.</p></li>
+<li><p>Cell-blind: no overlap on cell lines in train, validation, and test sets.</p></li>
+<li><p>Drug-blind: no overlap on drugs in train, validation, and test sets.</p></li>
 </ul>
 </div>
 <div class="section" id="urls">
-<h3>URLs<a class="headerlink" href="#urls" title="Permalink to this headline">¶</a></h3>
+<h2>URLs<a class="headerlink" href="#urls" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p>Original GitHub: <a class="reference external" href="https://github.com/hauldhut/GraphDRP">https://github.com/hauldhut/GraphDRP</a></p></li>
-<li><p>IMPROVE GitHub: <a class="reference external" href="https://github.com/JDACS4C-IMPROVE/GraphDRP/tree/improve">https://github.com/JDACS4C-IMPROVE/GraphDRP/tree/improve</a></p></li>
+<li><p><a class="reference external" href="https://github.com/hauldhut/GraphDRP">Original GitHub</a></p></li>
+<li><p><a class="reference external" href="https://github.com/JDACS4C-IMPROVE/GraphDRP/tree/develop">IMPROVE GitHub</a></p></li>
+<li><p><a class="reference external" href="https://ftp.mcs.anl.gov/pub/candle/public/improve/model_curation_data/GraphDRP/">Data</a></p></li>
 </ul>
-<div class="section" id="reference">
-<h4>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h4>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
 <p>Nguyen, T.-T. et al. Graph convolutional networks for drug response prediction. <em>IEEE/ACM Trans Comput Biol Bioinform</em>. Jan-Feb 2022;19(1):146-154.</p>
-</div>
-</div>
 </div>
 </div>
 
@@ -143,8 +172,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="models.html" class="btn btn-neutral float-left" title="Models" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="github-readme-template.html" class="btn btn-neutral float-right" title="UNO" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="DeepTTC.html" class="btn btn-neutral float-left" title="DeepTTC" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="HiDRA.html" class="btn btn-neutral float-right" title="HiDRA" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

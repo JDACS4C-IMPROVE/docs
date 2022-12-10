@@ -36,10 +36,7 @@ Current Models
 .. toctree::
    :maxdepth: 1
 
-   GraphDRP
-   hidra
-   igtd
-   DeepCDR
+   .. GraphDRP
    MODEL_NAME
    
 GitHub Preparation Template
