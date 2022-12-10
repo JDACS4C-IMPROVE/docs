@@ -1,5 +1,5 @@
 =================
-MODEL_NAME
+MODEL TEMPLATE
 =================
 -------------------------
 Name of the paper

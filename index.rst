@@ -21,7 +21,10 @@ Welcome to IMPROVE's documentation!
    content/building-containers
    content/deploying-containers
    content/add_model
-   content/dataframes
+   content/drp_overview
+   content/model_curation
+   content/curated_models
+   content/benchmarks
    content/acknowledgment
 
 Access the code base https://github.com/JDACS4C-IMPROVE/

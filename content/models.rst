@@ -4,7 +4,7 @@ Models
 Curated community models
 ------------------------
 
-Curated community model are standardized using CANDLE libraries. A tutorial on how to modify a community model to be CANDLE compliant can be found here https://ecp-candle.github.io/Candle/tutorials/writing_candle_code.html. The candle_lib API documentation can be found here https://ecp-candle.github.io/Candle/candle_lib.
+Curating community models is standardized using CANDLE libraries. A tutorial on how to modify a community model to be CANDLE compliant can be found in `this example <https://ecp-candle.github.io/Candle/tutorials/writing_candle_code.html>`__. Please refer to CANDLE documentation to learn about the `candle_lib API <https://ecp-candle.github.io/Candle/candle_lib.html>`__.
 
 1. Standard candle arguement parser will be used.
 
@@ -36,10 +36,7 @@ Current Models
 .. toctree::
    :maxdepth: 1
 
-   GraphDRP
-   hidra
-   igtd
-   DeepCDR
+   .. GraphDRP
    MODEL_NAME
    
 GitHub Preparation Template
