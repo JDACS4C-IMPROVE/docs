@@ -2,7 +2,7 @@ Models
 ========================
 
 Curated community models
---------------
+------------------------
 
 Curating community models is standardized using CANDLE libraries. A tutorial on how to modify a community model to be CANDLE compliant can be found in `this example <https://ecp-candle.github.io/Candle/tutorials/writing_candle_code.html>`__. Please refer to CANDLE documentation to learn about the `candle_lib API <https://ecp-candle.github.io/Candle/candle_lib.html>`__.
 

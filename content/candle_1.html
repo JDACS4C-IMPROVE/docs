@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Creating a CANDLE Benchmark &mdash; IMPROVE 0.1 documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> IMPROVE
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="whatis.html">What is the IMPROVE project?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installing IMPROVE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="models.html">Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="curating_introduction.html">Introduction to Curating a Community Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="curating.html">Curating a Community Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="git-branch-tag-names.html">GitHub branch and tag names and definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using-candle-data-dir.html">Tutorial CANDLE_DATA_DIR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="running-containers.html">How to run a container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building-containers.html">How to build a container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deploying-containers.html">How to deploy a container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drp_overview.html">Drug Response Prediction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_curation.html">Model Curation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="curated_models.html">Curated Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="benchmarks.html">Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acknowledgment.html">Acknowledgments</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">IMPROVE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Creating a CANDLE Benchmark</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/content/candle_1.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="creating-a-candle-benchmark">
+<h1>Creating a CANDLE Benchmark<a class="headerlink" href="#creating-a-candle-benchmark" title="Permalink to this headline">¶</a></h1>
+<p>In it’s most basic form, a CANDLE benchmark will know where to find
+the default_model.txt file, read <code class="docutils literal notranslate"><span class="pre">keyword=value</span></code> pairs (parameters) from
+the <code class="docutils literal notranslate"><span class="pre">default_model.txt</span></code> file, and set some other basic parameters. All that
+is necessary for the example below is the keyword <code class="docutils literal notranslate"><span class="pre">model_name</span></code> in the
+<code class="docutils literal notranslate"><span class="pre">default_model.txt</span></code> file.</p>
+<hr class="docutils" />
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">candle.file_utils</span> <span class="kn">import</span> <span class="n">directory_tree_from_parameters</span>
+<span class="kn">from</span> <span class="nn">candle.file_utils</span> <span class="kn">import</span> <span class="n">get_file</span>
+<span class="kn">from</span> <span class="nn">candle</span> <span class="kn">import</span> <span class="n">Benchmark</span>
+<span class="kn">from</span> <span class="nn">candle</span> <span class="kn">import</span> <span class="n">finalize_parameters</span>
+
+<span class="c1"># set CANDLE_DATA_DIR env var. This is normally set externally.</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;CANDLE_DATA_DIR&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;/tmp/improve_data_dir&#39;</span>
+
+<span class="c1"># get the directory of this script, so that the default_model.txt</span>
+<span class="c1"># file can be found when the benchmark is instanciated.</span>
+<span class="n">filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
+
+<span class="n">imp_bmk</span><span class="o">=</span><span class="n">Benchmark</span><span class="p">(</span>
+      <span class="n">filepath</span><span class="o">=</span><span class="n">filepath</span><span class="p">,</span>
+      <span class="n">defmodel</span><span class="o">=</span><span class="s2">&quot;example_default_model.txt&quot;</span><span class="p">,</span>
+      <span class="n">framework</span><span class="o">=</span><span class="s2">&quot;tensorflow&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># Initialize parameters</span>
+<span class="n">gParameters</span> <span class="o">=</span> <span class="n">finalize_parameters</span><span class="p">(</span><span class="n">imp_bmk</span><span class="p">)</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<p>The model default params file contains:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[global]
+model_name=&quot;Example&quot;
+</pre></div>
+</div>
+<p>The output of the print statement inside the call to finalize_parameters”</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>(base) Toms-MBP:example_code brettin$ python ./example.py
+model name:  &quot;Example&quot;
+
+Params:
+{&#39;ckpt_checksum&#39;: False,
+&#39;ckpt_directory&#39;: &#39;./save&#39;,
+&#39;ckpt_keep_limit&#39;: 1000000,
+&#39;ckpt_keep_mode&#39;: &#39;linear&#39;,
+&#39;ckpt_restart_mode&#39;: &#39;auto&#39;,
+&#39;ckpt_save_best&#39;: True,
+&#39;ckpt_save_best_metric&#39;: &#39;val_loss&#39;,
+&#39;ckpt_save_interval&#39;: 0,
+&#39;ckpt_save_weights_only&#39;: False,
+&#39;ckpt_skip_epochs&#39;: 0,
+&#39;data_dir&#39;: &#39;/tmp/improve_data_dir/Example/Data&#39;,
+&#39;data_type&#39;: &lt;class &#39;numpy.float32&#39;&gt;,
+&#39;experiment_id&#39;: &#39;EXP000&#39;,
+&#39;logfile&#39;: None,
+&#39;model_name&#39;: &#39;Example&#39;,
+&#39;output_dir&#39;: &#39;/tmp/improve_data_dir/Example/Output/EXP000/RUN000&#39;,
+&#39;profiling&#39;: False,
+&#39;rng_seed&#39;: 7102,
+&#39;run_id&#39;: &#39;RUN000&#39;,
+&#39;shuffle&#39;: False,
+&#39;timeout&#39;: -1,
+&#39;train_bool&#39;: True,
+&#39;verbose&#39;: False}
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, IMPROVE Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
