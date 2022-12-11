@@ -15,6 +15,8 @@ Welcome to IMPROVE's documentation!
    content/models
    content/curating_introduction
    content/curating
+   content/candle_1
+   content/candle_2
    content/git-branch-tag-names
    content/using-candle-data-dir
    content/running-containers
