@@ -89,18 +89,31 @@ on the previous example, we will extend our Example model to load data. The gene
 functionality is that if the data exists in the data directory, use it, otherwise download
 it and then use it.</p>
 <hr class="docutils" />
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">download_path</span> <span class="o">=</span> <span class="n">get_file</span><span class="p">(</span><span class="s1">&#39;example.csv&#39;</span><span class="p">,</span> <span class="n">gParameters</span><span class="p">[</span><span class="s1">&#39;data_url&#39;</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;download_path: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">download_path</span><span class="p">))</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up input and output directory paths. These will always be</span>
+<span class="c1"># relative to os.environ[&#39;CANDLE_DATA_DIR&#39;].</span>
+<span class="n">data_dir</span><span class="p">,</span> <span class="n">output_dir</span> <span class="o">=</span> <span class="n">directory_tree_from_parameters</span><span class="p">(</span><span class="n">gParameters</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;data_dir: </span><span class="si">{}</span><span class="se">\n</span><span class="s1">output_dir: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="n">output_dir</span><span class="p">))</span>
+
+<span class="c1"># prints:</span>
+<span class="c1"># data_dir:   /tmp/improve_data_dir/Example/Data</span>
+<span class="c1"># putput_dir: /tmp/improve_data_dir/Example/Output/EXP000/RUN000</span>
+
+<span class="c1"># Get machine learning data</span>
+<span class="n">download_filepath</span> <span class="o">=</span> <span class="n">get_file</span><span class="p">(</span>
+    <span class="n">gParameters</span><span class="p">[</span><span class="s1">&#39;train_data&#39;</span><span class="p">],</span>
+    <span class="n">gParameters</span><span class="p">[</span><span class="s1">&#39;data_url&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">gParameters</span><span class="p">[</span><span class="s1">&#39;train_data&#39;</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;download_path: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">download_filepath</span><span class="p">))</span>
+
+<span class="c1"># prints:</span>
+<span class="c1"># download_path: /tmp/improve_data_dir/common/example.csv</span>
 </pre></div>
 </div>
 <hr class="docutils" />
 <p>The code above uses the environment variable CANDLE_DATA_DIR as the root to all input
-and output paths. The print statment produces:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>download_path: /tmp/improve_data_dir/common/example.csv
-</pre></div>
-</div>
-<p>Two new keyword = value pairs are added to <code class="docutils literal notranslate"><span class="pre">example_default_model.txt</span></code>. These are
-data_url and train_data. Additionally, I had to upload eample.csv to
+and output paths.</p>
+<p>Two new keyword = value pairs are needed in the default model file - <code class="docutils literal notranslate"><span class="pre">example_default_model.txt</span></code>. These are
+<code class="docutils literal notranslate"><span class="pre">data_url</span></code> and <code class="docutils literal notranslate"><span class="pre">train_data</span></code>. Additionally, I had to upload <code class="docutils literal notranslate"><span class="pre">eample.csv</span></code> to
 <a class="reference external" href="https://ftp.mcs.anl.gov/pub/candle/public/improve/examples">https://ftp.mcs.anl.gov/pub/candle/public/improve/examples</a></p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span># set location and name of training data
 data_url=&quot;https://ftp.mcs.anl.gov/pub/candle/public/improve/examples&quot;
@@ -149,7 +162,8 @@ train_data=&quot;abbreviation:.csv&quot;
 </div>
 <p>This code produces the folloing output. The first output, model_name and Params come
 from the call to finalize_parameters. The rest is print statements in the code above.</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>(base) Toms-MBP:example_code brettin$ python ./example.py
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ python ./example.py
+
 model name:  &quot;Example&quot;
 
 Params:
