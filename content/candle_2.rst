@@ -116,3 +116,6 @@ from the call to finalize_parameters. The rest is print statements in the code a
  data_dir: /tmp/improve_data_dir/Example/Data
  output_dir: /tmp/improve_data_dir/Example/Output/EXP000/RUN000
  download_path: /tmp/improve_data_dir/common/example.csv
+
+The code for this example can be found at https://github.com/JDACS4C-IMPROVE/docs/example_code
+in the example.py and example_default_model.txt files.
