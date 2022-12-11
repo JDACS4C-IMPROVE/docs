@@ -12,20 +12,33 @@ it and then use it.
 
 .. code-block:: python
 
-    download_path = get_file('example.csv', gParameters['data_url'])
-    print('download_path: {}'.format(download_path))
+    # Set up input and output directory paths. These will always be
+    # relative to os.environ['CANDLE_DATA_DIR'].
+    data_dir, output_dir = directory_tree_from_parameters(gParameters)
+    print('data_dir: {}\noutput_dir: {}'.format(data_dir, output_dir))
+
+    # prints:
+    # data_dir:   /tmp/improve_data_dir/Example/Data
+    # putput_dir: /tmp/improve_data_dir/Example/Output/EXP000/RUN000
+
+    # Get machine learning data
+    download_filepath = get_file(
+        gParameters['train_data'],
+        gParameters['data_url'] + "/" + gParameters['train_data']
+    )
+    print('download_path: {}'.format(download_filepath))
+    
+    # prints:
+    # download_path: /tmp/improve_data_dir/common/example.csv
+
 
 ----
 
 The code above uses the environment variable CANDLE_DATA_DIR as the root to all input
-and output paths. The print statment produces:
+and output paths.
 
-.. code-block:: text
-    
-    download_path: /tmp/improve_data_dir/common/example.csv
-
-Two new keyword = value pairs are added to ``example_default_model.txt``. These are
-data_url and train_data. Additionally, I had to upload eample.csv to
+Two new keyword = value pairs are needed in the default model file - ``example_default_model.txt``. These are
+``data_url`` and ``train_data``. Additionally, I had to upload ``eample.csv`` to
 https://ftp.mcs.anl.gov/pub/candle/public/improve/examples
 
 
@@ -83,7 +96,8 @@ from the call to finalize_parameters. The rest is print statements in the code a
 
 .. code-block:: text
     
- (base) Toms-MBP:example_code brettin$ python ./example.py 
+ $ python ./example.py
+ 
  model name:  "Example"
 
  Params:
