@@ -91,7 +91,10 @@ it and then use it.</p>
 <hr class="docutils" />
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up input and output directory paths. These will always be</span>
 <span class="c1"># relative to os.environ[&#39;CANDLE_DATA_DIR&#39;].</span>
-<span class="n">data_dir</span><span class="p">,</span> <span class="n">output_dir</span> <span class="o">=</span> <span class="n">directory_tree_from_parameters</span><span class="p">(</span><span class="n">gParameters</span><span class="p">)</span>
+<span class="n">data_dir</span> <span class="o">=</span> <span class="n">gParameters</span><span class="p">[</span><span class="s2">&quot;data_dir&quot;</span><span class="p">]</span>
+<span class="n">output_dir</span> <span class="o">=</span> <span class="n">gParameters</span><span class="p">[</span><span class="s2">&quot;output_dir&quot;</span><span class="p">]</span>
+<span class="c1"># the following is incorrect and appends extra subdirectories to the path</span>
+<span class="c1"># data_dir, output_dir = directory_tree_from_parameters(gParameters)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;data_dir: </span><span class="si">{}</span><span class="se">\n</span><span class="s1">output_dir: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="n">output_dir</span><span class="p">))</span>
 
 <span class="c1"># prints:</span>
@@ -102,11 +105,13 @@ it and then use it.</p>
 <span class="n">download_filepath</span> <span class="o">=</span> <span class="n">get_file</span><span class="p">(</span>
     <span class="n">gParameters</span><span class="p">[</span><span class="s1">&#39;train_data&#39;</span><span class="p">],</span>
     <span class="n">gParameters</span><span class="p">[</span><span class="s1">&#39;data_url&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">gParameters</span><span class="p">[</span><span class="s1">&#39;train_data&#39;</span><span class="p">]</span>
+    <span class="n">datadir</span> <span class="o">=</span> <span class="n">data_dir</span>  <span class="c1"># This puts the files in correct path</span>
+    <span class="n">cache_subdir</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># This prevents get_file from creating another subdirectory</span>
 <span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;download_path: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">download_filepath</span><span class="p">))</span>
 
 <span class="c1"># prints:</span>
-<span class="c1"># download_path: /tmp/improve_data_dir/common/example.csv</span>
+<span class="c1"># download_path: /tmp/improve_data_dir/Example/Data/example.csv</span>
 </pre></div>
 </div>
 <hr class="docutils" />
@@ -123,10 +128,11 @@ train_data=&quot;abbreviation:.csv&quot;
 <hr class="docutils" />
 <p>Putting this together into a running example looks like this:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">candle.file_utils</span> <span class="kn">import</span> <span class="n">directory_tree_from_parameters</span>
-<span class="kn">from</span> <span class="nn">candle.file_utils</span> <span class="kn">import</span> <span class="n">get_file</span>
-<span class="kn">from</span> <span class="nn">candle</span> <span class="kn">import</span> <span class="n">Benchmark</span>
-<span class="kn">from</span> <span class="nn">candle</span> <span class="kn">import</span> <span class="n">finalize_parameters</span>
+<span class="kn">import</span> <span class="nn">candle</span>
+<span class="c1"># from candle.file_utils import directory_tree_from_parameters</span>
+<span class="c1"># from candle.file_utils import get_file</span>
+<span class="c1"># from candle import Benchmark</span>
+<span class="c1"># from candle import finalize_parameters</span>
 
 <span class="c1"># set CANDLE_DATA_DIR env var. This is normally set externally.</span>
 <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;CANDLE_DATA_DIR&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;/tmp/improve_data_dir&#39;</span>
@@ -146,8 +152,8 @@ train_data=&quot;abbreviation:.csv&quot;
 
 <span class="c1"># Set up input and output directory paths. These will always be</span>
 <span class="c1"># relative to os.environ[&#39;CANDLE_DATA_DIR&#39;].</span>
-<span class="n">data_dir</span><span class="p">,</span> <span class="n">output_dir</span> <span class="o">=</span> <span class="n">directory_tree_from_parameters</span><span class="p">(</span><span class="n">gParameters</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;data_dir: </span><span class="si">{}</span><span class="se">\n</span><span class="s1">output_dir: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="n">output_dir</span><span class="p">))</span>
+<span class="c1"># data_dir, output_dir = directory_tree_from_parameters(gParameters)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;data_dir: </span><span class="si">{}</span><span class="se">\n</span><span class="s1">output_dir: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">gParameters</span><span class="p">{</span><span class="s2">&quot;data_dir&quot;</span><span class="p">],</span> <span class="n">gParameters</span><span class="p">{</span><span class="s2">&quot;output_dir&quot;</span><span class="p">]))</span>
 
 <span class="c1"># data_dir:   /tmp/improve_data_dir/Example/Data</span>
 <span class="c1"># putput_dir: /tmp/improve_data_dir/Example/Output/EXP000/RUN000</span>
@@ -156,11 +162,13 @@ train_data=&quot;abbreviation:.csv&quot;
 <span class="n">download_filepath</span> <span class="o">=</span> <span class="n">get_file</span><span class="p">(</span>
     <span class="n">gParameters</span><span class="p">[</span><span class="s1">&#39;train_data&#39;</span><span class="p">],</span>
     <span class="n">gParameters</span><span class="p">[</span><span class="s1">&#39;data_url&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">gParameters</span><span class="p">[</span><span class="s1">&#39;train_data&#39;</span><span class="p">]</span>
+    <span class="n">datadir</span> <span class="o">=</span> <span class="n">data_dir</span>  <span class="c1"># This puts the files in correct path</span>
+    <span class="n">cache_subdir</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># This prevents get_file from creating another subdirectory</span>
 <span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;download_path: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">download_filepath</span><span class="p">))</span>
 </pre></div>
 </div>
-<p>This code produces the folloing output. The first output, model_name and Params come
+<p>This code produces the following output. The first output, model_name and Params come
 from the call to finalize_parameters. The rest is print statements in the code above.</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ python ./example.py
 
@@ -195,7 +203,7 @@ Params:
 
 data_dir: /tmp/improve_data_dir/Example/Data
 output_dir: /tmp/improve_data_dir/Example/Output/EXP000/RUN000
-download_path: /tmp/improve_data_dir/common/example.csv
+download_path: /tmp/improve_data_dir/Example/Data/example.csv
 </pre></div>
 </div>
 <p>The code for this example can be found at <a class="reference external" href="https://github.com/JDACS4C-IMPROVE/docs/tree/main/example_code">https://github.com/JDACS4C-IMPROVE/docs/tree/main/example_code</a>

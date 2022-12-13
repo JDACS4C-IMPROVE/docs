@@ -14,7 +14,10 @@ it and then use it.
 
     # Set up input and output directory paths. These will always be
     # relative to os.environ['CANDLE_DATA_DIR'].
-    data_dir, output_dir = directory_tree_from_parameters(gParameters)
+    data_dir = gParameters["data_dir"]
+    output_dir = gParameters["output_dir"]
+    # the following is incorrect and appends extra subdirectories to the path
+    # data_dir, output_dir = directory_tree_from_parameters(gParameters)
     print('data_dir: {}\noutput_dir: {}'.format(data_dir, output_dir))
 
     # prints:
@@ -25,11 +28,13 @@ it and then use it.
     download_filepath = get_file(
         gParameters['train_data'],
         gParameters['data_url'] + "/" + gParameters['train_data']
+        datadir = data_dir  # This puts the files in correct path
+        cache_subdir = None  # This prevents get_file from creating another subdirectory
     )
     print('download_path: {}'.format(download_filepath))
     
     # prints:
-    # download_path: /tmp/improve_data_dir/common/example.csv
+    # download_path: /tmp/improve_data_dir/Example/Data/example.csv
 
 
 ----
@@ -55,10 +60,11 @@ Putting this together into a running example looks like this:
 .. code-block:: python
 
     import os
-    from candle.file_utils import directory_tree_from_parameters
-    from candle.file_utils import get_file
-    from candle import Benchmark
-    from candle import finalize_parameters
+    import candle
+    # from candle.file_utils import directory_tree_from_parameters
+    # from candle.file_utils import get_file
+    # from candle import Benchmark
+    # from candle import finalize_parameters
 
     # set CANDLE_DATA_DIR env var. This is normally set externally.
     os.environ['CANDLE_DATA_DIR'] = '/tmp/improve_data_dir'
@@ -78,8 +84,8 @@ Putting this together into a running example looks like this:
 
     # Set up input and output directory paths. These will always be
     # relative to os.environ['CANDLE_DATA_DIR'].
-    data_dir, output_dir = directory_tree_from_parameters(gParameters)
-    print('data_dir: {}\noutput_dir: {}'.format(data_dir, output_dir))
+    # data_dir, output_dir = directory_tree_from_parameters(gParameters)
+    print('data_dir: {}\noutput_dir: {}'.format(gParameters{"data_dir"], gParameters{"output_dir"]))
 
     # data_dir:   /tmp/improve_data_dir/Example/Data
     # putput_dir: /tmp/improve_data_dir/Example/Output/EXP000/RUN000
@@ -88,10 +94,12 @@ Putting this together into a running example looks like this:
     download_filepath = get_file(
         gParameters['train_data'],
         gParameters['data_url'] + "/" + gParameters['train_data']
+        datadir = data_dir  # This puts the files in correct path
+        cache_subdir = None  # This prevents get_file from creating another subdirectory
     )
     print('download_path: {}'.format(download_filepath))
 
-This code produces the folloing output. The first output, model_name and Params come
+This code produces the following output. The first output, model_name and Params come
 from the call to finalize_parameters. The rest is print statements in the code above.
 
 .. code-block:: text
@@ -129,7 +137,7 @@ from the call to finalize_parameters. The rest is print statements in the code a
 
  data_dir: /tmp/improve_data_dir/Example/Data
  output_dir: /tmp/improve_data_dir/Example/Output/EXP000/RUN000
- download_path: /tmp/improve_data_dir/common/example.csv
+ download_path: /tmp/improve_data_dir/Example/Data/example.csv
 
 The code for this example can be found at https://github.com/JDACS4C-IMPROVE/docs/tree/main/example_code
 in the example.py and example_default_model.txt files.

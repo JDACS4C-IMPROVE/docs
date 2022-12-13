@@ -90,10 +90,12 @@ is necessary for the example below is the keyword <code class="docutils literal 
 <code class="docutils literal notranslate"><span class="pre">default_model.txt</span></code> file.</p>
 <hr class="docutils" />
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">candle.file_utils</span> <span class="kn">import</span> <span class="n">directory_tree_from_parameters</span>
-<span class="kn">from</span> <span class="nn">candle.file_utils</span> <span class="kn">import</span> <span class="n">get_file</span>
-<span class="kn">from</span> <span class="nn">candle</span> <span class="kn">import</span> <span class="n">Benchmark</span>
-<span class="kn">from</span> <span class="nn">candle</span> <span class="kn">import</span> <span class="n">finalize_parameters</span>
+<span class="kn">import</span> <span class="nn">candle</span>  <span class="c1"># this imports all the public functions you need in the candle namespace</span>
+<span class="c1"># None of the following are needed</span>
+<span class="c1"># from candle.file_utils import directory_tree_from_parameters</span>
+<span class="c1"># from candle.file_utils import get_file</span>
+<span class="c1"># from candle import Benchmark</span>
+<span class="c1"># from candle import finalize_parameters</span>
 
 <span class="c1"># set CANDLE_DATA_DIR env var. This is normally set externally.</span>
 <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;CANDLE_DATA_DIR&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;/tmp/improve_data_dir&#39;</span>
@@ -119,6 +121,7 @@ model_name=&quot;Example&quot;
 </pre></div>
 </div>
 <p>The output of the print statement inside the call to finalize_parameters”</p>
+<p>Note that the data_dir and output_dir params are ALREADY set to the correct sub-paths from CANDLE_DATA_DIR</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>(base) Toms-MBP:example_code brettin$ python ./example.py
 model name:  &quot;Example&quot;
 
