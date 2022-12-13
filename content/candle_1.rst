@@ -27,14 +27,14 @@ is necessary for the example below is the keyword ``model_name`` in the
   # file can be found when the benchmark is instanciated.
   filepath = os.path.dirname(os.path.abspath(__file__))
 
-  imp_bmk=Benchmark(
+  imp_bmk=candle.Benchmark(
         filepath=filepath,
         defmodel="example_default_model.txt",
         framework="tensorflow"
   )
 
   # Initialize parameters
-  gParameters = finalize_parameters(imp_bmk)
+  gParameters = candle.finalize_parameters(imp_bmk)
 
 ----
 
