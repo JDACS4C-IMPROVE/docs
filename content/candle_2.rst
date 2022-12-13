@@ -43,7 +43,7 @@ The code above uses the environment variable CANDLE_DATA_DIR as the root to all 
 and output paths.
 
 Two new keyword = value pairs are needed in the default model file - ``example_default_model.txt``. These are
-``data_url`` and ``train_data``. Additionally, I had to upload ``eample.csv`` to
+``data_url`` and ``train_data``. Additionally, I had to upload ``example.csv`` to
 https://ftp.mcs.anl.gov/pub/candle/public/improve/examples
 
 
@@ -51,7 +51,7 @@ https://ftp.mcs.anl.gov/pub/candle/public/improve/examples
     
     # set location and name of training data
     data_url="https://ftp.mcs.anl.gov/pub/candle/public/improve/examples"
-    train_data="abbreviation:.csv"
+    train_data="example.csv"
 
 ----
 
