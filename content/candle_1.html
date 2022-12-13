@@ -104,14 +104,14 @@ is necessary for the example below is the keyword <code class="docutils literal 
 <span class="c1"># file can be found when the benchmark is instanciated.</span>
 <span class="n">filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
 
-<span class="n">imp_bmk</span><span class="o">=</span><span class="n">Benchmark</span><span class="p">(</span>
+<span class="n">imp_bmk</span><span class="o">=</span><span class="n">candle</span><span class="o">.</span><span class="n">Benchmark</span><span class="p">(</span>
       <span class="n">filepath</span><span class="o">=</span><span class="n">filepath</span><span class="p">,</span>
       <span class="n">defmodel</span><span class="o">=</span><span class="s2">&quot;example_default_model.txt&quot;</span><span class="p">,</span>
       <span class="n">framework</span><span class="o">=</span><span class="s2">&quot;tensorflow&quot;</span>
 <span class="p">)</span>
 
 <span class="c1"># Initialize parameters</span>
-<span class="n">gParameters</span> <span class="o">=</span> <span class="n">finalize_parameters</span><span class="p">(</span><span class="n">imp_bmk</span><span class="p">)</span>
+<span class="n">gParameters</span> <span class="o">=</span> <span class="n">candle</span><span class="o">.</span><span class="n">finalize_parameters</span><span class="p">(</span><span class="n">imp_bmk</span><span class="p">)</span>
 </pre></div>
 </div>
 <hr class="docutils" />

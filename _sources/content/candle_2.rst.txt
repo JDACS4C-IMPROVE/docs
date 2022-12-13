@@ -25,14 +25,14 @@ it and then use it.
     # putput_dir: /tmp/improve_data_dir/Example/Output/EXP000/RUN000
 
     # Get machine learning data
-    download_filepath = get_file(
+    download_filepath = candle.get_file(
         gParameters['train_data'],
         gParameters['data_url'] + "/" + gParameters['train_data']
         datadir = data_dir  # This puts the files in correct path
         cache_subdir = None  # This prevents get_file from creating another subdirectory
     )
     print('download_path: {}'.format(download_filepath))
-    
+
     # prints:
     # download_path: /tmp/improve_data_dir/Example/Data/example.csv
 
@@ -73,14 +73,14 @@ Putting this together into a running example looks like this:
     # file can be found when the benchmark is instanciated.
     filepath = os.path.dirname(os.path.abspath(__file__))
 
-    imp_bmk=Benchmark(
+    imp_bmk=candle.Benchmark(
         filepath=filepath,
         defmodel="example_default_model.txt",
         framework="tensorflow"
     )
 
     # Initialize parameters
-    gParameters = finalize_parameters(imp_bmk)
+    gParameters = candle.finalize_parameters(imp_bmk)
 
     # Set up input and output directory paths. These will always be
     # relative to os.environ['CANDLE_DATA_DIR'].
@@ -91,7 +91,7 @@ Putting this together into a running example looks like this:
     # putput_dir: /tmp/improve_data_dir/Example/Output/EXP000/RUN000
 
     # Get machine learning data
-    download_filepath = get_file(
+    download_filepath = candle.get_file(
         gParameters['train_data'],
         gParameters['data_url'] + "/" + gParameters['train_data']
         datadir = data_dir  # This puts the files in correct path
