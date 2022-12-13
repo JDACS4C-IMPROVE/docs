@@ -68,6 +68,7 @@ Note that the data_dir and output_dir params are ALREADY set to the correct sub-
   'ckpt_skip_epochs': 0,
   'data_dir': '/tmp/improve_data_dir/Example/Data',
   'data_type': <class 'numpy.float32'>,
+  'data_url': 'https://ftp.mcs.anl.gov/pub/candle/public/improve/examples',
   'experiment_id': 'EXP000',
   'logfile': None,
   'model_name': 'Example',
@@ -78,5 +79,5 @@ Note that the data_dir and output_dir params are ALREADY set to the correct sub-
   'shuffle': False,
   'timeout': -1,
   'train_bool': True,
+  'train_data': 'example.csv',
   'verbose': False}
-
