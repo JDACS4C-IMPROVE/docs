@@ -13,10 +13,12 @@ is necessary for the example below is the keyword ``model_name`` in the
 .. code-block:: python3
 
   import os
-  from candle.file_utils import directory_tree_from_parameters
-  from candle.file_utils import get_file
-  from candle import Benchmark
-  from candle import finalize_parameters
+  import candle  # this imports all the public functions you need in the candle namespace
+  # None of the following are needed
+  # from candle.file_utils import directory_tree_from_parameters
+  # from candle.file_utils import get_file
+  # from candle import Benchmark
+  # from candle import finalize_parameters
 
   # set CANDLE_DATA_DIR env var. This is normally set externally.
   os.environ['CANDLE_DATA_DIR'] = '/tmp/improve_data_dir' 
@@ -45,6 +47,8 @@ The model default params file contains:
 
 
 The output of the print statement inside the call to finalize_parameters"
+
+Note that the data_dir and output_dir params are ALREADY set to the correct sub-paths from CANDLE_DATA_DIR
 
 .. code-block:: text
   
