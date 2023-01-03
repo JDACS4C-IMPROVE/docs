@@ -90,55 +90,47 @@
 <h2>Data<a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="data-sources">
 <h3>Data sources<a class="headerlink" href="#data-sources" title="Permalink to this headline">¶</a></h3>
-<p>The primary data sources that have been used to construct datasets for model training and testing (i.e., ML data) include:
-- GDSC - cell line and drug ids, treatment response, cell line omics data
-- Library of Integrated Network-Based Cellular Signatures (LINCS) L1000 project - list of genes
-- STRING - PPI network data</p>
+<p>The primary data sources that have been used to construct datasets for model training and testing (i.e., ML data) include:</p>
+<ul class="simple">
+<li><p>GDSC - cell line and drug ids, treatment response, cell line omics data</p></li>
+<li><p>Library of Integrated Network-Based Cellular Signatures (LINCS) L1000 project - list of genes</p></li>
+<li><p>STRING - PPI network data</p></li>
+</ul>
 </div>
 <div class="section" id="raw-data">
 <h3>Raw data<a class="headerlink" href="#raw-data" title="Permalink to this headline">¶</a></h3>
-<p>The raw data is downloaded from GDSC website (version 6.0):</p>
+<p>The raw data includes the following for the L1000 and Var1000 datasets:</p>
 <ol class="arabic simple">
-<li><p>Dose-independent drug response values. <cite>PANCANCER_IC.csv</cite>: drug and cell ids, IC50 values and other metadata (223 drugs and 948 cell lines).</p></li>
-<li><p>Cancer sample information. <cite>PANCANCER_Genetic_feature.csv</cite>: 735 binary features that include coding variants and copy number alterations.</p></li>
-<li><p>Drug information. <cite>drug_smiles.csv</cite>: SMILES strings of drug molecules. The SMILES were retrieved from PubChem using CIDs (Druglist.csv). The script <cite>preprocess.py</cite> provides functions to generate this file.</p></li>
+<li><p>Gene expression data, EXP.csv: Gene expression data for 734 cell lines obtained from the authors’ GitHub page, <a class="reference external" href="https://github.com/Jinyu2019/Suppl-data-BBpaper/blob/master/GDSC_DATASET_S1-S12.zip">GDSC_DATASET_S1-S12.zip</a>, and found in the file,  Table_S1_GDSC_Gene_expression.csv.</p></li>
+<li><p>Protein info, PPI_INFO.txt: List of proteins including their display names and descriptions from the STRING database. This data can be downloaded from the STRING database <a class="reference external" href="https://stringdb-static.org/download/protein.info.v11.5/9606.protein.info.v11.5.txt.gz">here</a>.</p></li>
+<li><p>Protein links, PPI_LINK.txt: Protein network data (full network, scored links between proteins) from the STRING database. This data can be downloaded from the STRING database <a class="reference external" href="https://stringdb-static.org/download/protein.links.v11.5/9606.protein.links.v11.5.txt.gz">here</a>.</p></li>
+<li><p>List of genes, LIST.txt: 663 or 1000 genes for the L1000 and Var1000 datasets respectively.</p></li>
 </ol>
-<p>All these data types were provided with the GraphDRP repo and are available in <a class="reference external" href="https://ftp.mcs.anl.gov/pub/candle/public/improve/model_curation_data/GraphDRP/data/">this ftp location</a>.</p>
-<p>CCL omics data and treatment response data (IC50 and AUC) were downloaded from the authors’ GitHub page, [GDSC_DATASET_S1-S12.zip](<a class="reference external" href="https://github.com/Jinyu2019/Suppl-data-BBpaper/blob/master/GDSC_DATASET_S1-S12.zip">https://github.com/Jinyu2019/Suppl-data-BBpaper/blob/master/GDSC_DATASET_S1-S12.zip</a>). The [protein links](<a class="reference external" href="https://stringdb-static.org/download/protein.links.v11.5/9606.protein.links.v11.5.txt.gz">https://stringdb-static.org/download/protein.links.v11.5/9606.protein.links.v11.5.txt.gz</a>) and [protein info](<a class="reference external" href="https://stringdb-static.org/download/protein.info.v11.5/9606.protein.info.v11.5.txt.gz">https://stringdb-static.org/download/protein.info.v11.5/9606.protein.info.v11.5.txt.gz</a>) files (version 11.5) for <em>Homo sapiens</em> can be obtained from the STRING website. Refer to [Data](Data.md) for more info regarding the raw data provided with the original DrugGCN model repo and preprocessing scripts allowing to generate ML data for model training and testing.</p>
-<p>The raw data includes the following for the L1000 and Var1000 datasets:
-1) Gene expression data. <cite>EXP.csv</cite>: Gene expression data for 734 cell lines obtained from the authors’ GitHub page, [GDSC_DATASET_S1-S12.zip](<a class="reference external" href="https://github.com/Jinyu2019/Suppl-data-BBpaper/blob/master/GDSC_DATASET_S1-S12.zip">https://github.com/Jinyu2019/Suppl-data-BBpaper/blob/master/GDSC_DATASET_S1-S12.zip</a>), and found in the file,  <cite>Table_S1_GDSC_Gene_expression.csv</cite>.
-2) Protein info. <cite>PPI_INFO.txt</cite>: List of proteins including their display names and descriptions from the STRING database. This data can be downloaded from the STRING database [here](<a class="reference external" href="https://stringdb-static.org/download/protein.info.v11.5/9606.protein.info.v11.5.txt.gz">https://stringdb-static.org/download/protein.info.v11.5/9606.protein.info.v11.5.txt.gz</a>).
-3) Protein links. <cite>PPI_LINK.txt</cite>: Protein network data (full network, scored links between proteins) from the STRING database. This data can be downloaded from the STRING database [here](<a class="reference external" href="https://stringdb-static.org/download/protein.links.v11.5/9606.protein.links.v11.5.txt.gz">https://stringdb-static.org/download/protein.links.v11.5/9606.protein.links.v11.5.txt.gz</a>).
-4) List of genes. <cite>LIST.txt</cite>: 663 or 1000 genes for the L1000 and Var1000 datasets respectively.</p>
-<p>The raw data is available in: <a class="reference external" href="https://ftp.mcs.anl.gov/pub/candle/public/improve/model_curation_data/DrugGCN/druggcn_data.tar.gz">https://ftp.mcs.anl.gov/pub/candle/public/improve/model_curation_data/DrugGCN/druggcn_data.tar.gz</a></p>
+<p>The raw data is available in <a class="reference external" href="https://ftp.mcs.anl.gov/pub/candle/public/improve/model_curation_data/DrugGCN/druggcn_data.tar.gz">this FTP location</a>.</p>
 </div>
 <div class="section" id="ml-data">
 <h3>ML data<a class="headerlink" href="#ml-data" title="Permalink to this headline">¶</a></h3>
-<p>The script <a class="reference external" href="https://github.com/JDACS4C-IMPROVE/GraphDRP/blob/develop/preprocess.py">preprocess.py</a> uses raw data to generate ML data that can be used to train and test with GraphDRP. The necessary raw data are automatically downloaded from the FTP server using a <cite>candle_lib</cite> utility function <cite>get_file()</cite> and processed:</p>
-<ul class="simple">
-<li><p><strong>Response data</strong>. IC50 values (PANCANCER_IC.csv) are transformed using 1 / (1 + pow(math.exp(float(ic50)), -0.1)).</p></li>
-<li><p><strong>Cancer features</strong>. 735 binary features, including mutations and copy number alterations, are not modified.</p></li>
-<li><p><strong>Drug features</strong>. SMILES string of each drug is converted into graph structure where nodes represent atoms and edges represent the bonds (each atom is represented by 78 features).</p></li>
-</ul>
-<p>The user can specify one of three data splitting strategies: 1) mixed set (random split), 2) cell-blind (hard partition on cell line samples), 3) drug-blind (hard partition on drugs).
-In either case, the script generates three files, <cite>train_data.pt</cite>, <cite>val_data.pt</cite>, and <cite>test_data.pt</cite> with 0.8/0.1/0.1 ratio, and saves them in appropriate directories:</p>
-<ul class="simple">
-<li><p>./data_processed/&lt;split_strategy&gt;/processed/train_data.pt</p></li>
-<li><p>./data_processed/&lt;split_strategy&gt;/processed/val_data.pt</p></li>
-<li><p>./data_processed/&lt;split_strategy&gt;/processed/test_data.pt</p></li>
-</ul>
-<p>Bash script <a class="reference external" href="https://github.com/JDACS4C-IMPROVE/GraphDRP/blob/develop/preprocess_batch.sh">preprocess_batch.sh</a> generates the nine possible ML data configurations (i.e., 3 files for each splitting strategy). All the ML data files for the three splitting strategies are available in <a class="reference external" href="https://ftp.mcs.anl.gov/pub/candle/public/improve/model_curation_data/GraphDRP/data_processed/">this ftp location</a>.</p>
-<p>The script <cite>dataProcess.py</cite> uses raw data to generate ML data that can be used to train and test with DrugGCN. The necessary raw data are automatically downloaded from the FTP server using the <cite>candle_lib</cite> utility function <cite>get_file()</cite> and processed.</p>
-<p>The ML data files are available in FTP: <a class="reference external" href="https://ftp.mcs.anl.gov/pub/candle/public/improve/model_curation_data/DrugGCN/druggcn_data_processed.tar.gz">https://ftp.mcs.anl.gov/pub/candle/public/improve/model_curation_data/DrugGCN/druggcn_data_processed.tar.gz</a>. These files can be automatically downloaded from the FTP server using the <cite>candle_lib</cite> utility function <cite>get_file()</cite>.</p>
+<p>The script <a class="reference external" href="https://github.com/JDACS4C-IMPROVE/DrugGCN/blob/develop/dataProcess.py">dataProcess.py</a> uses raw data to generate ML data that can be used to train and test with DrugGCN. The necessary raw data are automatically downloaded from the FTP server using the <cite>candle_lib</cite> utility function <cite>get_file()</cite> and processed.</p>
+<p>The ML data files are available in <a class="reference external" href="https://ftp.mcs.anl.gov/pub/candle/public/improve/model_curation_data/DrugGCN/druggcn_data_processed.tar.gz">this FTP location</a>. These files can be automatically downloaded from the FTP server using the <cite>candle_lib</cite> utility function <cite>get_file()</cite>.</p>
 <p>The ML data files include the following:</p>
 <ul class="simple">
-<li><p>__Cancer <a href="#id1"><span class="problematic" id="id2">features__</span></a>. L1000 and Var1000 folders with gene expression and protein-protein interaction files:
-- <cite>groupEXP.csv</cite>. Gene expression data of selected genes.
-- <cite>groupEXP_foldChange.csv</cite>. Fold change of gene expression data of selected genes.
-- <cite>groupPPI.csv</cite>. Protein-protein interaction data of selected genes where values are weights of the interactions that reflect the amount of available evidence of the interaction between two genes.</p></li>
-<li><p>__Response <a href="#id1"><span class="problematic" id="id3">data__</span></a>. IC50 or AUC values of 201 drugs and 734 cell lines.
-- <cite>Table_S6_GDSC_Drug_response_IC50.csv</cite>
-- <cite>Table_S7_GDSC_Drug_response_AUC.csv</cite></p></li>
+<li><dl class="simple">
+<dt><strong>Cancer features</strong>. L1000 and Var1000 folders with gene expression and protein-protein interaction files:</dt><dd><ul>
+<li><p>groupEXP.csv. Gene expression data of selected genes.</p></li>
+<li><p>groupEXP_foldChange.csv. Fold change of gene expression data of selected genes.</p></li>
+<li><p>groupPPI.csv. Protein-protein interaction data of selected genes where values are weights of the interactions that reflect the amount of available evidence of the interaction between two genes.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Response data</strong>. IC50 or AUC values of 201 drugs and 734 cell lines.</dt><dd><ul>
+<li><p>Table_S6_GDSC_Drug_response_IC50.csv</p></li>
+<li><p>Table_S7_GDSC_Drug_response_AUC.csv</p></li>
+</ul>
+</dd>
+</dl>
+</li>
 </ul>
 <p>The user can specify which dataset, L1000 or Var1000, and which response data, IC50 or AUC, to use when training and testing the model.</p>
 </div>
@@ -156,12 +148,9 @@ In either case, the script generates three files, <cite>train_data.pt</cite>, <c
 <div class="section" id="urls">
 <h2>URLs<a class="headerlink" href="#urls" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p><a class="reference external" href="https://github.com/hauldhut/GraphDRP">Original GitHub</a></p></li>
-<li><p><a class="reference external" href="https://github.com/JDACS4C-IMPROVE/GraphDRP/tree/develop">IMPROVE GitHub</a></p></li>
-<li><p><a class="reference external" href="https://ftp.mcs.anl.gov/pub/candle/public/improve/model_curation_data/GraphDRP/">Data</a></p></li>
-<li><p>[Original GitHub](<a class="reference external" href="https://github.com/BML-cbnu/DrugGCN">https://github.com/BML-cbnu/DrugGCN</a>)</p></li>
-<li><p>[IMPROVE GitHub](<a class="reference external" href="https://github.com/JDACS4C-IMPROVE/DrugGCN/tree/develop">https://github.com/JDACS4C-IMPROVE/DrugGCN/tree/develop</a>)</p></li>
-<li><p>[Data](<a class="reference external" href="https://ftp.mcs.anl.gov/pub/candle/public/improve/model_curation_data/DrugGCN/">https://ftp.mcs.anl.gov/pub/candle/public/improve/model_curation_data/DrugGCN/</a>)</p></li>
+<li><p><a class="reference external" href="https://github.com/BML-cbnu/DrugGCN">Original GitHub</a></p></li>
+<li><p><a class="reference external" href="https://github.com/JDACS4C-IMPROVE/DrugGCN/tree/develop">IMPROVE GitHub</a></p></li>
+<li><p><a class="reference external" href="https://ftp.mcs.anl.gov/pub/candle/public/improve/model_curation_data/DrugGCN/">Data</a></p></li>
 </ul>
 </div>
 <div class="section" id="references">
