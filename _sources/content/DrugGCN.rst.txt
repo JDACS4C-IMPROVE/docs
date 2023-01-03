@@ -16,23 +16,23 @@ Data sources
 ------------
 The primary data sources that have been used to construct datasets for model training and testing (i.e., ML data) include:
 
-- GDSC - cell line and drug ids, treatment response, cell line omics data
+- GDSC: cell line and drug ids, treatment response, cell line omics data
 
-- Library of Integrated Network-Based Cellular Signatures (LINCS) L1000 project - list of genes
+- Library of Integrated Network-Based Cellular Signatures (LINCS) L1000 project: list of genes
 
-- STRING - PPI network data
+- STRING: PPI network data
 
 Raw data
 --------
 The raw data includes the following for the L1000 and Var1000 datasets:
 
-#. Gene expression data, EXP.csv: Gene expression data for 734 cell lines obtained from the authors' GitHub page, `GDSC_DATASET_S1-S12.zip <https://github.com/Jinyu2019/Suppl-data-BBpaper/blob/master/GDSC_DATASET_S1-S12.zip>`__, and found in the file,  Table_S1_GDSC_Gene_expression.csv.
+#. EXP.csv: Gene expression data for 734 cell lines obtained from the authors' GitHub page, `GDSC_DATASET_S1-S12.zip <https://github.com/Jinyu2019/Suppl-data-BBpaper/blob/master/GDSC_DATASET_S1-S12.zip>`__, and found in the file,  Table_S1_GDSC_Gene_expression.csv.
 
-#. Protein info, PPI_INFO.txt: List of proteins including their display names and descriptions from the STRING database. This data can be downloaded from the STRING database `here <https://stringdb-static.org/download/protein.info.v11.5/9606.protein.info.v11.5.txt.gz>`__.
+#. PPI_INFO.txt: List of proteins including their display names and descriptions from the STRING database. This data can be downloaded from the STRING database `here <https://stringdb-static.org/download/protein.info.v11.5/9606.protein.info.v11.5.txt.gz>`__.
 
-#. Protein links, PPI_LINK.txt: Protein network data (full network, scored links between proteins) from the STRING database. This data can be downloaded from the STRING database `here <https://stringdb-static.org/download/protein.links.v11.5/9606.protein.links.v11.5.txt.gz>`__.
+#. PPI_LINK.txt: Protein network data (full network, scored links between proteins) from the STRING database. This data can be downloaded from the STRING database `here <https://stringdb-static.org/download/protein.links.v11.5/9606.protein.links.v11.5.txt.gz>`__.
 
-#. List of genes, LIST.txt: 663 or 1000 genes for the L1000 and Var1000 datasets respectively.
+#. LIST.txt: 663 or 1000 genes for the L1000 and Var1000 datasets respectively.
 
 The raw data is available in `this FTP location <https://ftp.mcs.anl.gov/pub/candle/public/improve/model_curation_data/DrugGCN/druggcn_data.tar.gz>`__.
 
@@ -45,9 +45,9 @@ The ML data files are available in `this FTP location <https://ftp.mcs.anl.gov/p
 The ML data files include the following:
 
 - **Cancer features**. L1000 and Var1000 folders with gene expression and protein-protein interaction files: 
-   - groupEXP.csv. Gene expression data of selected genes.
-   - groupEXP_foldChange.csv. Fold change of gene expression data of selected genes.
-   - groupPPI.csv. Protein-protein interaction data of selected genes where values are weights of the interactions that reflect the amount of available evidence of the interaction between two genes.
+   - groupEXP.csv: Gene expression data of selected genes.
+   - groupEXP_foldChange.csv: Fold change of gene expression data of selected genes.
+   - groupPPI.csv: PPI data of selected genes where values are weights of the interactions that reflect the amount of available evidence of the interaction between two genes.
 - **Response data**. IC50 or AUC values of 201 drugs and 734 cell lines.
    - Table_S6_GDSC_Drug_response_IC50.csv
    - Table_S7_GDSC_Drug_response_AUC.csv
