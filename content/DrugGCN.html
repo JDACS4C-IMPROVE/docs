@@ -114,22 +114,18 @@
 <p>The ML data files are available in <a class="reference external" href="https://ftp.mcs.anl.gov/pub/candle/public/improve/model_curation_data/DrugGCN/druggcn_data_processed.tar.gz">this FTP location</a>. These files can be automatically downloaded from the FTP server using the <cite>candle_lib</cite> utility function <cite>get_file()</cite>.</p>
 <p>The ML data files include the following:</p>
 <ul class="simple">
-<li><dl class="simple">
-<dt><strong>Cancer features</strong>. L1000 and Var1000 folders with gene expression and protein-protein interaction files:</dt><dd><ul>
+<li><p><strong>Cancer features</strong>.  L1000 and Var1000 folders with gene expression and protein-protein interaction files:</p>
+<ul>
 <li><p>groupEXP.csv: Gene expression data of selected genes.</p></li>
 <li><p>groupEXP_foldChange.csv: Fold change of gene expression data of selected genes.</p></li>
 <li><p>groupPPI.csv: PPI data of selected genes where values are weights of the interactions that reflect the amount of available evidence of the interaction between two genes.</p></li>
 </ul>
-</dd>
-</dl>
 </li>
-<li><dl class="simple">
-<dt><strong>Response data</strong>. IC50 or AUC values of 201 drugs and 734 cell lines.</dt><dd><ul>
+<li><p><strong>Response data</strong>.  IC50 or AUC values of 201 drugs and 734 cell lines.</p>
+<ul>
 <li><p>Table_S6_GDSC_Drug_response_IC50.csv</p></li>
 <li><p>Table_S7_GDSC_Drug_response_AUC.csv</p></li>
 </ul>
-</dd>
-</dl>
 </li>
 </ul>
 <p>The user can specify which dataset, L1000 or Var1000, and which response data, IC50 or AUC, to use when training and testing the model.</p>
