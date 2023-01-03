@@ -7,6 +7,7 @@ This sections contains a list of all the community models that have been curated
    :maxdepth: 1
 
    DeepTTC
+   DrugGCN
    GraphDRP
    HiDRA
    IGTD
