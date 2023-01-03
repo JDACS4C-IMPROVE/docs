@@ -26,13 +26,13 @@ Raw data
 --------
 The raw data includes the following for the L1000 and Var1000 datasets:
 
-#. `EXP.csv`: Gene expression data for 734 cell lines obtained from the authors' GitHub page, `GDSC_DATASET_S1-S12.zip <https://github.com/Jinyu2019/Suppl-data-BBpaper/blob/master/GDSC_DATASET_S1-S12.zip>`__, and found in the file,  `Table_S1_GDSC_Gene_expression.csv`.
+#. `EXP.csv`: Gene expression data for 734 cell lines obtained from the authors' GitHub page within `GDSC_DATASET_S1-S12.zip <https://github.com/Jinyu2019/Suppl-data-BBpaper/blob/master/GDSC_DATASET_S1-S12.zip>`__ and found in the file,  `Table_S1_GDSC_Gene_expression.csv`.
 
 #. `PPI_INFO.txt`: List of proteins including their display names and descriptions from the STRING database. This data can be downloaded from the STRING database `here <https://stringdb-static.org/download/protein.info.v11.5/9606.protein.info.v11.5.txt.gz>`__.
 
 #. `PPI_LINK.txt`: Protein network data (full network, scored links between proteins) from the STRING database. This data can be downloaded from the STRING database `here <https://stringdb-static.org/download/protein.links.v11.5/9606.protein.links.v11.5.txt.gz>`__.
 
-#. `LIST.txt`: 663 or 1000 genes for the L1000 and Var1000 datasets respectively.
+#. `LIST.txt`: List of 663 or 1000 genes for the L1000 and Var1000 datasets respectively.
 
 The raw data is available in `this FTP location <https://ftp.mcs.anl.gov/pub/candle/public/improve/model_curation_data/DrugGCN/druggcn_data.tar.gz>`__.
 
