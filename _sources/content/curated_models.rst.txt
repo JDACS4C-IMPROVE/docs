@@ -12,4 +12,5 @@ This sections contains a list of all the community models that have been curated
    HiDRA
    IGTD
    Paccman_MCA
+   tCNNS
    MODEL_TEMPLATE
