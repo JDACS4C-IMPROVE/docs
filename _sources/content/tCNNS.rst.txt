@@ -39,7 +39,7 @@ The raw data is available in `this FTP location <https://ftp.mcs.anl.gov/pub/can
 
 ML data
 -------
-The script `preprocess.py <https://github.com/JDACS4C-IMPROVE/tCNNS/blob/develop/preprocess.py>`__ uses raw data to generate ML data that can be used to train and test with tCNNS. The necessary raw data are automatically downloaded from the FTP server using the `candle_lib` utility function `get_file()` and processed. 
+The script `preprocess.py <https://github.com/JDACS4C-IMPROVE/tCNNS-Project/blob/develop/preprocess.py>`__ uses raw data to generate ML data that can be used to train and test with tCNNS. The necessary raw data are automatically downloaded from the FTP server using the `candle_lib` utility function `get_file()` and processed. 
 
 The ML data files are available in `this FTP location <https://ftp.mcs.anl.gov/pub/candle/public/improve/model_curation_data/tCNNS/tcnns_data_processed.tar.gz>`__. These files can be automatically downloaded from the FTP server using the `candle_lib` utility function `get_file()`.
 
