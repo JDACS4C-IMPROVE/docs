@@ -18,8 +18,11 @@ Data
 Data sources
 ------------
 The primary data sources that have been used to construct datasets for model training and testing (i.e., ML data) include:
+
 - GDSC version 6.0 - cell line and drug IDs, treatment response, cell line omics data
+
 - PubChem - drug SMILES
+
 - Library of the Integrated Network-based Cellular Signatures (LINCS) - drug SMILES
 
 Raw data
