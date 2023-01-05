@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>&lt;no title&gt; &mdash; IMPROVE 0.1 documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <title>tCNNS &mdash; IMPROVE 0.1 documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
@@ -37,7 +37,7 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption"><span class="caption-text">Contents:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="whatis.html">What is the IMPROVE project?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installing IMPROVE</a></li>
 <li class="toctree-l1"><a class="reference internal" href="models.html">Models</a></li>
@@ -52,7 +52,29 @@
 <li class="toctree-l1"><a class="reference internal" href="deploying-containers.html">How to deploy a container</a></li>
 <li class="toctree-l1"><a class="reference internal" href="drp_overview.html">Drug Response Prediction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="model_curation.html">Model Curation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="curated_models.html">Curated Models</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="curated_models.html">Curated Models</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="DeepTTC.html">DeepTTC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DrugGCN.html">DrugGCN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GraphDRP.html">GraphDRP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="HiDRA.html">HiDRA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="IGTD.html">IGTD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Paccman_MCA.html">Paccman_MCA</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">tCNNS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data">Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#data-sources">Data sources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#raw-data">Raw data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ml-data">ML data</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#evaluation">Evaluation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#urls">URLs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="MODEL_TEMPLATE.html">MODEL TEMPLATE</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="benchmarks.html">Benchmarks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="acknowledgment.html">Acknowledgments</a></li>
 </ul>
@@ -72,7 +94,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a></li>
           <li class="breadcrumb-item"><a href="curated_models.html">Curated Models</a></li>
-      <li class="breadcrumb-item active">&lt;no title&gt;</li>
+      <li class="breadcrumb-item active">tCNNS</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/content/tCNNS.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -82,7 +104,69 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <p>placeholder</p>
+  <div class="section" id="tcnns">
+<h1>tCNNS<a class="headerlink" href="#tcnns" title="Permalink to this headline">¶</a></h1>
+<p>Twin convolutional neural network for drugs in SMILES format.</p>
+<div class="section" id="structure">
+<h2>Structure<a class="headerlink" href="#structure" title="Permalink to this headline">¶</a></h2>
+<p>tCNNS consists of two 1D convolutional neural network (CNN) branches for distilling the features for drugs and cell lines separately. For the cell-line branch, the input data are 1D feature vectors of 735 genetic features related to mutation state or copy number alteration.
+For the drug branch, the input data are one-hot matrices (28 unique symbols x 188 positions) for each drug where a value of 1 at row i and column j means that the ith symbol appears at jth position in the SMILES format for that drug. The structures for the two branches are the same. For each branch, there are three similar layers: each layer with convolution width 7, convolution stride 1, max pooling width 3, and pooling stride 3. The only difference between the layers is that their number of channels are 40, 80 and 60, respectively. After the two branches of the CNN, there is a fully connected network (FCN), which aims to do the regression analysis between the output of the two branches and the IC50 values. There are three hidden layers in the FCN, each with 1024 neurons. The dropout probability is set to be 0.5 for the FCN during the training phase.</p>
+</div>
+<div class="section" id="data">
+<h2>Data<a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="data-sources">
+<h3>Data sources<a class="headerlink" href="#data-sources" title="Permalink to this headline">¶</a></h3>
+<p>The primary data sources that have been used to construct datasets for model training and testing (i.e., ML data) include:
+- GDSC version 6.0 - cell line and drug IDs, treatment response, cell line omics data
+- PubChem - drug SMILES
+- Library of the Integrated Network-based Cellular Signatures (LINCS) - drug SMILES</p>
+</div>
+<div class="section" id="raw-data">
+<h3>Raw data<a class="headerlink" href="#raw-data" title="Permalink to this headline">¶</a></h3>
+<p>The raw data is downloaded from GDSC website (version 6.0) and refers here to three types of data:</p>
+<ol class="arabic simple">
+<li><p>Dose-independent drug response values. <cite>PANCANCER_IC.csv</cite>: drug and cell IDs, IC50 values and other metadata (223 drugs and 948 cell lines).</p></li>
+<li><p>Cancer sample information. <cite>PANCANCER_Genetic_feature.csv</cite>: 735 binary features that include mutations and copy number alterations.</p></li>
+<li><p>Drug information. <cite>drug_smiles.csv</cite>: SMILES strings of drug molecules. The canonical SMILES were retrieved from PubChem using CIDs (<cite>Druglist.csv</cite>) or from LINCS if not available in PubChem. The script <cite>preprocess.py</cite> provides functions to generate this file.</p></li>
+</ol>
+<p>The raw data is available in <a class="reference external" href="https://ftp.mcs.anl.gov/pub/candle/public/improve/model_curation_data/tCNNS/tcnns_data.tar.gz">this FTP location</a>.</p>
+</div>
+<div class="section" id="ml-data">
+<h3>ML data<a class="headerlink" href="#ml-data" title="Permalink to this headline">¶</a></h3>
+<p>The script <a class="reference external" href="https://github.com/JDACS4C-IMPROVE/tCNNS/blob/develop/preprocess.py">preprocess.py</a> uses raw data to generate ML data that can be used to train and test with tCNNS. The necessary raw data are automatically downloaded from the FTP server using the <cite>candle_lib</cite> utility function <cite>get_file()</cite> and processed.</p>
+<p>The ML data files are available in <a class="reference external" href="https://ftp.mcs.anl.gov/pub/candle/public/improve/model_curation_data/tCNNS/tcnns_data_processed.tar.gz">this FTP location</a>. These files can be automatically downloaded from the FTP server using the <cite>candle_lib</cite> utility function <cite>get_file()</cite>.</p>
+<ul class="simple">
+<li><p><strong>Response data</strong>. IC50 values (<cite>PANCANCER_IC.csv</cite>) are normalized in the (0,1) interval.</p></li>
+<li><p><strong>Cancer features</strong>. 735 binary features, including mutations and copy number alterations, are not modified.</p></li>
+<li><p><strong>Drug features</strong>. SMILES string of each drug is converted into a 28 by 188 one-hot matrix where a value 1 at row i and column j means that the ith symbol appears at jth position in the SMILES string.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="evaluation">
+<h2>Evaluation<a class="headerlink" href="#evaluation" title="Permalink to this headline">¶</a></h2>
+<p>Several evaluation schemes were used for the analysis of prediction performance.</p>
+<ul class="simple">
+<li><p>Mixed set: Cell lines and drugs can appear in train, validation, and test sets.</p></li>
+<li><p>Cell-blind: No overlap on cell lines in train, validation, and test sets.</p></li>
+<li><p>Drug-blind: No overlap on drugs in train, validation, and test sets.</p></li>
+<li><p>Exclusion of extrapolated activity data: The model is trained and tested on a subset of GDSC data referred to as max_conc data. This subset of data only includes IC50 values below the maximum screening concentration (max_conc), which is the maximum IC50 value verified by biological experiments for each drug in GDSC.</p></li>
+<li><p>Number of cell line features: The performance of the model is tested with different numbers of cell line features.</p></li>
+<li><p>Modification of SMILES format:  The one-hot representation of the SMILES format was modified in three ways for assessing whether the model captures the biological meaning in the data versus the statistical pattern of the data.</p></li>
+</ul>
+</div>
+<div class="section" id="urls">
+<h2>URLs<a class="headerlink" href="#urls" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/Lowpassfilter/tCNNS-Project">Original GitHub</a></p></li>
+<li><p><a class="reference external" href="https://github.com/JDACS4C-IMPROVE/tCNNS-Project/tree/develop">IMPROVE GitHub</a></p></li>
+<li><p><a class="reference external" href="https://ftp.mcs.anl.gov/pub/candle/public/improve/model_curation_data/tCNNS/">Data</a></p></li>
+</ul>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<p>Liu, P., Li, H., Li, S., &amp; Leung, K. S. (2019). Improving prediction of phenotypic drug response on cancer cell lines using deep convolutional network. BMC bioinformatics, 20(1), 408. <a class="reference external" href="https://doi.org/10.1186/s12859-019-2910-6">https://doi.org/10.1186/s12859-019-2910-6</a></p>
+</div>
+</div>
 
 
            </div>
