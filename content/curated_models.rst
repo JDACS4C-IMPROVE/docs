@@ -13,4 +13,5 @@ This sections contains a list of all the community models that have been curated
    IGTD
    Paccman_MCA
    tCNNS
+   DrVAE
    MODEL_TEMPLATE
