@@ -17,10 +17,10 @@ Once you a chose a model to work on, you need to ensure the code is in good stat
 
 2. CANDLE
 ------------------------
-**TODO** all docs relevent to CANLDEizing models.
+**TODO** all docs relevent to CANDLEizing models.
 
 The next step is modify the repo to make the code CANDLE compliant.
 
-3. Singulairy
+3. Singularity
 ---------------------
-**TODO** all docs relevent to Singulairy.
+**TODO** all docs relevent to Singularity.
