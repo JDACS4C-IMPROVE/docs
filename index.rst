@@ -29,7 +29,6 @@ Welcome to IMPROVE's documentation!
    content/comparators
    content/benchmarks
    content/acknowledgment
-   
    content/chia_touch
 
 Access the code base https://github.com/JDACS4C-IMPROVE/
