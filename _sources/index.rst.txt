@@ -26,11 +26,10 @@ Welcome to IMPROVE's documentation!
    content/drp_overview
    content/model_curation
    content/curated_models
+   content/comparators
    content/benchmarks
    content/acknowledgment
    
    content/chia_touch
 
 Access the code base https://github.com/JDACS4C-IMPROVE/
-
-
