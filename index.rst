@@ -28,6 +28,8 @@ Welcome to IMPROVE's documentation!
    content/curated_models
    content/benchmarks
    content/acknowledgment
+   
+   content/touch_chia
 
 Access the code base https://github.com/JDACS4C-IMPROVE/
 
