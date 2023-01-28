@@ -15,3 +15,5 @@ This sections contains a list of all the community models that have been curated
    tCNNS
    DrVAE
    MODEL_TEMPLATE
+   PathDSP
+   TranPathDSP
