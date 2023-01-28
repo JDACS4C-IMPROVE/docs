@@ -69,12 +69,12 @@ Four evaluation schemes were used for the analysis of prediction performance.
 ----
 URLs
 ----
-- `Original GitHub <https://github.com/BML-cbnu/DrugGCN>`__
-- `IMPROVE GitHub <https://github.com/JDACS4C-IMPROVE/DrugGCN/tree/develop>`__
-- `Data <https://ftp.mcs.anl.gov/pub/candle/public/improve/model_curation_data/DrugGCN/>`__
+- `Original Developer's GitHub <https://github.com/TangYiChing/PathDSP>`__
+- `IMPROVE GitHub <https://github.com/JDACS4C-IMPROVE/PathDSP/tree/develop>`__
+- `Data <http://chia.team/IMPROVE_data/data>`__
 
 
 ----------
 References
 ----------
-Kim S, Bae S, Piao Y, Jo K. Graph Convolutional Network for Drug Response Prediction Using Gene Expression Data. *Mathematics*. 2021; 9(7):772. https://doi.org/10.3390/math9070772
+Tang, Yi-Ching, and Assaf Gottlieb. "Explainable drug sensitivity prediction through cancer pathway enrichment." Scientific reports 11, no. 1 (2021): 1-10. https://www.nature.com/articles/s41598-021-82612-7
