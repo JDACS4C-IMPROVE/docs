@@ -118,18 +118,16 @@
 <div class="section" id="data-sources">
 <h3>Data sources<a class="headerlink" href="#data-sources" title="Permalink to this headline">¶</a></h3>
 <p>The primary data sources that have been used to construct datasets for model training and testing (i.e., ML data) include:</p>
-<ul class="simple">
-<li><p>GDSC: cell line and drug IDs, treatment response, cell line omics data (To be filled out)</p></li>
-</ul>
+<p>“Drug sensitivity data, cell-line gene expression, somatic mutation and copy number variation data for 319 cancer cell lines and 153 drugs was downloaded from Genomics of Drug Sensitivity in Cancer (GDSC downloaded from <a class="reference external" href="https://www.cancerrxgene.org/downloads/bulk_download">https://www.cancerrxgene.org/downloads/bulk_download</a>.) Drug sensitivity data of 24 drugs and 478 cancer cell lines from the Cancer Cell Line Encyclopedia (CCLE) were downloaded through the DepMap portal (<a class="reference external" href="https://depmap.org/portal/download/">https://depmap.org/portal/download/</a>, release version: public 20Q1), which also include gene expression, mutation and copy number variation data for those cancer cell lines. Primary target data was downloaded from GDSC, and PID pathways were downloaded from MSigDB. Protein–protein network was downloaded from STRING database, including protein interactions, co-expression and text-mined interactions.”</p>
 </div>
 <div class="section" id="raw-data">
 <h3>Raw data<a class="headerlink" href="#raw-data" title="Permalink to this headline">¶</a></h3>
 <p>The raw data includes the following:</p>
 <ol class="arabic simple">
-<li><p><cite>GDSCv2.Gao2015.Powell2020.Lee2021.GeoSearch.Ding2016.CHEM.256.MBits.txt</cite>: Gene expression data for 734 cell lines obtained from the authors’ GitHub page within <a class="reference external" href="https://github.com/Jinyu2019/Suppl-data-BBpaper/blob/master/GDSC_DATASET_S1-S12.zip">GDSC_DATASET_S1-S12.zip</a> and found in the file,  <cite>Table_S1_GDSC_Gene_expression.csv</cite>.</p></li>
-<li><p><cite>GDSCv2.Gao2015.Powell2020.Lee2021.GeoSearch.Ding2016.DGNet.NetPEA.txt</cite>: List of proteins including their display names and descriptions from the STRING database. This data can be downloaded from the STRING database <a class="reference external" href="https://stringdb-static.org/download/protein.info.v11.5/9606.protein.info.v11.5.txt.gz">here</a>.</p></li>
-<li><p><cite>GDSCv2.Powell2020.EXP.ssGSEA.txt</cite>: Description pending - the other ones up there are fake too. Just filler until I get a chance to fill this in.</p></li>
-<li><p><cite>GDSCv2.resp_PowellAUC.Alias.txt</cite>: Description pending</p></li>
+<li><p><cite>GDSCv2.Gao2015.Powell2020.Lee2021.GeoSearch.Ding2016.CHEM.256.MBits.txt</cite>: Looks like drug response from GDSC.</p></li>
+<li><p><cite>GDSCv2.Gao2015.Powell2020.Lee2021.GeoSearch.Ding2016.DGNet.NetPEA.txt</cite>: “We collected all mutations for each cell line to perform network-based pathway enrichment analysis by the NetPEA algorithm, which calculates an enrichment score by measuring the closeness of pathway genes to a given gene set within a protein–protein interaction (PPI) network.”</p></li>
+<li><p><cite>GDSCv2.Powell2020.EXP.ssGSEA.txt</cite>: “Gene expression data were measured by transcripts per million (TPM) and log-transformed. We imputed with mean for the rest of missing values. Enrichment score (ES) of each PID pathway in each cell line was calculated using the single-sample Gene Set Enrichment (ssGSEA) algorithm52 through GSEApy (<a class="reference external" href="https://gseapy.readthedocs.io/en/master/gseapy_example.html">https://gseapy.readthedocs.io/en/master/gseapy_example.html</a>). We ran permutation test for 1000 times and normalized ES scores by the size of gene set to obtain normalized ES (i.e., NES). We used the resulting pathway enrichment matrix with size of 319 cancer cell lines by 196 pathways as the gene expression feature (EXP).”</p></li>
+<li><p><cite>GDSCv2.resp_PowellAUC.Alias.txt</cite>: Set of aliases [Therapy | Sample | Response | Cancer types | Datasets | Alias]</p></li>
 </ol>
 <p>The raw data is available in <a class="reference external" href="http://chia.team/IMPROVE_data/data">this highly suspicious location</a>.</p>
 </div>

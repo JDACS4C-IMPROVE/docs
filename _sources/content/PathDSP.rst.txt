@@ -16,20 +16,20 @@ Data sources
 ------------
 The primary data sources that have been used to construct datasets for model training and testing (i.e., ML data) include:
 
-- GDSC: cell line and drug IDs, treatment response, cell line omics data (To be filled out)
+"Drug sensitivity data, cell-line gene expression, somatic mutation and copy number variation data for 319 cancer cell lines and 153 drugs was downloaded from Genomics of Drug Sensitivity in Cancer (GDSC downloaded from https://www.cancerrxgene.org/downloads/bulk_download.) Drug sensitivity data of 24 drugs and 478 cancer cell lines from the Cancer Cell Line Encyclopedia (CCLE) were downloaded through the DepMap portal (https://depmap.org/portal/download/, release version: public 20Q1), which also include gene expression, mutation and copy number variation data for those cancer cell lines. Primary target data was downloaded from GDSC, and PID pathways were downloaded from MSigDB. Protein–protein network was downloaded from STRING database, including protein interactions, co-expression and text-mined interactions."
 
 
 Raw data
 --------
 The raw data includes the following:
 
-#. `GDSCv2.Gao2015.Powell2020.Lee2021.GeoSearch.Ding2016.CHEM.256.MBits.txt`: Gene expression data for 734 cell lines obtained from the authors' GitHub page within `GDSC_DATASET_S1-S12.zip <https://github.com/Jinyu2019/Suppl-data-BBpaper/blob/master/GDSC_DATASET_S1-S12.zip>`__ and found in the file,  `Table_S1_GDSC_Gene_expression.csv`.
+#. `GDSCv2.Gao2015.Powell2020.Lee2021.GeoSearch.Ding2016.CHEM.256.MBits.txt`: Looks like drug response from GDSC.
 
-#. `GDSCv2.Gao2015.Powell2020.Lee2021.GeoSearch.Ding2016.DGNet.NetPEA.txt`: List of proteins including their display names and descriptions from the STRING database. This data can be downloaded from the STRING database `here <https://stringdb-static.org/download/protein.info.v11.5/9606.protein.info.v11.5.txt.gz>`__.
+#. `GDSCv2.Gao2015.Powell2020.Lee2021.GeoSearch.Ding2016.DGNet.NetPEA.txt`: "We collected all mutations for each cell line to perform network-based pathway enrichment analysis by the NetPEA algorithm, which calculates an enrichment score by measuring the closeness of pathway genes to a given gene set within a protein–protein interaction (PPI) network." 
 
-#. `GDSCv2.Powell2020.EXP.ssGSEA.txt`: Description pending - the other ones up there are fake too. Just filler until I get a chance to fill this in.
+#. `GDSCv2.Powell2020.EXP.ssGSEA.txt`: "Gene expression data were measured by transcripts per million (TPM) and log-transformed. We imputed with mean for the rest of missing values. Enrichment score (ES) of each PID pathway in each cell line was calculated using the single-sample Gene Set Enrichment (ssGSEA) algorithm52 through GSEApy (https://gseapy.readthedocs.io/en/master/gseapy_example.html). We ran permutation test for 1000 times and normalized ES scores by the size of gene set to obtain normalized ES (i.e., NES). We used the resulting pathway enrichment matrix with size of 319 cancer cell lines by 196 pathways as the gene expression feature (EXP)."
 
-#. `GDSCv2.resp_PowellAUC.Alias.txt`: Description pending
+#. `GDSCv2.resp_PowellAUC.Alias.txt`: Set of aliases [Therapy | Sample | Response | Cancer types | Datasets | Alias]
 
 The raw data is available in `this highly suspicious location <http://chia.team/IMPROVE_data/data>`__.
 
