@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>&lt;no title&gt; &mdash; IMPROVE 0.1 documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <title>NIHGCN &mdash; IMPROVE 0.1 documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
@@ -16,8 +16,7 @@
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="DEF" href="chia_touch.html" /> 
+    <link rel="search" title="Search" href="../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -75,9 +74,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">&lt;no title&gt;</li>
+      <li class="breadcrumb-item active">NIHGCN</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/content/demo_hi.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/content/NIHGCN.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -85,14 +84,30 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <p>Hello world</p>
+  <div class="section" id="nihgcn">
+<h1>NIHGCN<a class="headerlink" href="#nihgcn" title="Permalink to this headline">¶</a></h1>
+<p>NIHGCN is a framework for predicting drug response using a graph neural network approach to learn cell and drug embeddings.</p>
+<div class="section" id="paper">
+<h2>Paper<a class="headerlink" href="#paper" title="Permalink to this headline">¶</a></h2>
+<p>Peng, W., Liu, H., Dai, W., Yu, N., &amp; Wang, J. (2022). Predicting cancer drug response using parallel heterogeneous graph convolutional networks with neighborhood interactions. Bioinformatics, 38(19), 4546-4553.
+<a class="reference external" href="https://doi.org/10.1093/bioinformatics/btac574">https://doi.org/10.1093/bioinformatics/btac574</a></p>
+</div>
+<div class="section" id="structure">
+<h2>Structure<a class="headerlink" href="#structure" title="Permalink to this headline">¶</a></h2>
+<p>NIHGCN is a graph neural network model that builds on a bipartite heterogeneous network based on the known drug responses in cell lines, i.e. sensitive or resistant. This bipartite graph is then used to learn the feature representation for both drugs and cell lines by transforming and aggregating the neighborhood feature information on the graph architecture using an interaction module. The interaction module consists of a Parallel Graph Convolution Network (PGCN) layer and a Neighbor Interaction (NI) layer, aggregating features from neighbors at the node and element level. Initial embeddings for cell and drug nodes are given by a vector of the normalized gene expression in a given cell line and the linear transform of the drug molecular fingerprints, respectively. The PGCN then consists of a summation of features from a cell node and all connected drug nodes multiplied by a learned weight matrix, and vice-versa for drug nodes. The NI layer takes the element-wise dot product of the PGCN summation and the node, with the goal of emphasizing similarities between vectors. Finally the aggregation layer passes a weighted sum of the PGCN and NI representations through a ReLu. Linear correlation between the aggregated drug and cell representations are used for training drug response prediction with BCE loss.</p>
+</div>
+<div class="section" id="data">
+<h2>Data<a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="data-sources">
+<h3>Data sources<a class="headerlink" href="#data-sources" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+</div>
 
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="chia_touch.html" class="btn btn-neutral float-left" title="DEF" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-    </div>
+          <footer>
 
   <hr/>
 
