@@ -20,3 +20,46 @@ Data
 
 Data sources
 ------------
+The primary data sources that have been used to construct datasets for model training and testing include:
+
+* GDSC
+
+  * The GDSC database provides two tables to help us infer drug sensitivity and resistance states, mainly a logarithmic matrix of half-maximal inhibitory concentration (IC50) values for all screened cell line/drug combinations, containing 990 cancer cell lines and 265 tested drugs, and sensitivity thresholds for the 265 drugs.
+
+    * https://www.cancerrxgene.org/gdsc1000/GDSC1000_WebResources//Data/suppData/TableS4A.xlsx
+    * https://www.cancerrxgene.org/gdsc1000/GDSC1000_WebResources//Data/suppData/TableS5C.xlsx 
+
+  *	The tables are binarized into the following tables. Files provided by the github repo for reproducibility:
+
+    * cell_drug.csv records the log IC50 association matrix of cell line-drug
+    * cell_drug_binary.csv records the binary cell line-drug association matrix
+    * cell_exprs.csv records cell line gene expression features
+    * drug_feature.csv records the fingerprint features of drugs
+    * null_mask.csv records the null values in the cell line-drug association matrix
+    * threshold.csv records the drug sensitivity threshold
+
+* CCLE
+
+  * The CCLE database provides 11 670 records of cell line-drug trials. Each record reports experimental information such as drug target, dose, log(IC50) and effective area.
+  * These are binarized into the following:
+
+    * cell_drug.csv records the log IC50 association matrix of cell line-drug
+    * cell_drug_binary.csv records the binary cell line-drug association matrix
+    * cell_exprs.csv records cell line gene expression features
+    * drug_feature.csv records the fingerprint features of drugs
+
+#. PDX
+#.. From the PDX Encyclopedia dataset (PDX), dataset is available in Supplementary File of Gao et al. (2015), containing gene expression profiles and drug responses values.
+#.. Binarized files:
+#... pdx_response.csv records the binary patient-drug association matrix.
+#... pdx_exprs.csv records patient gene expression features.
+#... pdx_null_mask.csv records the null values in the patient-drug association matrix.
+#... drug_feature.csv records the fingerprint features of drugs.
+#. TCGA
+#.. The corresponding gene expression of the TCGA samples was from FirehoseBroadGDAC. TCGA drug responses were divided into two groups, responses (‘Complete Response’ and ‘Partial Response’) and non-response (‘Stable Disease’ and ‘Progressive Disease’). 
+#.. Binarized files:
+#... patient_drug_binary.csv records the binary patient-drug association matrix.
+#... tcga_exprs.csv records patient gene expression features.
+#... tcga_null_mask.csv records the null values in the patient-drug association matrix.
+#... drug_feature.csv records the fingerprint features of drugs.
+
