@@ -20,11 +20,11 @@ Data
 
 Data sources
 ------------
-The primary data sources that have been used to construct datasets for model training and testing include:
+The primary data sources that have been used to construct datasets for model training and testing include
 
 * GDSC
 
-  * The GDSC database provides two tables to help us infer drug sensitivity and resistance states, mainly a logarithmic matrix of half-maximal inhibitory concentration (IC50) values for all screened cell line/drug combinations, containing 990 cancer cell lines and 265 tested drugs, and sensitivity thresholds for the 265 drugs.
+  * The 
 
     * https://www.cancerrxgene.org/gdsc1000/GDSC1000_WebResources//Data/suppData/TableS4A.xlsx
     * https://www.cancerrxgene.org/gdsc1000/GDSC1000_WebResources//Data/suppData/TableS5C.xlsx 
