@@ -107,15 +107,15 @@ Example of config files can be found at <https://github.com/ECP-CANDLE/Tests/tre
         ]
 
 
-**swift-t and Supervisor**
-
-Why?
+**Swift-t and Supervisor setup**
 
 .. code-block:: bash
+
     git clone https://github.com/ECP-CANDLE/Supervisor.git
-    conda install
+    conda install --yes -c conda-forge -c swift-t swift-t
     # Add path to supervisor to your environment: 
     cd Supervisor && PATH = $PATH:$(pwd)/bin
+
 
 **IMPROVE Models**
 

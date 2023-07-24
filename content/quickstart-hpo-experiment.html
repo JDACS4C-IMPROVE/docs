@@ -211,8 +211,13 @@ We have a directory called <em>Experiment</em> and created a config file named <
 </div></blockquote>
 </li>
 </ol>
-<p><strong>swift-t and Supervisor</strong></p>
-<p>Why?</p>
+<p><strong>Swift-t and Supervisor setup</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/ECP-CANDLE/Supervisor.git
+conda install --yes -c conda-forge -c swift-t swift-t
+<span class="c1"># Add path to supervisor to your environment:</span>
+<span class="nb">cd</span> Supervisor <span class="o">&amp;&amp;</span> <span class="nv">PATH</span> <span class="o">=</span> <span class="nv">$PATH</span>:<span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/bin
+</pre></div>
+</div>
 <p><strong>IMPROVE Models</strong></p>
 <p>Your model is packaged in a singularity image. You can identify the image file by the <strong>*.sif</strong> suffix. The container exposes following interface scripts:</p>
 <ul class="simple">
