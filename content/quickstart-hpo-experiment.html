@@ -128,7 +128,7 @@
 <h2>Steps<a class="headerlink" href="#steps" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li><p>Create config files</p></li>
-<li></li>
+<li><p>Execute workflow with supervisor:</p></li>
 </ol>
 <p><em>Example:</em></p>
 <p>Running an HPO experiment on lambda. The model image is in <em>/software/improve/images/</em>. We will execute the command above with <strong>location</strong> set to <em>lambda</em> and <strong>workflow</strong> set to <em>GA</em>.
@@ -152,57 +152,57 @@ We have a directory called <em>Experiment</em> and created a config file named <
 <p><em>Example:</em></p>
 <ol class="arabic">
 <li><p><code class="docutils literal notranslate"><span class="pre">mkdir</span> <span class="pre">Experiment</span> <span class="pre">&amp;&amp;</span> <span class="pre">cd</span> <span class="pre">Experiment</span></code></p></li>
-<li><p>Create config file:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">code</span><span class="o">-</span><span class="n">block</span><span class="p">::</span> <span class="n">bash</span>
+<li><p>Create config file</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Model settings</span>
+<span class="nb">export</span> <span class="nv">CANDLE_MODEL_TYPE</span><span class="o">=</span><span class="s2">&quot;SINGULARITY&quot;</span>
+<span class="nb">export</span> <span class="nv">MODEL_NAME</span><span class="o">=</span>/software/improve/images/GraphDRP.sif
+<span class="nb">export</span> <span class="nv">PARAM_SET_FILE</span><span class="o">=</span>my-graphdrp-search.json
 
-    <span class="c1"># Model settings</span>
-    <span class="n">export</span> <span class="n">CANDLE_MODEL_TYPE</span><span class="o">=</span><span class="s2">&quot;SINGULARITY&quot;</span>
-    <span class="n">export</span> <span class="n">MODEL_NAME</span><span class="o">=/</span><span class="n">software</span><span class="o">/</span><span class="n">improve</span><span class="o">/</span><span class="n">images</span><span class="o">/</span><span class="n">GraphDRP</span><span class="o">.</span><span class="n">sif</span>
-    <span class="n">export</span> <span class="n">PARAM_SET_FILE</span><span class="o">=</span><span class="n">my</span><span class="o">-</span><span class="n">graphdrp</span><span class="o">-</span><span class="n">search</span><span class="o">.</span><span class="n">json</span>
-
-    <span class="c1"># System settings</span>
-    <span class="n">export</span> <span class="n">PROCS</span><span class="o">=</span>
+<span class="c1"># System settings</span>
+<span class="nb">export</span> <span class="nv">PROCS</span><span class="o">=</span>
 </pre></div>
 </div>
+</div></blockquote>
 </li>
 <li><p>Create parameter file:</p></li>
 </ol>
-<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
-    <span class="p">{</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>
+    <span class="o">{</span>
 
-        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;activation&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;categorical&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;element_type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;values&quot;</span><span class="p">:</span> <span class="p">[</span>
-            <span class="s2">&quot;softmax&quot;</span><span class="p">,</span><span class="s2">&quot;elu&quot;</span><span class="p">,</span><span class="s2">&quot;softplus&quot;</span><span class="p">,</span><span class="s2">&quot;softsign&quot;</span><span class="p">,</span><span class="s2">&quot;relu&quot;</span><span class="p">,</span><span class="s2">&quot;tanh&quot;</span><span class="p">,</span><span class="s2">&quot;sigmoid&quot;</span><span class="p">,</span><span class="s2">&quot;hard_sigmoid&quot;</span><span class="p">,</span><span class="s2">&quot;linear&quot;</span>
-        <span class="p">]</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;optimizer&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;categorical&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;element_type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;values&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;adam&quot;</span><span class="p">,</span> <span class="s2">&quot;rmsprop&quot;</span><span class="p">]</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;dropout&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;float&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;lower&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
-        <span class="nt">&quot;upper&quot;</span><span class="p">:</span> <span class="mf">0.9</span><span class="p">,</span>
-        <span class="nt">&quot;sigma&quot;</span><span class="p">:</span> <span class="mf">0.045</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;batch_size&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;ordered&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;element_type&quot;</span><span class="p">:</span> <span class="s2">&quot;int&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;values&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">16</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">256</span><span class="p">],</span>
-        <span class="nt">&quot;sigma&quot;</span><span class="p">:</span> <span class="mi">1</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;epochs&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;constant&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="mi">5</span>
-    <span class="p">}</span>
-<span class="p">]</span>
+        <span class="s2">&quot;name&quot;</span>: <span class="s2">&quot;activation&quot;</span>,
+        <span class="s2">&quot;type&quot;</span>: <span class="s2">&quot;categorical&quot;</span>,
+        <span class="s2">&quot;element_type&quot;</span>: <span class="s2">&quot;string&quot;</span>,
+        <span class="s2">&quot;values&quot;</span>: <span class="o">[</span>
+            <span class="s2">&quot;softmax&quot;</span>,<span class="s2">&quot;elu&quot;</span>,<span class="s2">&quot;softplus&quot;</span>,<span class="s2">&quot;softsign&quot;</span>,<span class="s2">&quot;relu&quot;</span>,<span class="s2">&quot;tanh&quot;</span>,<span class="s2">&quot;sigmoid&quot;</span>,<span class="s2">&quot;hard_sigmoid&quot;</span>,<span class="s2">&quot;linear&quot;</span>
+        <span class="o">]</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+        <span class="s2">&quot;name&quot;</span>: <span class="s2">&quot;optimizer&quot;</span>,
+        <span class="s2">&quot;type&quot;</span>: <span class="s2">&quot;categorical&quot;</span>,
+        <span class="s2">&quot;element_type&quot;</span>: <span class="s2">&quot;string&quot;</span>,
+        <span class="s2">&quot;values&quot;</span>: <span class="o">[</span><span class="s2">&quot;adam&quot;</span>, <span class="s2">&quot;rmsprop&quot;</span><span class="o">]</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+        <span class="s2">&quot;name&quot;</span>: <span class="s2">&quot;dropout&quot;</span>,
+        <span class="s2">&quot;type&quot;</span>: <span class="s2">&quot;float&quot;</span>,
+        <span class="s2">&quot;lower&quot;</span>: <span class="m">0</span>.0,
+        <span class="s2">&quot;upper&quot;</span>: <span class="m">0</span>.9,
+        <span class="s2">&quot;sigma&quot;</span>: <span class="m">0</span>.045
+    <span class="o">}</span>,
+    <span class="o">{</span>
+        <span class="s2">&quot;name&quot;</span>: <span class="s2">&quot;batch_size&quot;</span>,
+        <span class="s2">&quot;type&quot;</span>: <span class="s2">&quot;ordered&quot;</span>,
+        <span class="s2">&quot;element_type&quot;</span>: <span class="s2">&quot;int&quot;</span>,
+        <span class="s2">&quot;values&quot;</span>: <span class="o">[</span><span class="m">16</span>, <span class="m">32</span>, <span class="m">64</span>, <span class="m">128</span>, <span class="m">256</span><span class="o">]</span>,
+        <span class="s2">&quot;sigma&quot;</span>: <span class="m">1</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+        <span class="s2">&quot;name&quot;</span>: <span class="s2">&quot;epochs&quot;</span>,
+        <span class="s2">&quot;type&quot;</span>: <span class="s2">&quot;constant&quot;</span>,
+        <span class="s2">&quot;value&quot;</span>: <span class="m">5</span>
+    <span class="o">}</span>
+<span class="o">]</span>
 </pre></div>
 </div>
 <p><strong>swift-t and Supervisor</strong></p>

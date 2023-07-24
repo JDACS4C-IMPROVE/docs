@@ -16,7 +16,7 @@ Steps
 _____
 
 1. Create config files
-2. ::
+2. Execute workflow with supervisor:
 
 .. code-block:: bash
     supervisor ${location} ${workflow} ${config}
@@ -53,7 +53,7 @@ Example of config files can be found at <https://github.com/ECP-CANDLE/Tests/tre
 *Example:*
 
 1. ``mkdir Experiment && cd Experiment``
-2. Create config file::
+2. Create config file
 
     .. code-block:: bash
 
@@ -68,8 +68,8 @@ Example of config files can be found at <https://github.com/ECP-CANDLE/Tests/tre
 
 3. Create parameter file:
 
-.. code-block:: JSON
-    
+.. code-block:: bash
+
     [
         {
 
