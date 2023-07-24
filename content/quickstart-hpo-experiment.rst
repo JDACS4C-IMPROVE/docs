@@ -30,7 +30,7 @@ We have a directory called *Experiment* and created a config file named *my-conf
 
 .. code-block:: bash
 
-    supervisor lambda GA my-config.sh
+    supervisor lambda GA Experiment/my-config.sh
 
 
 Config file(s)
