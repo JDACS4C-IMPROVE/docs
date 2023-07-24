@@ -12,6 +12,7 @@ Welcome to IMPROVE's documentation!
 
    content/whatis
    content/install
+   content/quickstart
    content/models
    content/curating_introduction
    content/curating
