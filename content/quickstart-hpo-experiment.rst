@@ -17,6 +17,7 @@ _____
 
 1. Create config files
 2. 
+
 .. code-block:: bash
     supervisor ${location} ${workflow} ${config}``
 
@@ -48,20 +49,20 @@ Example of config files can be found at <https://github.com/ECP-CANDLE/Tests/tre
     export PROCS=
 
 
-Example:
+*Example:*
 
-1. `mkdir Experiment && cd Experiment`
-2. Create config file:
+1. ``mkdir Experiment && cd Experiment``
+2. Create config file::
 
-.. code-block:: bash
+    .. code-block:: bash
 
-    # Model settings
-    export CANDLE_MODEL_TYPE="SINGULARITY"
-    export MODEL_NAME=/software/improve/images/GraphDRP.sif
-    export PARAM_SET_FILE=my-graphdrp-search.json
+        # Model settings
+        export CANDLE_MODEL_TYPE="SINGULARITY"
+        export MODEL_NAME=/software/improve/images/GraphDRP.sif
+        export PARAM_SET_FILE=my-graphdrp-search.json
 
-    # System settings
-    export PROCS=
+        # System settings
+        export PROCS=
 
 
 3. Create parameter file:
