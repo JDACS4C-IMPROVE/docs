@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Models &mdash; IMPROVE 0.1 documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <title>Prerequisites HPO &mdash; IMPROVE 0.1 documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
@@ -17,8 +17,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="UNO" href="github-readme-template.html" />
-    <link rel="prev" title="Hyper Parameter Optimization (HPO)" href="quickstart-hpo-experiment.html" /> 
+    <link rel="next" title="Hyper Parameter Optimization (HPO)" href="quickstart-hpo-experiment.html" />
+    <link rel="prev" title="Quickstart Guides" href="quickstart.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -44,18 +44,16 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="whatis.html">What is the IMPROVE project?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installing IMPROVE</a></li>
-<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart Guides</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Models</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#curated-community-models">Curated community models</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#current-models">Current Models</a><ul class="simple">
+<li class="toctree-l1 current"><a class="reference internal" href="quickstart.html">Quickstart Guides</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="quickstart.html#hyper-parameter-optimisation-with-the-supervisor">Hyper Parameter optimisation with the <em>Supervisor</em></a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Prerequisites HPO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart-hpo-experiment.html">Hyper Parameter Optimization (HPO)</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#github-preparation-template">GitHub Preparation Template</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="github-readme-template.html">UNO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#building-and-deploying-supported-models">Building and deploying supported models</a></li>
 </ul>
 </li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="models.html">Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="curating_introduction.html">Introduction to Curating a Community Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="curating.html">Curating a Community Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="candle_1.html">Creating a CANDLE Benchmark</a></li>
@@ -87,9 +85,10 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Models</li>
+          <li class="breadcrumb-item"><a href="quickstart.html">Quickstart Guides</a></li>
+      <li class="breadcrumb-item active">Prerequisites HPO</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/content/models.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/content/quickstart-hpo-prerequisites.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -97,52 +96,22 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="models">
-<h1>Models<a class="headerlink" href="#models" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="curated-community-models">
-<h2>Curated community models<a class="headerlink" href="#curated-community-models" title="Permalink to this headline">¶</a></h2>
-<p>Curating community models is standardized using CANDLE libraries. A tutorial on how to modify a community model to be CANDLE compliant can be found in <a class="reference external" href="https://ecp-candle.github.io/Candle/tutorials/writing_candle_code.html">this example</a>. Please refer to CANDLE documentation to learn about the <a class="reference external" href="https://ecp-candle.github.io/Candle/candle_lib.html">candle_lib API</a>.</p>
-<ol class="arabic">
-<li><p>Standard candle arguement parser will be used.</p>
-<ol class="loweralpha simple">
-<li><p>CANDLE keywords must be used for command line arguements if one exists.  If you have the Benchmarks repo, they can use them as examples, or run –help. SEE ALSO: <a class="reference external" href="https://ecp-candle.github.io/Candle/tutorials/default_parameters.html">https://ecp-candle.github.io/Candle/tutorials/default_parameters.html</a></p></li>
-<li><p>All model arguements are passed to the model by way of the candle –config_file option. For example:</p></li>
-</ol>
-<p><code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">cadre_candle.py</span> <span class="pre">--config_file</span> <span class="pre">some_file_name</span>
-<span class="pre">`</span></code></p>
-<ol class="loweralpha simple" start="2">
-<li><p>Non-standard keywords (meaning not represented in the candle keywords) shall be added to the additional_definitions so that they can be included in that they are properly passed to and parsed by the model.  If these keywords (arguments) are not in additional_definitions they can’t be changed from the command line.</p></li>
-</ol>
-</li>
-<li><p>There must be a data_loader that is implemented by/in &lt;model&gt;.py or uses a candle default data_loader. The name shall conform to CANDLE standards.</p></li>
-<li><p>Models shall use candle checkpointing.</p></li>
-<li><p>There will be a data_loader that is implemented by/in the &lt;model&gt;.py file, or uses a candle default data_loader.</p></li>
-<li><p>This data_loader shall be used to load data for training and inferencing.</p></li>
-<li><p>The naming of the data loader shall conform to a CANDLE standard.</p></li>
-</ol>
-</div>
-<div class="section" id="current-models">
-<h2>Current Models<a class="headerlink" href="#current-models" title="Permalink to this headline">¶</a></h2>
-<div class="toctree-wrapper compound">
-</div>
-</div>
-<div class="section" id="github-preparation-template">
-<h2>GitHub Preparation Template<a class="headerlink" href="#github-preparation-template" title="Permalink to this headline">¶</a></h2>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="github-readme-template.html">UNO</a></li>
+  <div class="section" id="prerequisites-hpo">
+<h1>Prerequisites HPO<a class="headerlink" href="#prerequisites-hpo" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>swift-t</p></li>
+<li><p>singularity</p></li>
+<li><p>IMPROVE/singularity</p></li>
+<li><p>Supervisor</p></li>
 </ul>
-</div>
-</div>
 </div>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="quickstart-hpo-experiment.html" class="btn btn-neutral float-left" title="Hyper Parameter Optimization (HPO)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="github-readme-template.html" class="btn btn-neutral float-right" title="UNO" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="quickstart.html" class="btn btn-neutral float-left" title="Quickstart Guides" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="quickstart-hpo-experiment.html" class="btn btn-neutral float-right" title="Hyper Parameter Optimization (HPO)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
