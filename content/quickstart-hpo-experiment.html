@@ -126,15 +126,18 @@
 </div>
 <div class="section" id="steps">
 <h2>Steps<a class="headerlink" href="#steps" title="Permalink to this headline">¶</a></h2>
-<p>&gt;
-1. Create config files
-2. <code class="docutils literal notranslate"><span class="pre">supervisor</span> <span class="pre">*location*</span> <span class="pre">*workflow*</span> <span class="pre">*config*</span></code></p>
-<p>Example:</p>
+<p>1. Create config files
+2.
+.. code-block:: bash</p>
+<blockquote>
+<div><p>supervisor <em>location</em> <em>workflow</em> <a href="#id1"><span class="problematic" id="id2">*</span></a>config*``</p>
+</div></blockquote>
+<p><em>Example:</em></p>
 <p>Running an HPO experiment on lambda. The model image is in /software/improve/images/. We will execute the command above with <em>location</em> set to _lambda_ and <em>workflow</em> set to _GA_.
 We have a directory called _Experiment_ and created a config file named my-config.sh in this directory.</p>
-<p><code class="docutils literal notranslate"><span class="pre">`bash</span>
-<span class="pre">supervisor</span> <span class="pre">lambda</span> <span class="pre">GA</span> <span class="pre">my-config.sh</span>
-<span class="pre">`</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>supervisor lambda GA my-config.sh
+</pre></div>
+</div>
 </div>
 <div class="section" id="config-file-s">
 <h2>Config file(s)<a class="headerlink" href="#config-file-s" title="Permalink to this headline">¶</a></h2>
