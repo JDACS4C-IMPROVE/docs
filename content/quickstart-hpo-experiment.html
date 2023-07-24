@@ -108,7 +108,7 @@
 <ul class="simple">
 <li><dl class="simple">
 <dt>Supervisor code</dt><dd><ul>
-<li><p>your search path includes the _bin_ directory of the Supervisor repository.</p></li>
+<li><p>your search path includes the <strong>bin</strong> directory of the Supervisor repository.</p></li>
 </ul>
 </dd>
 </dl>
@@ -130,11 +130,11 @@
 2.
 .. code-block:: bash</p>
 <blockquote>
-<div><p>supervisor <em>location</em> <em>workflow</em> <a href="#id1"><span class="problematic" id="id2">*</span></a>config*``</p>
+<div><p>supervisor ${location} ${workflow} ${config}``</p>
 </div></blockquote>
 <p><em>Example:</em></p>
-<p>Running an HPO experiment on lambda. The model image is in /software/improve/images/. We will execute the command above with <em>location</em> set to _lambda_ and <em>workflow</em> set to _GA_.
-We have a directory called _Experiment_ and created a config file named my-config.sh in this directory.</p>
+<p>Running an HPO experiment on lambda. The model image is in <em>/software/improve/images/</em>. We will execute the command above with <strong>location</strong> set to <em>lambda</em> and <strong>workflow</strong> set to <em>GA</em>.
+We have a directory called <em>Experiment</em> and created a config file named <em>my-config.sh</em> in this directory.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>supervisor lambda GA my-config.sh
 </pre></div>
 </div>
@@ -144,8 +144,8 @@ We have a directory called _Experiment_ and created a config file named my-confi
 <p>Example of config files can be found at &lt;<a class="reference external" href="https://github.com/ECP-CANDLE/Tests/tree/main/sv-tool/user-case-3">https://github.com/ECP-CANDLE/Tests/tree/main/sv-tool/user-case-3</a>&gt;. A confg file includes the following settings:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Model settings</span>
 <span class="nb">export</span> <span class="nv">CANDLE_MODEL_TYPE</span><span class="o">=</span><span class="s2">&quot;SINGULARITY&quot;</span>
-<span class="nb">export</span> <span class="nv">MODEL_NAME</span><span class="o">=</span>_/PATH/TO/SINGULARITY/IMAGE/FILE.sif_
-<span class="nb">export</span> <span class="nv">PARAM_SET_FILE</span><span class="o">=</span>_/PATH/TO/GA/PARAMETER/FILE.json_
+<span class="nb">export</span> <span class="nv">MODEL_NAME</span><span class="o">=</span><span class="si">${</span><span class="p">/PATH/TO/SINGULARITY/IMAGE/FILE.sif</span><span class="si">}</span>
+<span class="nb">export</span> <span class="nv">PARAM_SET_FILE</span><span class="o">=</span><span class="si">${</span><span class="p">/PATH/TO/GA/PARAMETER/FILE.json</span><span class="si">}</span>
 
 <span class="c1"># System settings</span>
 <span class="nb">export</span> <span class="nv">PROCS</span><span class="o">=</span>
@@ -171,71 +171,9 @@ We have a directory called _Experiment_ and created a config file named my-confi
 <div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<dl>
-<dt>[</dt><dd><p>{</p>
-<blockquote>
-<div><p>“name”: “activation”,
-“type”: “categorical”,
-“element_type”: “string”,
-“values”: [</p>
-<blockquote>
-<div><p>“softmax”,
-“elu”,
-“softplus”,
-“softsign”,
-“relu”,
-“tanh”,
-“sigmoid”,
-“hard_sigmoid”,
-“linear”</p>
-</div></blockquote>
-<p>]</p>
-</div></blockquote>
-<p>},</p>
-<dl class="simple">
-<dt>{</dt><dd><p>“name”: “optimizer”,
-“type”: “categorical”,
-“element_type”: “string”,
-“values”: [“adam”, “rmsprop”]</p>
-</dd>
-</dl>
-<p>},</p>
-<dl class="simple">
-<dt>{</dt><dd><p>“name”: “dropout”,
-“type”: “float”,
-“lower”: 0.0,
-“upper”: 0.9,
-“sigma”: 0.045</p>
-</dd>
-</dl>
-<p>},</p>
-<dl class="simple">
-<dt>{</dt><dd><p>“name”: “batch_size”,
-“type”: “ordered”,
-“element_type”: “int”,
-“values”: [16, 32, 64, 128, 256],
-“sigma”: 1</p>
-</dd>
-</dl>
-<p>},</p>
-<dl class="simple">
-<dt>{</dt><dd><p>“name”: “epochs”,
-“type”: “constant”,
-“value”: 5</p>
-</dd>
-</dl>
-<p>}</p>
-</dd>
-</dl>
-<p>]</p>
 <p><em>swift-t and Supervisor</em></p>
-<ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/ECP-CANDLE/Supervisor.git</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span></code></p></li>
-<li><p>Add path to supervisor to your environment: <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">Supervisor</span> <span class="pre">&amp;&amp;</span> <span class="pre">PATH</span> <span class="pre">=</span> <span class="pre">$PATH:$(pwd)/bin</span></code></p></li>
-</ol>
-<p><em>IMPROVE Models</em></p>
-<p>Your model is packaged in a singularity image. You can identify the image file by the <code class="docutils literal notranslate"><span class="pre">*.sif*</span></code> suffix. The container exposes following interface scripts:</p>
+<p><strong>IMPROVE Models</strong></p>
+<p>Your model is packaged in a singularity image. You can identify the image file by the <strong>*.sif</strong> suffix. The container exposes following interface scripts:</p>
 <ul class="simple">
 <li><p>preprocess.sh</p></li>
 <li><p>train.sh</p></li>

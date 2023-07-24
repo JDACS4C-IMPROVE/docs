@@ -26,4 +26,3 @@ Building and deploying supported models
     quickstart-singularity-deploy
     quickstart-singularity-build
 
-And more
