@@ -127,11 +127,7 @@
 <div class="section" id="steps">
 <h2>Steps<a class="headerlink" href="#steps" title="Permalink to this headline">¶</a></h2>
 <p>1. Create config files
-2.
-.. code-block:: bash</p>
-<blockquote>
-<div><p>supervisor ${location} ${workflow} ${config}``</p>
-</div></blockquote>
+2.</p>
 <p><em>Example:</em></p>
 <p>Running an HPO experiment on lambda. The model image is in <em>/software/improve/images/</em>. We will execute the command above with <strong>location</strong> set to <em>lambda</em> and <strong>workflow</strong> set to <em>GA</em>.
 We have a directory called <em>Experiment</em> and created a config file named <em>my-config.sh</em> in this directory.</p>
@@ -151,21 +147,22 @@ We have a directory called <em>Experiment</em> and created a config file named <
 <span class="nb">export</span> <span class="nv">PROCS</span><span class="o">=</span>
 </pre></div>
 </div>
-<p>Example:</p>
-<ol class="arabic simple">
-<li><p><cite>mkdir Experiment &amp;&amp; cd Experiment</cite></p></li>
-<li><p>Create config file:</p></li>
-</ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Model settings</span>
-<span class="nb">export</span> <span class="nv">CANDLE_MODEL_TYPE</span><span class="o">=</span><span class="s2">&quot;SINGULARITY&quot;</span>
-<span class="nb">export</span> <span class="nv">MODEL_NAME</span><span class="o">=</span>/software/improve/images/GraphDRP.sif
-<span class="nb">export</span> <span class="nv">PARAM_SET_FILE</span><span class="o">=</span>my-graphdrp-search.json
+<p><em>Example:</em></p>
+<ol class="arabic">
+<li><p><code class="docutils literal notranslate"><span class="pre">mkdir</span> <span class="pre">Experiment</span> <span class="pre">&amp;&amp;</span> <span class="pre">cd</span> <span class="pre">Experiment</span></code></p></li>
+<li><p>Create config file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">code</span><span class="o">-</span><span class="n">block</span><span class="p">::</span> <span class="n">bash</span>
 
-<span class="c1"># System settings</span>
-<span class="nb">export</span> <span class="nv">PROCS</span><span class="o">=</span>
+    <span class="c1"># Model settings</span>
+    <span class="n">export</span> <span class="n">CANDLE_MODEL_TYPE</span><span class="o">=</span><span class="s2">&quot;SINGULARITY&quot;</span>
+    <span class="n">export</span> <span class="n">MODEL_NAME</span><span class="o">=/</span><span class="n">software</span><span class="o">/</span><span class="n">improve</span><span class="o">/</span><span class="n">images</span><span class="o">/</span><span class="n">GraphDRP</span><span class="o">.</span><span class="n">sif</span>
+    <span class="n">export</span> <span class="n">PARAM_SET_FILE</span><span class="o">=</span><span class="n">my</span><span class="o">-</span><span class="n">graphdrp</span><span class="o">-</span><span class="n">search</span><span class="o">.</span><span class="n">json</span>
+
+    <span class="c1"># System settings</span>
+    <span class="n">export</span> <span class="n">PROCS</span><span class="o">=</span>
 </pre></div>
 </div>
-<ol class="arabic simple" start="3">
+</li>
 <li><p>Create parameter file:</p></li>
 </ol>
 <p><strong>swift-t and Supervisor</strong></p>
