@@ -117,7 +117,7 @@ Why?
     git clone https://github.com/ECP-CANDLE/Supervisor.git
     conda install
     # Add path to supervisor to your environment: 
-    cd Supervisor && PATH = $PATH:$(pwd)/bin``
+    cd Supervisor && PATH = $PATH:$(pwd)/bin
 
 **IMPROVE Models**
 
