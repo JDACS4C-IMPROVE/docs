@@ -130,18 +130,19 @@
 <li><p>Create config files</p></li>
 <li><p>Execute workflow with supervisor:</p></li>
 </ol>
-<p>Test
-.. code-block:: bash</p>
-<blockquote>
-<div><p>supervisor ${location} ${workflow} ${config}</p>
-</div></blockquote>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>supervisor <span class="si">${</span><span class="nv">location</span><span class="si">}</span> <span class="si">${</span><span class="nv">workflow</span><span class="si">}</span> <span class="si">${</span><span class="nv">config</span><span class="si">}</span>
+</pre></div>
+</div>
 <p><em>Example:</em></p>
 <p>Running an HPO experiment on lambda. The model image is in <em>/software/improve/images/</em>. We will execute the command above with <strong>location</strong> set to <em>lambda</em> and <strong>workflow</strong> set to <em>GA</em>.
-We have a directory called <em>Experiment</em> and created a config file named <em>my-config.sh</em> in this directory.</p>
+We have a directory called <em>Experiment</em> and created a config file named <em>my-config.sh</em> in this directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>supervisor lambda GA my-config.sh
+</pre></div>
+</div>
 </div>
 <div class="section" id="config-file-s">
 <h2>Config file(s)<a class="headerlink" href="#config-file-s" title="Permalink to this headline">¶</a></h2>
-<p>Example of config files can be found at &lt;<a class="reference external" href="https://github.com/ECP-CANDLE/Tests/tree/main/sv-tool/user-case-3">https://github.com/ECP-CANDLE/Tests/tree/main/sv-tool/user-case-3</a>&gt;. A confg file includes the following settings:</p>
+<p>Example of config files can be found at &lt;<a class="reference external" href="https://github.com/ECP-CANDLE/Tests/tree/main/sv-tool/user-case-3">https://github.com/ECP-CANDLE/Tests/tree/main/sv-tool/user-case-3</a>&gt;. A config file includes the following settings:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Model settings</span>
 <span class="nb">export</span> <span class="nv">CANDLE_MODEL_TYPE</span><span class="o">=</span><span class="s2">&quot;SINGULARITY&quot;</span>
 <span class="nb">export</span> <span class="nv">MODEL_NAME</span><span class="o">=</span><span class="si">${</span><span class="p">/PATH/TO/SINGULARITY/IMAGE/FILE.sif</span><span class="si">}</span>

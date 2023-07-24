@@ -18,26 +18,25 @@ _____
 1. Create config files
 2. Execute workflow with supervisor:
 
-
-Test
 .. code-block:: bash
+
     supervisor ${location} ${workflow} ${config}
 
 
 *Example:*
 
 Running an HPO experiment on lambda. The model image is in */software/improve/images/*. We will execute the command above with **location** set to *lambda* and **workflow** set to *GA*.
-We have a directory called *Experiment* and created a config file named *my-config.sh* in this directory. 
-
+We have a directory called *Experiment* and created a config file named *my-config.sh* in this directory: 
 
 .. code-block:: bash
+
     supervisor lambda GA my-config.sh
 
 
 Config file(s)
 ______________
 
-Example of config files can be found at <https://github.com/ECP-CANDLE/Tests/tree/main/sv-tool/user-case-3>. A confg file includes the following settings:
+Example of config files can be found at <https://github.com/ECP-CANDLE/Tests/tree/main/sv-tool/user-case-3>. A config file includes the following settings:
 
 .. code-block:: bash
 
