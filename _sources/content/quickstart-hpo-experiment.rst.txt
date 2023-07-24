@@ -16,12 +16,10 @@ Steps
 _____
 
 1. Create config files
-2. Execute workflow with supervisor
-
+2. Execute workflow with supervisor:
 
 .. code-block:: bash
     supervisor ${location} ${workflow} ${config}
-
 
 
 *Example:*
@@ -31,7 +29,6 @@ We have a directory called *Experiment* and created a config file named *my-conf
 
 
 .. code-block:: bash
-
     supervisor lambda GA my-config.sh
 
 

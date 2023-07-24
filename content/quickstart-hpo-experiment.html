@@ -128,14 +128,11 @@
 <h2>Steps<a class="headerlink" href="#steps" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li><p>Create config files</p></li>
-<li><p>Execute workflow with supervisor</p></li>
+<li><p>Execute workflow with supervisor:</p></li>
 </ol>
 <p><em>Example:</em></p>
 <p>Running an HPO experiment on lambda. The model image is in <em>/software/improve/images/</em>. We will execute the command above with <strong>location</strong> set to <em>lambda</em> and <strong>workflow</strong> set to <em>GA</em>.
 We have a directory called <em>Experiment</em> and created a config file named <em>my-config.sh</em> in this directory.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>supervisor lambda GA my-config.sh
-</pre></div>
-</div>
 </div>
 <div class="section" id="config-file-s">
 <h2>Config file(s)<a class="headerlink" href="#config-file-s" title="Permalink to this headline">¶</a></h2>
