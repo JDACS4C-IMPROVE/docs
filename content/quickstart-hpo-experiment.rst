@@ -15,20 +15,22 @@ ____________
 Steps
 _____
 
->
 1. Create config files
-2. ``supervisor *location* *workflow* *config*``
+2. 
+.. code-block:: bash
+    supervisor *location* *workflow* *config*``
 
 
-Example:
+*Example:*
 
 Running an HPO experiment on lambda. The model image is in /software/improve/images/. We will execute the command above with *location* set to _lambda_ and *workflow* set to _GA_.
 We have a directory called _Experiment_ and created a config file named my-config.sh in this directory. 
 
 
-```bash
-supervisor lambda GA my-config.sh
-```
+.. code-block:: bash
+
+    supervisor lambda GA my-config.sh
+
 
 Config file(s)
 ______________

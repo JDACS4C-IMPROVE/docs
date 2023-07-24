@@ -12,7 +12,9 @@ Hyper Parameter optimisation with the *Supervisor*
    quickstart-hpo-prerequisites
    quickstart-hpo-experiment
 
-Something
+``bash
+supervisor lambda GA my-config.sh
+``
 
 Building and deploying supported models 
 ---------------------------------------
