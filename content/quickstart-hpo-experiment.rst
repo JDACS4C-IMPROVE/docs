@@ -16,10 +16,11 @@ Steps
 _____
 
 1. Create config files
-2. Execute workflow with supervisor:
+2. Execute workflow with supervisor
 
-    .. code-block:: bash
-        supervisor ${location} ${workflow} ${config}
+
+.. code-block:: bash
+    supervisor ${location} ${workflow} ${config}
 
 
 
@@ -106,14 +107,6 @@ Example of config files can be found at <https://github.com/ECP-CANDLE/Tests/tre
                 "value": 5
             }
         ]
-
-
-
-.. .. literalinclude:: https://raw.githubusercontent.com/ECP-CANDLE/Tests/main/sv-tool/user-case-3/my-deepttc-search.json
-..   :language: JSON
-
-
-
 
 
 **swift-t and Supervisor**
