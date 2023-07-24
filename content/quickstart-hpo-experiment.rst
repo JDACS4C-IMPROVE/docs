@@ -68,44 +68,44 @@ Example of config files can be found at <https://github.com/ECP-CANDLE/Tests/tre
 
 3. Create parameter file:
 
-.. code-block:: bash
+    .. code-block:: JSON
 
-    [
-        {
+        [
+            {
 
-            "name": "activation",
-            "type": "categorical",
-            "element_type": "string",
-            "values": [
-                "softmax","elu","softplus","softsign","relu","tanh","sigmoid","hard_sigmoid","linear"
-            ]
-        },
-        {
-            "name": "optimizer",
-            "type": "categorical",
-            "element_type": "string",
-            "values": ["adam", "rmsprop"]
-        },
-        {
-            "name": "dropout",
-            "type": "float",
-            "lower": 0.0,
-            "upper": 0.9,
-            "sigma": 0.045
-        },
-        {
-            "name": "batch_size",
-            "type": "ordered",
-            "element_type": "int",
-            "values": [16, 32, 64, 128, 256],
-            "sigma": 1
-        },
-        {
-            "name": "epochs",
-            "type": "constant",
-            "value": 5
-        }
-    ]
+                "name": "activation",
+                "type": "categorical",
+                "element_type": "string",
+                "values": [
+                    "softmax","elu","softplus","softsign","relu","tanh","sigmoid","hard_sigmoid","linear"
+                ]
+            },
+            {
+                "name": "optimizer",
+                "type": "categorical",
+                "element_type": "string",
+                "values": ["adam", "rmsprop"]
+            },
+            {
+                "name": "dropout",
+                "type": "float",
+                "lower": 0.0,
+                "upper": 0.9,
+                "sigma": 0.045
+            },
+            {
+                "name": "batch_size",
+                "type": "ordered",
+                "element_type": "int",
+                "values": [16, 32, 64, 128, 256],
+                "sigma": 1
+            },
+            {
+                "name": "epochs",
+                "type": "constant",
+                "value": 5
+            }
+        ]
 
 
 
