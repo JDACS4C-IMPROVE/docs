@@ -16,10 +16,11 @@ Steps
 _____
 
 1. Create config files
-2. 
+2. ::
 
 .. code-block:: bash
-    supervisor ${location} ${workflow} ${config}``
+    supervisor ${location} ${workflow} ${config}
+
 
 
 *Example:*
