@@ -52,7 +52,7 @@ Example of config files can be found at <https://github.com/ECP-CANDLE/Tests/tre
 *Example:*
 
 1. ``mkdir Experiment && cd Experiment``
-2. Create config file
+2. Create config file *my-config.sh*:
 
     .. code-block:: bash
 
@@ -65,7 +65,7 @@ Example of config files can be found at <https://github.com/ECP-CANDLE/Tests/tre
         export PROCS=
 
 
-3. Create parameter file:
+3. Create parameter file *my-graphdrp-search.json*:
 
     .. code-block:: JSON
 
