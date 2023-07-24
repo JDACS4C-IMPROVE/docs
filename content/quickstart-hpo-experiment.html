@@ -139,34 +139,37 @@ We have a directory called _Experiment_ and created a config file named my-confi
 <div class="section" id="config-file-s">
 <h2>Config file(s)<a class="headerlink" href="#config-file-s" title="Permalink to this headline">¶</a></h2>
 <p>Example of config files can be found at &lt;<a class="reference external" href="https://github.com/ECP-CANDLE/Tests/tree/main/sv-tool/user-case-3">https://github.com/ECP-CANDLE/Tests/tree/main/sv-tool/user-case-3</a>&gt;. A confg file includes the following settings:</p>
-<p><a href="#id1"><span class="problematic" id="id2">``</span></a>`
-# Model settings
-export CANDLE_MODEL_TYPE=”SINGULARITY”
-export MODEL_NAME=_/PATH/TO/SINGULARITY/IMAGE/<a href="#id19"><span class="problematic" id="id20">FILE.sif_</span></a>
-export PARAM_SET_FILE=_/PATH/TO/GA/PARAMETER/<a href="#id21"><span class="problematic" id="id22">FILE.json_</span></a></p>
-<p># System settings
-export PROCS=
-<a href="#id3"><span class="problematic" id="id4">``</span></a><a href="#id5"><span class="problematic" id="id6">`</span></a></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Model settings</span>
+<span class="nb">export</span> <span class="nv">CANDLE_MODEL_TYPE</span><span class="o">=</span><span class="s2">&quot;SINGULARITY&quot;</span>
+<span class="nb">export</span> <span class="nv">MODEL_NAME</span><span class="o">=</span>_/PATH/TO/SINGULARITY/IMAGE/FILE.sif_
+<span class="nb">export</span> <span class="nv">PARAM_SET_FILE</span><span class="o">=</span>_/PATH/TO/GA/PARAMETER/FILE.json_
+
+<span class="c1"># System settings</span>
+<span class="nb">export</span> <span class="nv">PROCS</span><span class="o">=</span>
+</pre></div>
+</div>
 <p>Example:</p>
 <ol class="arabic simple">
 <li><p><cite>mkdir Experiment &amp;&amp; cd Experiment</cite></p></li>
 <li><p>Create config file:</p></li>
 </ol>
-<p><a href="#id7"><span class="problematic" id="id8">``</span></a>`
-# Model settings
-export CANDLE_MODEL_TYPE=”SINGULARITY”
-export MODEL_NAME=/software/improve/images/GraphDRP.sif
-export PARAM_SET_FILE=my-graphdrp-search.json</p>
-<p># System settings
-export PROCS=
-<a href="#id9"><span class="problematic" id="id10">``</span></a><a href="#id11"><span class="problematic" id="id12">`</span></a></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Model settings</span>
+<span class="nb">export</span> <span class="nv">CANDLE_MODEL_TYPE</span><span class="o">=</span><span class="s2">&quot;SINGULARITY&quot;</span>
+<span class="nb">export</span> <span class="nv">MODEL_NAME</span><span class="o">=</span>/software/improve/images/GraphDRP.sif
+<span class="nb">export</span> <span class="nv">PARAM_SET_FILE</span><span class="o">=</span>my-graphdrp-search.json
+
+<span class="c1"># System settings</span>
+<span class="nb">export</span> <span class="nv">PROCS</span><span class="o">=</span>
+</pre></div>
+</div>
 <ol class="arabic simple" start="3">
 <li><p>Create parameter file:</p></li>
 </ol>
-<p><a href="#id13"><span class="problematic" id="id14">``</span></a>`
-[</p>
-<blockquote>
-<div><p>{</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<dl>
+<dt>[</dt><dd><p>{</p>
 <blockquote>
 <div><p>“name”: “activation”,
 “type”: “categorical”,
@@ -219,9 +222,9 @@ export PROCS=
 </dd>
 </dl>
 <p>}</p>
-</div></blockquote>
+</dd>
+</dl>
 <p>]</p>
-<p><a href="#id15"><span class="problematic" id="id16">``</span></a><a href="#id17"><span class="problematic" id="id18">`</span></a></p>
 <p><em>swift-t and Supervisor</em></p>
 <ol class="arabic simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/ECP-CANDLE/Supervisor.git</span></code></p></li>

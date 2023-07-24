@@ -35,34 +35,37 @@ ______________
 
 Example of config files can be found at <https://github.com/ECP-CANDLE/Tests/tree/main/sv-tool/user-case-3>. A confg file includes the following settings:
 
-```
-# Model settings
-export CANDLE_MODEL_TYPE="SINGULARITY"
-export MODEL_NAME=_/PATH/TO/SINGULARITY/IMAGE/FILE.sif_
-export PARAM_SET_FILE=_/PATH/TO/GA/PARAMETER/FILE.json_
+.. code-block:: bash
 
-# System settings
-export PROCS=
-```
+    # Model settings
+    export CANDLE_MODEL_TYPE="SINGULARITY"
+    export MODEL_NAME=_/PATH/TO/SINGULARITY/IMAGE/FILE.sif_
+    export PARAM_SET_FILE=_/PATH/TO/GA/PARAMETER/FILE.json_
+
+    # System settings
+    export PROCS=
+
 
 Example:
 
 1. `mkdir Experiment && cd Experiment`
 2. Create config file:
 
-```
-# Model settings
-export CANDLE_MODEL_TYPE="SINGULARITY"
-export MODEL_NAME=/software/improve/images/GraphDRP.sif
-export PARAM_SET_FILE=my-graphdrp-search.json
+.. code-block:: bash
 
-# System settings
-export PROCS=
-```
+    # Model settings
+    export CANDLE_MODEL_TYPE="SINGULARITY"
+    export MODEL_NAME=/software/improve/images/GraphDRP.sif
+    export PARAM_SET_FILE=my-graphdrp-search.json
+
+    # System settings
+    export PROCS=
+
 
 3. Create parameter file:
 
-```
+.. code-block:: JSON
+
 [
   {
 
@@ -113,8 +116,10 @@ export PROCS=
   }
 ]
 
-```
 
+
+.. literalinclude:: https://raw.githubusercontent.com/ECP-CANDLE/Tests/main/sv-tool/user-case-3/my-deepttc-search.json
+  :language: JSON
 
 
 
