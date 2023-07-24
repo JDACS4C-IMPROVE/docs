@@ -49,6 +49,7 @@
 <li class="toctree-l3"><a class="reference internal" href="quickstart-hpo-prerequisites.html">Prerequisites HPO</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Hyper Parameter Optimization (HPO)</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#requirements">Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#steps">Steps</a></li>
 </ul>
 </li>
 </ul>
@@ -105,11 +106,35 @@
 <h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Supervisor code</p></li>
-<li><p>Model</p></li>
+<li><dl class="simple">
+<dt>Model</dt><dd><ul>
+<li><p>containerized</p></li>
+<li><p>candle interface</p></li>
+<li><p>improve interface</p></li>
 </ul>
-<p>– containerized
-– candle interface
-– improve interface</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p><em>swift-t and Supervisor</em></p>
+<p>&gt; 1. <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/ECP-CANDLE/Supervisor.git</span></code>
+2. <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span></code>
+3. Add path to supervisor to your environment: <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">Supervisor</span> <span class="pre">&amp;&amp;</span> <span class="pre">PATH</span> <span class="pre">=</span> <span class="pre">$PATH:$(pwd)/bin</span></code></p>
+<p><em>IMPROVE Models</em></p>
+<p>Your model is packaged in a singularity image. You can identify the image file by the <code class="docutils literal notranslate"><span class="pre">*.sif*</span></code> suffix. The container exposes following interface scripts:
++ preprocess.sh
++ train.sh
++ infer.sh</p>
+</div>
+<div class="section" id="steps">
+<h2>Steps<a class="headerlink" href="#steps" title="Permalink to this headline">¶</a></h2>
+<p>. Create config files
+. <code class="docutils literal notranslate"><span class="pre">supervisor</span> <span class="pre">*location*</span> <span class="pre">*workflow*</span> <span class="pre">*config*</span></code></p>
+<p>Running an HPO experiment on lambda. The model image is in /software/improve/images/.</p>
+<ul class="simple">
+<li><p>location = lambda</p></li>
+<li><p>workflow = GA</p></li>
+</ul>
 </div>
 </div>
 
