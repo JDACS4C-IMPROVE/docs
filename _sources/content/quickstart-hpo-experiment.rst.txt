@@ -69,6 +69,7 @@ Example of config files can be found at <https://github.com/ECP-CANDLE/Tests/tre
 3. Create parameter file:
 
 .. code-block:: JSON
+    
     [
         {
 
@@ -108,8 +109,8 @@ Example of config files can be found at <https://github.com/ECP-CANDLE/Tests/tre
 
 
 
-.. literalinclude:: https://raw.githubusercontent.com/ECP-CANDLE/Tests/main/sv-tool/user-case-3/my-deepttc-search.json
-  :language: JSON
+.. .. literalinclude:: https://raw.githubusercontent.com/ECP-CANDLE/Tests/main/sv-tool/user-case-3/my-deepttc-search.json
+..   :language: JSON
 
 
 
