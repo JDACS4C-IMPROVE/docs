@@ -67,55 +67,42 @@ Example:
 3. Create parameter file:
 
 .. code-block:: JSON
-.. [
-..   {
+    [
+        {
 
-..     "name": "activation",
-..     "type": "categorical",
-..     "element_type": "string",
-..     "values": [
-..       "softmax",
-..       "elu",
-..       "softplus",
-..       "softsign",
-..       "relu",
-..       "tanh",
-..       "sigmoid",
-..       "hard_sigmoid",
-..       "linear"
-..     ]
-..   },
-
-..   {
-..     "name": "optimizer",
-..     "type": "categorical",
-..     "element_type": "string",
-..     "values": ["adam", "rmsprop"]
-..   },
-
-..   {
-..     "name": "dropout",
-..     "type": "float",
-..     "lower": 0.0,
-..     "upper": 0.9,
-..     "sigma": 0.045
-..   },
-
-
-..   {
-..     "name": "batch_size",
-..     "type": "ordered",
-..     "element_type": "int",
-..     "values": [16, 32, 64, 128, 256],
-..     "sigma": 1
-..   },
-
-..   {
-..     "name": "epochs",
-..     "type": "constant",
-..     "value": 5
-..   }
-.. ]
+            "name": "activation",
+            "type": "categorical",
+            "element_type": "string",
+            "values": [
+                "softmax","elu","softplus","softsign","relu","tanh","sigmoid","hard_sigmoid","linear"
+            ]
+        },
+        {
+            "name": "optimizer",
+            "type": "categorical",
+            "element_type": "string",
+            "values": ["adam", "rmsprop"]
+        },
+        {
+            "name": "dropout",
+            "type": "float",
+            "lower": 0.0,
+            "upper": 0.9,
+            "sigma": 0.045
+        },
+        {
+            "name": "batch_size",
+            "type": "ordered",
+            "element_type": "int",
+            "values": [16, 32, 64, 128, 256],
+            "sigma": 1
+        },
+        {
+            "name": "epochs",
+            "type": "constant",
+            "value": 5
+        }
+    ]
 
 
 
@@ -126,13 +113,13 @@ Example:
 
 
 
-*swift-t and Supervisor*
+**swift-t and Supervisor**
 
 .. code-block:: bash
-    1. git clone https://github.com/ECP-CANDLE/Supervisor.git
-    2. conda install
-    3. Add path to supervisor to your environment: 
-        cd Supervisor && PATH = $PATH:$(pwd)/bin``
+    git clone https://github.com/ECP-CANDLE/Supervisor.git
+    conda install
+    # Add path to supervisor to your environment: 
+    cd Supervisor && PATH = $PATH:$(pwd)/bin``
 
 **IMPROVE Models**
 
