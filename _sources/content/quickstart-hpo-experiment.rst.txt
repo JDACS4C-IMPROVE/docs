@@ -4,66 +4,34 @@ Hyper Parameter Optimization (HPO)
 Requirements
 ____________
 
-- Supervisor code
-    - your search path includes the **bin** directory of the Supervisor repository.
-- Model 
-    - containerized
-    - candle interface
-    - improve interface 
+Your model must be CANDLE compliant.
+
+Your model must be containerized and packaged in a singularity image. You can identify the image file by the **\*.sif** suffix. The container should expose the following interface scripts:
+
++ preprocess.sh
++ train.sh
++ infer.sh
 
 
-Steps
-_____
-
-1. Create config files
-2. Execute workflow with supervisor:
-
-.. code-block:: bash
-
-    supervisor ${location} ${workflow} ${config}
-
-
-*Example:*
-
-Running an HPO experiment on lambda. The model image is in */software/improve/images/*. We will execute the command above with **location** set to *lambda* and **workflow** set to *GA*.
-We have a directory called *Experiment* and created a config file named *my-config.sh* in this directory: 
-
-.. code-block:: bash
-
-    supervisor lambda GA Experiment/my-config.sh
-
-
-Config file(s)
+Create config files
 ______________
 
 Example of config files can be found at <https://github.com/ECP-CANDLE/Tests/tree/main/sv-tool/user-case-3>. A config file includes the following settings:
 
-.. code-block:: bash
-
-    # Model settings
-    export CANDLE_MODEL_TYPE="SINGULARITY"
-    export MODEL_NAME=${/PATH/TO/SINGULARITY/IMAGE/FILE.sif}
-    export PARAM_SET_FILE=${/PATH/TO/GA/PARAMETER/FILE.json}
-
-    # System settings
-    export PROCS=
-
-
-*Example:*
-
 1. ``mkdir Experiment && cd Experiment``
-2. Create config file *my-config.sh*:
 
-    .. code-block:: bash
+2. .. code-block:: bash
 
-        # Model settings
-        export CANDLE_MODEL_TYPE="SINGULARITY"
-        export MODEL_NAME=/software/improve/images/GraphDRP.sif
-        export PARAM_SET_FILE=my-graphdrp-search.json
+       # Model settings
+       export CANDLE_MODEL_TYPE="SINGULARITY"
+       export MODEL_NAME=${/PATH/TO/SINGULARITY/IMAGE/FILE.sif}
+       export PARAM_SET_FILE=${/PATH/TO/GA/PARAMETER/FILE.json}
+       # If you have write access to /lambda_stor, you can save on the shared
+       # filesystem. If not, make a directory in /tmp
+       export CANDLE_DATA_DIR=/tmp/my_username
 
-        # System settings
-        export PROCS=
-
+       # System settings
+       export PROCS=3
 
 3. Create parameter file *my-graphdrp-search.json*:
 
@@ -107,24 +75,33 @@ Example of config files can be found at <https://github.com/ECP-CANDLE/Tests/tre
         ]
 
 
-**Swift-t and Supervisor setup**
+Supervisor setup
+______________
 
 .. code-block:: bash
 
     git clone https://github.com/ECP-CANDLE/Supervisor.git
+    conda create --name supervisor_env python=3.9.16
+    conda activate supervisor_env
     conda install --yes -c conda-forge -c swift-t swift-t
+    pip install numpy
+    pip install deap
     # Add path to supervisor to your environment: 
-    cd Supervisor && PATH = $PATH:$(pwd)/bin
+    cd Supervisor && PATH=$PATH:$(pwd)/bin
+    git checkout develop
+
+Run Supervisor with
+
+.. code-block:: bash
+
+    supervisor ${location} ${workflow} ${config}
 
 
-**IMPROVE Models**
+*Example:*
 
-Your model is packaged in a singularity image. You can identify the image file by the **\*.sif** suffix. The container exposes following interface scripts:
+Running an HPO experiment on lambda. The model image is in */software/improve/images/*. We will execute the command above with **location** set to *lambda* and **workflow** set to *GA*.
+We have a directory called *Experiment* and created a config file named *my-config.sh* in this directory: 
 
-+ preprocess.sh
-+ train.sh
-+ infer.sh
+.. code-block:: bash
 
-
-
-
+    supervisor lambda GA Experiment/my-config.sh

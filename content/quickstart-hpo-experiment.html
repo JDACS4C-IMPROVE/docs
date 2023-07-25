@@ -49,8 +49,8 @@
 <li class="toctree-l3"><a class="reference internal" href="quickstart-hpo-prerequisites.html">Prerequisites HPO</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Hyper Parameter Optimization (HPO)</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#requirements">Requirements</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#steps">Steps</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#config-file-s">Config file(s)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#create-config-files">Create config files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#supervisor-setup">Supervisor setup</a></li>
 </ul>
 </li>
 </ul>
@@ -105,68 +105,31 @@
 <h1>Hyper Parameter Optimization (HPO)<a class="headerlink" href="#hyper-parameter-optimization-hpo" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="requirements">
 <h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+<p>Your model must be CANDLE compliant.</p>
+<p>Your model must be containerized and packaged in a singularity image. You can identify the image file by the <strong>*.sif</strong> suffix. The container should expose the following interface scripts:</p>
 <ul class="simple">
-<li><dl class="simple">
-<dt>Supervisor code</dt><dd><ul>
-<li><p>your search path includes the <strong>bin</strong> directory of the Supervisor repository.</p></li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>Model</dt><dd><ul>
-<li><p>containerized</p></li>
-<li><p>candle interface</p></li>
-<li><p>improve interface</p></li>
-</ul>
-</dd>
-</dl>
-</li>
+<li><p>preprocess.sh</p></li>
+<li><p>train.sh</p></li>
+<li><p>infer.sh</p></li>
 </ul>
 </div>
-<div class="section" id="steps">
-<h2>Steps<a class="headerlink" href="#steps" title="Permalink to this headline">¶</a></h2>
-<ol class="arabic simple">
-<li><p>Create config files</p></li>
-<li><p>Execute workflow with supervisor:</p></li>
-</ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>supervisor <span class="si">${</span><span class="nv">location</span><span class="si">}</span> <span class="si">${</span><span class="nv">workflow</span><span class="si">}</span> <span class="si">${</span><span class="nv">config</span><span class="si">}</span>
-</pre></div>
-</div>
-<p><em>Example:</em></p>
-<p>Running an HPO experiment on lambda. The model image is in <em>/software/improve/images/</em>. We will execute the command above with <strong>location</strong> set to <em>lambda</em> and <strong>workflow</strong> set to <em>GA</em>.
-We have a directory called <em>Experiment</em> and created a config file named <em>my-config.sh</em> in this directory:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>supervisor lambda GA Experiment/my-config.sh
-</pre></div>
-</div>
-</div>
-<div class="section" id="config-file-s">
-<h2>Config file(s)<a class="headerlink" href="#config-file-s" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="create-config-files">
+<h2>Create config files<a class="headerlink" href="#create-config-files" title="Permalink to this headline">¶</a></h2>
 <p>Example of config files can be found at &lt;<a class="reference external" href="https://github.com/ECP-CANDLE/Tests/tree/main/sv-tool/user-case-3">https://github.com/ECP-CANDLE/Tests/tree/main/sv-tool/user-case-3</a>&gt;. A config file includes the following settings:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Model settings</span>
+<ol class="arabic">
+<li><p><code class="docutils literal notranslate"><span class="pre">mkdir</span> <span class="pre">Experiment</span> <span class="pre">&amp;&amp;</span> <span class="pre">cd</span> <span class="pre">Experiment</span></code></p></li>
+<li><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Model settings</span>
 <span class="nb">export</span> <span class="nv">CANDLE_MODEL_TYPE</span><span class="o">=</span><span class="s2">&quot;SINGULARITY&quot;</span>
 <span class="nb">export</span> <span class="nv">MODEL_NAME</span><span class="o">=</span><span class="si">${</span><span class="p">/PATH/TO/SINGULARITY/IMAGE/FILE.sif</span><span class="si">}</span>
 <span class="nb">export</span> <span class="nv">PARAM_SET_FILE</span><span class="o">=</span><span class="si">${</span><span class="p">/PATH/TO/GA/PARAMETER/FILE.json</span><span class="si">}</span>
+<span class="c1"># If you have write access to /lambda_stor, you can save on the shared</span>
+<span class="c1"># filesystem. If not, make a directory in /tmp</span>
+<span class="nb">export</span> <span class="nv">CANDLE_DATA_DIR</span><span class="o">=</span>/tmp/my_username
 
 <span class="c1"># System settings</span>
-<span class="nb">export</span> <span class="nv">PROCS</span><span class="o">=</span>
+<span class="nb">export</span> <span class="nv">PROCS</span><span class="o">=</span><span class="m">3</span>
 </pre></div>
 </div>
-<p><em>Example:</em></p>
-<ol class="arabic">
-<li><p><code class="docutils literal notranslate"><span class="pre">mkdir</span> <span class="pre">Experiment</span> <span class="pre">&amp;&amp;</span> <span class="pre">cd</span> <span class="pre">Experiment</span></code></p></li>
-<li><p>Create config file <em>my-config.sh</em>:</p>
-<blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Model settings</span>
-<span class="nb">export</span> <span class="nv">CANDLE_MODEL_TYPE</span><span class="o">=</span><span class="s2">&quot;SINGULARITY&quot;</span>
-<span class="nb">export</span> <span class="nv">MODEL_NAME</span><span class="o">=</span>/software/improve/images/GraphDRP.sif
-<span class="nb">export</span> <span class="nv">PARAM_SET_FILE</span><span class="o">=</span>my-graphdrp-search.json
-
-<span class="c1"># System settings</span>
-<span class="nb">export</span> <span class="nv">PROCS</span><span class="o">=</span>
-</pre></div>
-</div>
-</div></blockquote>
 </li>
 <li><p>Create parameter file <em>my-graphdrp-search.json</em>:</p>
 <blockquote>
@@ -211,20 +174,30 @@ We have a directory called <em>Experiment</em> and created a config file named <
 </div></blockquote>
 </li>
 </ol>
-<p><strong>Swift-t and Supervisor setup</strong></p>
+</div>
+<div class="section" id="supervisor-setup">
+<h2>Supervisor setup<a class="headerlink" href="#supervisor-setup" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/ECP-CANDLE/Supervisor.git
+conda create --name supervisor_env <span class="nv">python</span><span class="o">=</span><span class="m">3</span>.9.16
+conda activate supervisor_env
 conda install --yes -c conda-forge -c swift-t swift-t
+pip install numpy
+pip install deap
 <span class="c1"># Add path to supervisor to your environment:</span>
-<span class="nb">cd</span> Supervisor <span class="o">&amp;&amp;</span> <span class="nv">PATH</span> <span class="o">=</span> <span class="nv">$PATH</span>:<span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/bin
+<span class="nb">cd</span> Supervisor <span class="o">&amp;&amp;</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/bin
+git checkout develop
 </pre></div>
 </div>
-<p><strong>IMPROVE Models</strong></p>
-<p>Your model is packaged in a singularity image. You can identify the image file by the <strong>*.sif</strong> suffix. The container exposes following interface scripts:</p>
-<ul class="simple">
-<li><p>preprocess.sh</p></li>
-<li><p>train.sh</p></li>
-<li><p>infer.sh</p></li>
-</ul>
+<p>Run Supervisor with</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>supervisor <span class="si">${</span><span class="nv">location</span><span class="si">}</span> <span class="si">${</span><span class="nv">workflow</span><span class="si">}</span> <span class="si">${</span><span class="nv">config</span><span class="si">}</span>
+</pre></div>
+</div>
+<p><em>Example:</em></p>
+<p>Running an HPO experiment on lambda. The model image is in <em>/software/improve/images/</em>. We will execute the command above with <strong>location</strong> set to <em>lambda</em> and <strong>workflow</strong> set to <em>GA</em>.
+We have a directory called <em>Experiment</em> and created a config file named <em>my-config.sh</em> in this directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>supervisor lambda GA Experiment/my-config.sh
+</pre></div>
+</div>
 </div>
 </div>
 
