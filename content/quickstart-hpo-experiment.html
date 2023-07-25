@@ -115,10 +115,11 @@
 </div>
 <div class="section" id="create-config-files">
 <h2>Create config files<a class="headerlink" href="#create-config-files" title="Permalink to this headline">¶</a></h2>
-<p>Example of config files can be found at &lt;<a class="reference external" href="https://github.com/ECP-CANDLE/Tests/tree/main/sv-tool/user-case-3">https://github.com/ECP-CANDLE/Tests/tree/main/sv-tool/user-case-3</a>&gt;. A config file includes the following settings:</p>
+<p>Example of config files can be found at &lt;<a class="reference external" href="https://github.com/ECP-CANDLE/Tests/tree/main/sv-tool/user-case-3">https://github.com/ECP-CANDLE/Tests/tree/main/sv-tool/user-case-3</a>&gt;. Create with the following steps:</p>
 <ol class="arabic">
 <li><p><code class="docutils literal notranslate"><span class="pre">mkdir</span> <span class="pre">Experiment</span> <span class="pre">&amp;&amp;</span> <span class="pre">cd</span> <span class="pre">Experiment</span></code></p></li>
-<li><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Model settings</span>
+<li><p>Create config file <em>my-config.sh</em>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Model settings</span>
 <span class="nb">export</span> <span class="nv">CANDLE_MODEL_TYPE</span><span class="o">=</span><span class="s2">&quot;SINGULARITY&quot;</span>
 <span class="nb">export</span> <span class="nv">MODEL_NAME</span><span class="o">=</span><span class="si">${</span><span class="p">/PATH/TO/SINGULARITY/IMAGE/FILE.sif</span><span class="si">}</span>
 <span class="nb">export</span> <span class="nv">PARAM_SET_FILE</span><span class="o">=</span><span class="si">${</span><span class="p">/PATH/TO/GA/PARAMETER/FILE.json</span><span class="si">}</span>
@@ -177,6 +178,7 @@
 </div>
 <div class="section" id="supervisor-setup">
 <h2>Supervisor setup<a class="headerlink" href="#supervisor-setup" title="Permalink to this headline">¶</a></h2>
+<p>Set up the environment:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/ECP-CANDLE/Supervisor.git
 conda create --name supervisor_env <span class="nv">python</span><span class="o">=</span><span class="m">3</span>.9.16
 conda activate supervisor_env

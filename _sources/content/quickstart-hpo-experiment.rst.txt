@@ -16,11 +16,13 @@ Your model must be containerized and packaged in a singularity image. You can id
 Create config files
 ______________
 
-Example of config files can be found at <https://github.com/ECP-CANDLE/Tests/tree/main/sv-tool/user-case-3>. A config file includes the following settings:
+Example of config files can be found at <https://github.com/ECP-CANDLE/Tests/tree/main/sv-tool/user-case-3>. Create with the following steps:
 
 1. ``mkdir Experiment && cd Experiment``
 
-2. .. code-block:: bash
+2. Create config file *my-config.sh*:
+
+   .. code-block:: bash
 
        # Model settings
        export CANDLE_MODEL_TYPE="SINGULARITY"
@@ -77,6 +79,8 @@ Example of config files can be found at <https://github.com/ECP-CANDLE/Tests/tre
 
 Supervisor setup
 ______________
+
+Set up the environment:
 
 .. code-block:: bash
 
