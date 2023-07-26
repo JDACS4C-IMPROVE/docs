@@ -13,6 +13,16 @@ Your model must be containerized and packaged in a singularity image. You can id
 + infer.sh
 
 
+Steps 
+_____
+
+0. Install prerequisites
+1. Create config file(s) for experiment.
+2. Run HPO with supervisor::
+
+    supervisor ${location} ${workflow} ${config}
+
+
 Create config files
 ______________
 
@@ -78,21 +88,27 @@ Example of config files can be found at <https://github.com/ECP-CANDLE/Tests/tre
 
 
 Supervisor setup
-______________
+________________
 
-Set up the environment:
+Set up the environment, omit this step if already installed:
 
 .. code-block:: bash
 
-    git clone https://github.com/ECP-CANDLE/Supervisor.git
+    # Create environment
     conda create --name supervisor_env python=3.9.16
     conda activate supervisor_env
-    conda install --yes -c conda-forge -c swift-t swift-t
-    pip install numpy
-    pip install deap
-    # Add path to supervisor to your environment: 
-    cd Supervisor && PATH=$PATH:$(pwd)/bin
+
+    # Supervisor for running HPO/GA
+    git clone https://github.com/ECP-CANDLE/Supervisor.git
     git checkout develop
+    cd Supervisor && PATH=$PATH:$(pwd)/bin
+
+    # swift-t
+    conda install --yes -c conda-forge -c swift-t swift-t
+    pip install numpy deap
+     
+    
+    
 
 Run Supervisor with
 
