@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Prerequisites HPO &mdash; IMPROVE 0.1 documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <title>Build and deploy containerized models &mdash; IMPROVE 0.1 documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
@@ -17,8 +17,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Hyper Parameter Optimization (HPO)" href="quickstart-hpo-experiment.html" />
-    <link rel="prev" title="Quickstart Guides" href="quickstart.html" /> 
+    <link rel="next" title="Models" href="models.html" />
+    <link rel="prev" title="Hyper Parameter Optimization (HPO)" href="quickstart-hpo-experiment.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -45,17 +45,15 @@
 <li class="toctree-l1"><a class="reference internal" href="whatis.html">What is the IMPROVE project?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installing IMPROVE</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="quickstart.html">Quickstart Guides</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="quickstart.html#hyper-parameter-optimisation-with-the-supervisor">Hyper Parameter optimisation with the <em>Supervisor</em></a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Prerequisites HPO</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#installing-git-conda-and-singularity">Installing git, conda and singularity</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#installing-supervisor">Installing supervisor</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#installing-swift-t">Installing swift-t</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#hyper-parameter-optimisation-with-the-supervisor">Hyper Parameter optimisation with the <em>Supervisor</em></a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="quickstart.html#building-and-deploying-supported-models">Building and deploying supported models</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Build and deploy containerized models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#requirements">Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#goal">Goal</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="quickstart-hpo-experiment.html">Hyper Parameter Optimization (HPO)</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="quickstart.html#building-and-deploying-supported-models">Building and deploying supported models</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="models.html">Models</a></li>
@@ -91,9 +89,9 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="quickstart.html">Quickstart Guides</a></li>
-      <li class="breadcrumb-item active">Prerequisites HPO</li>
+      <li class="breadcrumb-item active">Build and deploy containerized models</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/content/quickstart-hpo-prerequisites.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/content/quickstart-build-and-deploy-models.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -101,42 +99,63 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="prerequisites-hpo">
-<h1>Prerequisites HPO<a class="headerlink" href="#prerequisites-hpo" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="build-and-deploy-containerized-models">
+<h1>Build and deploy containerized models<a class="headerlink" href="#build-and-deploy-containerized-models" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p><a class="reference external" href="https://github.com">git</a></p></li>
-<li><p><a class="reference external" href="https://docs.conda.io/en/latest/">conda</a></p></li>
-<li><p><a class="reference external" href="https://apptainer.org">singularity</a></p></li>
-<li><p><a class="reference external" href="https://github.com/swift-lang/swift-t">swift-t</a></p></li>
-<li><p><a class="reference external" href="https://github.com/ECP-CANDLE/Supervisor">Supervisor</a></p></li>
+<li><p>git</p></li>
+<li><p>singularity</p></li>
+<li><p><a class="reference external" href="https://github.com/JDACS4C-IMPROVE/Singularity">IMPROVE Singularity repository</a></p></li>
+<li><p>Path to a directory on a local file system (not shared filesystem, e.g. your home directory is usually on a shared filesystem)</p></li>
+<li><p>Build permissions with singularity, e.g. fakeroot</p></li>
 </ul>
-<div class="section" id="installing-git-conda-and-singularity">
-<h2>Installing git, conda and singularity<a class="headerlink" href="#installing-git-conda-and-singularity" title="Permalink to this headline">¶</a></h2>
-<p>Please refer to the documentation of the tools for install instructions.</p>
 </div>
-<div class="section" id="installing-supervisor">
-<h2>Installing supervisor<a class="headerlink" href="#installing-supervisor" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda create --name supervisor_env <span class="nv">python</span><span class="o">=</span><span class="m">3</span>.9.16
-conda activate supervisor_env
-git clone https://github.com/ECP-CANDLE/Supervisor.git
-git checkout develop
-pip install numpy deap
-<span class="nb">cd</span> Supervisor <span class="o">&amp;&amp;</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/bin
+<div class="section" id="goal">
+<h2>Goal<a class="headerlink" href="#goal" title="Permalink to this headline">¶</a></h2>
+<p>Build singularity images for IMPROVE models and deploy them to a shared location.</p>
+<ol class="arabic">
+<li><p>Clone the repository into a location of your choice:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">JDACS4C</span><span class="o">-</span><span class="n">IMPROVE</span><span class="o">/</span><span class="n">Singularity</span><span class="o">.</span><span class="n">git</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="installing-swift-t">
-<h2>Installing swift-t<a class="headerlink" href="#installing-swift-t" title="Permalink to this headline">¶</a></h2>
-<p>You need to be in conda environment to proceed. If you aren’t sure:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Same conda env than above</span>
-<span class="c1"># conda create --name supervisor_env python=3.9.16</span>
-<span class="n">conda</span> <span class="n">activate</span> <span class="n">supervisor_env</span>
+</li>
+<li><p>Create your config file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">Singularity</span>
+<span class="o">./</span><span class="n">setup</span>
 </pre></div>
 </div>
-<p>Install swift-t via conda. For detailed instructions please refer to the <a class="reference external" href="http://swift-lang.github.io/swift-t/guide.html">swift-t documentation</a>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda install --yes -c conda-forge -c swift-t swift-t
+</li>
+<li><p>To customize your setup modify the config in config/improve.env to change the workspace and data directory.</p></li>
+<li><p>Build and deploy:</p>
+<blockquote>
+<div><ol class="loweralpha">
+<li><p>deploy image files to default location ./images</p>
+<p>make
+make deploy</p>
+</li>
+<li><p>If you want to deploy the images at a different location invoke the make command and set PREFIX to a path of your choosing, default is the current directory. The deploy process will create an image directory at the specified location and copy the image files into it.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">deploy</span> <span class="n">PREFIX</span><span class="o">=/</span><span class="n">my</span><span class="o">/</span><span class="n">deploy</span><span class="o">/</span><span class="n">path</span><span class="o">/</span>
 </pre></div>
 </div>
+</li>
+</ol>
+</div></blockquote>
+</li>
+<li><p>Every container has a standardized script for training a model called <em>train.sh</em> and a standard location (<em>/candle_data_dir</em>) for model input and output. To train a model you have to make your data directory available inside the container as <em>/candle_data_dir</em>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>singularity exec --nv --bind ${IMPROVE_DATA_DIR}:/candle_data_dir ${CONTAINER} train.sh ${GPUID}
+</pre></div>
+</div>
+</li>
+</ol>
+<p>With:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>IMPROVE_DATA_DIR</strong> path to data directory</p></li>
+<li><p><strong>CONTAINER</strong> <em>path/and/name.sif</em> of image file</p></li>
+<li><p><strong>GPUID</strong> ID of GPU to use</p></li>
+</ul>
+</div></blockquote>
 </div>
 </div>
 
@@ -144,8 +163,8 @@ pip install numpy deap
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="quickstart.html" class="btn btn-neutral float-left" title="Quickstart Guides" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="quickstart-hpo-experiment.html" class="btn btn-neutral float-right" title="Hyper Parameter Optimization (HPO)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="quickstart-hpo-experiment.html" class="btn btn-neutral float-left" title="Hyper Parameter Optimization (HPO)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="models.html" class="btn btn-neutral float-right" title="Models" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

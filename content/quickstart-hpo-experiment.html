@@ -17,7 +17,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Models" href="models.html" />
+    <link rel="next" title="Build and deploy containerized models" href="quickstart-build-and-deploy-models.html" />
     <link rel="prev" title="Prerequisites HPO" href="quickstart-hpo-prerequisites.html" /> 
 </head>
 
@@ -52,6 +52,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#steps">Steps</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#create-config-files">Create config files</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#supervisor-setup">Supervisor setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#example">Example</a></li>
 </ul>
 </li>
 </ul>
@@ -118,8 +119,8 @@
 <h2>Steps<a class="headerlink" href="#steps" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic" start="0">
 <li><p>Install prerequisites</p></li>
-<li><p>Create config file(s) for experiment.</p></li>
-<li><p>Run HPO with supervisor:</p>
+<li><p><a class="reference internal" href="#config-overview"><span class="std std-ref">Create config files</span></a> for experiment.</p></li>
+<li><p><a class="reference internal" href="#run"><span class="std std-ref">Run</span></a> HPO with supervisor:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>supervisor ${location} ${workflow} ${config}
 </pre></div>
 </div>
@@ -127,7 +128,7 @@
 </ol>
 </div>
 <div class="section" id="create-config-files">
-<h2>Create config files<a class="headerlink" href="#create-config-files" title="Permalink to this headline">¶</a></h2>
+<span id="config-overview"></span><h2>Create config files<a class="headerlink" href="#create-config-files" title="Permalink to this headline">¶</a></h2>
 <p>Example of config files can be found at &lt;<a class="reference external" href="https://github.com/ECP-CANDLE/Tests/tree/main/sv-tool/user-case-3">https://github.com/ECP-CANDLE/Tests/tree/main/sv-tool/user-case-3</a>&gt;. Create with the following steps:</p>
 <ol class="arabic">
 <li><p><code class="docutils literal notranslate"><span class="pre">mkdir</span> <span class="pre">Experiment</span> <span class="pre">&amp;&amp;</span> <span class="pre">cd</span> <span class="pre">Experiment</span></code></p></li>
@@ -141,11 +142,11 @@
 <span class="nb">export</span> <span class="nv">CANDLE_DATA_DIR</span><span class="o">=</span>/tmp/my_username
 
 <span class="c1"># System settings</span>
-<span class="nb">export</span> <span class="nv">PROCS</span><span class="o">=</span><span class="m">3</span>
+<span class="nb">export</span> <span class="nv">PROCS</span><span class="o">=</span><span class="m">3</span> <span class="c1"># minimum 3</span>
 </pre></div>
 </div>
 </li>
-<li><p>Create parameter file <em>my-graphdrp-search.json</em>:</p>
+<li><p>Create parameter file <em>my-param-space.json</em>:</p>
 <blockquote>
 <div><div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
     <span class="p">{</span>
@@ -206,14 +207,43 @@ conda install --yes -c conda-forge -c swift-t swift-t
 pip install numpy deap
 </pre></div>
 </div>
-<p>Run Supervisor with</p>
+</div>
+<div class="section" id="example">
+<span id="run"></span><h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>supervisor <span class="si">${</span><span class="nv">location</span><span class="si">}</span> <span class="si">${</span><span class="nv">workflow</span><span class="si">}</span> <span class="si">${</span><span class="nv">config</span><span class="si">}</span>
 </pre></div>
 </div>
-<p><em>Example:</em></p>
 <p>Running an HPO experiment on lambda. The model image is in <em>/software/improve/images/</em>. We will execute the command above with <strong>location</strong> set to <em>lambda</em> and <strong>workflow</strong> set to <em>GA</em>.
 We have a directory called <em>Experiment</em> and created a config file named <em>my-config.sh</em> in this directory:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>supervisor lambda GA Experiment/my-config.sh
+</pre></div>
+</div>
+<p id="config-example">my-config.sh:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Model settings</span>
+<span class="nb">export</span> <span class="nv">CANDLE_MODEL_TYPE</span><span class="o">=</span><span class="s2">&quot;SINGULARITY&quot;</span>
+<span class="nb">export</span> <span class="nv">MODEL_NAME</span><span class="o">=</span>/software/improve/images/HiDRA.sif
+<span class="nb">export</span> <span class="nv">PARAM_SET_FILE</span><span class="o">=</span>~/Experiment/my-param-space.json
+<span class="nb">export</span> <span class="nv">CANDLE_DATA_DIR</span><span class="o">=</span>/tmp/demo
+
+<span class="c1"># System settings</span>
+<span class="nb">export</span> <span class="nv">PROCS</span><span class="o">=</span><span class="m">3</span>
+</pre></div>
+</div>
+<p>my-param-space.json:</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+    <span class="p">{</span>
+        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;batch_size&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;ordered&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;element_type&quot;</span><span class="p">:</span> <span class="s2">&quot;int&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;values&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">16</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">256</span><span class="p">],</span>
+        <span class="nt">&quot;sigma&quot;</span><span class="p">:</span> <span class="mi">1</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;epochs&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;constant&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="mi">5</span>
+    <span class="p">}</span>
+<span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -224,7 +254,7 @@ We have a directory called <em>Experiment</em> and created a config file named <
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="quickstart-hpo-prerequisites.html" class="btn btn-neutral float-left" title="Prerequisites HPO" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="models.html" class="btn btn-neutral float-right" title="Models" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="quickstart-build-and-deploy-models.html" class="btn btn-neutral float-right" title="Build and deploy containerized models" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

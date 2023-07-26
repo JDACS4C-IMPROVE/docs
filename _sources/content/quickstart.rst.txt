@@ -22,6 +22,7 @@ Building and deploying supported models
 .. toctree::
     :maxdepth: 1
 
+    quickstart-build-and-deploy-models
     quickstart-singularity-prerequisites
     quickstart-singularity-deploy
     quickstart-singularity-build
