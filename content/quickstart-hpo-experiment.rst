@@ -17,14 +17,16 @@ Steps
 _____
 
 0. Install prerequisites
-1. Create config file(s) for experiment.
-2. Run HPO with supervisor::
+1. :ref:`Create config files <Config Overview>` for experiment. 
+2. :ref:`Run <Run>` HPO with supervisor::
 
     supervisor ${location} ${workflow} ${config}
 
 
+.. _Config Overview:
+
 Create config files
-______________
+___________________
 
 Example of config files can be found at <https://github.com/ECP-CANDLE/Tests/tree/main/sv-tool/user-case-3>. Create with the following steps:
 
@@ -43,9 +45,9 @@ Example of config files can be found at <https://github.com/ECP-CANDLE/Tests/tre
        export CANDLE_DATA_DIR=/tmp/my_username
 
        # System settings
-       export PROCS=3
+       export PROCS=3 # minimum 3 
 
-3. Create parameter file *my-graphdrp-search.json*:
+3. Create parameter file *my-param-space.json*:
 
     .. code-block:: JSON
 
@@ -109,15 +111,14 @@ Set up the environment, omit this step if already installed:
      
     
     
+.. _Run:
 
-Run Supervisor with
+Example
+_______
 
 .. code-block:: bash
 
     supervisor ${location} ${workflow} ${config}
-
-
-*Example:*
 
 Running an HPO experiment on lambda. The model image is in */software/improve/images/*. We will execute the command above with **location** set to *lambda* and **workflow** set to *GA*.
 We have a directory called *Experiment* and created a config file named *my-config.sh* in this directory: 
@@ -125,3 +126,40 @@ We have a directory called *Experiment* and created a config file named *my-conf
 .. code-block:: bash
 
     supervisor lambda GA Experiment/my-config.sh
+
+
+.. _Config Example:
+
+my-config.sh:
+
+.. code-block:: bash
+
+    # Model settings
+    export CANDLE_MODEL_TYPE="SINGULARITY"
+    export MODEL_NAME=/software/improve/images/HiDRA.sif
+    export PARAM_SET_FILE=~/Experiment/my-param-space.json
+    export CANDLE_DATA_DIR=/tmp/demo
+
+    # System settings
+    export PROCS=3
+
+
+my-param-space.json:
+
+.. code-block:: JSON
+
+        [
+            {
+                "name": "batch_size",
+                "type": "ordered",
+                "element_type": "int",
+                "values": [16, 32, 64, 128, 256],
+                "sigma": 1
+            },
+            {
+                "name": "epochs",
+                "type": "constant",
+                "value": 5
+            }
+        ]
+
