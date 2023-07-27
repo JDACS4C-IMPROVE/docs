@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Quickstart Guides &mdash; IMPROVE 0.1 documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <title>Prerequisites CSA &mdash; IMPROVE 0.1 documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
@@ -17,8 +17,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Installing Supervisor and Swift-t" href="quickstart-setup-basic-environment.html" />
-    <link rel="prev" title="Installing IMPROVE on Ubuntu" href="improve-ubuntu.html" /> 
+    <link rel="next" title="Build and deploy containerized models" href="quickstart-build-and-deploy-models.html" />
+    <link rel="prev" title="Hyper Parameter Optimization (HPO)" href="quickstart-hpo-experiment.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -44,22 +44,15 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="whatis.html">What is the IMPROVE project?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installing IMPROVE</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Quickstart Guides</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#basic-setup">Basic setup</a><ul>
+<li class="toctree-l1 current"><a class="reference internal" href="quickstart.html">Quickstart Guides</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="quickstart.html#basic-setup">Basic setup</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="quickstart-setup-basic-environment.html">Installing Supervisor and Swift-t</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#hyper-parameter-optimisation-with-the-supervisor">Hyper Parameter optimisation with the <em>Supervisor</em></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="quickstart-hpo-prerequisites.html">Prerequisites HPO</a></li>
-<li class="toctree-l4"><a class="reference internal" href="quickstart-hpo-experiment.html">Hyper Parameter Optimization (HPO)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#hyper-parameter-optimisation-with-the-supervisor">Hyper Parameter optimisation with the <em>Supervisor</em></a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="quickstart.html#cross-study-analyis">Cross Study Analyis</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Prerequisites CSA</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#cross-study-analyis">Cross Study Analyis</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="quickstart-csa-prerequisites.html">Prerequisites CSA</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#building-and-deploying-supported-models">Building and deploying supported models</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="quickstart-build-and-deploy-models.html">Build and deploy containerized models</a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#building-and-deploying-supported-models">Building and deploying supported models</a></li>
 </ul>
 </li>
 </ul>
@@ -96,9 +89,10 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Quickstart Guides</li>
+          <li class="breadcrumb-item"><a href="quickstart.html">Quickstart Guides</a></li>
+      <li class="breadcrumb-item active">Prerequisites CSA</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/content/quickstart.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/content/quickstart-csa-prerequisites.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -106,41 +100,32 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="quickstart-guides">
-<h1>Quickstart Guides<a class="headerlink" href="#quickstart-guides" title="Permalink to this headline">¶</a></h1>
-<p>Short guides to various aspects of the IMPROVE project.</p>
-<div class="section" id="basic-setup">
-<h2>Basic setup<a class="headerlink" href="#basic-setup" title="Permalink to this headline">¶</a></h2>
-<p>Installing minimum dependencies to run examples below.</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="quickstart-setup-basic-environment.html">Installing Supervisor and Swift-t</a></li>
+  <div class="section" id="prerequisites-csa">
+<h1>Prerequisites CSA<a class="headerlink" href="#prerequisites-csa" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>swift-t</p></li>
+<li><p>singularity</p></li>
+<li><p>IMPROVE/singularity</p></li>
+<li><p>Supervisor</p></li>
 </ul>
-</div>
-<div class="section" id="hyper-parameter-optimisation-with-the-supervisor">
-<h3>Hyper Parameter optimisation with the <em>Supervisor</em><a class="headerlink" href="#hyper-parameter-optimisation-with-the-supervisor" title="Permalink to this headline">¶</a></h3>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="quickstart-hpo-prerequisites.html">Prerequisites HPO</a></li>
-<li class="toctree-l1"><a class="reference internal" href="quickstart-hpo-experiment.html">Hyper Parameter Optimization (HPO)</a></li>
-</ul>
-</div>
-</div>
-<div class="section" id="cross-study-analyis">
-<h3>Cross Study Analyis<a class="headerlink" href="#cross-study-analyis" title="Permalink to this headline">¶</a></h3>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="quickstart-csa-prerequisites.html">Prerequisites CSA</a></li>
-</ul>
+<div class="section" id="installing-supervisor">
+<h2>Installing supervisor<a class="headerlink" href="#installing-supervisor" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda create --name supervisor_env <span class="nv">python</span><span class="o">=</span><span class="m">3</span>.9.16
+conda activate supervisor_env
+git clone https://github.com/ECP-CANDLE/Supervisor.git
+git checkout develop
+<span class="nb">cd</span> Supervisor <span class="o">&amp;&amp;</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/bin
+</pre></div>
 </div>
 </div>
-<div class="section" id="building-and-deploying-supported-models">
-<h3>Building and deploying supported models<a class="headerlink" href="#building-and-deploying-supported-models" title="Permalink to this headline">¶</a></h3>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="quickstart-build-and-deploy-models.html">Build and deploy containerized models</a></li>
-</ul>
-</div>
+<div class="section" id="installing-swift-t">
+<h2>Installing swift-t<a class="headerlink" href="#installing-swift-t" title="Permalink to this headline">¶</a></h2>
+<p>For detailed instructions please refer to swift-t documenation at <a class="reference external" href="http://swift-lang.github.io/swift-t/guide.html">http://swift-lang.github.io/swift-t/guide.html</a></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># conda create --name supervisor_env python=3.9.16</span>
+conda activate supervisor_env
+conda install --yes -c conda-forge -c swift-t swift-t
+pip install numpy deap
+</pre></div>
 </div>
 </div>
 </div>
@@ -149,8 +134,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="improve-ubuntu.html" class="btn btn-neutral float-left" title="Installing IMPROVE on Ubuntu" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="quickstart-setup-basic-environment.html" class="btn btn-neutral float-right" title="Installing Supervisor and Swift-t" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="quickstart-hpo-experiment.html" class="btn btn-neutral float-left" title="Hyper Parameter Optimization (HPO)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="quickstart-build-and-deploy-models.html" class="btn btn-neutral float-right" title="Build and deploy containerized models" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
