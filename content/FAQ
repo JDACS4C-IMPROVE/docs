@@ -1,0 +1,15 @@
+Frequently Asked Questions (FAQ) for newcomers
+==========================================
+
+Q: How do I request access to Lambda?
+A: ANL collaborator access can be requested through https://apps.anl.gov/registration/collaborators
+
+Q: How do I request access to Polaris?
+A: https://accounts.alcf.anl.gov/
+The request takes a couple of days to be approved. The project code to use is CSC249ADOA01
+
+Q: What are model selection criteria?
+A: The model selection criteria dictate requirements the model must satisfy in order to be evaluated by the model curation team. The code must be available in its entirety, including preprocessing, training and inferrence. This will be important for the sanity check later.
+
+Q: What is the sanity check?
+A: The sanity check comes after the baseline performance check. You compare the performance you get before and after modifying the model.   
