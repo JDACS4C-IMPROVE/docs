@@ -26,6 +26,7 @@ Project members can directly update this repository.
 
 ``` bash
 conda create --name IMPROVE python=3.9.16
+conda activate IMPROVE
 ```
 
 2. Get docs repo and install dependencies:
