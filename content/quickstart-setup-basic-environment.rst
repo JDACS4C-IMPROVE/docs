@@ -13,13 +13,25 @@ ______________
 Installation
 _____________________
 
+1. Create a conda environment to install all dependencies.
+
 .. code-block:: bash
 
     conda create --name supervisor_env python=3.9.16
     conda activate supervisor_env
+
+2. Install **Supervisor** from GitHub and add executables to your search path. 
+
+.. code-block:: bash
+
     git clone https://github.com/ECP-CANDLE/Supervisor.git
-    cd Supervisor && PATH=$PATH:$(pwd)/bin
     git checkout develop
+    cd Supervisor && PATH=$PATH:$(pwd)/bin
+   
+3. Install **swift-t** conda package and python modules for *HPO*
+
+.. code-block:: bash
+
     conda install --yes -c conda-forge -c swift-t swift-t
     pip install numpy deap
 
