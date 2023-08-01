@@ -1,15 +1,16 @@
-Installing Supervisor and Swift-t 
+Installing ECP-CANDLE/Supervisor and Swift/T
 =================================
+This quickstart guide is intended to help you install ECP-CANDLE/Supervisor and Swift/T within a conda environment. 
 
 Requirements
-------------
+______________
 
 - `git <https://github.com>`_
 - `conda <https://docs.conda.io/en/latest/>`_
 - `singularity <https://apptainer.org>`_
 
 
-Installing supervisor
+Installation
 _____________________
 
 .. code-block:: bash
@@ -17,20 +18,13 @@ _____________________
     conda create --name supervisor_env python=3.9.16
     conda activate supervisor_env
     git clone https://github.com/ECP-CANDLE/Supervisor.git
-    git checkout develop
     cd Supervisor && PATH=$PATH:$(pwd)/bin
-
-
-
-Installing swift-t
-_____________________
-
-For detailed instructions please refer to swift-t documenation at http://swift-lang.github.io/swift-t/guide.html
-
-.. code-block:: bash
-
-    # conda create --name supervisor_env python=3.9.16
-    conda activate supervisor_env
+    git checkout develop
     conda install --yes -c conda-forge -c swift-t swift-t
     pip install numpy deap
- 
+
+
+More Information
+_____________________
+- ECP-CANDLE/Supervisor: https://github.com/ECP-CANDLE/Supervisor
+- Swift/T: http://swift-lang.github.io/swift-t/guide.html
