@@ -41,6 +41,8 @@ or
 git clone git@github.com:JDACS4C-IMPROVE/docs.git
 ```
 
+Switch into directory and install sphinx:
+
 ```bash
 cd docs
 pip install -r requirements.txt
