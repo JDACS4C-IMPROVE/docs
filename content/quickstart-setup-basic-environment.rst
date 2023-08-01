@@ -13,22 +13,23 @@ ______________
 Installation
 _____________________
 
-1. Create a conda environment to install all dependencies.
+1. Create and activate conda environment:
 
 .. code-block:: bash
 
     conda create --name IMPROVE python=3.9.16
     conda activate IMPROVE
 
-2. Install **Supervisor** from GitHub and add executables to your search path. 
+2. Setup **Supervisor** from GitHub and add executables to your search path. 
 
 .. code-block:: bash
 
     git clone https://github.com/ECP-CANDLE/Supervisor.git
     git checkout develop
     cd Supervisor && PATH=$PATH:$(pwd)/bin
-   
-3. Install **swift-t** conda package and python modules for *HPO*
+
+
+3. Install **Swift/T** and other dependencies
 
 .. code-block:: bash
 
