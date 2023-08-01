@@ -31,7 +31,16 @@ conda create --name IMPROVE python=3.9.16
 2. Get docs repo and install dependencies:
 
 ``` bash
+git clone https://github.com/JDACS4C-IMPROVE/docs.git
+```
+
+or
+
+``` bash
 git clone git@github.com:JDACS4C-IMPROVE/docs.git
+```
+
+```bash
 cd docs
 pip install -r requirements.txt
 ```
