@@ -17,8 +17,8 @@ _____________________
 
 .. code-block:: bash
 
-    conda create --name supervisor_env python=3.9.16
-    conda activate supervisor_env
+    conda create --name IMPROVE python=3.9.16
+    conda activate IMPROVE
 
 2. Install **Supervisor** from GitHub and add executables to your search path. 
 
