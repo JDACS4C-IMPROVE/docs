@@ -1,1 +1,21 @@
-# IMPROVE
+# IMPROVE Documentation 
+
+This repository contains documentation for IMPROVE and related projects. All documents are written using [reStructuredText](https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html) (rst) and compiled with [sphinx](https://www.sphinx-doc.org/en/master/index.html) into the destination format. On change, documents in the main branch will be automatically recompiled and released. The documentation is viewable at: https://jdacs4c-improve.github.io/docs/index.html 
+
+## Who can contribute
+
+Everyone is welcome to request features and add or update the documentation. 
+
+## How to contribute
+
+### External users
+
+External users can create an issue or fork this repository, create a feature branch and make a pull request for this branch. Don't request to merge into the main branch directly. 
+
+### Team members
+
+Project members can directly update this repository. 
+
+1. Create a feature branch using the following naming schema: *your_name*/*short_description*
+2. Push your branch to the repository and make a pull request to merge into the main branch
+3. Assign at least one reviewer and one person to handle the merge request. 
