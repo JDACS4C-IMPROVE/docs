@@ -20,6 +20,7 @@ _____
 4. Use the appropriate python for executing Supervisor workflow: Within Supervisor, open: *workflows/common/sh/langs-app-lambda.sh*. Change PY (Python for executing the workflow) to your conda environment. Example content: 
 
    .. code-block:: bash
+
         # LANGS APP LAMBDA
         echo "langs-app-lambda ..."
         SFW=/home/woz/Public/sfw
@@ -32,6 +33,7 @@ _____
 7. Within Your_model/generic, change content of *cfg-1.sh*. 
 
    .. code-block:: bash
+
        source_cfg -v cfg-my-settings.sh
        export MODEL_NAME=your_model_name
        export PYTHONPATH=path to your code in your local directory
@@ -42,12 +44,14 @@ _____
 9. Add Supervisor path
 
    .. code-block:: bash
-         export PATH=~/Supervisor/bin:$PATH
+
+        export PATH=~/Supervisor/bin:$PATH
 
 10. When running Supervisor without container, the workflow will look for data within CANDLE_DATA_DIR. You may have to manually download and unzip data into CANDLE_DATA_DIR.
 11. To execute the workflow, within Your_Model/generic: 
 
     .. code-block:: bash
+
         supervisor lambda GA cfg-1.sh 
 
 12. Output is not written in the candle_data_dir unlike when using container. It is written within supervisor: /Supervisor/workflows/GA/experiments
