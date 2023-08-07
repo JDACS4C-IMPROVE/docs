@@ -97,8 +97,8 @@ Set up the environment, omit this step if already installed:
 .. code-block:: bash
 
     # Create environment
-    conda create --name supervisor_env python=3.9.16
-    conda activate supervisor_env
+    conda create --name IMPROVE python=3.9.16
+    conda activate IMPROVE
 
     # Supervisor for running HPO/GA
     git clone https://github.com/ECP-CANDLE/Supervisor.git

@@ -116,8 +116,8 @@
 </div>
 <div class="section" id="installing-supervisor">
 <h2>Installing supervisor<a class="headerlink" href="#installing-supervisor" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda create --name supervisor_env <span class="nv">python</span><span class="o">=</span><span class="m">3</span>.9.16
-conda activate supervisor_env
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda create --name IMPROVE <span class="nv">python</span><span class="o">=</span><span class="m">3</span>.9.16
+conda activate IMPROVE
 git clone https://github.com/ECP-CANDLE/Supervisor.git
 <span class="nb">cd</span> Supervisor <span class="o">&amp;&amp;</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/bin
 git checkout develop
@@ -129,8 +129,8 @@ pip install numpy deap
 <h2>Installing swift-t<a class="headerlink" href="#installing-swift-t" title="Permalink to this headline">¶</a></h2>
 <p>You need to be in conda environment to proceed. If you aren’t sure:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Same conda env than above</span>
-<span class="c1"># conda create --name supervisor_env python=3.9.16</span>
-<span class="n">conda</span> <span class="n">activate</span> <span class="n">supervisor_env</span>
+<span class="c1"># conda create --name IMPROVE python=3.9.16</span>
+<span class="n">conda</span> <span class="n">activate</span> <span class="n">IMPROVE</span>
 </pre></div>
 </div>
 <p>Install swift-t via conda. For detailed instructions please refer to the <a class="reference external" href="http://swift-lang.github.io/swift-t/guide.html">swift-t documentation</a>:</p>
