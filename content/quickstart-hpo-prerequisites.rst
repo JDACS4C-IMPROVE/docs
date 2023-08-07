@@ -18,8 +18,8 @@ _____________________
 
 .. code-block:: bash
 
-    conda create --name supervisor_env python=3.9.16
-    conda activate supervisor_env
+    conda create --name IMPROVE python=3.9.16
+    conda activate IMPROVE
     git clone https://github.com/ECP-CANDLE/Supervisor.git
     cd Supervisor && PATH=$PATH:$(pwd)/bin
     git checkout develop
@@ -34,8 +34,8 @@ _____________________
 You need to be in conda environment to proceed. If you aren’t sure: ::
  
     # Same conda env than above
-    # conda create --name supervisor_env python=3.9.16
-    conda activate supervisor_env
+    # conda create --name IMPROVE python=3.9.16
+    conda activate IMPROVE
 
 Install swift-t via conda. For detailed instructions please refer to the `swift-t documentation <http://swift-lang.github.io/swift-t/guide.html>`_:
 
