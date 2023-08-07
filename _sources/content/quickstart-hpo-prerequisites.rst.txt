@@ -21,9 +21,10 @@ _____________________
     conda create --name supervisor_env python=3.9.16
     conda activate supervisor_env
     git clone https://github.com/ECP-CANDLE/Supervisor.git
+    cd Supervisor && PATH=$PATH:$(pwd)/bin
     git checkout develop
     pip install numpy deap
-    cd Supervisor && PATH=$PATH:$(pwd)/bin
+    
 
 
 

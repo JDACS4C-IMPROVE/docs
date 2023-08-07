@@ -119,9 +119,9 @@
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda create --name supervisor_env <span class="nv">python</span><span class="o">=</span><span class="m">3</span>.9.16
 conda activate supervisor_env
 git clone https://github.com/ECP-CANDLE/Supervisor.git
+<span class="nb">cd</span> Supervisor <span class="o">&amp;&amp;</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/bin
 git checkout develop
 pip install numpy deap
-<span class="nb">cd</span> Supervisor <span class="o">&amp;&amp;</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/bin
 </pre></div>
 </div>
 </div>
