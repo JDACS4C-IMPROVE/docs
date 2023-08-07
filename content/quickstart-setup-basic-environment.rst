@@ -25,8 +25,9 @@ _____________________
 .. code-block:: bash
 
     git clone https://github.com/ECP-CANDLE/Supervisor.git
+    cd Supervisor
     git checkout develop
-    cd Supervisor && PATH=$PATH:$(pwd)/bin
+    PATH=$PATH:$(pwd)/bin
 
 
 3. Install **Swift/T** and other dependencies
