@@ -13,22 +13,24 @@ ______________
 Installation
 _____________________
 
-1. Create and activate conda environment
+1. Create and activate conda environment:
 
 .. code-block:: bash
 
-    conda create --name supervisor_env python=3.9.16
-    conda activate supervisor_env
+    conda create --name IMPROVE python=3.9.16
+    conda activate IMPROVE
 
-2. Clone ECP-CANDLE/Supervisor GitHub repository
+2. Setup **Supervisor** from GitHub and add executables to your search path. 
 
 .. code-block:: bash
 
     git clone https://github.com/ECP-CANDLE/Supervisor.git
-    cd Supervisor && PATH=$PATH:$(pwd)/bin
+    cd Supervisor
     git checkout develop
+    PATH=$PATH:$(pwd)/bin
 
-3. Install Swift/T and other dependencies
+
+3. Install **Swift/T** and other dependencies
 
 .. code-block:: bash
 
