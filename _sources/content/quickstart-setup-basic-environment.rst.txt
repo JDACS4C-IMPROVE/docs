@@ -13,7 +13,7 @@ ______________
 Installation
 _____________________
 
-1. Create and activate conda environment:
+1. Create and activate conda environment.
 
 .. code-block:: bash
 
@@ -30,7 +30,7 @@ _____________________
     PATH=$PATH:$(pwd)/bin
 
 
-3. Install **Swift/T** and other dependencies
+3. Install **Swift/T** and other dependencies.
 
 .. code-block:: bash
 
