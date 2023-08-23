@@ -16,9 +16,9 @@ Your model must be containerized and packaged in a singularity image. You can id
 Steps 
 _____
 
-0. Install prerequisites
-1. :ref:`Create config files <Config Overview>` for experiment. 
-2. :ref:`Run <Run>` HPO with supervisor::
+1. Install prerequisites
+2. :ref:`Create config files <Config Overview>` for experiment. 
+3. :ref:`Run <Run>` HPO with supervisor::
 
     supervisor ${location} ${workflow} ${config}
 
