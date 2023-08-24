@@ -4,7 +4,7 @@ Quickstart Guides
 Short guides to various aspects of the IMPROVE project.
 
 Basic setup
-___________
+-----------
 
 Installing minimum dependencies to run examples below.
 
@@ -12,6 +12,17 @@ Installing minimum dependencies to run examples below.
    :maxdepth: 1
 
    quickstart-setup-basic-environment
+
+Building and deploying supported models 
+---------------------------------------
+
+.. toctree::
+    :maxdepth: 1
+
+    quickstart-build-and-deploy-models
+    quickstart-singularity-prerequisites
+    quickstart-singularity-deploy
+    quickstart-singularity-build
 
 
 Hyper Parameter optimisation with the *Supervisor*
@@ -38,16 +49,14 @@ Cross Study Analyis
    quickstart-csa-prerequisites
    quickstart-csa-experiment
 
-
-
-Building and deploying supported models 
----------------------------------------
+Debugging
+---------
 
 .. toctree::
-    :maxdepth: 1
+   :maxdepth: 1
 
-    quickstart-build-and-deploy-models
-    quickstart-singularity-prerequisites
-    quickstart-singularity-deploy
-    quickstart-singularity-build
+   quickstart-hpo-debug-without-containers-lambda
+   
+
+
 
