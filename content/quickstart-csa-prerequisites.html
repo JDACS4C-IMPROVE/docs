@@ -17,7 +17,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Build and deploy containerized models" href="quickstart-build-and-deploy-models.html" />
+    <link rel="next" title="Running a single Model with the Supervisor" href="quickstart-hpo-debug-without-containers-lambda.html" />
     <link rel="prev" title="Hyper Parameter Optimization (HPO)" href="quickstart-hpo-experiment.html" /> 
 </head>
 
@@ -45,16 +45,18 @@
 <li class="toctree-l1"><a class="reference internal" href="whatis.html">What is the IMPROVE project?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installing IMPROVE</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="quickstart.html">Quickstart Guides</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="quickstart.html#basic-setup">Basic setup</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="quickstart-setup-basic-environment.html">Installing ECP-CANDLE/Supervisor and Swift/T</a></li>
-<li class="toctree-l3"><a class="reference internal" href="quickstart.html#hyper-parameter-optimisation-with-the-supervisor">Hyper Parameter optimisation with the <em>Supervisor</em></a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="quickstart.html#cross-study-analyis">Cross Study Analyis</a><ul class="current">
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Prerequisites CSA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#basic-setup">Basic setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#building-and-deploying-supported-models">Building and deploying supported models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#hyper-parameter-optimisation-with-the-supervisor">Hyper Parameter optimisation with the <em>Supervisor</em></a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="quickstart.html#cross-study-analyis">Cross Study Analyis</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Prerequisites CSA</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#installing-supervisor">Installing supervisor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#installing-swift-t">Installing swift-t</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="quickstart.html#building-and-deploying-supported-models">Building and deploying supported models</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#debugging">Debugging</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="models.html">Models</a></li>
@@ -135,7 +137,7 @@ pip install numpy deap
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="quickstart-hpo-experiment.html" class="btn btn-neutral float-left" title="Hyper Parameter Optimization (HPO)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="quickstart-build-and-deploy-models.html" class="btn btn-neutral float-right" title="Build and deploy containerized models" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="quickstart-hpo-debug-without-containers-lambda.html" class="btn btn-neutral float-right" title="Running a single Model with the Supervisor" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
