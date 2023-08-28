@@ -64,19 +64,19 @@ A directory with copy-and-customize config files can be found at <https://github
     export CX_INDPB=0.5
     export TOURNSIZE=4
 
-    # Add any additional settings needed for your system. Default settings for lambda and polaris are given here. 
-    # General settings need to be set by user, while GA settings don't need to be changed.
+    # Add any additional settings needed for your system. General settings and system settings need to be set by user, while GA settings don't need to be changed.
+    # Default settings for lambda and polaris are given here. 
 
     # If you have write access to the shared filesystem on your computation system (such as /lambda_stor), 
     # you can save there. If not, make a directory in /tmp or somewhere else you can write.
 
     # Lambda Settings
     # export CANDLE_CUDA_OFFSET=1
-    # export CANDLE_DATA_DIR=/tmp/weaverr/data_dir
+    # export CANDLE_DATA_DIR=/tmp/<user>/data_dir
     
     # Polaris Settings
     # export QUEUE="debug"
-    # export CANDLE_DATA_DIR=/home/weaverr/data_dir
+    # export CANDLE_DATA_DIR=/home/<user>/data_dir
 
 More information on polaris job submitting (nodes, walltime, queue, etc...) can be found here: https://docs.alcf.anl.gov/polaris/running-jobs/
 
