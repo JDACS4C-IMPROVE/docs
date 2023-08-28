@@ -132,66 +132,106 @@
 </div>
 <div class="section" id="create-config-files">
 <span id="config-overview"></span><h2>Create config files<a class="headerlink" href="#create-config-files" title="Permalink to this headline">¶</a></h2>
-<p>Example of config files can be found at &lt;<a class="reference external" href="https://github.com/ECP-CANDLE/Tests/tree/main/sv-tool/user-case-3">https://github.com/ECP-CANDLE/Tests/tree/main/sv-tool/user-case-3</a>&gt;. Create with the following steps:</p>
+<p>A directory with copy-and-customize config files can be found at &lt;<a class="reference external" href="https://github.com/ECP-CANDLE/Tests/tree/main/sv-tool/deap-generic">https://github.com/ECP-CANDLE/Tests/tree/main/sv-tool/deap-generic</a>&gt;, along with a README about the settings used. Create with the following steps:</p>
 <ol class="arabic">
 <li><p><code class="docutils literal notranslate"><span class="pre">mkdir</span> <span class="pre">Experiment</span> <span class="pre">&amp;&amp;</span> <span class="pre">cd</span> <span class="pre">Experiment</span></code></p></li>
-<li><p>Create config file <em>my-config.sh</em>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Model settings</span>
+<li><p>Create config file <em>cfg-1.sh</em>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>source_cfg -v cfg-my-settings.sh
+
 <span class="nb">export</span> <span class="nv">CANDLE_MODEL_TYPE</span><span class="o">=</span><span class="s2">&quot;SINGULARITY&quot;</span>
 <span class="nb">export</span> <span class="nv">MODEL_NAME</span><span class="o">=</span><span class="si">${</span><span class="p">/PATH/TO/SINGULARITY/IMAGE/FILE.sif</span><span class="si">}</span>
 <span class="nb">export</span> <span class="nv">PARAM_SET_FILE</span><span class="o">=</span><span class="si">${</span><span class="p">/PATH/TO/GA/PARAMETER/FILE.json</span><span class="si">}</span>
-<span class="c1"># If you have write access to /lambda_stor, you can save on the shared</span>
-<span class="c1"># filesystem. If not, make a directory in /tmp</span>
-<span class="nb">export</span> <span class="nv">CANDLE_DATA_DIR</span><span class="o">=</span>/tmp/my_username
-
-<span class="c1"># System settings</span>
-<span class="nb">export</span> <span class="nv">PROCS</span><span class="o">=</span><span class="m">3</span> <span class="c1"># minimum 3</span>
 </pre></div>
 </div>
 </li>
-<li><p>Create parameter file <em>my-param-space.json</em>:</p>
+<li><p>Create config file <em>cfg-my-settings.sh</em>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> SETTINGS
+
+<span class="c1"># General Settings</span>
+<span class="nb">export</span> <span class="nv">PROCS</span><span class="o">=</span><span class="m">4</span>
+<span class="nb">export</span> <span class="nv">PPN</span><span class="o">=</span><span class="m">4</span>
+<span class="nb">export</span> <span class="nv">WALLTIME</span><span class="o">=</span><span class="m">01</span>:00:00
+<span class="nb">export</span> <span class="nv">NUM_ITERATIONS</span><span class="o">=</span><span class="m">3</span>
+<span class="nb">export</span> <span class="nv">POPULATION_SIZE</span><span class="o">=</span><span class="m">2</span>
+
+<span class="c1"># GA Settings</span>
+<span class="nb">export</span> <span class="nv">GA_STRATEGY</span><span class="o">=</span><span class="s1">&#39;mu_plus_lambda&#39;</span>
+<span class="nb">export</span> <span class="nv">OFFSPRING_PROPORTION</span><span class="o">=</span><span class="m">0</span>.5
+<span class="nb">export</span> <span class="nv">MUT_PROB</span><span class="o">=</span><span class="m">0</span>.8
+<span class="nb">export</span> <span class="nv">CX_PROB</span><span class="o">=</span><span class="m">0</span>.2
+<span class="nb">export</span> <span class="nv">MUT_INDPB</span><span class="o">=</span><span class="m">0</span>.5
+<span class="nb">export</span> <span class="nv">CX_INDPB</span><span class="o">=</span><span class="m">0</span>.5
+<span class="nb">export</span> <span class="nv">TOURNSIZE</span><span class="o">=</span><span class="m">4</span>
+
+<span class="c1"># Add any additional settings needed for your system. General settings and system settings need to be set by user, while GA settings don&#39;t need to be changed.</span>
+<span class="c1"># Default settings for lambda and polaris are given here.</span>
+
+<span class="c1"># If you have write access to the shared filesystem on your computation system (such as /lambda_stor),</span>
+<span class="c1"># you can save there. If not, make a directory in /tmp or somewhere else you can write.</span>
+
+<span class="c1"># Lambda Settings</span>
+<span class="c1"># export CANDLE_CUDA_OFFSET=1</span>
+<span class="c1"># export CANDLE_DATA_DIR=/tmp/&lt;user&gt;/data_dir</span>
+
+<span class="c1"># Polaris Settings</span>
+<span class="c1"># export QUEUE=&quot;debug&quot;</span>
+<span class="c1"># export CANDLE_DATA_DIR=/home/&lt;user&gt;/data_dir</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p>More information on polaris job submitting (nodes, walltime, queue, etc…) can be found here: <a class="reference external" href="https://docs.alcf.anl.gov/polaris/running-jobs/">https://docs.alcf.anl.gov/polaris/running-jobs/</a></p>
+<ol class="arabic" start="4">
+<li><p>Create parameter file <em>hyperparams.json</em>:</p>
 <blockquote>
 <div><div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
-    <span class="p">{</span>
 
-        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;activation&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;categorical&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;element_type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;values&quot;</span><span class="p">:</span> <span class="p">[</span>
-            <span class="s2">&quot;softmax&quot;</span><span class="p">,</span><span class="s2">&quot;elu&quot;</span><span class="p">,</span><span class="s2">&quot;softplus&quot;</span><span class="p">,</span><span class="s2">&quot;softsign&quot;</span><span class="p">,</span><span class="s2">&quot;relu&quot;</span><span class="p">,</span><span class="s2">&quot;tanh&quot;</span><span class="p">,</span><span class="s2">&quot;sigmoid&quot;</span><span class="p">,</span><span class="s2">&quot;hard_sigmoid&quot;</span><span class="p">,</span><span class="s2">&quot;linear&quot;</span>
-        <span class="p">]</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;optimizer&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;categorical&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;element_type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;values&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;adam&quot;</span><span class="p">,</span> <span class="s2">&quot;rmsprop&quot;</span><span class="p">]</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;dropout&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;float&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;lower&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
-        <span class="nt">&quot;upper&quot;</span><span class="p">:</span> <span class="mf">0.9</span><span class="p">,</span>
-        <span class="nt">&quot;sigma&quot;</span><span class="p">:</span> <span class="mf">0.045</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;batch_size&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;ordered&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;element_type&quot;</span><span class="p">:</span> <span class="s2">&quot;int&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;values&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">16</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">256</span><span class="p">],</span>
-        <span class="nt">&quot;sigma&quot;</span><span class="p">:</span> <span class="mi">1</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;epochs&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;constant&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="mi">5</span>
-    <span class="p">}</span>
+  <span class="p">{</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;activation&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;categorical&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;element_type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;values&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">&quot;softmax&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;elu&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;softplus&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;softsign&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;relu&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;tanh&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;sigmoid&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;hard_sigmoid&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;linear&quot;</span>
+    <span class="p">]</span>
+  <span class="p">},</span>
+
+  <span class="p">{</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;learning_rate&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;float&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;lower&quot;</span><span class="p">:</span> <span class="mf">0.000001</span><span class="p">,</span>
+    <span class="nt">&quot;upper&quot;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span>
+    <span class="nt">&quot;sigma&quot;</span><span class="p">:</span> <span class="mf">0.05</span>
+  <span class="p">},</span>
+
+  <span class="p">{</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;batch_size&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;ordered&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;element_type&quot;</span><span class="p">:</span> <span class="s2">&quot;int&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;values&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">32</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">128</span><span class="p">],</span>
+    <span class="nt">&quot;sigma&quot;</span><span class="p">:</span> <span class="mi">1</span>
+  <span class="p">},</span>
+
+  <span class="p">{</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;epochs&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;constant&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="mi">5</span>
+  <span class="p">}</span>
+
 <span class="p">]</span>
 </pre></div>
 </div>
 </div></blockquote>
 </li>
 </ol>
+<p>Make sure to set the hyperparameter space to what you desire. Higher sigma causes bigger mutations in the genetic algorithm.</p>
 </div>
 <div class="section" id="supervisor-setup">
 <h2>Supervisor setup<a class="headerlink" href="#supervisor-setup" title="Permalink to this headline">¶</a></h2>
@@ -218,34 +258,87 @@ pip install numpy deap
 </div>
 <p>Running an HPO experiment on lambda. The model image is in <em>/software/improve/images/</em>. We will execute the command above with <strong>location</strong> set to <em>lambda</em> and <strong>workflow</strong> set to <em>GA</em>.
 We have a directory called <em>Experiment</em> and created a config file named <em>my-config.sh</em> in this directory:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>supervisor lambda GA Experiment/my-config.sh
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>supervisor lambda GA Experiment/cfg-1.sh
 </pre></div>
 </div>
-<p id="config-example">my-config.sh:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Model settings</span>
-<span class="nb">export</span> <span class="nv">CANDLE_MODEL_TYPE</span><span class="o">=</span><span class="s2">&quot;SINGULARITY&quot;</span>
-<span class="nb">export</span> <span class="nv">MODEL_NAME</span><span class="o">=</span>/software/improve/images/HiDRA.sif
-<span class="nb">export</span> <span class="nv">PARAM_SET_FILE</span><span class="o">=</span>~/Experiment/my-param-space.json
-<span class="nb">export</span> <span class="nv">CANDLE_DATA_DIR</span><span class="o">=</span>/tmp/demo
+<p id="config-example">cfg-1.sh:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>source_cfg -v cfg-my-settings.sh
 
-<span class="c1"># System settings</span>
-<span class="nb">export</span> <span class="nv">PROCS</span><span class="o">=</span><span class="m">3</span>
+<span class="nb">export</span> <span class="nv">CANDLE_MODEL_TYPE</span><span class="o">=</span><span class="s2">&quot;SINGULARITY&quot;</span>
+<span class="nb">export</span> <span class="nv">MODEL_NAME</span><span class="o">=</span>/software/improve/images/DeepTTC.sif
+<span class="nb">export</span> <span class="nv">PARAM_SET_FILE</span><span class="o">=</span>hyperparams.json
 </pre></div>
 </div>
-<p>my-param-space.json:</p>
+<p>cfg-my-settings.sh:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> SETTINGS
+
+<span class="c1"># General Settings</span>
+<span class="nb">export</span> <span class="nv">PROCS</span><span class="o">=</span><span class="m">4</span>
+<span class="nb">export</span> <span class="nv">PPN</span><span class="o">=</span><span class="m">4</span>
+<span class="nb">export</span> <span class="nv">WALLTIME</span><span class="o">=</span><span class="m">01</span>:00:00
+<span class="nb">export</span> <span class="nv">NUM_ITERATIONS</span><span class="o">=</span><span class="m">1</span>
+<span class="nb">export</span> <span class="nv">POPULATION_SIZE</span><span class="o">=</span><span class="m">2</span>
+
+<span class="c1"># GA Settings</span>
+<span class="nb">export</span> <span class="nv">STRATEGY</span><span class="o">=</span><span class="s1">&#39;mu_plus_lambda&#39;</span>
+<span class="nb">export</span> <span class="nv">OFF_PROP</span><span class="o">=</span><span class="m">0</span>.5
+<span class="nb">export</span> <span class="nv">MUT_PROB</span><span class="o">=</span><span class="m">0</span>.8
+<span class="nb">export</span> <span class="nv">CX_PROB</span><span class="o">=</span><span class="m">0</span>.2
+<span class="nb">export</span> <span class="nv">MUT_INDPB</span><span class="o">=</span><span class="m">0</span>.5
+<span class="nb">export</span> <span class="nv">CX_INDPB</span><span class="o">=</span><span class="m">0</span>.5
+<span class="nb">export</span> <span class="nv">TOURNAMENT_SIZE</span><span class="o">=</span><span class="m">4</span>
+
+<span class="c1"># Lambda Settings</span>
+<span class="c1"># export CANDLE_CUDA_OFFSET=1</span>
+<span class="c1"># export CANDLE_DATA_DIR=/tmp/&lt;user&gt;/data_dir</span>
+
+<span class="c1"># Polaris Settings</span>
+<span class="c1"># export QUEUE=&quot;debug&quot;</span>
+<span class="c1"># export CANDLE_DATA_DIR=/home/&lt;user&gt;/data_dir</span>
+</pre></div>
+</div>
+<p>hyperparams.json:</p>
 <div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
-    <span class="p">{</span>
-        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;batch_size&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;ordered&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;element_type&quot;</span><span class="p">:</span> <span class="s2">&quot;int&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;values&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">16</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">256</span><span class="p">],</span>
-        <span class="nt">&quot;sigma&quot;</span><span class="p">:</span> <span class="mi">1</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;epochs&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;constant&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="mi">5</span>
-    <span class="p">}</span>
+
+  <span class="p">{</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;activation&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;categorical&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;element_type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;values&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">&quot;softmax&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;elu&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;softplus&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;softsign&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;relu&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;tanh&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;sigmoid&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;hard_sigmoid&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;linear&quot;</span>
+    <span class="p">]</span>
+  <span class="p">},</span>
+
+  <span class="p">{</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;learning_rate&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;float&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;lower&quot;</span><span class="p">:</span> <span class="mf">0.000001</span><span class="p">,</span>
+    <span class="nt">&quot;upper&quot;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span>
+    <span class="nt">&quot;sigma&quot;</span><span class="p">:</span> <span class="mf">0.05</span>
+  <span class="p">},</span>
+
+  <span class="p">{</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;batch_size&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;ordered&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;element_type&quot;</span><span class="p">:</span> <span class="s2">&quot;int&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;values&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">32</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">128</span><span class="p">],</span>
+    <span class="nt">&quot;sigma&quot;</span><span class="p">:</span> <span class="mi">1</span>
+  <span class="p">},</span>
+
+  <span class="p">{</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;epochs&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;constant&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="mi">5</span>
+  <span class="p">}</span>
+
 <span class="p">]</span>
 </pre></div>
 </div>
