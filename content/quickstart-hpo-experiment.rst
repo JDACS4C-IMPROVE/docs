@@ -80,7 +80,7 @@ A directory with copy-and-customize config files can be found at <https://github
 
 More information on polaris job submitting (nodes, walltime, queue, etc...) can be found here: https://docs.alcf.anl.gov/polaris/running-jobs/
 
-4. Create parameter file *hyperparameters.json*:
+4. Create parameter file *hyperparams.json*:
 
     .. code-block:: JSON
 
