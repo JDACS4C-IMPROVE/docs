@@ -28,65 +28,106 @@ _____
 Create config files
 ___________________
 
-Example of config files can be found at <https://github.com/ECP-CANDLE/Tests/tree/main/sv-tool/user-case-3>. Create with the following steps:
+A directory with copy-and-customize config files can be found at <https://github.com/ECP-CANDLE/Tests/tree/main/sv-tool/deap-generic>, along with a README about the settings used. Create with the following steps:
 
 1. ``mkdir Experiment && cd Experiment``
 
-2. Create config file *my-config.sh*:
+2. Create config file *cfg-1.sh*:
 
    .. code-block:: bash
 
-       # Model settings
-       export CANDLE_MODEL_TYPE="SINGULARITY"
-       export MODEL_NAME=${/PATH/TO/SINGULARITY/IMAGE/FILE.sif}
-       export PARAM_SET_FILE=${/PATH/TO/GA/PARAMETER/FILE.json}
-       # If you have write access to /lambda_stor, you can save on the shared
-       # filesystem. If not, make a directory in /tmp
-       export CANDLE_DATA_DIR=/tmp/my_username
+    source_cfg -v cfg-my-settings.sh
+    
+    export CANDLE_MODEL_TYPE="SINGULARITY"
+    export MODEL_NAME=${/PATH/TO/SINGULARITY/IMAGE/FILE.sif}
+    export PARAM_SET_FILE=${/PATH/TO/GA/PARAMETER/FILE.json}
+    # If you have write access to /lambda_stor, you can save on the shared
+    # filesystem. If not, make a directory in /tmp
+    export CANDLE_DATA_DIR=/tmp/my_username
 
-       # System settings
-       export PROCS=3 # minimum 3 
+3. Create config file *cfg-my-settings.sh*:
 
-3. Create parameter file *my-param-space.json*:
+   .. code-block:: bash
+
+    echo SETTINGS
+    
+    # General Settings
+    export PROCS=4
+    export PPN=4
+    export WALLTIME=01:00:00
+    export NUM_ITERATIONS=3
+    export POPULATION_SIZE=2
+    
+    # GA Settings
+    export GA_STRATEGY='mu_plus_lambda'
+    export OFFSPRING_PROPORTION=0.5
+    export MUT_PROB=0.8
+    export CX_PROB=0.2
+    export MUT_INDPB=0.5
+    export CX_INDPB=0.5
+    export TOURNSIZE=4
+
+    # Add any additional settings needed for your system. Default settings for lambda and polaris are given here. 
+    # General settings need to be set by user, while GA settings don't need to be changed.
+
+    # Lambda Settings
+    # export CANDLE_CUDA_OFFSET=1
+    # export CANDLE_DATA_DIR=/tmp/weaverr/data_dir
+    
+    # Polaris Settings
+    # export QUEUE="debug"
+    # export CANDLE_DATA_DIR=/home/weaverr/data_dir
+
+More information on polaris job submitting (nodes, walltime, queue, etc...) can be found here: https://docs.alcf.anl.gov/polaris/running-jobs/
+
+4. Create parameter file *hyperparameters.json*:
 
     .. code-block:: JSON
 
         [
-            {
 
-                "name": "activation",
-                "type": "categorical",
-                "element_type": "string",
-                "values": [
-                    "softmax","elu","softplus","softsign","relu","tanh","sigmoid","hard_sigmoid","linear"
-                ]
-            },
-            {
-                "name": "optimizer",
-                "type": "categorical",
-                "element_type": "string",
-                "values": ["adam", "rmsprop"]
-            },
-            {
-                "name": "dropout",
-                "type": "float",
-                "lower": 0.0,
-                "upper": 0.9,
-                "sigma": 0.045
-            },
-            {
-                "name": "batch_size",
-                "type": "ordered",
-                "element_type": "int",
-                "values": [16, 32, 64, 128, 256],
-                "sigma": 1
-            },
-            {
-                "name": "epochs",
-                "type": "constant",
-                "value": 5
-            }
+          {
+            "name": "activation",
+            "type": "categorical",
+            "element_type": "string",
+            "values": [
+              "softmax",
+              "elu",
+              "softplus",
+              "softsign",
+              "relu",
+              "tanh",
+              "sigmoid",
+              "hard_sigmoid",
+              "linear"
+            ]
+          },
+        
+          {
+            "name": "learning_rate",
+            "type": "float",
+            "lower": 0.000001,
+            "upper": 0.2,
+            "sigma": 0.05
+          },
+        
+          {
+            "name": "batch_size",
+            "type": "ordered",
+            "element_type": "int",
+            "values": [32, 64, 128],
+            "sigma": 1
+          },
+        
+          {
+            "name": "epochs",
+            "type": "constant",
+            "value": 5
+          }
+        
         ]
+
+Make sure to set the hyperparameter space to what you desire. Higher sigma causes bigger mutations in the genetic algorithm.
 
 
 Supervisor setup
@@ -125,41 +166,97 @@ We have a directory called *Experiment* and created a config file named *my-conf
 
 .. code-block:: bash
 
-    supervisor lambda GA Experiment/my-config.sh
+    supervisor lambda GA Experiment/cfg-1.sh
 
 
 .. _Config Example:
 
-my-config.sh:
+cfg-1.sh:
 
 .. code-block:: bash
 
-    # Model settings
+    source_cfg -v cfg-my-settings.sh
+    
     export CANDLE_MODEL_TYPE="SINGULARITY"
-    export MODEL_NAME=/software/improve/images/HiDRA.sif
-    export PARAM_SET_FILE=~/Experiment/my-param-space.json
-    export CANDLE_DATA_DIR=/tmp/demo
-
-    # System settings
-    export PROCS=3
+    export MODEL_NAME=/software/improve/images/DeepTTC.sif
+    export PARAM_SET_FILE=hyperparams.json
 
 
-my-param-space.json:
+cfg-my-settings.sh:
+
+.. code-block:: bash
+
+    echo SETTINGS
+    
+    # General Settings
+    export PROCS=4
+    export PPN=4
+    export WALLTIME=01:00:00
+    export NUM_ITERATIONS=1
+    export POPULATION_SIZE=2
+    
+    # GA Settings
+    export STRATEGY='mu_plus_lambda'
+    export OFF_PROP=0.5
+    export MUT_PROB=0.8
+    export CX_PROB=0.2
+    export MUT_INDPB=0.5
+    export CX_INDPB=0.5
+    export TOURNAMENT_SIZE=4
+    
+    # Lambda Settings
+    # export CANDLE_CUDA_OFFSET=1
+    # export CANDLE_DATA_DIR=/tmp/<user>/data_dir
+    
+    # Polaris Settings
+    # export QUEUE="debug"
+    # export CANDLE_DATA_DIR=/home/<user>/data_dir
+
+
+hyperparams.json:
 
 .. code-block:: JSON
 
-        [
-            {
-                "name": "batch_size",
-                "type": "ordered",
-                "element_type": "int",
-                "values": [16, 32, 64, 128, 256],
-                "sigma": 1
-            },
-            {
-                "name": "epochs",
-                "type": "constant",
-                "value": 5
-            }
+    [
+    
+      {
+        "name": "activation",
+        "type": "categorical",
+        "element_type": "string",
+        "values": [
+          "softmax",
+          "elu",
+          "softplus",
+          "softsign",
+          "relu",
+          "tanh",
+          "sigmoid",
+          "hard_sigmoid",
+          "linear"
         ]
+      },
+    
+      {
+        "name": "learning_rate",
+        "type": "float",
+        "lower": 0.000001,
+        "upper": 0.2,
+        "sigma": 0.05
+      },
+    
+      {
+        "name": "batch_size",
+        "type": "ordered",
+        "element_type": "int",
+        "values": [32, 64, 128],
+        "sigma": 1
+      },
+    
+      {
+        "name": "epochs",
+        "type": "constant",
+        "value": 5
+      }
+    
+    ]
 
