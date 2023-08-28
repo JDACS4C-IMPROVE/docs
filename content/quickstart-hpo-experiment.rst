@@ -41,9 +41,6 @@ A directory with copy-and-customize config files can be found at <https://github
     export CANDLE_MODEL_TYPE="SINGULARITY"
     export MODEL_NAME=${/PATH/TO/SINGULARITY/IMAGE/FILE.sif}
     export PARAM_SET_FILE=${/PATH/TO/GA/PARAMETER/FILE.json}
-    # If you have write access to /lambda_stor, you can save on the shared
-    # filesystem. If not, make a directory in /tmp
-    export CANDLE_DATA_DIR=/tmp/my_username
 
 3. Create config file *cfg-my-settings.sh*:
 
@@ -69,6 +66,9 @@ A directory with copy-and-customize config files can be found at <https://github
 
     # Add any additional settings needed for your system. Default settings for lambda and polaris are given here. 
     # General settings need to be set by user, while GA settings don't need to be changed.
+
+    # If you have write access to the shared filesystem on your computation system (such as /lambda_stor), 
+    # you can save there. If not, make a directory in /tmp or somewhere else you can write.
 
     # Lambda Settings
     # export CANDLE_CUDA_OFFSET=1
