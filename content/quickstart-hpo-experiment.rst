@@ -4,7 +4,11 @@ Hyper Parameter Optimization (HPO)
 Requirements
 ____________
 
-Your model must be CANDLE compliant.
+Your model must be CANDLE compliant, and must print the folloiwng line to optimize on with the HPO (val_loss is being optimized in this example):
+
+   .. code-block:: python
+
+      print("\nIMPROVE_RESULT val_loss:\t{}\n".format(scores["val_loss"]))
 
 Your model must be containerized and packaged in a singularity image. You can identify the image file by the **\*.sif** suffix. The container should expose the following interface scripts:
 
