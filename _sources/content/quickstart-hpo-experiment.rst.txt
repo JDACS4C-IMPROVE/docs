@@ -132,7 +132,7 @@ Set up the environment, omit this step if already installed:
     git clone https://github.com/ECP-CANDLE/Supervisor.git
     git checkout develop
     cd Supervisor && PATH=$PATH:$(pwd)/bin
-    export PATh=~/Supervisor/bin:$PATH
+    export PATH=~/Supervisor/bin:$PATH
 
     # swift-t
     conda install --yes -c conda-forge -c swift-t swift-t
