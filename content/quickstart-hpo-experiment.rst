@@ -144,6 +144,12 @@ Set up the environment, omit this step if already installed:
 Example
 _______
 
+First, go into the directory where you have your configuration files:
+
+.. code-block:: bash
+
+    cd ~/Experiment
+
 .. code-block:: bash
 
     supervisor ${location} ${workflow} ${config}
@@ -153,7 +159,7 @@ We have a directory called *Experiment* and created a config file named *my-conf
 
 .. code-block:: bash
 
-    supervisor lambda GA Experiment/cfg-1.sh
+    supervisor lambda GA cfg-1.sh
 
 
 .. _Config Example:
