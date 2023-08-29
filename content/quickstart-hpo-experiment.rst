@@ -131,7 +131,7 @@ More information on polaris job submitting (nodes, walltime, queue, etc...) can 
         
         ]
 
-Make sure to set the hyperparameter space to what you desire. Higher sigma causes bigger mutations in the genetic algorithm.
+Make sure to set the hyperparameter space to what you desire. Upper and lower describe bounds of the hyperparameter. Higher sigma causes bigger mutations in the genetic algorithm. More about the hyperparameter file can be found at the hyperparameter configuration file here: https://github.com/ECP-CANDLE/Supervisor/blob/develop/workflows/GA/README.md
 
 
 Supervisor setup
