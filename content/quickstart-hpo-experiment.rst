@@ -89,37 +89,20 @@ More information on polaris job submitting (nodes, walltime, queue, etc...) can 
     .. code-block:: JSON
 
         [
-
-          {
-            "name": "activation",
-            "type": "categorical",
-            "element_type": "string",
-            "values": [
-              "softmax",
-              "elu",
-              "softplus",
-              "softsign",
-              "relu",
-              "tanh",
-              "sigmoid",
-              "hard_sigmoid",
-              "linear"
-            ]
-          },
         
           {
             "name": "learning_rate",
             "type": "float",
             "lower": 0.000001,
-            "upper": 0.2,
-            "sigma": 0.05
+            "upper": 0.0001,
+            "sigma": 0.00005
           },
         
           {
             "name": "batch_size",
             "type": "ordered",
             "element_type": "int",
-            "values": [32, 64, 128],
+            "values": [256, 512, 1028],
             "sigma": 1
           },
         
