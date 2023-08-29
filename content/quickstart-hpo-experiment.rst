@@ -4,7 +4,7 @@ Hyper Parameter Optimization (HPO)
 Requirements
 ____________
 
-Your model must be CANDLE compliant, and must print the folloiwng line to optimize on with the HPO (val_loss is being optimized in this example):
+Your model must be CANDLE compliant, and must print the following line to optimize on with the HPO (val_loss is being optimized in this example):
 
    .. code-block:: python
 
