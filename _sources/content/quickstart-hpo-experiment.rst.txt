@@ -75,7 +75,7 @@ A directory with copy-and-customize config files can be found at <https://github
     # you can save there. If not, make a directory in /tmp or somewhere else you can write.
 
     # Lambda Settings
-    # export CANDLE_CUDA_OFFSET=1
+    # export CANDLE_CUDA_OFFSET=2
     # export CANDLE_DATA_DIR=/tmp/<user>/data_dir
     
     # Polaris Settings
@@ -135,6 +135,7 @@ Set up the environment, omit this step if already installed:
 
     # swift-t
     conda install --yes -c conda-forge -c swift-t swift-t
+    # python libraries
     pip install numpy deap
      
     
@@ -199,7 +200,7 @@ cfg-my-settings.sh:
     export TOURNAMENT_SIZE=4
     
     # Lambda Settings
-    # export CANDLE_CUDA_OFFSET=1
+    # export CANDLE_CUDA_OFFSET=2
     # export CANDLE_DATA_DIR=/tmp/<user>/data_dir
     
     # Polaris Settings
@@ -214,35 +215,18 @@ hyperparams.json:
     [
     
       {
-        "name": "activation",
-        "type": "categorical",
-        "element_type": "string",
-        "values": [
-          "softmax",
-          "elu",
-          "softplus",
-          "softsign",
-          "relu",
-          "tanh",
-          "sigmoid",
-          "hard_sigmoid",
-          "linear"
-        ]
-      },
-    
-      {
         "name": "learning_rate",
         "type": "float",
         "lower": 0.000001,
-        "upper": 0.2,
-        "sigma": 0.05
+        "upper": 0.0001,
+        "sigma": 0.00005
       },
     
       {
         "name": "batch_size",
         "type": "ordered",
         "element_type": "int",
-        "values": [32, 64, 128],
+        "values": [256, 512, 1028],
         "sigma": 1
       },
     

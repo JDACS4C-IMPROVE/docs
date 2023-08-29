@@ -175,7 +175,7 @@
 <span class="c1"># you can save there. If not, make a directory in /tmp or somewhere else you can write.</span>
 
 <span class="c1"># Lambda Settings</span>
-<span class="c1"># export CANDLE_CUDA_OFFSET=1</span>
+<span class="c1"># export CANDLE_CUDA_OFFSET=2</span>
 <span class="c1"># export CANDLE_DATA_DIR=/tmp/&lt;user&gt;/data_dir</span>
 
 <span class="c1"># Polaris Settings</span>
@@ -235,6 +235,7 @@ git checkout develop
 
 <span class="c1"># swift-t</span>
 conda install --yes -c conda-forge -c swift-t swift-t
+<span class="c1"># python libraries</span>
 pip install numpy deap
 </pre></div>
 </div>
@@ -281,7 +282,7 @@ pip install numpy deap
 <span class="nb">export</span> <span class="nv">TOURNAMENT_SIZE</span><span class="o">=</span><span class="m">4</span>
 
 <span class="c1"># Lambda Settings</span>
-<span class="c1"># export CANDLE_CUDA_OFFSET=1</span>
+<span class="c1"># export CANDLE_CUDA_OFFSET=2</span>
 <span class="c1"># export CANDLE_DATA_DIR=/tmp/&lt;user&gt;/data_dir</span>
 
 <span class="c1"># Polaris Settings</span>
@@ -293,35 +294,18 @@ pip install numpy deap
 <div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
 
   <span class="p">{</span>
-    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;activation&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;categorical&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;element_type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;values&quot;</span><span class="p">:</span> <span class="p">[</span>
-      <span class="s2">&quot;softmax&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;elu&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;softplus&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;softsign&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;relu&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;tanh&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;sigmoid&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;hard_sigmoid&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;linear&quot;</span>
-    <span class="p">]</span>
-  <span class="p">},</span>
-
-  <span class="p">{</span>
     <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;learning_rate&quot;</span><span class="p">,</span>
     <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;float&quot;</span><span class="p">,</span>
     <span class="nt">&quot;lower&quot;</span><span class="p">:</span> <span class="mf">0.000001</span><span class="p">,</span>
-    <span class="nt">&quot;upper&quot;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span>
-    <span class="nt">&quot;sigma&quot;</span><span class="p">:</span> <span class="mf">0.05</span>
+    <span class="nt">&quot;upper&quot;</span><span class="p">:</span> <span class="mf">0.0001</span><span class="p">,</span>
+    <span class="nt">&quot;sigma&quot;</span><span class="p">:</span> <span class="mf">0.00005</span>
   <span class="p">},</span>
 
   <span class="p">{</span>
     <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;batch_size&quot;</span><span class="p">,</span>
     <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;ordered&quot;</span><span class="p">,</span>
     <span class="nt">&quot;element_type&quot;</span><span class="p">:</span> <span class="s2">&quot;int&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;values&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">32</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">128</span><span class="p">],</span>
+    <span class="nt">&quot;values&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">256</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="mi">1028</span><span class="p">],</span>
     <span class="nt">&quot;sigma&quot;</span><span class="p">:</span> <span class="mi">1</span>
   <span class="p">},</span>
 
