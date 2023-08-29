@@ -4,7 +4,11 @@ Hyper Parameter Optimization (HPO)
 Requirements
 ____________
 
-Your model must be CANDLE compliant.
+Your model must be CANDLE compliant, and must print the following line to optimize on with the HPO (val_loss is being optimized in this example):
+
+   .. code-block:: python
+
+      print("\nIMPROVE_RESULT val_loss:\t{}\n".format(scores["val_loss"]))
 
 Your model must be containerized and packaged in a singularity image. You can identify the image file by the **\*.sif** suffix. The container should expose the following interface scripts:
 
@@ -85,37 +89,20 @@ More information on polaris job submitting (nodes, walltime, queue, etc...) can 
     .. code-block:: JSON
 
         [
-
-          {
-            "name": "activation",
-            "type": "categorical",
-            "element_type": "string",
-            "values": [
-              "softmax",
-              "elu",
-              "softplus",
-              "softsign",
-              "relu",
-              "tanh",
-              "sigmoid",
-              "hard_sigmoid",
-              "linear"
-            ]
-          },
         
           {
             "name": "learning_rate",
             "type": "float",
             "lower": 0.000001,
-            "upper": 0.2,
-            "sigma": 0.05
+            "upper": 0.0001,
+            "sigma": 0.00005
           },
         
           {
             "name": "batch_size",
             "type": "ordered",
             "element_type": "int",
-            "values": [32, 64, 128],
+            "values": [256, 512, 1028],
             "sigma": 1
           },
         
@@ -127,7 +114,7 @@ More information on polaris job submitting (nodes, walltime, queue, etc...) can 
         
         ]
 
-Make sure to set the hyperparameter space to what you desire. Higher sigma causes bigger mutations in the genetic algorithm.
+Make sure to set the hyperparameter space to what you desire. Upper and lower describe bounds of the hyperparameter. Higher sigma causes bigger mutations in the genetic algorithm. More about the hyperparameter file can be found at the hyperparameter configuration file here: https://github.com/ECP-CANDLE/Supervisor/blob/develop/workflows/GA/README.md
 
 
 Supervisor setup
@@ -157,16 +144,23 @@ Set up the environment, omit this step if already installed:
 Example
 _______
 
+First, go into the directory where you have your configuration files:
+
+.. code-block:: bash
+
+    cd ~/Experiment
+
+Then, run the command:
+
 .. code-block:: bash
 
     supervisor ${location} ${workflow} ${config}
 
 Running an HPO experiment on lambda. The model image is in */software/improve/images/*. We will execute the command above with **location** set to *lambda* and **workflow** set to *GA*.
-We have a directory called *Experiment* and created a config file named *my-config.sh* in this directory: 
 
 .. code-block:: bash
 
-    supervisor lambda GA Experiment/cfg-1.sh
+    supervisor lambda GA cfg-1.sh
 
 
 .. _Config Example:

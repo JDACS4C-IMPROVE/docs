@@ -110,7 +110,12 @@
 <h1>Hyper Parameter Optimization (HPO)<a class="headerlink" href="#hyper-parameter-optimization-hpo" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="requirements">
 <h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
-<p>Your model must be CANDLE compliant.</p>
+<p>Your model must be CANDLE compliant, and must print the following line to optimize on with the HPO (val_loss is being optimized in this example):</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">IMPROVE_RESULT val_loss:</span><span class="se">\t</span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">scores</span><span class="p">[</span><span class="s2">&quot;val_loss&quot;</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div></blockquote>
 <p>Your model must be containerized and packaged in a singularity image. You can identify the image file by the <strong>*.sif</strong> suffix. The container should expose the following interface scripts:</p>
 <ul class="simple">
 <li><p>preprocess.sh</p></li>
@@ -187,35 +192,18 @@
 <div><div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
 
   <span class="p">{</span>
-    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;activation&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;categorical&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;element_type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;values&quot;</span><span class="p">:</span> <span class="p">[</span>
-      <span class="s2">&quot;softmax&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;elu&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;softplus&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;softsign&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;relu&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;tanh&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;sigmoid&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;hard_sigmoid&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;linear&quot;</span>
-    <span class="p">]</span>
-  <span class="p">},</span>
-
-  <span class="p">{</span>
     <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;learning_rate&quot;</span><span class="p">,</span>
     <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;float&quot;</span><span class="p">,</span>
     <span class="nt">&quot;lower&quot;</span><span class="p">:</span> <span class="mf">0.000001</span><span class="p">,</span>
-    <span class="nt">&quot;upper&quot;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span>
-    <span class="nt">&quot;sigma&quot;</span><span class="p">:</span> <span class="mf">0.05</span>
+    <span class="nt">&quot;upper&quot;</span><span class="p">:</span> <span class="mf">0.0001</span><span class="p">,</span>
+    <span class="nt">&quot;sigma&quot;</span><span class="p">:</span> <span class="mf">0.00005</span>
   <span class="p">},</span>
 
   <span class="p">{</span>
     <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;batch_size&quot;</span><span class="p">,</span>
     <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;ordered&quot;</span><span class="p">,</span>
     <span class="nt">&quot;element_type&quot;</span><span class="p">:</span> <span class="s2">&quot;int&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;values&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">32</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">128</span><span class="p">],</span>
+    <span class="nt">&quot;values&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">256</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="mi">1028</span><span class="p">],</span>
     <span class="nt">&quot;sigma&quot;</span><span class="p">:</span> <span class="mi">1</span>
   <span class="p">},</span>
 
@@ -231,7 +219,7 @@
 </div></blockquote>
 </li>
 </ol>
-<p>Make sure to set the hyperparameter space to what you desire. Higher sigma causes bigger mutations in the genetic algorithm.</p>
+<p>Make sure to set the hyperparameter space to what you desire. Upper and lower describe bounds of the hyperparameter. Higher sigma causes bigger mutations in the genetic algorithm. More about the hyperparameter file can be found at the hyperparameter configuration file here: <a class="reference external" href="https://github.com/ECP-CANDLE/Supervisor/blob/develop/workflows/GA/README.md">https://github.com/ECP-CANDLE/Supervisor/blob/develop/workflows/GA/README.md</a></p>
 </div>
 <div class="section" id="supervisor-setup">
 <h2>Supervisor setup<a class="headerlink" href="#supervisor-setup" title="Permalink to this headline">¶</a></h2>
@@ -253,12 +241,16 @@ pip install numpy deap
 </div>
 <div class="section" id="example">
 <span id="run"></span><h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<p>First, go into the directory where you have your configuration files:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ~/Experiment
+</pre></div>
+</div>
+<p>Then, run the command:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>supervisor <span class="si">${</span><span class="nv">location</span><span class="si">}</span> <span class="si">${</span><span class="nv">workflow</span><span class="si">}</span> <span class="si">${</span><span class="nv">config</span><span class="si">}</span>
 </pre></div>
 </div>
-<p>Running an HPO experiment on lambda. The model image is in <em>/software/improve/images/</em>. We will execute the command above with <strong>location</strong> set to <em>lambda</em> and <strong>workflow</strong> set to <em>GA</em>.
-We have a directory called <em>Experiment</em> and created a config file named <em>my-config.sh</em> in this directory:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>supervisor lambda GA Experiment/cfg-1.sh
+<p>Running an HPO experiment on lambda. The model image is in <em>/software/improve/images/</em>. We will execute the command above with <strong>location</strong> set to <em>lambda</em> and <strong>workflow</strong> set to <em>GA</em>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>supervisor lambda GA cfg-1.sh
 </pre></div>
 </div>
 <p id="config-example">cfg-1.sh:</p>
