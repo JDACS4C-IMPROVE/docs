@@ -150,12 +150,13 @@ First, go into the directory where you have your configuration files:
 
     cd ~/Experiment
 
+Then, run the command:
+
 .. code-block:: bash
 
     supervisor ${location} ${workflow} ${config}
 
 Running an HPO experiment on lambda. The model image is in */software/improve/images/*. We will execute the command above with **location** set to *lambda* and **workflow** set to *GA*.
-We have a directory called *Experiment* and created a config file named *my-config.sh* in this directory: 
 
 .. code-block:: bash
 
