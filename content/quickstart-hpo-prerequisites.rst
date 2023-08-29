@@ -23,6 +23,7 @@ _____________________
     git clone https://github.com/ECP-CANDLE/Supervisor.git
     cd Supervisor && PATH=$PATH:$(pwd)/bin
     git checkout develop
+    export PATH=~/Supervisor/bin:$PATH
     pip install numpy deap
     
 
