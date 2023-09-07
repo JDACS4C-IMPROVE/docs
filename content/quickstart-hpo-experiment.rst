@@ -4,13 +4,7 @@ Hyper Parameter Optimization (HPO)
 Requirements
 ____________
 
-Your model must be CANDLE compliant, and must print the following line to optimize on with the HPO (val_loss is being optimized in this example):
-
-   .. code-block:: python
-
-      print("\nIMPROVE_RESULT val_loss:\t{}\n".format(scores["val_loss"]))
-
-Your model must be containerized and packaged in a singularity image. You can identify the image file by the **\*.sif** suffix. The container should expose the following interface scripts:
+Your model must be CANDLE compliant, containerized, and packaged in a singularity image. You can identify the image file by the **\*.sif** suffix. Default definition files can be found in the (IMPROVE Singularity repository)[https://github.com/JDACS4C-IMPROVE/Singularity]. Follow the (install instructions) to deploy curated default models. The container should expose the following interface scripts:
 
 + preprocess.sh
 + train.sh
@@ -68,7 +62,7 @@ A directory with copy-and-customize config files can be found at <https://github
     export CX_INDPB=0.5
     export TOURNSIZE=4
 
-    # Add any additional settings needed for your system. General settings and system settings need to be set by user, while GA settings don't need to be changed.
+    # Add any additional settings needed for your system. General settings and system settings need to be set by the user, while GA settings don't need to be changed.
     # Default settings for lambda and polaris are given here. 
 
     # If you have write access to the shared filesystem on your computation system (such as /lambda_stor), 
@@ -82,7 +76,7 @@ A directory with copy-and-customize config files can be found at <https://github
     # export QUEUE="debug"
     # export CANDLE_DATA_DIR=/home/<user>/data_dir
 
-More information on polaris job submitting (nodes, walltime, queue, etc...) can be found here: https://docs.alcf.anl.gov/polaris/running-jobs/
+More information on Polaris job submitting (nodes, walltime, queue, etc...) can be found here: https://docs.alcf.anl.gov/polaris/running-jobs/
 
 4. Create parameter file *hyperparams.json*:
 
@@ -114,13 +108,13 @@ More information on polaris job submitting (nodes, walltime, queue, etc...) can 
         
         ]
 
-Make sure to set the hyperparameter space to what you desire. Upper and lower describe bounds of the hyperparameter. Higher sigma causes bigger mutations in the genetic algorithm. More about the hyperparameter file can be found at the hyperparameter configuration file here: https://github.com/ECP-CANDLE/Supervisor/blob/develop/workflows/GA/README.md
+Make sure to set the hyperparameter space to what you desire. The upper and lower describe the bounds of the hyperparameter. Higher sigma causes more extensive mutations in the genetic algorithm. More about the hyperparameter file can be found in the (hyperparameter configuration file)[https://github.com/ECP-CANDLE/Supervisor/blob/develop/workflows/GA/README.md]
 
 
 Supervisor setup
 ________________
 
-Set up the environment, omit this step if already installed:
+Set up the environment; omit this step if already installed:
 
 .. code-block:: bash
 
