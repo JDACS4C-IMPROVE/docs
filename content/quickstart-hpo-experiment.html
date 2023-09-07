@@ -112,13 +112,7 @@
 <h1>Hyper Parameter Optimization (HPO)<a class="headerlink" href="#hyper-parameter-optimization-hpo" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="requirements">
 <h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
-<p>Your model must be CANDLE compliant, and must print the following line to optimize on with the HPO (val_loss is being optimized in this example):</p>
-<blockquote>
-<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">IMPROVE_RESULT val_loss:</span><span class="se">\t</span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">scores</span><span class="p">[</span><span class="s2">&quot;val_loss&quot;</span><span class="p">]))</span>
-</pre></div>
-</div>
-</div></blockquote>
-<p>Your model must be containerized and packaged in a singularity image. You can identify the image file by the <strong>*.sif</strong> suffix. The container should expose the following interface scripts:</p>
+<p>Your model must be CANDLE compliant, containerized, and packaged in a singularity image. You can identify the image file by the <strong>*.sif</strong> suffix. Default definition files can be found in the (IMPROVE Singularity repository)[<a class="reference external" href="https://github.com/JDACS4C-IMPROVE/Singularity">https://github.com/JDACS4C-IMPROVE/Singularity</a>]. Follow the (install instructions) to deploy curated default models. The container should expose the following interface scripts:</p>
 <ul class="simple">
 <li><p>preprocess.sh</p></li>
 <li><p>train.sh</p></li>
@@ -170,7 +164,7 @@
 <span class="nb">export</span> <span class="nv">CX_INDPB</span><span class="o">=</span><span class="m">0</span>.5
 <span class="nb">export</span> <span class="nv">TOURNSIZE</span><span class="o">=</span><span class="m">4</span>
 
-<span class="c1"># Add any additional settings needed for your system. General settings and system settings need to be set by user, while GA settings don&#39;t need to be changed.</span>
+<span class="c1"># Add any additional settings needed for your system. General settings and system settings need to be set by the user, while GA settings don&#39;t need to be changed.</span>
 <span class="c1"># Default settings for lambda and polaris are given here.</span>
 
 <span class="c1"># If you have write access to the shared filesystem on your computation system (such as /lambda_stor),</span>
@@ -187,7 +181,7 @@
 </div>
 </li>
 </ol>
-<p>More information on polaris job submitting (nodes, walltime, queue, etc…) can be found here: <a class="reference external" href="https://docs.alcf.anl.gov/polaris/running-jobs/">https://docs.alcf.anl.gov/polaris/running-jobs/</a></p>
+<p>More information on Polaris job submitting (nodes, walltime, queue, etc…) can be found here: <a class="reference external" href="https://docs.alcf.anl.gov/polaris/running-jobs/">https://docs.alcf.anl.gov/polaris/running-jobs/</a></p>
 <ol class="arabic" start="4">
 <li><p>Create parameter file <em>hyperparams.json</em>:</p>
 <blockquote>
@@ -221,11 +215,11 @@
 </div></blockquote>
 </li>
 </ol>
-<p>Make sure to set the hyperparameter space to what you desire. Upper and lower describe bounds of the hyperparameter. Higher sigma causes bigger mutations in the genetic algorithm. More about the hyperparameter file can be found at the hyperparameter configuration file here: <a class="reference external" href="https://github.com/ECP-CANDLE/Supervisor/blob/develop/workflows/GA/README.md">https://github.com/ECP-CANDLE/Supervisor/blob/develop/workflows/GA/README.md</a></p>
+<p>Make sure to set the hyperparameter space to what you desire. The upper and lower describe the bounds of the hyperparameter. Higher sigma causes more extensive mutations in the genetic algorithm. More about the hyperparameter file can be found in the (hyperparameter configuration file)[<a class="reference external" href="https://github.com/ECP-CANDLE/Supervisor/blob/develop/workflows/GA/README.md">https://github.com/ECP-CANDLE/Supervisor/blob/develop/workflows/GA/README.md</a>]</p>
 </div>
 <div class="section" id="supervisor-setup">
 <h2>Supervisor setup<a class="headerlink" href="#supervisor-setup" title="Permalink to this headline">¶</a></h2>
-<p>Set up the environment, omit this step if already installed:</p>
+<p>Set up the environment; omit this step if already installed:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create environment</span>
 conda create --name IMPROVE <span class="nv">python</span><span class="o">=</span><span class="m">3</span>.9.16
 conda activate IMPROVE
