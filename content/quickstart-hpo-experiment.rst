@@ -239,3 +239,21 @@ hyperparams.json:
     
     ]
 
+
+
+.. _Run:
+
+Results
+_______
+
+After running HPO, there will be the turbine output and experiment directories. The 'turbine_output' directory is found in the same directory as the config files and contains a 'final_result_<number>' file which puts the HPO results in a table. The experiment directory is found at '<candle_data_dir>/<model_name>/Output/EXP<number>' and contains all the run directories. In each run directory, there is the 'model.log' file which contains the 'MODEL_CMD' (which tells the hyperparameters) and the 'IMPROVE_RESULT' (which tells the  evaluation of those hyperparameters). There is also the result.txt which stores 'IMPROVE_RESULT' for that run.
+
+
+
+.. _Run:
+
+Debugging
+_______
+
+After running HPO, there will be 'model.log' files which contain the important information regarding that model's run. They can be found at '<candle_data_dir>/<model_name>/Output/EXP<number>/run_<number>'. To debug, use a 'grep -r "ABORT"' in the experiment directory '<candle_data_dir>/<model_name>/Output/EXP<number>' to find whcih run file which is causing the error in your workflow, 'cd run_<number>' to navigate there, and 'cat model.log' to observe the abort and what error caused it.
+
