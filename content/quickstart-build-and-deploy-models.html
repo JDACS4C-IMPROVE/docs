@@ -134,12 +134,12 @@
 <blockquote>
 <div><ol class="loweralpha">
 <li><p>deploy image files to default location ./images:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="o">&amp;&amp;</span> <span class="n">make</span> <span class="n">deploy</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">configure</span> <span class="o">&amp;&amp;</span> <span class="n">make</span> <span class="n">deploy</span>
 </pre></div>
 </div>
 </li>
 <li><p>If you want to deploy the images at a different location invoke the make command and set PREFIX to a path of your choosing, default is the current directory. The deploy process will create an image directory at the specified location and copy the image files into it.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="o">&amp;&amp;</span> <span class="n">make</span> <span class="n">deploy</span> <span class="n">PREFIX</span><span class="o">=/</span><span class="n">my</span><span class="o">/</span><span class="n">deploy</span><span class="o">/</span><span class="n">path</span><span class="o">/</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">configure</span> <span class="o">&amp;&amp;</span> <span class="n">make</span> <span class="n">deploy</span> <span class="n">PREFIX</span><span class="o">=/</span><span class="n">my</span><span class="o">/</span><span class="n">deploy</span><span class="o">/</span><span class="n">path</span><span class="o">/</span>
 </pre></div>
 </div>
 </li>

@@ -31,11 +31,11 @@ Build singularity images for IMPROVE models and deploy them to a shared location
 
     a)  deploy image files to default location ./images: ::
 
-            make && make deploy
+            make configure && make deploy
     
     b) If you want to deploy the images at a different location invoke the make command and set PREFIX to a path of your choosing, default is the current directory. The deploy process will create an image directory at the specified location and copy the image files into it. ::
 
-            make && make deploy PREFIX=/my/deploy/path/
+            make configure && make deploy PREFIX=/my/deploy/path/
 
 5. Every container has a standardized script for training a model called *train.sh* and a standard location (*/candle_data_dir*) for model input and output. To train a model you have to make your data directory available inside the container as */candle_data_dir*. ::
 
