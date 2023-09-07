@@ -21,9 +21,8 @@ _____________________
     conda create --name IMPROVE python=3.9.16
     conda activate IMPROVE
     git clone https://github.com/ECP-CANDLE/Supervisor.git
-    cd Supervisor && PATH=$PATH:$(pwd)/bin
+    cd Supervisor && export PATH=$PATH:$(pwd)/bin
     git checkout develop
-    export PATH=~/Supervisor/bin:$PATH
     pip install numpy deap
     
 
