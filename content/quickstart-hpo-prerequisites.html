@@ -49,7 +49,8 @@
 <li class="toctree-l2"><a class="reference internal" href="quickstart.html#building-and-deploying-supported-models">Building and deploying supported models</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="quickstart.html#hyper-parameter-optimisation-with-the-supervisor">Hyper Parameter optimisation with the <em>Supervisor</em></a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Prerequisites HPO</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#installing-git-conda-and-singularity">Installing git, conda and singularity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#installing-git-and-singularity">Installing git and singularity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#installing-conda">Installing conda</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#installing-supervisor">Installing supervisor</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#installing-swift-t">Installing swift-t</a></li>
 </ul>
@@ -113,9 +114,21 @@
 <li><p><a class="reference external" href="https://github.com/swift-lang/swift-t">swift-t</a></p></li>
 <li><p><a class="reference external" href="https://github.com/ECP-CANDLE/Supervisor">Supervisor</a></p></li>
 </ul>
-<div class="section" id="installing-git-conda-and-singularity">
-<h2>Installing git, conda and singularity<a class="headerlink" href="#installing-git-conda-and-singularity" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="installing-git-and-singularity">
+<h2>Installing git and singularity<a class="headerlink" href="#installing-git-and-singularity" title="Permalink to this headline">¶</a></h2>
 <p>Please refer to the documentation of the tools for install instructions.</p>
+</div>
+<div class="section" id="installing-conda">
+<h2>Installing conda<a class="headerlink" href="#installing-conda" title="Permalink to this headline">¶</a></h2>
+<p>To check if you have conda, use <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">--version</span></code>.</p>
+<p>If you do not have conda installed, install with the following commands:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+chmod +x Miniconda3-latest-Linux-x86_64.sh
+./Miniconda3-latest-Linux-x86_64.sh
+<span class="nb">source</span> ~/.bashrc
+</pre></div>
+</div>
+<p>Now, using the <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">--version</span></code> command should give the version you’ve downloaded. If not, close the terminal session and open again, then try <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">--version</span></code>.</p>
 </div>
 <div class="section" id="installing-supervisor">
 <h2>Installing supervisor<a class="headerlink" href="#installing-supervisor" title="Permalink to this headline">¶</a></h2>

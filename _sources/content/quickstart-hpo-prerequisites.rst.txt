@@ -8,10 +8,27 @@ Prerequisites HPO
 - `Supervisor <https://github.com/ECP-CANDLE/Supervisor>`_
 
 
-Installing git, conda and singularity
+Installing git and singularity
 _____________________________________
 
 Please refer to the documentation of the tools for install instructions.
+
+Installing conda
+_____________________________________
+
+To check if you have conda, use ``conda --version``.
+
+If you do not have conda installed, install with the following commands:
+
+.. code-block:: bash
+
+    wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+    chmod +x Miniconda3-latest-Linux-x86_64.sh
+    ./Miniconda3-latest-Linux-x86_64.sh
+    source ~/.bashrc
+
+Now, using the ``conda --version`` command should give the version you've downloaded. If not, close the terminal session and open again, then try ``conda --version``.
+
 
 Installing supervisor
 _____________________
