@@ -113,7 +113,7 @@
 <h1>Hyper Parameter Optimization (HPO)<a class="headerlink" href="#hyper-parameter-optimization-hpo" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="requirements">
 <h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
-<p>Your model must be CANDLE compliant, containerized, and packaged in a singularity image. You can identify the image file by the <strong>*.sif</strong> suffix. Default definition files can be found in the <a class="reference external" href="https://github.com/JDACS4C-IMPROVE/Singularity">IMPROVE Singularity repository</a>. Follow the <a href="#id5"><span class="problematic" id="id6">`install instructions&lt;quickstart-build-and-deploy-models&gt;`_</span></a> to deploy curated default models. Instructions on preliminary commands to build containers on Polaris can be found here: <a class="reference external" href="https://docs.alcf.anl.gov/polaris/data-science-workflows/containers/containers/">https://docs.alcf.anl.gov/polaris/data-science-workflows/containers/containers/</a>. It’s recommended that the container exposes the following interface scripts, but the train.sh is the only necessary script:</p>
+<p>Your model must be CANDLE compliant, containerized, and packaged in a singularity image. You can identify the image file by the <strong>*.sif</strong> suffix. Default definition files can be found in the <a class="reference external" href="https://github.com/JDACS4C-IMPROVE/Singularity">IMPROVE Singularity repository</a>. Follow the <a href="#id3"><span class="problematic" id="id4">`install instructions&lt;quickstart-build-and-deploy-models&gt;`_</span></a> to deploy curated default models. Instructions on preliminary commands to build containers on Polaris can be found here: <a class="reference external" href="https://docs.alcf.anl.gov/polaris/data-science-workflows/containers/containers/">https://docs.alcf.anl.gov/polaris/data-science-workflows/containers/containers/</a>. It’s recommended that the container exposes the following interface scripts, but the train.sh is the only necessary script:</p>
 <ul class="simple">
 <li><p>preprocess.sh</p></li>
 <li><p>train.sh</p></li>
@@ -131,7 +131,7 @@
 </dd>
 </dl>
 </li>
-<li><p><span class="xref std std-ref">Analysis</span></p></li>
+<li><p><a class="reference internal" href="#analysis"><span class="std std-ref">Analysis</span></a></p></li>
 </ol>
 </div>
 <div class="section" id="create-config-files">
@@ -218,7 +218,7 @@
 </div></blockquote>
 </li>
 </ol>
-<p>Make sure to set the hyperparameter space to what you desire. The upper and lower describe the bounds of the hyperparameter. Higher sigma causes more extensive mutations in the genetic algorithm. More about the hyperparameter file can be found in the (hyperparameter configuration file)[<a class="reference external" href="https://github.com/ECP-CANDLE/Supervisor/blob/develop/workflows/GA/README.md">https://github.com/ECP-CANDLE/Supervisor/blob/develop/workflows/GA/README.md</a>]</p>
+<p>Make sure to set the hyperparameter space to what you desire. The upper and lower describe the bounds of the hyperparameter. Higher sigma causes more extensive mutations in the genetic algorithm. More about the hyperparameter file can be found here: <a class="reference external" href="https://github.com/ECP-CANDLE/Supervisor/blob/develop/workflows/GA/README.md">https://github.com/ECP-CANDLE/Supervisor/blob/develop/workflows/GA/README.md</a></p>
 </div>
 <div class="section" id="supervisor-setup">
 <h2>Supervisor setup<a class="headerlink" href="#supervisor-setup" title="Permalink to this headline">¶</a></h2>
@@ -241,7 +241,7 @@ pip install numpy deap
 </div>
 </div>
 <div class="section" id="example">
-<span id="run"></span><h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
 <p>First, go into the directory where you have your configuration files:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ~/Experiment
 </pre></div>
@@ -320,15 +320,15 @@ pip install numpy deap
 </div>
 </div>
 <div class="section" id="debugging">
-<span id="id2"></span><h2>Debugging<a class="headerlink" href="#debugging" title="Permalink to this headline">¶</a></h2>
+<h2>Debugging<a class="headerlink" href="#debugging" title="Permalink to this headline">¶</a></h2>
 <p>While/after running HPO, there will be <code class="docutils literal notranslate"><span class="pre">model.log</span></code> files which contain the important information regarding that model’s run. They can be found at <code class="docutils literal notranslate"><span class="pre">&lt;candle_data_dir&gt;/&lt;model_name&gt;/Output/EXP&lt;number&gt;/run_&lt;number&gt;</span></code>. To debug, use a <code class="docutils literal notranslate"><span class="pre">grep</span> <span class="pre">-r</span> <span class="pre">&quot;ABORT&quot;</span></code> in the experiment directory <code class="docutils literal notranslate"><span class="pre">&lt;candle_data_dir&gt;/&lt;model_name&gt;/Output/EXP&lt;number&gt;</span></code> to find which run file which is causing the error in your workflow, <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">run_&lt;number&gt;</span></code> to navigate there, and <code class="docutils literal notranslate"><span class="pre">cat</span> <span class="pre">model.log</span></code> to observe the abort and what error caused it. Observing the <code class="docutils literal notranslate"><span class="pre">MODEL_CMD</span></code> (which tells the hyperparameters) and the <code class="docutils literal notranslate"><span class="pre">IMPROVE_RESULT</span></code> (which tells the  evaluation of those hyperparameters) can also be helpful.</p>
 </div>
 <div class="section" id="results">
-<span id="id3"></span><h2>Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h2>
+<h2>Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h2>
 <p>After running HPO, there will be the turbine output and experiment directories. The <code class="docutils literal notranslate"><span class="pre">turbine_output</span></code> directory is found in the same directory as the config files and contains a <code class="docutils literal notranslate"><span class="pre">final_result_&lt;number&gt;</span></code> file which puts the HPO results in a table. The experiment directory is found at <code class="docutils literal notranslate"><span class="pre">&lt;candle_data_dir&gt;/&lt;model_name&gt;/Output/EXP&lt;number&gt;</span></code> and contains the <code class="docutils literal notranslate"><span class="pre">output.csv</span></code> file which has ALL the hpo parameters and results automatically parsed. The experiment directory also contains the hyperparams.json file you used to help remember the hyperparameter space you explored.</p>
 </div>
 <div class="section" id="analysis">
-<span id="id4"></span><h2>Analysis<a class="headerlink" href="#analysis" title="Permalink to this headline">¶</a></h2>
+<span id="id2"></span><h2>Analysis<a class="headerlink" href="#analysis" title="Permalink to this headline">¶</a></h2>
 <p>To analyze the HPO run, there are two recommended methods. The first provides a ranking of hyperparameter choices. The second provides a ranking and visualization:</p>
 <ol class="arabic simple">
 <li><p>Firstly, the user could run the following commands in the experiment directory. The user is required to define the number of hyperparameters. In the example hyperparams.json file given, this would be 3 (learning_rate, batch_size, epochs). The sorted, unique choices of hyperparameters are put into a new <code class="docutils literal notranslate"><span class="pre">sorted_unique_output.csv</span></code> file.</p></li>
