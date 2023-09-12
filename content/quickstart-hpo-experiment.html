@@ -332,11 +332,11 @@ pip install numpy deap
 <ol class="arabic simple">
 <li><p>Firstly, the user could run the following commands in the experiment directory. The user is required to define the number of hyperparameters. In the example hyperparams.json file given, this would be 3 (learning_rate, batch_size, epochs). The sorted, unique choices of hyperparameters are put into a new <code class="docutils literal notranslate"><span class="pre">sorted_unique_output.csv</span></code> file.</p></li>
 </ol>
-<p>‘’’
-num_hyperparams=3
-num_columns=$((num_hyperparams + 1))
-(head -n 1 output.csv &amp;&amp; tail -n +2 output.csv | sort -t, -k$num_columns -n | uniq) &gt; sorted_unique_output.csv
-‘’’</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">num_hyperparams</span><span class="o">=</span><span class="m">3</span>
+<span class="nv">num_columns</span><span class="o">=</span><span class="k">$((</span>num_hyperparams <span class="o">+</span> <span class="m">1</span><span class="k">))</span>
+<span class="o">(</span>head -n <span class="m">1</span> output.csv <span class="o">&amp;&amp;</span> tail -n +2 output.csv <span class="p">|</span> sort -t, -k<span class="nv">$num_columns</span> -n <span class="p">|</span> uniq<span class="o">)</span> &gt; sorted_unique_output.csv
+</pre></div>
+</div>
 <ol class="arabic simple" start="2">
 <li><p>Secondly, the user could secure copy the output.csv file, then use google colab to show tables and plot. The secure copy command should be run in your terminal (not logged into Argonne’s computation system) as the following: <code class="docutils literal notranslate"><span class="pre">scp</span> <span class="pre">&lt;user&gt;&#64;&lt;computation_address&gt;:~/path/to/your/output.csv</span> <span class="pre">\path\on\local\computer</span></code>. For example, as secure copy command could look like: <code class="docutils literal notranslate"><span class="pre">scp</span> <span class="pre">weaverr&#64;polaris.alcf.anl.gov:~/data_dir/DeepTTC-testing/Output/finished_EXP060/output.csv</span> <span class="pre">\Users\rylie\Argonne\HPO</span></code>. Note that this assumes the user is using Unix. If running a Unix-like system on Windows, the command will look like <code class="docutils literal notranslate"><span class="pre">scp</span> <span class="pre">&lt;user&gt;&#64;&lt;computation_address&gt;:~/path/to/your/output.csv</span> <span class="pre">/c/Users/username/Path/On/Local/Computer</span></code>.</p></li>
 </ol>
