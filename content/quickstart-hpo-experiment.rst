@@ -4,7 +4,7 @@ Hyper Parameter Optimization (HPO)
 Requirements
 ____________
 
-Your model must be CANDLE compliant, containerized, and packaged in a singularity image. You can identify the image file by the **\*.sif** suffix. Default definition files can be found in the `IMPROVE Singularity repository <https://github.com/JDACS4C-IMPROVE/Singularity>`_. Follow the `install instructions<quickstart-build-and-deploy-models>`_ to deploy curated default models. It's recommended that the container exposes the following interface scripts, but the train.sh is the only necessary script:
+Your model must be CANDLE compliant, containerized, and packaged in a singularity image. You can identify the image file by the **\*.sif** suffix. Default definition files can be found in the `IMPROVE Singularity repository <https://github.com/JDACS4C-IMPROVE/Singularity>`_. Follow the `install instructions<quickstart-build-and-deploy-models>`_ to deploy curated default models. Instructions on preliminary commands to build containers on Polaris can be found here: https://docs.alcf.anl.gov/polaris/data-science-workflows/containers/containers/. It's recommended that the container exposes the following interface scripts, but the train.sh is the only necessary script:
 
 + preprocess.sh
 + train.sh
