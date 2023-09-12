@@ -55,8 +55,9 @@
 <li class="toctree-l4"><a class="reference internal" href="#create-config-files">Create config files</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#supervisor-setup">Supervisor setup</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#example">Example</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#results">Results</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#debugging">Debugging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#results">Results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#analysis">Analysis</a></li>
 </ul>
 </li>
 </ul>
@@ -112,7 +113,7 @@
 <h1>Hyper Parameter Optimization (HPO)<a class="headerlink" href="#hyper-parameter-optimization-hpo" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="requirements">
 <h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
-<p>Your model must be CANDLE compliant, containerized, and packaged in a singularity image. You can identify the image file by the <strong>*.sif</strong> suffix. Default definition files can be found in the <a class="reference external" href="https://github.com/JDACS4C-IMPROVE/Singularity">IMPROVE Singularity repository</a>. Follow the <a href="#id4"><span class="problematic" id="id5">`install instructions&lt;quickstart-build-and-deploy-models&gt;`_</span></a> to deploy curated default models. The container should expose the following interface scripts:</p>
+<p>Your model must be CANDLE compliant, containerized, and packaged in a singularity image. You can identify the image file by the <strong>*.sif</strong> suffix. Default definition files can be found in the <a class="reference external" href="https://github.com/JDACS4C-IMPROVE/Singularity">IMPROVE Singularity repository</a>. Follow the <a href="#id5"><span class="problematic" id="id6">`install instructions&lt;quickstart-build-and-deploy-models&gt;`_</span></a> to deploy curated default models. It’s recommended that the container exposes the following interface scripts, but the train.sh is the only necessary script:</p>
 <ul class="simple">
 <li><p>preprocess.sh</p></li>
 <li><p>train.sh</p></li>
@@ -317,13 +318,28 @@ pip install numpy deap
 </pre></div>
 </div>
 </div>
-<div class="section" id="results">
-<span id="id2"></span><h2>Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h2>
-<p>After running HPO, there will be the turbine output and experiment directories. The ‘turbine_output’ directory is found in the same directory as the config files and contains a ‘final_result_&lt;number&gt;’ file which puts the HPO results in a table. The experiment directory is found at ‘&lt;candle_data_dir&gt;/&lt;model_name&gt;/Output/EXP&lt;number&gt;’ and contains all the run directories. In each run directory, there is the ‘model.log’ file which contains the ‘MODEL_CMD’ (which tells the hyperparameters) and the ‘IMPROVE_RESULT’ (which tells the  evaluation of those hyperparameters). There is also the result.txt which stores ‘IMPROVE_RESULT’ for that run.</p>
-</div>
 <div class="section" id="debugging">
-<span id="id3"></span><h2>Debugging<a class="headerlink" href="#debugging" title="Permalink to this headline">¶</a></h2>
-<p>After running HPO, there will be ‘model.log’ files which contain the important information regarding that model’s run. They can be found at ‘&lt;candle_data_dir&gt;/&lt;model_name&gt;/Output/EXP&lt;number&gt;/run_&lt;number&gt;’. To debug, use a ‘grep -r “ABORT”’ in the experiment directory ‘&lt;candle_data_dir&gt;/&lt;model_name&gt;/Output/EXP&lt;number&gt;’ to find whcih run file which is causing the error in your workflow, ‘cd run_&lt;number&gt;’ to navigate there, and ‘cat model.log’ to observe the abort and what error caused it.</p>
+<span id="id2"></span><h2>Debugging<a class="headerlink" href="#debugging" title="Permalink to this headline">¶</a></h2>
+<p>While/after running HPO, there will be ‘model.log’ files which contain the important information regarding that model’s run. They can be found at ‘&lt;candle_data_dir&gt;/&lt;model_name&gt;/Output/EXP&lt;number&gt;/run_&lt;number&gt;’. To debug, use a ‘grep -r “ABORT”’ in the experiment directory ‘&lt;candle_data_dir&gt;/&lt;model_name&gt;/Output/EXP&lt;number&gt;’ to find which run file which is causing the error in your workflow, ‘cd run_&lt;number&gt;’ to navigate there, and ‘cat model.log’ to observe the abort and what error caused it. Observing the ‘MODEL_CMD’ (which tells the hyperparameters) and the ‘IMPROVE_RESULT’ (which tells the  evaluation of those hyperparameters) can also be helpful.</p>
+</div>
+<div class="section" id="results">
+<span id="id3"></span><h2>Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h2>
+<p>After running HPO, there will be the turbine output and experiment directories. The ‘turbine_output’ directory is found in the same directory as the config files and contains a ‘final_result_&lt;number&gt;’ file which puts the HPO results in a table. The experiment directory is found at ‘&lt;candle_data_dir&gt;/&lt;model_name&gt;/Output/EXP&lt;number&gt;’ and contains the output.csv file which has ALL the hpo parameters and results automatically parsed. The experiment directory also contains the hyperparams.json file you used to help remember the hyperparameter space you explored.</p>
+</div>
+<div class="section" id="analysis">
+<span id="id4"></span><h2>Analysis<a class="headerlink" href="#analysis" title="Permalink to this headline">¶</a></h2>
+<p>To analyze the HPO run, there are two recommended methods. The first provides a ranking of hyperparameter choices. The second provides a ranking and visualization:</p>
+<ol class="arabic simple">
+<li><p>Firstly, the user could run the following commands in the experiment directory. The user is required to define the number of hyperparameters. In the example hyperparams.json file given, this would be 3 (learning_rate, batch_size, epochs). The sorted, unique choices of hyperparameters are put into a new sorted_unique_output.csv file.</p></li>
+</ol>
+<p>‘’’
+num_hyperparams=3
+num_columns=$((num_hyperparams + 1))
+(head -n 1 output.csv &amp;&amp; tail -n +2 output.csv | sort -t, -k$num_columns -n | uniq) &gt; sorted_unique_output.csv
+‘’’</p>
+<p>(2) Secondly, the user could secure copy the output.csv file, then use google colab to show tables and plot. The secure copy command should be run in your terminal (not logged into Argonne’s computation system) as the following: ‘scp &lt;user&gt;&#64;&lt;computation_address&gt;:~/path/to/your/output.csv pathonlocalcomputer’. For example, as secure copy command could look like: ‘scp <a class="reference external" href="mailto:weaverr&#37;&#52;&#48;polaris&#46;alcf&#46;anl&#46;gov">weaverr<span>&#64;</span>polaris<span>&#46;</span>alcf<span>&#46;</span>anl<span>&#46;</span>gov</a>:~/data_dir/DeepTTC-testing/Output/finished_EXP060/output.csv UsersrylieArgonneHPO’. Note that this assumes the user is using Unix. If running a Unix-like system on Windows, the command will look like ‘scp &lt;user&gt;&#64;&lt;computation_address&gt;:~/path/to/your/output.csv /c/Users/username/Path/On/Local/Computer
+‘.</p>
+<p>Once the file is secure copied to your local computer, it can be loaded into and used in google colab. A generalizable, plug-and-play colab file is being made for easy use. Until then, this example file can be copied and altered: <a class="reference external" href="https://colab.research.google.com/drive/1zhn6aiwaFluAQ0CT_2VkNliOs0u0r-N1?usp=sharing">https://colab.research.google.com/drive/1zhn6aiwaFluAQ0CT_2VkNliOs0u0r-N1?usp=sharing</a></p>
 </div>
 </div>
 
