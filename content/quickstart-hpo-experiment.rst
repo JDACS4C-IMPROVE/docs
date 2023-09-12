@@ -18,9 +18,8 @@ _____
 1. Install prerequisites
 2. :ref:`Create config files <Config Overview>` for experiment. 
 3. :ref:`Run <Run>` HPO with supervisor::
+        supervisor ${location} ${workflow} ${config}
 4. :ref:`Analysis`
-
-    supervisor ${location} ${workflow} ${config}
 
 
 .. _Config Overview:
