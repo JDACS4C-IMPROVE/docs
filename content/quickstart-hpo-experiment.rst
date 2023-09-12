@@ -19,7 +19,7 @@ _____
 2. :ref:`Create config files <Config Overview>` for experiment. 
 3. :ref:`Run <Run>` HPO with supervisor::
         supervisor ${location} ${workflow} ${config}
-4. :ref:`Analysis`
+4. :ref:`Analysis <Analysis>`
 
 
 .. _Config Overview:
@@ -109,7 +109,7 @@ More information on Polaris job submitting (nodes, walltime, queue, etc...) can 
         
         ]
 
-Make sure to set the hyperparameter space to what you desire. The upper and lower describe the bounds of the hyperparameter. Higher sigma causes more extensive mutations in the genetic algorithm. More about the hyperparameter file can be found in the (hyperparameter configuration file)[https://github.com/ECP-CANDLE/Supervisor/blob/develop/workflows/GA/README.md]
+Make sure to set the hyperparameter space to what you desire. The upper and lower describe the bounds of the hyperparameter. Higher sigma causes more extensive mutations in the genetic algorithm. More about the hyperparameter file can be found here: https://github.com/ECP-CANDLE/Supervisor/blob/develop/workflows/GA/README.md
 
 
 Supervisor setup
@@ -135,8 +135,6 @@ Set up the environment; omit this step if already installed:
     pip install numpy deap
      
     
-    
-.. _Run:
 
 Example
 _______
@@ -236,16 +234,12 @@ hyperparams.json:
 
 
 
-.. _Run:
-
 Debugging
 _______
 
 While/after running HPO, there will be ``model.log`` files which contain the important information regarding that model's run. They can be found at ``<candle_data_dir>/<model_name>/Output/EXP<number>/run_<number>``. To debug, use a ``grep -r "ABORT"`` in the experiment directory ``<candle_data_dir>/<model_name>/Output/EXP<number>`` to find which run file which is causing the error in your workflow, ``cd run_<number>`` to navigate there, and ``cat model.log`` to observe the abort and what error caused it. Observing the ``MODEL_CMD`` (which tells the hyperparameters) and the ``IMPROVE_RESULT`` (which tells the  evaluation of those hyperparameters) can also be helpful.
 
 
-
-.. _Run:
 
 Results
 _______
@@ -254,7 +248,7 @@ After running HPO, there will be the turbine output and experiment directories. 
 
 
 
-.. _Run:
+.. _Analysis:
 
 Analysis
 _______
