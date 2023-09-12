@@ -263,11 +263,11 @@ To analyze the HPO run, there are two recommended methods. The first provides a 
 
 (1) Firstly, the user could run the following commands in the experiment directory. The user is required to define the number of hyperparameters. In the example hyperparams.json file given, this would be 3 (learning_rate, batch_size, epochs). The sorted, unique choices of hyperparameters are put into a new ``sorted_unique_output.csv`` file.
 
-'''
-num_hyperparams=3
-num_columns=$((num_hyperparams + 1))
-(head -n 1 output.csv && tail -n +2 output.csv | sort -t, -k$num_columns -n | uniq) > sorted_unique_output.csv
-'''
+.. code-block:: bash
+
+    num_hyperparams=3
+    num_columns=$((num_hyperparams + 1))
+    (head -n 1 output.csv && tail -n +2 output.csv | sort -t, -k$num_columns -n | uniq) > sorted_unique_output.csv
 
 (2) Secondly, the user could secure copy the output.csv file, then use google colab to show tables and plot. The secure copy command should be run in your terminal (not logged into Argonne's computation system) as the following: ``scp <user>@<computation_address>:~/path/to/your/output.csv \path\on\local\computer``. For example, as secure copy command could look like: ``scp weaverr@polaris.alcf.anl.gov:~/data_dir/DeepTTC-testing/Output/finished_EXP060/output.csv \Users\rylie\Argonne\HPO``. Note that this assumes the user is using Unix. If running a Unix-like system on Windows, the command will look like ``scp <user>@<computation_address>:~/path/to/your/output.csv /c/Users/username/Path/On/Local/Computer``.
 
