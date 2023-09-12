@@ -241,7 +241,7 @@ hyperparams.json:
 Debugging
 _______
 
-While/after running HPO, there will be 'model.log' files which contain the important information regarding that model's run. They can be found at '<candle_data_dir>/<model_name>/Output/EXP<number>/run_<number>'. To debug, use a 'grep -r "ABORT"' in the experiment directory '<candle_data_dir>/<model_name>/Output/EXP<number>' to find which run file which is causing the error in your workflow, 'cd run_<number>' to navigate there, and 'cat model.log' to observe the abort and what error caused it. Observing the 'MODEL_CMD' (which tells the hyperparameters) and the 'IMPROVE_RESULT' (which tells the  evaluation of those hyperparameters) can also be helpful.
+While/after running HPO, there will be 'model.log' files which contain the important information regarding that model's run. They can be found at ``<candle_data_dir>/<model_name>/Output/EXP<number>/run_<number>``. To debug, use a 'grep -r "ABORT"' in the experiment directory ``<candle_data_dir>/<model_name>/Output/EXP<number>`` to find which run file which is causing the error in your workflow, ``cd run_<number>`` to navigate there, and ``cat model.log`` to observe the abort and what error caused it. Observing the 'MODEL_CMD' (which tells the hyperparameters) and the 'IMPROVE_RESULT' (which tells the  evaluation of those hyperparameters) can also be helpful.
 
 
 
