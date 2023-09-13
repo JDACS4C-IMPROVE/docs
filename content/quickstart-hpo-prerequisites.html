@@ -116,6 +116,20 @@ pip install numpy deap
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda install --yes -c conda-forge -c swift-t swift-t
 </pre></div>
 </div>
+<div class="section" id="shared-installations">
+<h3>Shared installations<a class="headerlink" href="#shared-installations" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">supervisor</span></code> tool supports shared installations.  For example, a site administrator can install all of the tools above in a public location.  The user should be able to run <code class="docutils literal notranslate"><span class="pre">supervisor</span></code> from a personal directory with all configuration files and output files there.</p>
+</div>
+<div class="section" id="setting-up-a-new-site">
+<h3>Setting up a new site<a class="headerlink" href="#setting-up-a-new-site" title="Permalink to this headline">¶</a></h3>
+<div class="line-block">
+<div class="line">On a simple Linux system, you will simply need to modify</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">Supervisor/workflows/common/sh/env-local.sh</span></code></div>
+<div class="line">to specify the software locations on your system.</div>
+</div>
+<p>For more complex systems, you will also need to provide scheduler settings in the <code class="docutils literal notranslate"><span class="pre">sched-SITE.sh</span></code> script.</p>
+<p>See the <a class="reference external" href="https://github.com/ECP-CANDLE/Supervisor/tree/develop/bin/#quickstart">supervisor tool doc</a> for more details about how to configure a site.</p>
+</div>
 </div>
 </div>
 
