@@ -41,7 +41,7 @@ _____________________
     cd Supervisor && export PATH=$PATH:$(pwd)/bin
     git checkout develop
     pip install numpy deap
-    
+
 
 
 
@@ -49,7 +49,7 @@ Installing swift-t
 _____________________
 
 You need to be in conda environment to proceed. If you aren’t sure: ::
- 
+
     # Same conda env than above
     # conda create --name IMPROVE python=3.9.16
     conda activate IMPROVE
