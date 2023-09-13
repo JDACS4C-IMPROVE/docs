@@ -13,7 +13,7 @@ Installing minimum dependencies to run examples below.
 
    quickstart-setup-basic-environment
 
-Building and deploying containerized models 
+Installing containerized models 
 ---------------------------------------
 
 .. toctree::
