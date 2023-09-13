@@ -8,10 +8,27 @@ Prerequisites HPO
 - `Supervisor <https://github.com/ECP-CANDLE/Supervisor>`_
 
 
-Installing git, conda and singularity
+Installing git and singularity
 _____________________________________
 
 Please refer to the documentation of the tools for install instructions.
+
+Installing conda
+_____________________________________
+
+To check if you have conda, use ``conda --version``.
+
+If you do not have conda installed, install with the following commands:
+
+.. code-block:: bash
+
+    wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+    chmod +x Miniconda3-latest-Linux-x86_64.sh
+    ./Miniconda3-latest-Linux-x86_64.sh
+    source ~/.bashrc
+
+Now, using the ``conda --version`` command should give the version you've downloaded. If not, close the terminal session and open again, then try ``conda --version``.
+
 
 Installing supervisor
 _____________________
@@ -21,9 +38,8 @@ _____________________
     conda create --name IMPROVE python=3.9.16
     conda activate IMPROVE
     git clone https://github.com/ECP-CANDLE/Supervisor.git
-    cd Supervisor && PATH=$PATH:$(pwd)/bin
+    cd Supervisor && export PATH=$PATH:$(pwd)/bin
     git checkout develop
-    export PATH=~/Supervisor/bin:$PATH
     pip install numpy deap
     
 
