@@ -59,7 +59,7 @@ Install swift-t via conda. For detailed instructions please refer to the `swift-
 .. code-block:: bash
 
     conda install --yes -c conda-forge -c swift-t swift-t
-    
+
 
 Shared installations
 --------------------
