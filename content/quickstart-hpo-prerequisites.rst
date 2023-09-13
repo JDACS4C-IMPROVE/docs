@@ -64,13 +64,15 @@ Install swift-t via conda. For detailed instructions please refer to the `swift-
 Shared installations
 --------------------
 
-The `supervisor` tool supports shared installations.  For example, a site administrator can install all of the tools above in a public location.  The user should be able to run `supervisor` from a personal directory with all configuration files and output files there.
+The ``supervisor`` tool supports shared installations.  For example, a site administrator can install all of the tools above in a public location.  The user should be able to run ``supervisor`` from a personal directory with all configuration files and output files there.
 
 Setting up a new site
 ---------------------
 
-On a simple Linux system, you will simply need to modify `Supervisor/workflows/common/sh/env-local.sh` to specify the software locations on your system.
+| On a simple Linux system, you will simply need to modify
+| ``Supervisor/workflows/common/sh/env-local.sh``
+| to specify the software locations on your system.
 
-For more complex systems, you will also need to provide scheduler settings in the `sched-SITE.sh` script.
+For more complex systems, you will also need to provide scheduler settings in the ``sched-SITE.sh`` script.
 
-See the `supervisor tool doc <https://github.com/ECP-CANDLE/Supervisor/tree/develop/bin/#quickstart>` for more details about how to configure a site.
+See the `supervisor tool doc <https://github.com/ECP-CANDLE/Supervisor/tree/develop/bin/#quickstart>`_ for more details about how to configure a site.
