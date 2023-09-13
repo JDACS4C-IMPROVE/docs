@@ -3,8 +3,8 @@ Quickstart Guides
 
 Short guides to various aspects of the IMPROVE project.
 
-Basic setup
------------
+Installing Supervisor and Swift-t
+---------------------------------
 
 Installing minimum dependencies to run examples below.
 
@@ -13,16 +13,14 @@ Installing minimum dependencies to run examples below.
 
    quickstart-setup-basic-environment
 
-Building and deploying supported models 
+Building and deploying containerized models 
 ---------------------------------------
 
 .. toctree::
     :maxdepth: 1
 
     quickstart-build-and-deploy-models
-    quickstart-singularity-prerequisites
-    quickstart-singularity-deploy
-    quickstart-singularity-build
+      quickstart-singularity-prerequisites
 
 
 Hyper Parameter optimisation with the *Supervisor*
@@ -31,7 +29,6 @@ Hyper Parameter optimisation with the *Supervisor*
 .. toctree::
    :maxdepth: 1
 
-   quickstart-hpo-prerequisites
    quickstart-hpo-experiment
 
 .. code-block:: bash
@@ -39,15 +36,6 @@ Hyper Parameter optimisation with the *Supervisor*
 
 
 
-
-Cross Study Analyis
--------------------
-
-.. toctree::
-   :maxdepth: 1
-
-   quickstart-csa-prerequisites
-   quickstart-csa-experiment
 
 Debugging
 ---------
