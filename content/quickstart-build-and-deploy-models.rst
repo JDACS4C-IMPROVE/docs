@@ -39,6 +39,10 @@ Build singularity images for IMPROVE models and deploy them to a shared location
 
 5. Every container has a standardized script for training a model called *train.sh* and a standard location (*/candle_data_dir*) for model input and output. To train a model you have to make your data directory available inside the container as */candle_data_dir*. ::
 
+            export IMPROVE_DATA_DIR=$HOME/improve_data_dir
+            export GPUID=0
+            export CONTAINER=GraphDRP.sif
+
             singularity exec --nv --bind ${IMPROVE_DATA_DIR}:/candle_data_dir ${CONTAINER} train.sh ${GPUID} /candle_data_dir
   
 With:
