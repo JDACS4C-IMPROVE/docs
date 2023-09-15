@@ -11,7 +11,7 @@ ____________
 - Build permissions with singularity, e.g. fakeroot  
 
 
-Goal
+Installation
 ____
 
 Build singularity images for IMPROVE models and deploy them to a shared location.
@@ -39,7 +39,7 @@ Build singularity images for IMPROVE models and deploy them to a shared location
 
 5. Every container has a standardized script for training a model called *train.sh* and a standard location (*/candle_data_dir*) for model input and output. To train a model you have to make your data directory available inside the container as */candle_data_dir*. ::
 
-            singularity exec --nv --bind ${IMPROVE_DATA_DIR}:/candle_data_dir ${CONTAINER} train.sh ${GPUID} 
+            singularity exec --nv --bind ${IMPROVE_DATA_DIR}:/candle_data_dir ${CONTAINER} train.sh ${GPUID} /candle_data_dir
   
 With:
 
