@@ -234,8 +234,8 @@ pip install numpy deap
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>supervisor <span class="si">${</span><span class="nv">location</span><span class="si">}</span> <span class="si">${</span><span class="nv">workflow</span><span class="si">}</span> <span class="si">${</span><span class="nv">config</span><span class="si">}</span>
 </pre></div>
 </div>
-<p>Running an HPO experiment on lambda. The model image is in <em>/software/improve/images/</em>. We will execute the command above with <strong>location</strong> set to <em>lambda</em> and <strong>workflow</strong> set to <em>GA</em>.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>supervisor lambda GA cfg-1.sh
+<p>Running an HPO experiment on lambda. The model image is in <em>/software/improve/images/</em>. We will execute the command above with <strong>location</strong> set to <em>conda</em> and <strong>workflow</strong> set to <em>GA</em>. This will use the defaults from your conda environment.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>supervisor conda GA cfg-1.sh
 </pre></div>
 </div>
 <p id="config-example">cfg-1.sh:</p>
