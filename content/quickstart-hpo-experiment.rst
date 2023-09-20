@@ -151,11 +151,11 @@ Then, run the command:
 
     supervisor ${location} ${workflow} ${config}
 
-Running an HPO experiment on lambda. The model image is in */software/improve/images/*. We will execute the command above with **location** set to *lambda* and **workflow** set to *GA*.
+Running an HPO experiment on lambda. The model image is in */software/improve/images/*. We will execute the command above with **location** set to *conda* and **workflow** set to *GA*. This will use the defaults from your conda environment.
 
 .. code-block:: bash
 
-    supervisor lambda GA cfg-1.sh
+    supervisor conda GA cfg-1.sh
 
 
 .. _Config Example:
