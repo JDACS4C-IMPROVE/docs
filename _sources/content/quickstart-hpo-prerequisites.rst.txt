@@ -67,6 +67,8 @@ If on a job-submitting computation system, it's important that the IMPROVE envir
     
     conda activate IMPROVE
 
+After this change, you will need to enter ``source ~/.bashrc`` again to update.
+
 
 Installing swift-t
 _____________________
