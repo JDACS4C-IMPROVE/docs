@@ -43,7 +43,7 @@ _____________________
     pip install numpy deap
 
 
-Environment for HPO
+Environment for Job Submitting
 _____________________
 
 If on a job-submitting computation system, it's important that the IMPROVE environment is activated for the job. This may require you to add the following line to your ``~/.bashrc`` file, which changes your default login environment: ``conda activate IMPROVE``. Here's an example of how your the end of your ``~/.bashrc`` file might look:
