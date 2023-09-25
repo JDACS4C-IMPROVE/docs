@@ -107,6 +107,28 @@ pip install numpy deap
 </pre></div>
 </div>
 </div>
+<div class="section" id="environment-for-hpo">
+<h2>Environment for HPO<a class="headerlink" href="#environment-for-hpo" title="Permalink to this headline">¶</a></h2>
+<p>If on a job-submitting computation system, it’s important that the IMPROVE environment is activated for the job. This may require you to add the following line to your <code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code> file, which changes your default login environment: <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">IMPROVE</span></code>. Here’s an example of how your the end of your <code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code> file might look:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># &gt;&gt;&gt; conda initialize &gt;&gt;&gt;</span>
+<span class="c1"># !! Contents within this block are managed by &#39;conda init&#39; !!</span>
+<span class="nv">__conda_setup</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span><span class="s1">&#39;/home/weaverr/miniconda3/bin/conda&#39;</span> <span class="s1">&#39;shell.bash&#39;</span> <span class="s1">&#39;hook&#39;</span> <span class="m">2</span>&gt; /dev/null<span class="k">)</span><span class="s2">&quot;</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> -eq <span class="m">0</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+    <span class="nb">eval</span> <span class="s2">&quot;</span><span class="nv">$__conda_setup</span><span class="s2">&quot;</span>
+<span class="k">else</span>
+    <span class="k">if</span> <span class="o">[</span> -f <span class="s2">&quot;/home/weaverr/miniconda3/etc/profile.d/conda.sh&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+        . <span class="s2">&quot;/home/weaverr/miniconda3/etc/profile.d/conda.sh&quot;</span>
+    <span class="k">else</span>
+        <span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;/home/weaverr/miniconda3/bin:</span><span class="nv">$PATH</span><span class="s2">&quot;</span>
+    <span class="k">fi</span>
+<span class="k">fi</span>
+<span class="nb">unset</span> __conda_setup
+<span class="c1"># &lt;&lt;&lt; conda initialize &lt;&lt;&lt;</span>
+
+conda activate IMPROVE
+</pre></div>
+</div>
+</div>
 <div class="section" id="installing-swift-t">
 <h2>Installing swift-t<a class="headerlink" href="#installing-swift-t" title="Permalink to this headline">¶</a></h2>
 <p>You need to be in conda environment to proceed. If you aren’t sure:</p>
