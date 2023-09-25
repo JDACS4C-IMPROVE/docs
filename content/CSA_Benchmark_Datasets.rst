@@ -5,7 +5,7 @@ The benchmark data for Cross-Study Analysis (CSA) include four kinds of data, wh
 
 
 
-.. figure:: /CSA_Benchmark_Data_Workflow.png
+.. figure:: ./CSA_Benchmark_Data_Workflow.png
    :class: with-border
 
 Flowchart illustrating the curation, processing, and assembly of benchmark data for the CSA model evaluation. Each block indicates one type of data with the data type name shown in the bold font followed by attribute names in the data table. These define a unified data schema that is applied across all five drug screening datasets.
