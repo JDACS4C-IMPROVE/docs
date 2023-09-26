@@ -127,7 +127,6 @@ Set up the environment; omit this step if already installed:
     git clone https://github.com/ECP-CANDLE/Supervisor.git
     git checkout develop
     cd Supervisor && PATH=$PATH:$(pwd)/bin
-    export PATH=~/Supervisor/bin:$PATH
 
     # swift-t
     conda install --yes -c conda-forge -c swift-t swift-t
@@ -151,11 +150,11 @@ Then, run the command:
 
     supervisor ${location} ${workflow} ${config}
 
-Running an HPO experiment on lambda. The model image is in */software/improve/images/*. We will execute the command above with **location** set to *lambda* and **workflow** set to *GA*.
+Running an HPO experiment on lambda. The model image is in */software/improve/images/*. We will execute the command above with **location** set to *conda* and **workflow** set to *GA*. This will use the defaults from your conda environment.
 
 .. code-block:: bash
 
-    supervisor lambda GA cfg-1.sh
+    supervisor conda GA cfg-1.sh
 
 
 .. _Config Example:
@@ -265,4 +264,4 @@ To analyze the HPO run, there are two recommended methods. The first provides a 
 
 (2) Secondly, the user could secure copy the output.csv file, then use google colab to show tables and plot. The secure copy command should be run in your terminal (not logged into Argonne's computation system) as the following: ``scp <user>@<computation_address>:~/path/to/your/output.csv \path\on\local\computer``. For example, as secure copy command could look like: ``scp weaverr@polaris.alcf.anl.gov:~/data_dir/DeepTTC-testing/Output/finished_EXP060/output.csv \Users\rylie\Argonne\HPO``. Note that this assumes the user is using Unix. If running a Unix-like system on Windows, the command will look like ``scp <user>@<computation_address>:~/path/to/your/output.csv /c/Users/username/Path/On/Local/Computer``.
 
-Once the file is secure copied to your local computer, it can be loaded into and used in google colab. A generalizable, plug-and-play colab file is being made for easy use. Until then, this example file can be copied and altered: https://colab.research.google.com/drive/1zhn6aiwaFluAQ0CT_2VkNliOs0u0r-N1?usp=sharing
+Once the file is secure copied to your local computer, it can be loaded into and used in google colab. A generalizable, plug-and-play colab file is being made for easy use. Simply make a copy and follow the instructions: https://colab.research.google.com/drive/1Us5S9Ty7qGtibT5TcwM9rTE7EIA9V33t?usp=sharing
