@@ -1,0 +1,65 @@
+### PREPARING THE NEW RELEASE
+
+
+## Create a new release branch from the develop branch
+git clone https://github.com/ECP-CANDLE/Benchmarks
+cd Benchmarks
+git checkout develop
+git checkout -b release_05
+git push --set-upstream origin release_05
+
+
+## Prune any unwanted release artificates from the release_05 branch
+git checkout release_05
+git diff --name-status release_05..master
+
+# To see what is in release_05 that is not in master
+git diff --name-status master..release_05 | grep -e ^A
+
+# To see what is in master that is not in release_05
+git diff --name-status master..release_05 | grep -e ^D
+
+
+### CUTTING THE NEW RELEASE
+
+
+# Create an empty directory to construct the release.
+mkdir RELEASES
+cd RELEASES
+
+# Get a clean copy of the repository.
+git clone https://brettin@github.com/ECP-CANDLE/Benchmarks
+cd Benchmarks
+
+# Make sure you are on the master branch.
+git checkout master
+
+# Merge the release_05 branch into master.
+git merge origin/release_05
+
+# Resolve any conflicts.
+
+# Finish the merge
+git commit -m"merge release_05 branch into master branch"
+
+# Tag the new release, first look at existing tags
+git tag
+
+# Then create an annotated tag using v0.0 nomenclature
+git tag -a v0.5 -m"CANDLE release v0.5"
+
+# Push the new master to github
+git push
+
+# Push the tag (tags to do not push automatically.
+git push origin v0.5
+
+# Create a new release at the github web site.
+#  1. Navigate to releases page.
+#  2. Click "Draft a new release" button.
+#  3. Enter the tag v0.5 in the tags box.
+#  4. Enter Benchmarks 0.5 in the release title box.
+#  5. Enter text into the text box.
+# This release marks the CANDLE v0.5 prepared for the May 2022 milestone CANDLE v0.5 This release represents the current state of the master branch of the Benchmarks repository as of May 31, 2022.
+
+#   6. Click "Publish release" button.
