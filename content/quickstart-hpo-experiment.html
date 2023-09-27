@@ -97,7 +97,7 @@
 <h1>Hyper Parameter Optimization (HPO)<a class="headerlink" href="#hyper-parameter-optimization-hpo" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="requirements">
 <h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
-<p>Your model must be CANDLE compliant, containerized, and packaged in a singularity image. You can identify the image file by the <strong>*.sif</strong> suffix. Default definition files can be found in the <a class="reference external" href="https://github.com/JDACS4C-IMPROVE/Singularity">IMPROVE Singularity repository</a>. Follow the <a href="#id3"><span class="problematic" id="id4">`install instructions&lt;quickstart-build-and-deploy-models&gt;`_</span></a> to deploy curated default models. Instructions on preliminary commands to build containers on Polaris can be found here: <a class="reference external" href="https://docs.alcf.anl.gov/polaris/data-science-workflows/containers/containers/">https://docs.alcf.anl.gov/polaris/data-science-workflows/containers/containers/</a>. It’s recommended that the container exposes the following interface scripts, but the train.sh is the only necessary script:</p>
+<p>Your model must be CANDLE compliant, containerized, and packaged in a singularity image. You can identify the image file by the <strong>*.sif</strong> suffix. Default definition files can be found in the <a class="reference external" href="https://github.com/JDACS4C-IMPROVE/Singularity">IMPROVE Singularity repository</a>. Follow the <a class="reference internal" href="quickstart-build-and-deploy-models.html"><span class="doc">install instruction</span></a> to deploy curated default models. The container should expose the following interface scripts:</p>
 <ul class="simple">
 <li><p>preprocess.sh</p></li>
 <li><p>train.sh</p></li>
@@ -128,7 +128,7 @@
 
 <span class="nb">export</span> <span class="nv">CANDLE_MODEL_TYPE</span><span class="o">=</span><span class="s2">&quot;SINGULARITY&quot;</span>
 <span class="nb">export</span> <span class="nv">MODEL_NAME</span><span class="o">=</span><span class="si">${</span><span class="p">/PATH/TO/SINGULARITY/IMAGE/FILE.sif</span><span class="si">}</span>
-<span class="nb">export</span> <span class="nv">PARAM_SET_FILE</span><span class="o">=</span><span class="si">${</span><span class="p">/PATH/TO/GA/PARAMETER/FILE.json</span><span class="si">}</span>
+<span class="nb">export</span> <span class="nv">PARAM_SET_FILE</span><span class="o">=</span><span class="si">${</span><span class="p">/PATH/TO/GA/PARAMETER/FILE.json</span><span class="si">}</span> <span class="c1">#e.g hyperparams.json</span>
 </pre></div>
 </div>
 </li>
