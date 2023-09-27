@@ -41,7 +41,7 @@ Build singularity images for IMPROVE models and deploy them to a shared location
 
             export IMPROVE_DATA_DIR=$HOME/improve_data_dir
             export GPUID=0
-            export CONTAINER=GraphDRP.sif
+            export CONTAINER=images/GraphDRP.sif
 
             singularity exec --nv --bind ${IMPROVE_DATA_DIR}:/candle_data_dir ${CONTAINER} train.sh ${GPUID} /candle_data_dir
   
