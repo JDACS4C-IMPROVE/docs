@@ -4,7 +4,7 @@ Hyper Parameter Optimization (HPO)
 Requirements
 ____________
 
-Your model must be CANDLE compliant, containerized, and packaged in a singularity image. You can identify the image file by the **\*.sif** suffix. Default definition files can be found in the `IMPROVE Singularity repository <https://github.com/JDACS4C-IMPROVE/Singularity>`_. Follow the `install instructions<quickstart-build-and-deploy-models>`_ to deploy curated default models. The container should expose the following interface scripts:
+Your model must be CANDLE compliant, containerized, and packaged in a singularity image. You can identify the image file by the **\*.sif** suffix. Default definition files can be found in the `IMPROVE Singularity repository <https://github.com/JDACS4C-IMPROVE/Singularity>`_. Follow the :doc:`install instruction <quickstart-build-and-deploy-models>` to deploy curated default models. The container should expose the following interface scripts:
 
 + preprocess.sh
 + train.sh
@@ -39,7 +39,7 @@ A directory with copy-and-customize config files can be found at <https://github
     
     export CANDLE_MODEL_TYPE="SINGULARITY"
     export MODEL_NAME=${/PATH/TO/SINGULARITY/IMAGE/FILE.sif}
-    export PARAM_SET_FILE=${/PATH/TO/GA/PARAMETER/FILE.json}
+    export PARAM_SET_FILE=${/PATH/TO/GA/PARAMETER/FILE.json} #e.g hyperparams.json
 
 3. Create config file *cfg-my-settings.sh*:
 
