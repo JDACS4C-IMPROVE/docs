@@ -1,6 +1,6 @@
 Installing ECP-CANDLE/Supervisor and Swift/T
 =================================
-This quickstart guide is intended to help you install ECP-CANDLE/Supervisor and Swift/T within a conda environment. 
+This quickstart guide is intended to help you install ECP-CANDLE/Supervisor and Swift/T within a conda environment.
 
 Requirements
 ______________
@@ -20,7 +20,7 @@ _____________________
     conda create --name IMPROVE python=3.9.16
     conda activate IMPROVE
 
-2. Setup **Supervisor** from GitHub and add executables to your search path. 
+2. Setup **Supervisor** from GitHub and add executables to your search path.
 
 .. code-block:: bash
 

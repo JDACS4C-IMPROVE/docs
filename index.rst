@@ -10,28 +10,9 @@ Welcome to IMPROVE's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-   content/whatis
-   content/install
+
    content/quickstart
-   content/models
-   content/curating_introduction
-   content/curating
-   content/candle_1
-   content/candle_2
-   content/git-branch-tag-names
-   content/using-candle-data-dir
-   content/running-containers
-   content/building-containers
-   content/deploying-containers
-   content/add_model
-   content/drp_overview
-   content/model_curation
-   content/curated_models
-   content/comparators
-   content/benchmarks
    content/acknowledgment
-   content/chia_touch
-   content/demo_hi
 
 Access the code base https://github.com/JDACS4C-IMPROVE/
 

@@ -18,8 +18,8 @@ _____
 1. Install prerequisites
 2. :ref:`Create config files <Config Overview>` for experiment. 
 3. :ref:`Run <Run>` HPO with supervisor::
-
-    supervisor ${location} ${workflow} ${config}
+        supervisor ${location} ${workflow} ${config}
+4. :ref:`Analysis <Analysis>`
 
 
 .. _Config Overview:
@@ -109,7 +109,7 @@ More information on Polaris job submitting (nodes, walltime, queue, etc...) can 
         
         ]
 
-Make sure to set the hyperparameter space to what you desire. The upper and lower describe the bounds of the hyperparameter. Higher sigma causes more extensive mutations in the genetic algorithm. More about the hyperparameter file can be found in the (hyperparameter configuration file)[https://github.com/ECP-CANDLE/Supervisor/blob/develop/workflows/GA/README.md]
+Make sure to set the hyperparameter space to what you desire. The upper and lower describe the bounds of the hyperparameter. Higher sigma causes more extensive mutations in the genetic algorithm. More about the hyperparameter file can be found here: https://github.com/ECP-CANDLE/Supervisor/blob/develop/workflows/GA/README.md
 
 
 Supervisor setup
@@ -127,7 +127,6 @@ Set up the environment; omit this step if already installed:
     git clone https://github.com/ECP-CANDLE/Supervisor.git
     git checkout develop
     cd Supervisor && PATH=$PATH:$(pwd)/bin
-    export PATH=~/Supervisor/bin:$PATH
 
     # swift-t
     conda install --yes -c conda-forge -c swift-t swift-t
@@ -135,8 +134,6 @@ Set up the environment; omit this step if already installed:
     pip install numpy deap
      
     
-    
-.. _Run:
 
 Example
 _______
@@ -153,11 +150,11 @@ Then, run the command:
 
     supervisor ${location} ${workflow} ${config}
 
-Running an HPO experiment on lambda. The model image is in */software/improve/images/*. We will execute the command above with **location** set to *lambda* and **workflow** set to *GA*.
+Running an HPO experiment on lambda. The model image is in */software/improve/images/*. We will execute the command above with **location** set to *conda* and **workflow** set to *GA*. This will use the defaults from your conda environment.
 
 .. code-block:: bash
 
-    supervisor lambda GA cfg-1.sh
+    supervisor conda GA cfg-1.sh
 
 
 .. _Config Example:
@@ -236,19 +233,35 @@ hyperparams.json:
 
 
 
-.. _Run:
+Debugging
+_______
+
+While/after running HPO, there will be ``model.log`` files which contain the important information regarding that model's run. They can be found at ``<candle_data_dir>/<model_name>/Output/EXP<number>/run_<number>``. To debug, use a ``grep -r "ABORT"`` in the experiment directory ``<candle_data_dir>/<model_name>/Output/EXP<number>`` to find which run file which is causing the error in your workflow, ``cd run_<number>`` to navigate there, and ``cat model.log`` to observe the abort and what error caused it. Observing the ``MODEL_CMD`` (which tells the hyperparameters) and the ``IMPROVE_RESULT`` (which tells the  evaluation of those hyperparameters) can also be helpful.
+
+
 
 Results
 _______
 
-After running HPO, there will be the turbine output and experiment directories. The 'turbine_output' directory is found in the same directory as the config files and contains a 'final_result_<number>' file which puts the HPO results in a table. The experiment directory is found at '<candle_data_dir>/<model_name>/Output/EXP<number>' and contains all the run directories. In each run directory, there is the 'model.log' file which contains the 'MODEL_CMD' (which tells the hyperparameters) and the 'IMPROVE_RESULT' (which tells the  evaluation of those hyperparameters). There is also the result.txt which stores 'IMPROVE_RESULT' for that run.
+After running HPO, there will be the turbine output and experiment directories. The ``turbine_output`` directory is found in the same directory as the config files and contains a ``final_result_<number>`` file which puts the HPO results in a table. The experiment directory is found at ``<candle_data_dir>/<model_name>/Output/EXP<number>`` and contains the ``output.csv`` file which has ALL the hpo parameters and results automatically parsed. The experiment directory also contains the hyperparams.json file you used to help remember the hyperparameter space you explored.
 
 
 
-.. _Run:
+.. _Analysis:
 
-Debugging
+Analysis
 _______
 
-After running HPO, there will be 'model.log' files which contain the important information regarding that model's run. They can be found at '<candle_data_dir>/<model_name>/Output/EXP<number>/run_<number>'. To debug, use a 'grep -r "ABORT"' in the experiment directory '<candle_data_dir>/<model_name>/Output/EXP<number>' to find whcih run file which is causing the error in your workflow, 'cd run_<number>' to navigate there, and 'cat model.log' to observe the abort and what error caused it.
+To analyze the HPO run, there are two recommended methods. The first provides a ranking of hyperparameter choices. The second provides a ranking and visualization:
 
+(1) Firstly, the user could run the following commands in the experiment directory. The user is required to define the number of hyperparameters. In the example hyperparams.json file given, this would be 3 (learning_rate, batch_size, epochs). The sorted, unique choices of hyperparameters are put into a new ``sorted_unique_output.csv`` file.
+
+.. code-block:: bash
+
+    num_hyperparams=3
+    num_columns=$((num_hyperparams + 1))
+    (head -n 1 output.csv && tail -n +2 output.csv | sort -t, -k$num_columns -n | uniq) > sorted_unique_output.csv
+
+(2) Secondly, the user could secure copy the output.csv file, then use google colab to show tables and plot. The secure copy command should be run in your terminal (not logged into Argonne's computation system) as the following: ``scp <user>@<computation_address>:~/path/to/your/output.csv \path\on\local\computer``. For example, as secure copy command could look like: ``scp weaverr@polaris.alcf.anl.gov:~/data_dir/DeepTTC-testing/Output/finished_EXP060/output.csv \Users\rylie\Argonne\HPO``. Note that this assumes the user is using Unix. If running a Unix-like system on Windows, the command will look like ``scp <user>@<computation_address>:~/path/to/your/output.csv /c/Users/username/Path/On/Local/Computer``.
+
+Once the file is secure copied to your local computer, it can be loaded into and used in google colab. A generalizable, plug-and-play colab file is being made for easy use. Simply make a copy and follow the instructions: https://colab.research.google.com/drive/1Us5S9Ty7qGtibT5TcwM9rTE7EIA9V33t?usp=sharing
