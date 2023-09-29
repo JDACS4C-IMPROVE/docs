@@ -16,4 +16,4 @@ Welcome to IMPROVE's documentation!
 
 Access the code base https://github.com/JDACS4C-IMPROVE/
 
-The docs are live here: https://jdacs4c-improve.github.io/docs
+
