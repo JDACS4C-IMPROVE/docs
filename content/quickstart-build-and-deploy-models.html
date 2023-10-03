@@ -134,7 +134,7 @@
 <li><p>Every container has a standardized script for training a model called <em>train.sh</em> and a standard location (<em>/candle_data_dir</em>) for model input and output. To train a model you have to make your data directory available inside the container as <em>/candle_data_dir</em>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>export IMPROVE_DATA_DIR=$HOME/improve_data_dir
 export GPUID=0
-export CONTAINER=GraphDRP.sif
+export CONTAINER=images/GraphDRP.sif
 
 singularity exec --nv --bind ${IMPROVE_DATA_DIR}:/candle_data_dir ${CONTAINER} train.sh ${GPUID} /candle_data_dir
 </pre></div>
