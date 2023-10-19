@@ -56,3 +56,7 @@ make html
 ```
 
 5. The process will create a directory called *_build* within your docs repository. Open the index.html file located inside the *_build* directory with your browser.
+
+## RST formatting
+
+We use long lines for flowing text and manually-wrapped lines in indented lists.
