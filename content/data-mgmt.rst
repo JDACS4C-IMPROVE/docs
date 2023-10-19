@@ -57,7 +57,7 @@ All inputs must be loaded from ``input_dir`` and outputs should be stored in a
 flat format under ``output_dir``.
 
 Example
-~~~~~~~
+^^^^^^^
 
 Example of model with ``input_dir`` and ``output_dir``.
 
