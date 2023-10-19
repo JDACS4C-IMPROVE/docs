@@ -18,7 +18,7 @@
 # -- Project information -----------------------------------------------------
 
 project = 'IMPROVE'
-copyright = '2022, IMPROVE Team'
+copyright = '2023, IMPROVE Team'
 author = 'IMPROVE Team'
 
 # The full version, including alpha/beta/rc tags
