@@ -1,79 +1,73 @@
-Tutorial CANDLE_DATA_DIR
-==========
+Data Management
+===============
 
-Basically, CANDLE_DATA_DIR and datadir are different ways to define the base
-directory (and end up internally stored as datadir), cache_subdir is a way to
-define a subdirectory to put the data downloaded by get_file.
+This documentation on data management covers the IMPROVE techniques for handling input and output data for single model runs and for workflows via CANDLE/Supervisor.
 
-We can assume that CANDLE_DATA_DIR is an environment variable that contains a path
-to the data directory. In the example below, I set it manually inside the code so
-that the get_file function can be demonstrated.
+Controls
+--------
 
-.. code-block:: python
+The user controls on data locations are listed here.
 
-  import candle
-  import os
+The minimal use case is to set none of these parameters.  In this case, all inputs and outputs will be stored under ``$PWD``.  The settings below modify this behavior.
 
-  # Assumes CANDLE_DATA_DIR is an environment variable
-  os.environ['CANDLE_DATA_DIR'] = '/tmp/data_dir'
+Hyperparameter ``input_dir``
+  The top-level directory for input.  In an IMPROVE model, all input data
+  must be placed in this directory.  If unset, defaults to ``$PWD``.
 
-  fname='raw_data.tar.gz'
-  origin='ftp://ftp.mcs.anl.gov/pub/candle/public/improve/hidra/raw_data.tar.gz'
+Hyperparameter ``output_dir``
+  The top-level directory for output.  In an IMPROVE model,
+  all output data must be placed in this directory.
+  If unset, defaults to ``input_dir``.
 
-  # Download and unpack the data in CANDLE_DATA_DIR
-  candle.file_utils.get_file(fname, origin)
+Environment variable ``$IMPROVE_DATA_DIR``
+  This assigns to ``input_dir``.
 
-  # Do it again to confirm it's not re-downloading
-  candle.file_utils.get_file(fname, origin)
+Environment variable ``$IMPROVE_OUTPUT_DIR``
+  This assigns to ``output_dir``.
 
-Generally, the input data is specified on the command line. For our purposes, it
-needs to be set in the default_model.txt config file. The relevant CANDLE params
-are:
+Environment variable ``$CANDLE_DATA_DIR``
+  Deprecated but supported alias for ``$IMPROVE_DATA_DIR``.
 
-.. code-block::
+Environment variable ``$IMPROVE_OUTPUT_DIR``
+  Deprecated but supported alias for ``$IMPROVE_OUTPUT_DIR``.
 
-  [--train_data TRAIN_DATA]
-  [--val_data VAL_DATA]
-  [--test_data TEST_DATA]
-  [--output_dir OUTPUT_DIR]
-  [--data_url DATA_URL]
+Checkpointing
+-------------
 
-So the above code block for input data could look something like the following when using
-the CANDLE initialize_parameters() method.
+Checkpoints are written to ``output_dir/ckpts`` by default, see
+the
+`ckpt module docs <https://candle-lib.readthedocs.io/en/latest/api_ckpt_utils>`_ .
 
-So, if your <modelname>_default_model.txt contains
+Supervisor workflows
+--------------------
 
-.. code-block:: yaml
+CANDLE/Supervisor respects ``$IMPROVE_DATA_DIR`` and ``$IMPROVE_OUTPUT_DIR``.
+Models run within workflows should not set ``output_dir``,
+as Supervisor will set this on a per-run basis so that different runs
+have different output directories.
 
-  data_url='ftp://ftp.mcs.anl.gov/pub/candle/public/improve/tCNNS/'
-  train_data='tCNNS_preprocessed_data.tar.gz'
+Different workflows set ``output_dir`` differently,
+see the per-workflow documentation.
 
-Then your data management code in the model could loook like this:
+Tips for model developers
+-------------------------
 
-.. code-block:: python
+Models must respect hyperparameters ``input_dir`` and ``output_dir``.
+All inputs must be loaded from ``input_dir`` and outputs should be stored in a
+flat format under ``output_dir``.
 
-  import candle
-  import os
+Example
+~~~~~~~
 
-  # Assumes CANDLE_DATA_DIR is an environment variable
-  os.environ['CANDLE_DATA_DIR'] = '/tmp/data_dir'
+Example of model with ``input_dir`` and ``output_dir``.
 
-  #gParameters = candle.intialize_parameters()
+Responsibilities of candle_lib
+------------------------------
 
-  data_url=gParameters['data_url']
-  data_url=data_url+'/' if not data_url.endswith('/')
+candle_lib is responsible for:
 
-  train_data = gParameters['train_data']
-  #val_data = gParameters['val_data']
-  #test_data = gParameters['test_data']
+* Handling the translation from environment variables to hyperparameters
+  specified above.
+* Setting defaults as specified above.
 
-  # Download and unpack the data in CANDLE_DATA_DIR
-  candle.file_utils.get_file(train_data, data_url + train_data)
-  candle.file_utils.get_file(val_data, data_url + val_data)
-  candle.file_utils.get_file(test_data, data_url + test_data)
-
-
-  # Do it again to confirm it's not re-downloading
-  candle.file_utils.get_file(train_data, data_url + train_data)
-  candle.file_utils.get_file(val_data, data_url + val_data)
-  candle.file_utils.get_file(test_data, data_url + test_data)
+This is done in ``candle.finalize_parameters()``.
