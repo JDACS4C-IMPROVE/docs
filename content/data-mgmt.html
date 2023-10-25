@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Management &mdash; IMPROVE 0.1 documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Acknowledgments" href="acknowledgment.html" />
+    <link rel="prev" title="Developer Guide" href="developer.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            IMPROVE
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart Guides</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="developer.html">Developer Guide</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="developer.html#data-management">Data Management</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Data Management</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#controls">Controls</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#checkpointing">Checkpointing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#supervisor-workflows">Supervisor workflows</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tips-for-model-developers">Tips for model developers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#responsibilities-of-candle-lib">Responsibilities of candle_lib</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="acknowledgment.html">Acknowledgments</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">IMPROVE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="developer.html">Developer Guide</a></li>
+      <li class="breadcrumb-item active">Data Management</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/content/data-mgmt.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="data-management">
+<h1>Data Management<a class="headerlink" href="#data-management" title="Permalink to this headline">¶</a></h1>
+<p>This documentation on data management covers the IMPROVE techniques for handling input and output data for single model runs and for workflows via CANDLE/Supervisor.</p>
+<div class="section" id="controls">
+<h2>Controls<a class="headerlink" href="#controls" title="Permalink to this headline">¶</a></h2>
+<p>The user controls on data locations are listed here.</p>
+<p>The minimal use case is to set none of these parameters.  In this case, all inputs and outputs will be stored under <code class="docutils literal notranslate"><span class="pre">$PWD</span></code>.  The settings below modify this behavior.</p>
+<dl class="simple">
+<dt>Hyperparameter <code class="docutils literal notranslate"><span class="pre">input_dir</span></code></dt><dd><p>The top-level directory for input.  In an IMPROVE model, all input data
+must be placed in this directory.  If unset, defaults to <code class="docutils literal notranslate"><span class="pre">$PWD</span></code>.</p>
+</dd>
+<dt>Hyperparameter <code class="docutils literal notranslate"><span class="pre">output_dir</span></code></dt><dd><p>The top-level directory for output.  In an IMPROVE model,
+all output data must be placed in this directory.
+If unset, defaults to <code class="docutils literal notranslate"><span class="pre">input_dir</span></code>.</p>
+</dd>
+<dt>Environment variable <code class="docutils literal notranslate"><span class="pre">$IMPROVE_DATA_DIR</span></code></dt><dd><p>This assigns to <code class="docutils literal notranslate"><span class="pre">input_dir</span></code>.</p>
+</dd>
+<dt>Environment variable <code class="docutils literal notranslate"><span class="pre">$IMPROVE_OUTPUT_DIR</span></code></dt><dd><p>This assigns to <code class="docutils literal notranslate"><span class="pre">output_dir</span></code>.</p>
+</dd>
+<dt>Environment variable <code class="docutils literal notranslate"><span class="pre">$CANDLE_DATA_DIR</span></code></dt><dd><p>Deprecated but supported alias for <code class="docutils literal notranslate"><span class="pre">$IMPROVE_DATA_DIR</span></code>.</p>
+</dd>
+<dt>Environment variable <code class="docutils literal notranslate"><span class="pre">$IMPROVE_OUTPUT_DIR</span></code></dt><dd><p>Deprecated but supported alias for <code class="docutils literal notranslate"><span class="pre">$IMPROVE_OUTPUT_DIR</span></code>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="checkpointing">
+<h2>Checkpointing<a class="headerlink" href="#checkpointing" title="Permalink to this headline">¶</a></h2>
+<p>Checkpoints are written to <code class="docutils literal notranslate"><span class="pre">output_dir/ckpts</span></code> by default, see
+the
+<a class="reference external" href="https://candle-lib.readthedocs.io/en/latest/api_ckpt_utils">ckpt module docs</a> .</p>
+</div>
+<div class="section" id="supervisor-workflows">
+<h2>Supervisor workflows<a class="headerlink" href="#supervisor-workflows" title="Permalink to this headline">¶</a></h2>
+<p>CANDLE/Supervisor respects <code class="docutils literal notranslate"><span class="pre">$IMPROVE_DATA_DIR</span></code> and <code class="docutils literal notranslate"><span class="pre">$IMPROVE_OUTPUT_DIR</span></code>.
+Models run within workflows should not set <code class="docutils literal notranslate"><span class="pre">output_dir</span></code>,
+as Supervisor will set this on a per-run basis so that different runs
+have different output directories.</p>
+<p>Different workflows set <code class="docutils literal notranslate"><span class="pre">output_dir</span></code> differently,
+see the per-workflow documentation.</p>
+</div>
+<div class="section" id="tips-for-model-developers">
+<h2>Tips for model developers<a class="headerlink" href="#tips-for-model-developers" title="Permalink to this headline">¶</a></h2>
+<p>Models must respect hyperparameters <code class="docutils literal notranslate"><span class="pre">input_dir</span></code> and <code class="docutils literal notranslate"><span class="pre">output_dir</span></code>.
+All inputs must be loaded from <code class="docutils literal notranslate"><span class="pre">input_dir</span></code> and outputs should be stored in a
+flat format under <code class="docutils literal notranslate"><span class="pre">output_dir</span></code>.</p>
+<div class="section" id="example">
+<h3>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
+<p>Example of model with <code class="docutils literal notranslate"><span class="pre">input_dir</span></code> and <code class="docutils literal notranslate"><span class="pre">output_dir</span></code>.</p>
+</div>
+</div>
+<div class="section" id="responsibilities-of-candle-lib">
+<h2>Responsibilities of candle_lib<a class="headerlink" href="#responsibilities-of-candle-lib" title="Permalink to this headline">¶</a></h2>
+<p>candle_lib is responsible for:</p>
+<ul class="simple">
+<li><p>Handling the translation from environment variables to hyperparameters
+specified above.</p></li>
+<li><p>Setting defaults as specified above.</p></li>
+</ul>
+<p>This is done in <code class="docutils literal notranslate"><span class="pre">candle.finalize_parameters()</span></code>.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="developer.html" class="btn btn-neutral float-left" title="Developer Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="acknowledgment.html" class="btn btn-neutral float-right" title="Acknowledgments" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, IMPROVE Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
