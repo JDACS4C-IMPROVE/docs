@@ -1,9 +1,10 @@
 ---
-name: Ducumentation issue template
-about: Describe this issue template's purpose here.
+name: Ducumentation issue
+about: Describe new features or bugs
 title: ''
 labels: documentation
 assignees: ''
+project: 'Current Issues'
 
 ---
 
