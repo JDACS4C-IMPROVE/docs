@@ -1,10 +1,9 @@
 ---
-name: Ducumentation issue
+name: Documentation
 about: Describe new features or bugs
 title: ''
 labels: documentation
 assignees: ''
-project: 'Current Issues'
 
 ---
 
