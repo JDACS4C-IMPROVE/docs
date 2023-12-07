@@ -13,6 +13,7 @@ Welcome to IMPROVE's documentation!
    content/whatis
    content/quickstart
    content/developer
+   content/unified_interface
    content/acknowledgment
 
 Access the code base https://github.com/JDACS4C-IMPROVE/
