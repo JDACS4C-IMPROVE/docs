@@ -10,7 +10,7 @@ Welcome to IMPROVE's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-
+   content/whatis
    content/quickstart
    content/developer
    content/acknowledgment
