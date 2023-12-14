@@ -14,6 +14,7 @@ Welcome to IMPROVE's documentation!
    content/quickstart
    content/developer
    content/unified_interface
+   content/applications
    content/benchmarks
    content/acknowledgment
 
