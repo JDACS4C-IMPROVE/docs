@@ -1,22 +1,24 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>tCNNS &mdash; IMPROVE 0.1 documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+  <title>tCNNS &mdash; IMPROVE 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script src="../_static/clipboard.min.js"></script>
-        <script src="../_static/copybutton.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=f281be69"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" /> 
@@ -41,10 +43,14 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="whatis.html">What is the IMPROVE project?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart Guides</a></li>
 <li class="toctree-l1"><a class="reference internal" href="developer.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unified_interface.html">Unified Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="applications.html">Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="benchmarks.html">Benchmarks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="acknowledgment.html">Acknowledgments</a></li>
 </ul>
 
@@ -72,27 +78,27 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="tcnns">
-<h1>tCNNS<a class="headerlink" href="#tcnns" title="Permalink to this headline">¶</a></h1>
+  <section id="tcnns">
+<h1>tCNNS<a class="headerlink" href="#tcnns" title="Permalink to this heading">¶</a></h1>
 <p>Twin convolutional neural network for drugs in SMILES format.</p>
-<div class="section" id="structure">
-<h2>Structure<a class="headerlink" href="#structure" title="Permalink to this headline">¶</a></h2>
+<section id="structure">
+<h2>Structure<a class="headerlink" href="#structure" title="Permalink to this heading">¶</a></h2>
 <p>tCNNS consists of two 1D convolutional neural network (CNN) branches for distilling the features for drugs and cell lines separately. For the cell-line branch, the input data are 1D feature vectors of 735 genetic features related to mutation state or copy number alteration.
 For the drug branch, the input data are one-hot matrices (28 unique symbols x 188 positions) for each drug where a value of 1 at row i and column j means that the ith symbol appears at jth position in the SMILES format for that drug. The structures for the two branches are the same. For each branch, there are three similar layers: each layer with convolution width 7, convolution stride 1, max pooling width 3, and pooling stride 3. The only difference between the layers is that their number of channels are 40, 80 and 60, respectively. After the two branches of the CNN, there is a fully connected network (FCN), which aims to do the regression analysis between the output of the two branches and the IC50 values. There are three hidden layers in the FCN, each with 1024 neurons. The dropout probability is set to be 0.5 for the FCN during the training phase.</p>
-</div>
-<div class="section" id="data">
-<h2>Data<a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="data-sources">
-<h3>Data sources<a class="headerlink" href="#data-sources" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="data">
+<h2>Data<a class="headerlink" href="#data" title="Permalink to this heading">¶</a></h2>
+<section id="data-sources">
+<h3>Data sources<a class="headerlink" href="#data-sources" title="Permalink to this heading">¶</a></h3>
 <p>The primary data sources that have been used to construct datasets for model training and testing (i.e., ML data) include:</p>
 <ul class="simple">
 <li><p>GDSC version 6.0 - cell line and drug IDs, treatment response, cell line omics data</p></li>
 <li><p>PubChem - drug SMILES</p></li>
 <li><p>Library of the Integrated Network-based Cellular Signatures (LINCS) - drug SMILES</p></li>
 </ul>
-</div>
-<div class="section" id="raw-data">
-<h3>Raw data<a class="headerlink" href="#raw-data" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="raw-data">
+<h3>Raw data<a class="headerlink" href="#raw-data" title="Permalink to this heading">¶</a></h3>
 <p>The raw data is downloaded from GDSC website (version 6.0) and refers here to three types of data:</p>
 <ol class="arabic simple">
 <li><p>Dose-independent drug response values. <cite>PANCANCER_IC.csv</cite>: drug and cell IDs, IC50 values and other metadata (223 drugs and 948 cell lines).</p></li>
@@ -100,9 +106,9 @@ For the drug branch, the input data are one-hot matrices (28 unique symbols x 18
 <li><p>Drug information. <cite>drug_smiles.csv</cite>: SMILES strings of drug molecules. The canonical SMILES were retrieved from PubChem using CIDs (<cite>Druglist.csv</cite>) or from LINCS if not available in PubChem. The script <cite>preprocess.py</cite> provides functions to generate this file.</p></li>
 </ol>
 <p>The raw data is available in <a class="reference external" href="https://ftp.mcs.anl.gov/pub/candle/public/improve/model_curation_data/tCNNS/tcnns_data.tar.gz">this FTP location</a>.</p>
-</div>
-<div class="section" id="ml-data">
-<h3>ML data<a class="headerlink" href="#ml-data" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="ml-data">
+<h3>ML data<a class="headerlink" href="#ml-data" title="Permalink to this heading">¶</a></h3>
 <p>The script <a class="reference external" href="https://github.com/JDACS4C-IMPROVE/tCNNS-Project/blob/develop/preprocess.py">preprocess.py</a> uses raw data to generate ML data that can be used to train and test with tCNNS. The necessary raw data are automatically downloaded from the FTP server using the <cite>candle_lib</cite> utility function <cite>get_file()</cite> and processed.</p>
 <p>The ML data files are available in <a class="reference external" href="https://ftp.mcs.anl.gov/pub/candle/public/improve/model_curation_data/tCNNS/tcnns_data_processed.tar.gz">this FTP location</a>. These files can be automatically downloaded from the FTP server using the <cite>candle_lib</cite> utility function <cite>get_file()</cite>.</p>
 <ul class="simple">
@@ -110,10 +116,10 @@ For the drug branch, the input data are one-hot matrices (28 unique symbols x 18
 <li><p><strong>Cancer features</strong>. 735 binary features, including mutations and copy number alterations, are not modified.</p></li>
 <li><p><strong>Drug features</strong>. SMILES string of each drug is converted into a 28 by 188 one-hot matrix where a value 1 at row i and column j means that the ith symbol appears at jth position in the SMILES string.</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="evaluation">
-<h2>Evaluation<a class="headerlink" href="#evaluation" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="evaluation">
+<h2>Evaluation<a class="headerlink" href="#evaluation" title="Permalink to this heading">¶</a></h2>
 <p>Several evaluation schemes were used for the analysis of prediction performance.</p>
 <ul class="simple">
 <li><p>Mixed set: Cell lines and drugs can appear in train, validation, and test sets.</p></li>
@@ -123,20 +129,20 @@ For the drug branch, the input data are one-hot matrices (28 unique symbols x 18
 <li><p>Number of cell line features: The performance of the model is tested with different numbers of cell line features.</p></li>
 <li><p>Modification of SMILES format:  The one-hot representation of the SMILES format was modified in three ways for assessing whether the model captures the biological meaning in the data versus the statistical pattern of the data.</p></li>
 </ul>
-</div>
-<div class="section" id="urls">
-<h2>URLs<a class="headerlink" href="#urls" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="urls">
+<h2>URLs<a class="headerlink" href="#urls" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/Lowpassfilter/tCNNS-Project">Original GitHub</a></p></li>
 <li><p><a class="reference external" href="https://github.com/JDACS4C-IMPROVE/tCNNS-Project/tree/develop">IMPROVE GitHub</a></p></li>
 <li><p><a class="reference external" href="https://ftp.mcs.anl.gov/pub/candle/public/improve/model_curation_data/tCNNS/">Data</a></p></li>
 </ul>
-</div>
-<div class="section" id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
 <p>Liu, P., Li, H., Li, S., &amp; Leung, K. S. (2019). Improving prediction of phenotypic drug response on cancer cell lines using deep convolutional network. BMC bioinformatics, 20(1), 408. <a class="reference external" href="https://doi.org/10.1186/s12859-019-2910-6">https://doi.org/10.1186/s12859-019-2910-6</a></p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

@@ -1,22 +1,24 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DrugGCN &mdash; IMPROVE 0.1 documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+  <title>DrugGCN &mdash; IMPROVE 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script src="../_static/clipboard.min.js"></script>
-        <script src="../_static/copybutton.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=f281be69"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" /> 
@@ -41,10 +43,14 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="whatis.html">What is the IMPROVE project?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart Guides</a></li>
 <li class="toctree-l1"><a class="reference internal" href="developer.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unified_interface.html">Unified Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="applications.html">Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="benchmarks.html">Benchmarks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="acknowledgment.html">Acknowledgments</a></li>
 </ul>
 
@@ -72,26 +78,26 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="druggcn">
-<h1>DrugGCN<a class="headerlink" href="#druggcn" title="Permalink to this headline">¶</a></h1>
+  <section id="druggcn">
+<h1>DrugGCN<a class="headerlink" href="#druggcn" title="Permalink to this heading">¶</a></h1>
 <p>DrugGCN is a framework for the prediction of <strong>Drug</strong> response using a Graph Convolutional Network (<strong>GCN</strong>).</p>
-<div class="section" id="structure">
-<h2>Structure<a class="headerlink" href="#structure" title="Permalink to this headline">¶</a></h2>
+<section id="structure">
+<h2>Structure<a class="headerlink" href="#structure" title="Permalink to this heading">¶</a></h2>
 <p>DrugGCN uses a graph convolutional network model to learn genomic features of cell lines with a graph structure for drug response prediction. This framework integrates protein-protein interaction (PPI) network data and gene expression data utilizing genes with high predictive power to construct a model for each drug. The input of the GCN model is an undirected input graph G=(V,E,W) where V is a set of vertices, E is a set of edges, and W is a weighted adjacency matrix. Vertices and edges of the graph indicate genes and interactions between genes respectively. The use of localized filters in DrugGCN aids in the detection of local features in a biological network such as subnetworks of genes that can contribute together to drug response.</p>
-</div>
-<div class="section" id="data">
-<h2>Data<a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="data-sources">
-<h3>Data sources<a class="headerlink" href="#data-sources" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="data">
+<h2>Data<a class="headerlink" href="#data" title="Permalink to this heading">¶</a></h2>
+<section id="data-sources">
+<h3>Data sources<a class="headerlink" href="#data-sources" title="Permalink to this heading">¶</a></h3>
 <p>The primary data sources that have been used to construct datasets for model training and testing (i.e., ML data) include:</p>
 <ul class="simple">
 <li><p>GDSC: cell line and drug IDs, treatment response, cell line omics data</p></li>
 <li><p>Library of Integrated Network-Based Cellular Signatures (LINCS) L1000 project: list of genes</p></li>
 <li><p>STRING: PPI network data</p></li>
 </ul>
-</div>
-<div class="section" id="raw-data">
-<h3>Raw data<a class="headerlink" href="#raw-data" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="raw-data">
+<h3>Raw data<a class="headerlink" href="#raw-data" title="Permalink to this heading">¶</a></h3>
 <p>The raw data includes the following for the L1000 and Var1000 datasets:</p>
 <ol class="arabic simple">
 <li><p><cite>EXP.csv</cite>: Gene expression data for 734 cell lines obtained from the authors’ GitHub page within <a class="reference external" href="https://github.com/Jinyu2019/Suppl-data-BBpaper/blob/master/GDSC_DATASET_S1-S12.zip">GDSC_DATASET_S1-S12.zip</a> and found in the file,  <cite>Table_S1_GDSC_Gene_expression.csv</cite>.</p></li>
@@ -100,9 +106,9 @@
 <li><p><cite>LIST.txt</cite>: List of 663 or 1000 genes for the L1000 and Var1000 datasets respectively.</p></li>
 </ol>
 <p>The raw data is available in <a class="reference external" href="https://ftp.mcs.anl.gov/pub/candle/public/improve/model_curation_data/DrugGCN/druggcn_data.tar.gz">this FTP location</a>.</p>
-</div>
-<div class="section" id="ml-data">
-<h3>ML data<a class="headerlink" href="#ml-data" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="ml-data">
+<h3>ML data<a class="headerlink" href="#ml-data" title="Permalink to this heading">¶</a></h3>
 <p>The script <a class="reference external" href="https://github.com/JDACS4C-IMPROVE/DrugGCN/blob/develop/dataProcess.py">dataProcess.py</a> uses raw data to generate ML data that can be used to train and test with DrugGCN. The necessary raw data are automatically downloaded from the FTP server using the <cite>candle_lib</cite> utility function <cite>get_file()</cite> and processed.</p>
 <p>The ML data files are available in <a class="reference external" href="https://ftp.mcs.anl.gov/pub/candle/public/improve/model_curation_data/DrugGCN/druggcn_data_processed.tar.gz">this FTP location</a>. These files can be automatically downloaded from the FTP server using the <cite>candle_lib</cite> utility function <cite>get_file()</cite>.</p>
 <p>The ML data files include the following:</p>
@@ -122,10 +128,10 @@
 </li>
 </ul>
 <p>The user can specify which dataset, L1000 or Var1000, and which response data, IC50 or AUC, to use when training and testing the model.</p>
-</div>
-</div>
-<div class="section" id="evaluation">
-<h2>Evaluation<a class="headerlink" href="#evaluation" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="evaluation">
+<h2>Evaluation<a class="headerlink" href="#evaluation" title="Permalink to this heading">¶</a></h2>
 <p>Four evaluation schemes were used for the analysis of prediction performance.</p>
 <ul class="simple">
 <li><p>L1000-IC50: Gene set of 663 genes using the list of landmark genes derived from LINCS L1000 project and IC50 drug response values.</p></li>
@@ -133,20 +139,20 @@
 <li><p>Var1000-IC50: Gene set of the top 1000 variable genes and IC50 drug response values.</p></li>
 <li><p>Var1000-AUC: Gene set of the top 1000 variable genes and AUC drug response values.</p></li>
 </ul>
-</div>
-<div class="section" id="urls">
-<h2>URLs<a class="headerlink" href="#urls" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="urls">
+<h2>URLs<a class="headerlink" href="#urls" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/BML-cbnu/DrugGCN">Original GitHub</a></p></li>
 <li><p><a class="reference external" href="https://github.com/JDACS4C-IMPROVE/DrugGCN/tree/develop">IMPROVE GitHub</a></p></li>
 <li><p><a class="reference external" href="https://ftp.mcs.anl.gov/pub/candle/public/improve/model_curation_data/DrugGCN/">Data</a></p></li>
 </ul>
-</div>
-<div class="section" id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
 <p>Kim S, Bae S, Piao Y, Jo K. Graph Convolutional Network for Drug Response Prediction Using Gene Expression Data. <em>Mathematics</em>. 2021; 9(7):772. <a class="reference external" href="https://doi.org/10.3390/math9070772">https://doi.org/10.3390/math9070772</a></p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

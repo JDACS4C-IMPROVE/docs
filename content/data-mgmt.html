@@ -1,26 +1,28 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Data Management &mdash; IMPROVE 0.1 documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+  <title>Data Management &mdash; IMPROVE 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script src="../_static/clipboard.min.js"></script>
-        <script src="../_static/copybutton.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=f281be69"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Acknowledgments" href="acknowledgment.html" />
+    <link rel="next" title="Unified Interface" href="unified_interface.html" />
     <link rel="prev" title="Developer Guide" href="developer.html" /> 
 </head>
 
@@ -43,8 +45,9 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="whatis.html">What is the IMPROVE project?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart Guides</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="developer.html">Developer Guide</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="developer.html#data-management">Data Management</a><ul class="current">
@@ -60,6 +63,9 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="unified_interface.html">Unified Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="applications.html">Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="benchmarks.html">Benchmarks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="acknowledgment.html">Acknowledgments</a></li>
 </ul>
 
@@ -88,11 +94,11 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="data-management">
-<h1>Data Management<a class="headerlink" href="#data-management" title="Permalink to this headline">¶</a></h1>
+  <section id="data-management">
+<h1>Data Management<a class="headerlink" href="#data-management" title="Permalink to this heading">¶</a></h1>
 <p>This documentation on data management covers the IMPROVE techniques for handling input and output data for single model runs and for workflows via CANDLE/Supervisor.</p>
-<div class="section" id="controls">
-<h2>Controls<a class="headerlink" href="#controls" title="Permalink to this headline">¶</a></h2>
+<section id="controls">
+<h2>Controls<a class="headerlink" href="#controls" title="Permalink to this heading">¶</a></h2>
 <p>The user controls on data locations are listed here.</p>
 <p>The minimal use case is to set none of these parameters.  In this case, all inputs and outputs will be stored under <code class="docutils literal notranslate"><span class="pre">$PWD</span></code>.  The settings below modify this behavior.</p>
 <dl class="simple">
@@ -112,34 +118,34 @@ If unset, defaults to <code class="docutils literal notranslate"><span class="pr
 <dt>Environment variable <code class="docutils literal notranslate"><span class="pre">$IMPROVE_OUTPUT_DIR</span></code></dt><dd><p>Deprecated but supported alias for <code class="docutils literal notranslate"><span class="pre">$IMPROVE_OUTPUT_DIR</span></code>.</p>
 </dd>
 </dl>
-</div>
-<div class="section" id="checkpointing">
-<h2>Checkpointing<a class="headerlink" href="#checkpointing" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="checkpointing">
+<h2>Checkpointing<a class="headerlink" href="#checkpointing" title="Permalink to this heading">¶</a></h2>
 <p>Checkpoints are written to <code class="docutils literal notranslate"><span class="pre">output_dir/ckpts</span></code> by default, see
 the
 <a class="reference external" href="https://candle-lib.readthedocs.io/en/latest/api_ckpt_utils">ckpt module docs</a> .</p>
-</div>
-<div class="section" id="supervisor-workflows">
-<h2>Supervisor workflows<a class="headerlink" href="#supervisor-workflows" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="supervisor-workflows">
+<h2>Supervisor workflows<a class="headerlink" href="#supervisor-workflows" title="Permalink to this heading">¶</a></h2>
 <p>CANDLE/Supervisor respects <code class="docutils literal notranslate"><span class="pre">$IMPROVE_DATA_DIR</span></code> and <code class="docutils literal notranslate"><span class="pre">$IMPROVE_OUTPUT_DIR</span></code>.
 Models run within workflows should not set <code class="docutils literal notranslate"><span class="pre">output_dir</span></code>,
 as Supervisor will set this on a per-run basis so that different runs
 have different output directories.</p>
 <p>Different workflows set <code class="docutils literal notranslate"><span class="pre">output_dir</span></code> differently,
 see the per-workflow documentation.</p>
-</div>
-<div class="section" id="tips-for-model-developers">
-<h2>Tips for model developers<a class="headerlink" href="#tips-for-model-developers" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="tips-for-model-developers">
+<h2>Tips for model developers<a class="headerlink" href="#tips-for-model-developers" title="Permalink to this heading">¶</a></h2>
 <p>Models must respect hyperparameters <code class="docutils literal notranslate"><span class="pre">input_dir</span></code> and <code class="docutils literal notranslate"><span class="pre">output_dir</span></code>.
 All inputs must be loaded from <code class="docutils literal notranslate"><span class="pre">input_dir</span></code> and outputs should be stored in a
 flat format under <code class="docutils literal notranslate"><span class="pre">output_dir</span></code>.</p>
-<div class="section" id="example">
-<h3>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
+<section id="example">
+<h3>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h3>
 <p>Example of model with <code class="docutils literal notranslate"><span class="pre">input_dir</span></code> and <code class="docutils literal notranslate"><span class="pre">output_dir</span></code>.</p>
-</div>
-</div>
-<div class="section" id="responsibilities-of-candle-lib">
-<h2>Responsibilities of candle_lib<a class="headerlink" href="#responsibilities-of-candle-lib" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="responsibilities-of-candle-lib">
+<h2>Responsibilities of candle_lib<a class="headerlink" href="#responsibilities-of-candle-lib" title="Permalink to this heading">¶</a></h2>
 <p>candle_lib is responsible for:</p>
 <ul class="simple">
 <li><p>Handling the translation from environment variables to hyperparameters
@@ -147,15 +153,15 @@ specified above.</p></li>
 <li><p>Setting defaults as specified above.</p></li>
 </ul>
 <p>This is done in <code class="docutils literal notranslate"><span class="pre">candle.finalize_parameters()</span></code>.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="developer.html" class="btn btn-neutral float-left" title="Developer Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="acknowledgment.html" class="btn btn-neutral float-right" title="Acknowledgments" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="unified_interface.html" class="btn btn-neutral float-right" title="Unified Interface" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

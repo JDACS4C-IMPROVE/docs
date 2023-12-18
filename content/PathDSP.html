@@ -1,22 +1,24 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PathDSP &mdash; IMPROVE 0.1 documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+  <title>PathDSP &mdash; IMPROVE 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script src="../_static/clipboard.min.js"></script>
-        <script src="../_static/copybutton.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=f281be69"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" /> 
@@ -41,10 +43,14 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="whatis.html">What is the IMPROVE project?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart Guides</a></li>
 <li class="toctree-l1"><a class="reference internal" href="developer.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unified_interface.html">Unified Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="applications.html">Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="benchmarks.html">Benchmarks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="acknowledgment.html">Acknowledgments</a></li>
 </ul>
 
@@ -72,22 +78,22 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="pathdsp">
-<h1>PathDSP<a class="headerlink" href="#pathdsp" title="Permalink to this headline">¶</a></h1>
+  <section id="pathdsp">
+<h1>PathDSP<a class="headerlink" href="#pathdsp" title="Permalink to this heading">¶</a></h1>
 <p>PathDSP is a framework for “Explainable drug sensitivity prediction through cancer pathway enrichment” (title of paper).</p>
-<div class="section" id="structure">
-<h2>Structure<a class="headerlink" href="#structure" title="Permalink to this headline">¶</a></h2>
+<section id="structure">
+<h2>Structure<a class="headerlink" href="#structure" title="Permalink to this heading">¶</a></h2>
 <p>From Abstract: PathDSP: a pathway-based model for drug sensitivity prediction that integrates chemical structure information with enrichment of cancer signaling pathways across drug-associated genes, gene expression, mutation and copy number variation data to predict drug response on the Genomics of Drug Sensitivity in Cancer dataset. Using a deep neural network, we outperform state-of-the-art deep learning models, while demonstrating good generalizability a separate dataset of the Cancer Cell Line Encyclopedia as well as provide explainable results, demonstrated through case studies that are in line with current knowledge. Additionally, our pathway-based model achieved a good performance when predicting unseen drugs and cells, with potential utility for drug development and for guiding individualized medicine.</p>
-</div>
-<div class="section" id="data">
-<h2>Data<a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="data-sources">
-<h3>Data sources<a class="headerlink" href="#data-sources" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="data">
+<h2>Data<a class="headerlink" href="#data" title="Permalink to this heading">¶</a></h2>
+<section id="data-sources">
+<h3>Data sources<a class="headerlink" href="#data-sources" title="Permalink to this heading">¶</a></h3>
 <p>The primary data sources that have been used to construct datasets for model training and testing (i.e., ML data) include:</p>
 <p>“Drug sensitivity data, cell-line gene expression, somatic mutation and copy number variation data for 319 cancer cell lines and 153 drugs was downloaded from Genomics of Drug Sensitivity in Cancer (GDSC downloaded from <a class="reference external" href="https://www.cancerrxgene.org/downloads/bulk_download">https://www.cancerrxgene.org/downloads/bulk_download</a>.) Drug sensitivity data of 24 drugs and 478 cancer cell lines from the Cancer Cell Line Encyclopedia (CCLE) were downloaded through the DepMap portal (<a class="reference external" href="https://depmap.org/portal/download/">https://depmap.org/portal/download/</a>, release version: public 20Q1), which also include gene expression, mutation and copy number variation data for those cancer cell lines. Primary target data was downloaded from GDSC, and PID pathways were downloaded from MSigDB. Protein–protein network was downloaded from STRING database, including protein interactions, co-expression and text-mined interactions.”</p>
-</div>
-<div class="section" id="raw-data">
-<h3>Raw data<a class="headerlink" href="#raw-data" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="raw-data">
+<h3>Raw data<a class="headerlink" href="#raw-data" title="Permalink to this heading">¶</a></h3>
 <p>The raw data includes the following:</p>
 <ol class="arabic simple">
 <li><p><cite>GDSCv2.Gao2015.Powell2020.Lee2021.GeoSearch.Ding2016.CHEM.256.MBits.txt</cite>: Looks like drug response from GDSC.</p></li>
@@ -96,9 +102,9 @@
 <li><p><cite>GDSCv2.resp_PowellAUC.Alias.txt</cite>: Set of aliases [Therapy | Sample | Response | Cancer types | Datasets | Alias]</p></li>
 </ol>
 <p>The raw data is available in <a class="reference external" href="http://chia.team/IMPROVE_data/data">this highly suspicious location</a>.</p>
-</div>
-<div class="section" id="ml-data">
-<h3>ML data<a class="headerlink" href="#ml-data" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="ml-data">
+<h3>ML data<a class="headerlink" href="#ml-data" title="Permalink to this heading">¶</a></h3>
 <p>The script <a class="reference external" href="https://github.com/JDACS4C-IMPROVE/DrugGCN/blob/develop/dataProcess.py">dataProcess.py</a> uses raw data to generate ML data that can be used to train and test with DrugGCN. The necessary raw data are automatically downloaded from the FTP server using the <cite>candle_lib</cite> utility function <cite>get_file()</cite> and processed.</p>
 <p>The ML data files are available in <a class="reference external" href="https://ftp.mcs.anl.gov/pub/candle/public/improve/model_curation_data/DrugGCN/druggcn_data_processed.tar.gz">this FTP location</a>. These files can be automatically downloaded from the FTP server using the <cite>candle_lib</cite> utility function <cite>get_file()</cite>.</p>
 <p>The ML data files include the following:</p>
@@ -118,10 +124,10 @@
 </li>
 </ul>
 <p>The user can specify which dataset, L1000 or Var1000, and which response data, IC50 or AUC, to use when training and testing the model.</p>
-</div>
-</div>
-<div class="section" id="evaluation">
-<h2>Evaluation<a class="headerlink" href="#evaluation" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="evaluation">
+<h2>Evaluation<a class="headerlink" href="#evaluation" title="Permalink to this heading">¶</a></h2>
 <p>Four evaluation schemes were used for the analysis of prediction performance.</p>
 <ul class="simple">
 <li><p>L1000-IC50: Gene set of 663 genes using the list of landmark genes derived from LINCS L1000 project and IC50 drug response values.</p></li>
@@ -129,20 +135,20 @@
 <li><p>Var1000-IC50: Gene set of the top 1000 variable genes and IC50 drug response values.</p></li>
 <li><p>Var1000-AUC: Gene set of the top 1000 variable genes and AUC drug response values.</p></li>
 </ul>
-</div>
-<div class="section" id="urls">
-<h2>URLs<a class="headerlink" href="#urls" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="urls">
+<h2>URLs<a class="headerlink" href="#urls" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/TangYiChing/PathDSP">Original Developer’s GitHub</a></p></li>
 <li><p><a class="reference external" href="https://github.com/JDACS4C-IMPROVE/PathDSP/tree/develop">IMPROVE GitHub</a></p></li>
 <li><p><a class="reference external" href="http://chia.team/IMPROVE_data/data">Data</a></p></li>
 </ul>
-</div>
-<div class="section" id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
 <p>Tang, Yi-Ching, and Assaf Gottlieb. “Explainable drug sensitivity prediction through cancer pathway enrichment.” Scientific reports 11, no. 1 (2021): 1-10. <a class="reference external" href="https://www.nature.com/articles/s41598-021-82612-7">https://www.nature.com/articles/s41598-021-82612-7</a></p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

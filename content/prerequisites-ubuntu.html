@@ -1,22 +1,24 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Installing Ubuntu prerequisites &mdash; IMPROVE 0.1 documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+  <title>Installing Ubuntu prerequisites &mdash; IMPROVE 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script src="../_static/clipboard.min.js"></script>
-        <script src="../_static/copybutton.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=f281be69"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" /> 
@@ -41,10 +43,14 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="whatis.html">What is the IMPROVE project?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart Guides</a></li>
 <li class="toctree-l1"><a class="reference internal" href="developer.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unified_interface.html">Unified Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="applications.html">Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="benchmarks.html">Benchmarks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="acknowledgment.html">Acknowledgments</a></li>
 </ul>
 
@@ -72,18 +78,18 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="installing-ubuntu-prerequisites">
-<h1>Installing Ubuntu prerequisites<a class="headerlink" href="#installing-ubuntu-prerequisites" title="Permalink to this headline">¶</a></h1>
+  <section id="installing-ubuntu-prerequisites">
+<h1>Installing Ubuntu prerequisites<a class="headerlink" href="#installing-ubuntu-prerequisites" title="Permalink to this heading">¶</a></h1>
 <p>The IMPROVE framework relies on Singularity containers. To install singularity on Ubuntu 20.04.3, the following commands were used.</p>
 <p>add the NeuroDebian repository to your native package management system, and you will be able to install neuroscience software the same way as any other package.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget -O- http://neuro.debian.net/lists/focal.us-tn.full <span class="p">|</span> sudo tee /etc/apt/sources.list.d/neurodebian.sources.list
-sudo apt-key adv --recv-keys --keyserver hkps://keyserver.ubuntu.com 0xA5D32F012649A5A9
-sudo apt-get update
-sudo apt-get install singularity-container
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget<span class="w"> </span>-O-<span class="w"> </span>http://neuro.debian.net/lists/focal.us-tn.full<span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/apt/sources.list.d/neurodebian.sources.list
+sudo<span class="w"> </span>apt-key<span class="w"> </span>adv<span class="w"> </span>--recv-keys<span class="w"> </span>--keyserver<span class="w"> </span>hkps://keyserver.ubuntu.com<span class="w"> </span>0xA5D32F012649A5A9
+sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>singularity-container
 </pre></div>
 </div>
 <p>These instructions were obatined from <a class="reference external" href="http://neuro.debian.net/install_pkg.html?p=singularity-container">http://neuro.debian.net/install_pkg.html?p=singularity-container</a></p>
-</div>
+</section>
 
 
            </div>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Drug Response Prediction &mdash; IMPROVE 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=f281be69"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Docking Prediction" href="app_docking_intro.html" />
+    <link rel="prev" title="Applications" href="applications.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            IMPROVE
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="whatis.html">What is the IMPROVE project?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developer.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unified_interface.html">Unified Interface</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="applications.html">Applications</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Drug Response Prediction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#modeling-drug-response">Modeling drug response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data">Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#screening-data">Screening data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#feature-representations">Feature representations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#raw-drp-data">Raw DRP data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ml-data">ML data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="app_docking_intro.html">Docking Prediction</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="benchmarks.html">Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acknowledgment.html">Acknowledgments</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">IMPROVE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="applications.html">Applications</a></li>
+      <li class="breadcrumb-item active">Drug Response Prediction</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/content/app_drp_intro.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="drug-response-prediction">
+<h1>Drug Response Prediction<a class="headerlink" href="#drug-response-prediction" title="Permalink to this heading">¶</a></h1>
+<section id="modeling-drug-response">
+<h2>Modeling drug response<a class="headerlink" href="#modeling-drug-response" title="Permalink to this heading">¶</a></h2>
+<p>A drug response prediction (DRP) model can be represented by <span class="math notranslate nohighlight">\(r = f(d, c)\)</span>, where <span class="math notranslate nohighlight">\(f\)</span> is the analytical model designed to predict the response <span class="math notranslate nohighlight">\(r\)</span> of cancer <span class="math notranslate nohighlight">\(c\)</span> to the treatment by drug <span class="math notranslate nohighlight">\(d\)</span>.
+The function <span class="math notranslate nohighlight">\(f\)</span> is implemented with a neural network (NN) architecture.
+This formulation is for pan-cancer and pan-drug prediction model where both cancer and drug representations are needed to predict response.
+A special case is drug-specific models designed to make predictions for a drug or drug family (e.g., drugs with the same mechanism of action (MoA)). These models learn from cancer features only and can be formulated as <span class="math notranslate nohighlight">\(r=f_D(c)\)</span>.</p>
+<figure class="align-center" id="id1">
+<a class="reference internal image-reference" href="../_images/NN_architecture.png"><img alt="../_images/NN_architecture.png" src="../_images/NN_architecture.png" style="width: 350px;" /></a>
+<figcaption>
+<p><span class="caption-text">A neural network architecture for cancer drug response prediction (DRP). The model is pan-cancer and pan-drug where both cancer and drug representations are used to predict the response.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="data">
+<h2>Data<a class="headerlink" href="#data" title="Permalink to this heading">¶</a></h2>
+<section id="screening-data">
+<h3>Screening data<a class="headerlink" href="#screening-data" title="Permalink to this heading">¶</a></h3>
+<p>Drug screening experiments can be performed with various pre-clinical cancer models such as cell lines, organoids, and xenografts, where cancer samples are screened against a library of drug compounds. Regardless of specific cancer models, the screening space can be characterized by the involved drugs and cancers. The 2-D matrix illustrates such a space composed of a finite number of known cancer cases and drugs, where the marked coordinates symbolize that treatment responses are available for these combinations.
+Drug sensitivity results of screening experiments can be organized in a table format, represting the <strong>response data</strong> .</p>
+<figure class="align-center" id="id2">
+<a class="reference internal image-reference" href="../_images/Screening_data.png"><img alt="../_images/Screening_data.png" src="../_images/Screening_data.png" style="width: 500px;" /></a>
+<figcaption>
+<p><span class="caption-text">Drug screening experiments can be performed with several pre-clinical cancer models.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="feature-representations">
+<h3>Feature representations<a class="headerlink" href="#feature-representations" title="Permalink to this heading">¶</a></h3>
+<p>The different cancers and drugs in a screening experiment can be numerically described using various representations that can be supplied as features to a DL model.
+In most DRP models, cancer is represented using various omics data types which are often provided with public drug screening studies (e.g., CCLE, GDSC). In certain cases, however, additional bioinformatics processing steps are applied to further preprocess omics data for the downstream ML analysis.
+The drugs are generallity represtend with SMILES strings, fingerprints, descriptors, and molecular graph structures. These representations can be calculated using open-source cheminformatics software packages such as RDKit and Mordred.</p>
+<figure class="align-center" id="id3">
+<a class="reference internal image-reference" href="../_images/Feature_representations.png"><img alt="../_images/Feature_representations.png" src="../_images/Feature_representations.png" style="width: 500px;" /></a>
+<figcaption>
+<p><span class="caption-text">Several drug and cancer feature representations that are used as input features for a DRP model.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="raw-drp-data">
+<h3>Raw DRP data<a class="headerlink" href="#raw-drp-data" title="Permalink to this heading">¶</a></h3>
+<p>The data required to develop (train and validate) a pan-cancer and pan-drug DRP model, consists of three primary components: 1) response data, 2) cancer representation, and 3) drug representation.
+These data are generally stored in tabular structures.
+In the context of the DRP problem, we define these data structures as <strong>raw DRP data</strong>.</p>
+<figure class="align-center" id="id4">
+<a class="reference internal image-reference" href="../_images/Raw_data.png"><img alt="../_images/Raw_data.png" src="../_images/Raw_data.png" style="width: 600px;" /></a>
+<figcaption>
+<p><span class="caption-text">Raw DRP data.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="ml-data">
+<h3>ML data<a class="headerlink" href="#ml-data" title="Permalink to this heading">¶</a></h3>
+<p>Deep learning (DL) models built using popular DL frameworks can take various types of data from simple CSV to more complex structures such as TFRecords.
+Constructing datasets for DL-based DRP models generally requires combining heterogeneous data such as cancer and drug information and treatment response values.
+In this context, we distinguish between two types of data, <strong>raw DRP data</strong> (described above) and <strong>ML data</strong>.
+ML data refers to data files that can be directly supplied to DL models for training and testing (e.g., TFRecord files with TensorFlow, <strong>pt</strong> files with PyTorch). Preprocessing scripts are often required to generate ML data from raw data. Note however, not all public repositories provide the necessary scripts.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="applications.html" class="btn btn-neutral float-left" title="Applications" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="app_docking_intro.html" class="btn btn-neutral float-right" title="Docking Prediction" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, IMPROVE Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

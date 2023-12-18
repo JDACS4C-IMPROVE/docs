@@ -1,22 +1,24 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GraphDRP &mdash; IMPROVE 0.1 documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+  <title>GraphDRP &mdash; IMPROVE 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script src="../_static/clipboard.min.js"></script>
-        <script src="../_static/copybutton.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=f281be69"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" /> 
@@ -41,10 +43,14 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="whatis.html">What is the IMPROVE project?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart Guides</a></li>
 <li class="toctree-l1"><a class="reference internal" href="developer.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unified_interface.html">Unified Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="applications.html">Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="benchmarks.html">Benchmarks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="acknowledgment.html">Acknowledgments</a></li>
 </ul>
 
@@ -72,25 +78,25 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="graphdrp">
-<h1>GraphDRP<a class="headerlink" href="#graphdrp" title="Permalink to this headline">¶</a></h1>
+  <section id="graphdrp">
+<h1>GraphDRP<a class="headerlink" href="#graphdrp" title="Permalink to this heading">¶</a></h1>
 <p>Graph Convolutional Networks for Drug Response Prediction</p>
-<div class="section" id="structure">
-<h2>Structure<a class="headerlink" href="#structure" title="Permalink to this headline">¶</a></h2>
+<section id="structure">
+<h2>Structure<a class="headerlink" href="#structure" title="Permalink to this heading">¶</a></h2>
 <p>GraphDRP consists of two subnetworks that learn from input features of cancer cell lines (CCLs) and drugs to predict IC50, a dose-independent treatment response. The encoded feature representations by the two subnetworks are concatenated and passed through dense layers for the prediction of IC50. Each CCL is represented by a vector of 735 binary features including variant conding and copy number alterations. Each drug is represented with a graph molecular structure where nodes and edges represent, respectively, the atoms and bonds of the a molecule (each atom is represented by 78 features). The CCL subnetwork consists of three 1-D CNNs followed by dense layers. For the drug subnetworks, four different configurations of graph neural network (GNN) modules have been explored, including GCN, GAT, and GIN.</p>
-</div>
-<div class="section" id="data">
-<h2>Data<a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="data-sources">
-<h3>Data sources<a class="headerlink" href="#data-sources" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="data">
+<h2>Data<a class="headerlink" href="#data" title="Permalink to this heading">¶</a></h2>
+<section id="data-sources">
+<h3>Data sources<a class="headerlink" href="#data-sources" title="Permalink to this heading">¶</a></h3>
 <p>The primary data sources that have been used to construct ML datasets include:</p>
 <ul class="simple">
 <li><p>GDSC version 6.0 (cell line and drug ids, treatment response, cell line omics data)</p></li>
 <li><p>PubChem (drug SMILES)</p></li>
 </ul>
-</div>
-<div class="section" id="raw-data">
-<h3>Raw data<a class="headerlink" href="#raw-data" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="raw-data">
+<h3>Raw data<a class="headerlink" href="#raw-data" title="Permalink to this heading">¶</a></h3>
 <p>The raw data is downloaded from GDSC website (version 6.0):</p>
 <ol class="arabic simple">
 <li><p>Dose-independent drug response values. <cite>PANCANCER_IC.csv</cite>: drug and cell ids, IC50 values and other metadata (223 drugs and 948 cell lines).</p></li>
@@ -98,9 +104,9 @@
 <li><p>Drug information. <cite>drug_smiles.csv</cite>: SMILES strings of drug molecules. The SMILES were retrieved from PubChem using CIDs (Druglist.csv). The script <cite>preprocess.py</cite> provides functions to generate this file.</p></li>
 </ol>
 <p>All these data types were provided with the GraphDRP repo and are available in <a class="reference external" href="https://ftp.mcs.anl.gov/pub/candle/public/improve/model_curation_data/GraphDRP/data/">this ftp location</a>.</p>
-</div>
-<div class="section" id="ml-data">
-<h3>ML data<a class="headerlink" href="#ml-data" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="ml-data">
+<h3>ML data<a class="headerlink" href="#ml-data" title="Permalink to this heading">¶</a></h3>
 <p>The script <a class="reference external" href="https://github.com/JDACS4C-IMPROVE/GraphDRP/blob/develop/preprocess.py">preprocess.py</a> uses raw data to generate ML data that can be used to train and test with GraphDRP. The necessary raw data are automatically downloaded from the FTP server using a <cite>candle_lib</cite> utility function <cite>get_file()</cite> and processed:</p>
 <ul class="simple">
 <li><p><strong>Response data</strong>. IC50 values (PANCANCER_IC.csv) are transformed using 1 / (1 + pow(math.exp(float(ic50)), -0.1)).</p></li>
@@ -115,30 +121,30 @@ In either case, the script generates three files, <cite>train_data.pt</cite>, <c
 <li><p>./data_processed/&lt;split_strategy&gt;/processed/test_data.pt</p></li>
 </ul>
 <p>Bash script <a class="reference external" href="https://github.com/JDACS4C-IMPROVE/GraphDRP/blob/develop/preprocess_batch.sh">preprocess_batch.sh</a> generates the nine possible ML data configurations (i.e., 3 files for each splitting strategy). All the ML data files for the three splitting strategies are available in <a class="reference external" href="https://ftp.mcs.anl.gov/pub/candle/public/improve/model_curation_data/GraphDRP/data_processed/">this ftp location</a>.</p>
-</div>
-</div>
-<div class="section" id="evaluation">
-<h2>Evaluation<a class="headerlink" href="#evaluation" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="evaluation">
+<h2>Evaluation<a class="headerlink" href="#evaluation" title="Permalink to this heading">¶</a></h2>
 <p>Three evaluation schemes were used for the analysis of prediction performance.</p>
 <ul class="simple">
 <li><p>Mixed set: cell lines and drugs can appear in train, validation, and test sets.</p></li>
 <li><p>Cell-blind: no overlap on cell lines in train, validation, and test sets.</p></li>
 <li><p>Drug-blind: no overlap on drugs in train, validation, and test sets.</p></li>
 </ul>
-</div>
-<div class="section" id="urls">
-<h2>URLs<a class="headerlink" href="#urls" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="urls">
+<h2>URLs<a class="headerlink" href="#urls" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/hauldhut/GraphDRP">Original GitHub</a></p></li>
 <li><p><a class="reference external" href="https://github.com/JDACS4C-IMPROVE/GraphDRP/tree/develop">IMPROVE GitHub</a></p></li>
 <li><p><a class="reference external" href="https://ftp.mcs.anl.gov/pub/candle/public/improve/model_curation_data/GraphDRP/">Data</a></p></li>
 </ul>
-</div>
-<div class="section" id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
 <p>Nguyen, T.-T. et al. Graph convolutional networks for drug response prediction. <em>IEEE/ACM Trans Comput Biol Bioinform</em>. Jan-Feb 2022;19(1):146-154.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

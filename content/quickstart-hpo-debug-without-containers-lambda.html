@@ -1,22 +1,24 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Running a single Model with the Supervisor &mdash; IMPROVE 0.1 documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+  <title>Running a single Model with the Supervisor &mdash; IMPROVE 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script src="../_static/clipboard.min.js"></script>
-        <script src="../_static/copybutton.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=f281be69"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -43,8 +45,9 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="whatis.html">What is the IMPROVE project?</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="quickstart.html">Quickstart Guides</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="quickstart.html#installing-supervisor-and-swift-t">Installing Supervisor and Swift-t</a></li>
 <li class="toctree-l2"><a class="reference internal" href="quickstart.html#installing-containerized-models">Installing containerized models</a></li>
@@ -60,6 +63,9 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="developer.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unified_interface.html">Unified Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="applications.html">Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="benchmarks.html">Benchmarks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="acknowledgment.html">Acknowledgments</a></li>
 </ul>
 
@@ -88,12 +94,12 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="running-a-single-model-with-the-supervisor">
-<h1>Running a single Model with the Supervisor<a class="headerlink" href="#running-a-single-model-with-the-supervisor" title="Permalink to this headline">¶</a></h1>
+  <section id="running-a-single-model-with-the-supervisor">
+<h1>Running a single Model with the Supervisor<a class="headerlink" href="#running-a-single-model-with-the-supervisor" title="Permalink to this heading">¶</a></h1>
 <p>Packaging the model code in a container image is benefical for ease of deployment  and running multiple models in parallel but it adds an additional layer for debugging the code directly.
 Here we describe how to run a single model directly with the supervisor without the need to build a container image first.</p>
-<div class="section" id="requirements">
-<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+<section id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this heading">¶</a></h2>
 <ol class="arabic">
 <li><p><a class="reference external" href="quickstart-setup-basic-environment.html">Install swift-t and Supervisor</a></p></li>
 <li><p>Your model must be CANDLE compliant:</p>
@@ -112,9 +118,9 @@ Here we describe how to run a single model directly with the supervisor without 
 <li><p>Credentials and access to lambda</p></li>
 <li><p>Model and dependencies will be installed in your home directory.</p></li>
 </ol>
-</div>
-<div class="section" id="steps">
-<h2>Steps<a class="headerlink" href="#steps" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="steps">
+<h2>Steps<a class="headerlink" href="#steps" title="Permalink to this heading">¶</a></h2>
 <ol class="arabic">
 <li><p>Login into your account on lambda</p></li>
 <li><p>Activate your conda environment, e.g. <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">IMPROVE</span></code></p></li>
@@ -127,12 +133,12 @@ Here we describe how to run a single model directly with the supervisor without 
 <p>Change the value for <strong>PY</strong> (Python for executing the workflow) to the Python version in your conda environment. Example content:</p>
 </div></blockquote>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># LANGS APP LAMBDA</span>
-<span class="nb">echo</span> <span class="s2">&quot;langs-app-lambda ...&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;langs-app-lambda ...&quot;</span>
 <span class="nv">SFW</span><span class="o">=</span>/home/woz/Public/sfw
-<span class="nv">PY</span><span class="o">=</span><span class="sb">`</span>which <span class="se">\`</span>python3<span class="se">\`</span><span class="sb">`</span>
+<span class="nv">PY</span><span class="o">=</span><span class="sb">`</span>which<span class="w"> </span><span class="se">\`</span>python3<span class="se">\`</span><span class="sb">`</span>
 <span class="c1">#Path to your conda environment e.g. /lambda_stor/homes/pvasanthakumari/miniconda/envs/paccmann_predictor/</span>
 <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PY</span>/bin:<span class="nv">$PATH</span>
-<span class="nb">echo</span> <span class="s2">&quot;langs-app-lambda done.&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;langs-app-lambda done.&quot;</span>
 </pre></div>
 </div>
 </li>
@@ -145,11 +151,11 @@ Here we describe how to run a single model directly with the supervisor without 
 <p><code class="docutils literal notranslate"><span class="pre">cp</span> <span class="pre">-r</span> <span class="pre">Tests/sv-tool/generic</span> <span class="pre">MY_MODEL/</span></code></p>
 </li>
 <li><p>Within <strong>MY_MODEL</strong>/generic, change the content of <em>cfg-1.sh</em> :</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>source_cfg -v cfg-my-settings.sh
-<span class="nb">export</span> <span class="nv">MODEL_NAME</span><span class="o">=</span>MY_MODEL
-<span class="nb">export</span> <span class="nv">PYTHONPATH</span><span class="o">=</span><span class="nv">$HOME</span>/MY_MODEL             <span class="c1"># path to your model code in your local directory</span>
-<span class="nb">export</span> <span class="nv">PARAM_SET_FILE</span><span class="o">=</span>general_params.json
-<span class="nb">export</span> <span class="nv">FRAMEWORK</span><span class="o">=</span><span class="s2">&quot;pytorch&quot;</span>                   <span class="c1"># or “keras” see FRAMEWORK part of your file name</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>source_cfg<span class="w"> </span>-v<span class="w"> </span>cfg-my-settings.sh
+<span class="nb">export</span><span class="w"> </span><span class="nv">MODEL_NAME</span><span class="o">=</span>MY_MODEL
+<span class="nb">export</span><span class="w"> </span><span class="nv">PYTHONPATH</span><span class="o">=</span><span class="nv">$HOME</span>/MY_MODEL<span class="w">             </span><span class="c1"># path to your model code in your local directory</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">PARAM_SET_FILE</span><span class="o">=</span>general_params.json
+<span class="nb">export</span><span class="w"> </span><span class="nv">FRAMEWORK</span><span class="o">=</span><span class="s2">&quot;pytorch&quot;</span><span class="w">                   </span><span class="c1"># or “keras” see FRAMEWORK part of your file name</span>
 </pre></div>
 </div>
 </li>
@@ -158,7 +164,7 @@ Here we describe how to run a single model directly with the supervisor without 
 <li><p>When running Supervisor without container, the workflow will look for data within <strong>CANDLE_DATA_DIR</strong>. You may have to manually download and unzip data into <strong>CANDLE_DATA_DIR</strong>.</p></li>
 <li><p>To execute the workflow, within Your_Model/generic:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>supervisor lambda GA cfg-1.sh
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>supervisor<span class="w"> </span>lambda<span class="w"> </span>GA<span class="w"> </span>cfg-1.sh
 </pre></div>
 </div>
 </div></blockquote>
@@ -170,8 +176,8 @@ Here we describe how to run a single model directly with the supervisor without 
 </div></blockquote>
 </li>
 </ol>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

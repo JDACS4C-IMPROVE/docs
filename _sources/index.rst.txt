@@ -10,9 +10,12 @@ Welcome to IMPROVE's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-
+   content/whatis
    content/quickstart
    content/developer
+   content/unified_interface
+   content/applications
+   content/benchmarks
    content/acknowledgment
 
 Access the code base https://github.com/JDACS4C-IMPROVE/
