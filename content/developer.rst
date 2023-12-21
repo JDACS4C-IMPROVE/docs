@@ -13,4 +13,13 @@ How to organize model inputs and outputs.
 
    # develop-base-environment
    develop-data-mgmt
+
+IMPROVE Library
+---------------
+
+Library to access benchmark data sets for the CSA.
+
+.. toctree::
+   :maxdepth: 1
+
    unified_interface
