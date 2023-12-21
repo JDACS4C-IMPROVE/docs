@@ -13,7 +13,7 @@ Welcome to IMPROVE's documentation!
    content/whatis
    content/quickstart
    content/developer
-   content/unified_interface
+   # content/unified_interface
    content/applications
    content/benchmarks
    content/acknowledgment
