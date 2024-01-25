@@ -343,69 +343,8 @@ Each dictionary (dict) specifies keyword arguments.
 * *default*:   standard values to be used
 * *required*:  model-specific values that must be included in the :ref:`parameter file <Parameter file>`
 
-.. code-block:: python
-    
-    app_preproc_params = [
-    {"name": "y_data_files", # default
-        "type": str,
-        "help": "List of files that contain the y (prediction variable) data. \
-                Example: [['response.tsv']]",
-    },
-    {"name": "x_data_canc_files", # required
-        "type": str,
-        "help": "List of feature files including gene_system_identifer. Examples: \n\
-                1) [['cancer_gene_expression.tsv', ['Gene_Symbol']]] \n\
-                2) [['cancer_copy_number.tsv', ['Ensembl', 'Entrez']]].",
-    },
-    {"name": "x_data_drug_files", # required
-        "type": str,
-        "help": "List of feature files. Examples: \n\
-                1) [['drug_SMILES.tsv']] \n\
-                2) [['drug_SMILES.tsv'], ['drug_ecfp4_nbits512.tsv']]",
-    },
-    {"name": "canc_col_name",
-        "default": "improve_sample_id", # default
-        "type": str,
-        "help": "Column name in the y (response) data file that contains the cancer sample ids.",
-    },
-    {"name": "drug_col_name", # default
-        "default": "improve_chem_id",
-        "type": str,
-        "help": "Column name in the y (response) data file that contains the drug ids.",
-    },
-    ]
-
 The params in ``model_preproc_params`` is a collection of model-specific parameters for the preprocessing step. 
 All params in this list are optional. If no params are required by the model, then it should be an empty list.
-
-.. code-block:: python
-
-    model_preproc_params = [
-        {"name": "use_lincs",
-        "type": frm.str2bool,
-        "default": True,
-        "help": "Flag to indicate if landmark genes are used for gene selection.",
-        },
-        {"name": "scaling",
-        "type": str,
-        "default": "std",
-        "choice": ["std", "minmax", "miabs", "robust"],
-        "help": "Scaler for gene expression and Mordred descriptors data.",
-        },
-        {"name": "ge_scaler_fname",
-        "type": str,
-        "default": "x_data_gene_expression_scaler.gz",
-        "help": "File name to save the gene expression scaler object.",
-        },
-        {"name": "md_scaler_fname",
-        "type": str,
-        "default": "x_data_mordred_scaler.gz",
-        "help": "File name to save the Mordred scaler object.",
-        },
-    ]
-
-
-
 
 
 Training
@@ -606,22 +545,6 @@ Below is a training script that takes the generated data from the :ref:`preproce
 
 Similar to the :ref:`preprocessing <Preprocessing>` script, the training script requires defining two parameter lists: ``app_train_params`` and ``model_train_params``.
 
-.. code-block:: python
-
-    # Currently, there are no app-specific params for this script.
-    app_train_params = []
-
-    # All params in model_train_params are optional.
-    # If no params are required by the model, then it should be an empty list.
-    model_train_params = [
-        {"name": "learning_rate",
-        "type": float,
-        "default": 0.1,
-        "help": "Learning rate for the optimizer."
-        },
-    ]
-
-
 
 
 
@@ -776,15 +699,6 @@ Below is an inference script that takes the generated test data from the :ref:`p
 
 
 Similar to the :ref:`training <Training>` script, the inference script requires defining two parameter lists: ``app_infer_params`` and ``model_infer_params``. In the case of LightGBM, both lists are empty.
-
-.. code-block:: python
-
-    # Currently, there are no app-specific params in this script.
-    app_infer_params = []
-
-    # All params in model_infer_params are optional.
-    # If no params are required by the model, then it should be an empty list.
-    model_infer_params = []
 
 
 
