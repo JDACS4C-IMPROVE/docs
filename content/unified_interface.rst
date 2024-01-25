@@ -63,6 +63,11 @@ Note that in addition to the data files mentioned above, the preprocessing scrip
 
 Below is a preprocessing script that takes :ref:`cross-study analysis benchmark data<Benchmark Data for Cross-Study Analysis>` and generates training, validation, and test data files. The script below is available in `this repo <https://github.com/JDACS4C-IMPROVE/LGBM/blob/master/lgbm_preprocess_improve.py>`_. Another example for a preprocessing script can be found in the `repo <https://github.com/JDACS4C-IMPROVE/GraphDRP/blob/develop/graphdrp_preprocess_improve.py>`_ for DL model, GraphDRP.
 
+.. raw:: html
+
+   <details>
+   <summary><a>Preprocessing script (click to expand)</a></summary>
+
 .. code-block:: python
 
     import sys
@@ -334,6 +339,10 @@ Below is a preprocessing script that takes :ref:`cross-study analysis benchmark 
     if __name__ == "__main__":
         main(sys.argv[1:])
 
+.. raw:: html
+
+   </details>
+
 
 As mentioned earlier, all the required code sections are designated with *[Req]*.
 One of the requirements is to define two lists of directories: ``app_preproc_params`` and ``model_preproc_params``.
@@ -373,6 +382,11 @@ All the outputs from the training script are saved in ``params["model_outdir"]``
     The scores are saved in ``val_scores.json``.
 
 Below is a training script that takes the generated data from the :ref:`preprocessing <Preprocessing>` step and trains a LightGBM model. This script is available in `this repo <https://github.com/JDACS4C-IMPROVE/LGBM/blob/master/lgbm_train_improve.py>`_. Another example for a training script can be found in a `repo <https://github.com/JDACS4C-IMPROVE/GraphDRP/blob/develop/graphdrp_train_improve.py>`_ for the GraphDRP model.
+
+.. raw:: html
+
+   <details>
+   <summary><a>Training script (click to expand)</a></summary>
 
 .. code-block:: python
 
@@ -542,6 +556,9 @@ Below is a training script that takes the generated data from the :ref:`preproce
     if __name__ == "__main__":
         main(sys.argv[1:])
 
+.. raw:: html
+
+   </details>
 
 Similar to the :ref:`preprocessing <Preprocessing>` script, the training script requires defining two parameter lists: ``app_train_params`` and ``model_train_params``.
 
@@ -565,6 +582,11 @@ All the outputs from the training script are saved in ``params["infer_outdir"]``
     The scores are saved in ``test_scores.json``.
 
 Below is an inference script that takes the generated test data from the :ref:`preprocessing <Preprocessing>` step and trained a LightGBM model from the :ref:`training <Training>` step. This script is available in `this repo <https://github.com/JDACS4C-IMPROVE/LGBM/blob/master/lgbm_infer_improve.py>`_. Another example for an inference script can be found in a `repo <https://github.com/JDACS4C-IMPROVE/GraphDRP/blob/develop/graphdrp_infer_improve.py>`_ for the GraphDRP model.
+
+.. raw:: html
+
+   <details>
+   <summary><a>Inference script (click to expand)</a></summary>
 
 .. code-block:: python
 
@@ -697,6 +719,9 @@ Below is an inference script that takes the generated test data from the :ref:`p
     if __name__ == "__main__":
         main(sys.argv[1:])
 
+.. raw:: html
+
+   </details>
 
 Similar to the :ref:`training <Training>` script, the inference script requires defining two parameter lists: ``app_infer_params`` and ``model_infer_params``. In the case of LightGBM, both lists are empty.
 
