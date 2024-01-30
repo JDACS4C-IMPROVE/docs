@@ -12,7 +12,7 @@
 #
 import os
 import sys
-if os.path.isdir(‘../‘improve):
+if os.path.isdir(‘../improve'):
     sys.path.insert(0, os.path.abspath('../improve/framework.py'))
 
 
