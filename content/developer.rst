@@ -25,7 +25,7 @@ Library to access benchmark data sets for the CSA.
    unified_interface
 
 IMPROVE Framework Functions
----------------
+---------------------------
 
 Documentation of functions for IMPROVE framework.
 
