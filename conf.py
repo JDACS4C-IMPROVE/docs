@@ -10,10 +10,9 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
-import os
-import sys
-if os.path.isdir(‘../improve'):
-    sys.path.insert(0, os.path.abspath('../improve/framework.py'))
+# import os
+# import sys
+# sys.path.insert(0, os.path.abspath('.'))
 
 
 # -- Project information -----------------------------------------------------
@@ -34,7 +33,6 @@ release = '0.1'
 extensions = [
     'sphinx_copybutton',
     'sphinx.ext.autosectionlabel',
-    'sphinx.ext.autodoc',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
