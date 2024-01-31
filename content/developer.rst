@@ -23,3 +23,14 @@ Library to access benchmark data sets for the CSA.
    :maxdepth: 1
 
    unified_interface
+
+IMPROVE Framework Functions
+---------------
+
+Documentation of functions for IMPROVE framework.
+
+.. toctree::
+   :maxdepth: 1
+
+   autodoc_framework
+
