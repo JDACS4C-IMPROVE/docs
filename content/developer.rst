@@ -24,6 +24,7 @@ Library to access benchmark data sets for the CSA.
 
    unified_interface
 
+
 IMPROVE Framework Functions
 ---------------
 
@@ -31,6 +32,15 @@ Documentation of functions for IMPROVE framework.
 
 .. toctree::
    :maxdepth: 1
-
+    
    autodoc_framework
 
+Checkpointing
+-------------
+
+How to enable checkpointing in a Keras or PyTorch model with the candle library.
+
+.. toctree::
+   :maxdepth: 1
+   # develop-base-environment
+   develop-ckpt
