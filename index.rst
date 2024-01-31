@@ -15,7 +15,7 @@ Welcome to IMPROVE's documentation!
    content/developer
    # content/unified_interface
    content/applications
-   content/CSA_Benchmark_Datasets
+   content/benchmarks
    content/acknowledgment
 
 Access the code base https://github.com/JDACS4C-IMPROVE/
