@@ -23,3 +23,14 @@ Library to access benchmark data sets for the CSA.
    :maxdepth: 1
 
    unified_interface
+
+Checkpointing
+-------------
+
+How to enable checkpointing in a Keras or PyTorch model with the candle library.
+
+.. toctree::
+   :maxdepth: 1
+
+   # develop-base-environment
+   develop-ckpt

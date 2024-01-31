@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CANDLE Checkpointing in Keras and PyTorch &mdash; IMPROVE 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Applications" href="applications.html" />
+    <link rel="prev" title="Unified Interface" href="unified_interface.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            IMPROVE
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="whatis.html">What is the IMPROVE project?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart Guides</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="developer.html">Developer Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="developer.html#data-management">Data Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer.html#improve-library">IMPROVE Library</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="developer.html#checkpointing">Checkpointing</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">CANDLE Checkpointing in Keras and PyTorch</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="applications.html">Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="benchmarks.html">Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acknowledgment.html">Acknowledgments</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">IMPROVE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="developer.html">Developer Guide</a></li>
+      <li class="breadcrumb-item active">CANDLE Checkpointing in Keras and PyTorch</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/content/develop-ckpt.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="candle-checkpointing-in-keras-and-pytorch">
+<h1>CANDLE Checkpointing in Keras and PyTorch<a class="headerlink" href="#candle-checkpointing-in-keras-and-pytorch" title="Permalink to this heading">¶</a></h1>
+<p>This document provides an overview of the CANDLE checkpointing feature in Keras and PyTorch. Checkpointing is a technique that allows saving and restoring the state of a model during training. This can be useful for resuming interrupted training sessions, performing fault tolerance, or transferring learned weights to other models.
+The CANDLE library provides a unified interface for checkpointing in both Keras and PyTorch, as well as some utilities for managing checkpoints. The following examples demonstrate how to use the CANDLE checkpointing feature in Keras and PyTorch.</p>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
+<p>Two examples of using CANDLE checkpointing in Keras and PyTorch are provided in the following repository:</p>
+<p><a class="reference external" href="https://github.com/ECP-CANDLE/candle_lib/tree/rajeeja/ckpt_examples/docs/examples/checkpointing">https://github.com/ECP-CANDLE/candle_lib/tree/rajeeja/ckpt_examples/docs/examples/checkpointing</a></p>
+<p>The directory structure of the examples is as follows:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>checkpointing
+├── README.md
+├── mnist_keras
+│   ├── mnist.py
+│   ├── mnist_baseline_keras.py
+│   └── mnist_default_model.txt
+└── mnist_pytorch
+    ├── mnist.py
+    ├── mnist_baseline_pytorch.py
+    └── mnist_default_model.txt
+</pre></div>
+</div>
+<p>The README.md file contains a brief description of all the parameters that can be passed to the mnist_default_model.txt file.</p>
+<p>The mnist_keras and mnist_pytorch directories contain the scripts and configuration files for training and evaluating a simple convolutional neural network on the MNIST dataset using Keras and PyTorch, respectively.</p>
+<p>The mnist_baseline_keras.py and mnist_baseline_pytorch.py script are the main entry point for the example. It parses the command-line arguments, loads the data, creates the model, and calls the train and test functions.</p>
+<p>The mnist_default_model.txt files contain the hyperparameters for the model and the training process.</p>
+<p>The CANDLE checkpointing feature automatically handles the saving and loading of the model weights, the optimizer state, and the current epoch. It also supports saving multiple checkpoints with different names and deleting old checkpoints to save disk space.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="unified_interface.html" class="btn btn-neutral float-left" title="Unified Interface" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="applications.html" class="btn btn-neutral float-right" title="Applications" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, IMPROVE Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
