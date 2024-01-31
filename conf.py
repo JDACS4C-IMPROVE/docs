@@ -12,8 +12,12 @@
 #
 import os
 import sys
-if os.path.isdir(‘../improve'):
-    sys.path.insert(0, os.path.abspath('../improve/framework.py'))
+sys.path.insert(0, os.path.abspath('.'))
+if os.path.isdir('../IMPROVE/improve'):
+    sys.path.insert(1, os.path.abspath('../IMPROVE/'))
+else:
+    print("Can't find improve directory")
+    sys.exit()
 
 
 # -- Project information -----------------------------------------------------
