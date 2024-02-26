@@ -13,9 +13,7 @@ Welcome to IMPROVE's documentation!
    content/whatis
    content/QuickStart
    content/developer
-   # content/unified_interface
-   content/applications
-   content/CSA_Benchmark_Datasets
+   content/DrugResponsePrediction
    content/acknowledgment
 
 Access the code base https://github.com/JDACS4C-IMPROVE/
