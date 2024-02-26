@@ -1,0 +1,106 @@
+Quickstart
+=================================
+This quickstart guide is intended to help you install IMPROVE within a conda environment and preprocessing, train, and infer using a curated model and benchmark datasets.
+Here we use LGBM as a example to walk throught the necessary steps. TODO: work in what LGBM is
+
+Requirements
+______________
+
+- `git <https://github.com>`_
+- `conda <https://docs.conda.io/en/latest/>`_
+
+
+Install IMPROVE library
+_________________________
+Setup **IMPROVE** from GitHub.
+
+.. code-block:: bash
+
+    git clone https://github.com/JDACS4C-IMPROVE/IMPROVE
+    cd IMPROVE
+    export MY_PATH_TO_IMPROVE=`pwd`
+
+
+Clone a Model of Interest
+__________________________
+Repositories for all curated models can be found on the IMPROVE github (LINK TODO). A summary of models can be found here (TODO). 
+Here we clone the LGBM model.
+
+.. code-block:: bash
+
+    git clone https://github.com/JDACS4C-IMPROVE/LGBM
+
+
+Download Benchmark Dataset
+__________________________
+IMPROVE uses publicly available datasets that have been standardized and harmonized for use in assessing machine learning algorithms. 
+Here we download the Drug Response Prediction Benchmark Dataset (CSA data). There are two options to download this data.
+
+A. Directly with wget
+
+.. code-block:: bash
+
+    wget https://web.cels.anl.gov/projects/IMPROVE_FTP/candle/public/improve/benchmarks/single_drug_drp/benchmark-data-pilot1/csa_data/
+
+B. By running the download_csa script
+
+.. code-block:: bash
+
+    cd LGBM
+    sh ./download_csa.sh
+
+Set up Environment
+__________________________
+The IMPROVE Framework requires Python and the CANDLE library, as well as environment variables for the dataset path and the IMPROVE directory path. Additionally, each model has specific requirements, details of which can be found in the readme of each model repository.
+Here we create a conda environment for LGBM and set up the environment variables.
+
+1. Create and activate conda environment.
+
+.. code-block:: bash
+
+    conda create -n LGBM python=3.7 pip lightgbm=3.1.1 --yes
+    conda activate LGBM
+    pip install pyarrow==12.0.1
+    pip install git+https://github.com/ECP-CANDLE/candle_lib@develop
+
+
+2. Set up environment variables
+
+.. code-block:: bash
+
+    export IMPROVE_DATA_DIR=”./csa_data/”
+    export PYTHONPATH=$PYTHONPATH::{MY_PATH_TO_IMPROVE}
+
+
+Run preprocessing script
+__________________________
+Preprocessing takes the raw data standardized by the IMPROVE project (CSA data), and transforms it into a format appropriate for the model of choice. Data will be divided into input data and y data (e.g. drug response as AUC values) for training, validation, and testing sets to be used in the next two steps. These files are stored in the directory ml_data, in the appropriate sub folders.
+Here we run preprocessing for LGBM.
+
+.. code-block:: bash
+
+    cd LGBM
+    python lgbm_preprocess_improve.py
+
+
+Run training script
+__________________________
+The training script trains the model of interest, using the validation set for early stopping. This will generate the trained model, the predictions on the validation data, and the prediction performance scores on the validation data. The trained model and data are stored in the directory out_model.
+Here we run training for LGBM.
+
+.. code-block:: bash
+
+    python lgbm_train_improve.py
+
+
+Run inference script
+__________________________
+The inference script will use the model trained in the previous step to predict drug response for the test set and evaluate the performance of these predictions. This data is stored in the directory out_infer.
+Here we run inference for LGBM.
+
+.. code-block:: bash
+
+    python lgbm_infer_improve.py
+
+
+TODO: where to find metrics
