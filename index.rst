@@ -11,7 +11,7 @@ Welcome to IMPROVE's documentation!
    :caption: Contents:
 
    content/whatis
-   content/quickstart
+   content/QuickStart
    content/developer
    # content/unified_interface
    content/applications
