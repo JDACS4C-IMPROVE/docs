@@ -17,5 +17,5 @@ For more information
 
    Background
    Future Directions <FutureDirections>
-   Acknowledgments <acknowledgement>
+   Acknowledgments <acknowledgment>
 
