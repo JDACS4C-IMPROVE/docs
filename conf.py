@@ -58,7 +58,7 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 import sphinx_rtd_theme
 html_theme = "sphinx_rtd_theme"
 html_theme_options = {
-    'collapse_navigation': True,
+    'collapse_navigation': False,
     'display_version': True
 }
 html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
