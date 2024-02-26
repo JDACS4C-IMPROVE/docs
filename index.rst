@@ -8,12 +8,13 @@ Welcome to IMPROVE's documentation!
 
 .. toctree::
    :maxdepth: 2
+   :titlesonly:
    :caption: Contents:
 
    content/whatis
    content/QuickStart
-   content/developer
    content/DrugResponsePrediction
+   content/developer
    content/acknowledgment
 
 Access the code base https://github.com/JDACS4C-IMPROVE/
