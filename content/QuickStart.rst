@@ -3,6 +3,9 @@ Quickstart
 This quickstart guide is intended to help you install IMPROVE within a conda environment and preprocessing, train, and infer using a curated model and benchmark datasets.
 Here we use LGBM as a example to walk throught the necessary steps. TODO: work in what LGBM is
 
+.. toctree::
+   :titlesonly:
+
 Requirements
 ______________
 
