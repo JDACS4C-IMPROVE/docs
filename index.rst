@@ -15,6 +15,6 @@ Welcome to IMPROVE's documentation!
    content/QuickStart
    content/DrugResponsePrediction
    content/ModelContributorGuide
-   content/acknowledgment
+   # content/acknowledgment
 
 Access the code base https://github.com/JDACS4C-IMPROVE/
