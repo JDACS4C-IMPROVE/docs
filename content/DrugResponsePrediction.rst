@@ -1,22 +1,12 @@
 Drug Response Prediction
 =================================
+In precision oncology, there is a need for models to be able to accurately predict effective drugs for each individual. While dozens of Drug Response Prediction models have been published, there has been no standardized way to compare models. Here, we use the IMPROVE framework to create a methodology to be able to benchmark and compare various Drug Response Prediction models with a set Benchmark Data for this scientific question. We have curated 5 community models into the IMPROVE framework currently.
 
-Overview
-______________
 
 .. toctree::
    :titlesonly:
 
-   Introduction <app_drp_intro>
-
-
-Benchmark Data
-_________________________
-As part of the IMPROVE project, we have curated a set of Benchmark data Drug Response prediction. 
-
-.. toctree::
-   :titlesonly:
-
+   Scientific Question <app_drp_intro>
    Benchmark Data <CSA_Benchmark_Datasets>
 
 
