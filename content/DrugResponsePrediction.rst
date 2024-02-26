@@ -5,9 +5,9 @@ Overview
 ______________
 
 .. toctree::
-   :maxdepth: 1
+   :titlesonly:
 
-   app_drp_intro
+   Introduction <app_drp_intro>
 
 
 Benchmark Data
@@ -15,9 +15,9 @@ _________________________
 As part of the IMPROVE project, we have curated a set of Benchmark data Drug Response prediction. 
 
 .. toctree::
-   :maxdepth: 1
+   :titlesonly:
 
-   CSA_Benchmark_Datasets
+   Benchmark Data <CSA_Benchmark_Datasets>
 
 
 Models
@@ -26,7 +26,7 @@ The IMPROVE project has curated a number of Drug Response Prediction Models for 
 
 
 .. toctree::
-   :maxdepth: 1
+   :titlesonly:
 
    GraphDRP
    tCNNS
