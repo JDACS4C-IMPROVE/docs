@@ -1,5 +1,5 @@
 ===========================
-Unified Interface
+Tutorial
 ===========================
 
 IMPROVE comparison workflows require that prediction models adhere a unified code interface.
