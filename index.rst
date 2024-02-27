@@ -13,6 +13,7 @@ Welcome to IMPROVE's documentation!
 
    content/whatis
    content/QuickStart
+   content/BenchmarkEvaluationSchemes
    content/DrugResponsePrediction
    content/ModelContributorGuide
    # content/acknowledgment
