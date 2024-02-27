@@ -6,7 +6,7 @@ A dual graph convolutional network model to predict cancer drug response
 
 Model Architecture
 --------------------
-DualGCN is a unified Dual Graph Convolutional Network model to predict cancer drug response. It takes chemical structure information of a drug and gene features of a cancer sample as inputs and outputs IC50.
+DualGCN is structured with two distinct GCN arms, termed drug-GCN and bio-GCN, which take input graphs of chemical structures and multi-omics features. Following multiple graph convolution layers, graph-level features are generated and pooled. Then, the features from two arms are concatenated and passed through an MLP block to generate IC50 predictions. For the chemical graph, the nodes are atoms, and edges are bonds. The atom features are generated using DeepChem default atom features. For the bio graph, the nodes are genes, and edges are protein-protein interactions (PPI). The input of genetic is flexible for multiomics input, and expression + CNV is reported to have the best performance. 
 
 Feature Representation
 --------------------
