@@ -16,7 +16,7 @@ The IMPROVE project has curated a number of Drug Response Prediction Models for 
 .. toctree::
    :titlesonly:
 
-   GraphDRP
+   Models-GraphDRP
    tCNNS
    DeepTTC
    IGTD
