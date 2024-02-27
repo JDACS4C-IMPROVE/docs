@@ -7,7 +7,7 @@ With the recent explosion in the number and diversity of supervised learning mod
 
 General benchmark data set structure
 
-We currently have benchmark data for :ref: `Drug Response Prediction <CSA_Benchmark_Datasets>`.
+We currently have benchmark data for :doc:`Drug Response Prediction <CSA_Benchmark_Datasets>`.
 
 
 IMPROVE Benchmark Evaluation Schemes
