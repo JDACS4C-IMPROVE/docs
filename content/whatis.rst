@@ -35,6 +35,8 @@ For more information
    Acknowledgments <acknowledgment>
 
 
+Access the code base https://github.com/JDACS4C-IMPROVE/
+
 References
 ---------------------------------
 `1. <https://www.frontiersin.org/articles/10.3389/fmed.2023.1086097/full>`_ A. Partin et al. "Deep learning methods for drug response prediction in cancer: Predominant and emerging trends", Frontiers in Medicine, Section Prediction Oncology, 2023
