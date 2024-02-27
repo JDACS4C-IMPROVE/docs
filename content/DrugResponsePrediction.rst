@@ -10,8 +10,6 @@ In precision oncology, there is a need for models to be able to accurately predi
    Benchmark Data <CSA_Benchmark_Datasets>
 
 
-Models
-__________________________
 The IMPROVE project has curated a number of Drug Response Prediction Models for pan-cancer, pan-drug studies. Descriptions of the curated models can be found below.
 
 
