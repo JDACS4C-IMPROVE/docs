@@ -12,7 +12,11 @@ Drug Response Prediction - link
 
 IMPROVE Benchmark Evaluation Schemes
 ---------------------------------------
-Cross-study generalization (ability of models to generalize across cell-line datasets)
-Learning curve (data scaling properties)
-Cell-blind analysis (ability to make good drug recommendations given a cancer sample)
+.. toctree::
+   :titlesonly:
+
+   BenchmarkSchemes-CSA
+   BenchmarkSchemes-LC
+  
+
 
