@@ -23,5 +23,6 @@ The IMPROVE project has curated a number of Drug Response Prediction Models for 
    Models-HiDRA
    Models-Paccman_MCA
    Models-DualGCN
+   Models-DeepCDR
 
    
