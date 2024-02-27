@@ -1,4 +1,0 @@
-===========
-Paccman_MCA
-===========
-Placeholder.
