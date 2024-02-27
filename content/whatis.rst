@@ -1,7 +1,9 @@
 What is the IMPROVE project?
 ============================
 IMPROVE aims to establish methodology to systematically and rigorously compare supervised learning models. To this end, IMPROVE has two components:
+
 1) IMPROVE Framework: standardized scaffolding for machine learning models, written in Python
+
 2) IMPROVE Benchmark Datasets: a collection of standardized data for each application to allow for benchmarking of models
 
 
