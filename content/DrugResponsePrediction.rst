@@ -18,8 +18,10 @@ The IMPROVE project has curated a number of Drug Response Prediction Models for 
 
    Models-GraphDRP
    tCNNS
-   DeepTTC
-   IGTD
-   HiDRA
+   Models-DeepTTC
+   Models-IGTD
+   Models-HiDRA
+   Models-Paccman_MCA
+   Models-DualGCN
 
    
