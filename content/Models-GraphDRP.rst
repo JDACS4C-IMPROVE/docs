@@ -24,9 +24,11 @@ The script preprocess.py uses raw data to generate ML data that can be used to t
        * converted into graph structure where nodes represent atoms and edges represent the bonds (each atom is represented by 78 features).
 
 The user can specify one of three data splitting strategies: 1) mixed set (random split), 2) cell-blind (hard partition on cell line samples), 3) drug-blind (hard partition on drugs). In either case, the script generates three files, train_data.pt, val_data.pt, and test_data.pt with 0.8/0.1/0.1 ratio, and saves them in appropriate directories:
-./data_processed/<split_strategy>/processed/train_data.pt
-./data_processed/<split_strategy>/processed/val_data.pt
-./data_processed/<split_strategy>/processed/test_data.pt
+
+   *./data_processed/<split_strategy>/processed/train_data.pt
+   *./data_processed/<split_strategy>/processed/val_data.pt
+   *./data_processed/<split_strategy>/processed/test_data.pt
+
 Bash script preprocess_batch.sh generates the nine possible ML data configurations (i.e., 3 files for each splitting strategy).
 
 URLs
