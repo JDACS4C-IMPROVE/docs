@@ -11,16 +11,17 @@ Feature Representation
 --------------------
 The script preprocess.py uses raw data to generate ML data that can be used to train and test with GraphDRP. The necessary raw data are automatically downloaded from the FTP server using a candle_lib utility function get_file() and processed:
 
-   *Response data: IC50 values
+   * Response data: IC50 values
 
-      *(PANCANCER_IC.csv) are transformed using 1 / (1 + pow(math.exp(float(ic50)), -0.1)).
+      * (PANCANCER_IC.csv) are transformed using 1 / (1 + pow(math.exp(float(ic50)), -0.1)).
 
-   *Cancer features: 735 binary features, including mutations and copy number alterations
+   * Cancer features: 735 binary features, including mutations and copy number alterations
 
-      *not modified
+      * not modified
 
-   *Drug features: SMILES strings
-       *converted into graph structure where nodes represent atoms and edges represent the bonds (each atom is represented by 78 features).
+   * Drug features: SMILES strings
+
+       * converted into graph structure where nodes represent atoms and edges represent the bonds (each atom is represented by 78 features).
 
 The user can specify one of three data splitting strategies: 1) mixed set (random split), 2) cell-blind (hard partition on cell line samples), 3) drug-blind (hard partition on drugs). In either case, the script generates three files, train_data.pt, val_data.pt, and test_data.pt with 0.8/0.1/0.1 ratio, and saves them in appropriate directories:
 ./data_processed/<split_strategy>/processed/train_data.pt
