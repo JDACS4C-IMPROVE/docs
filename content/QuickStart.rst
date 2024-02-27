@@ -1,7 +1,7 @@
 Quickstart
 =================================
 This quickstart guide is intended to help you install IMPROVE within a conda environment and preprocessing, train, and infer using a curated model and benchmark datasets.
-Here we use LGBM as a example to walk throught the necessary steps. TODO: work in what LGBM is
+Here we use LGBM as a example of a model in the IMPROVE framework to walk throught the necessary steps to predict drug response using curated IMPROVE Drug Response Datasets.
 
 .. toctree::
    :titlesonly:
@@ -26,7 +26,7 @@ Setup **IMPROVE** from GitHub.
 
 Clone a Model of Interest
 __________________________
-Repositories for all curated models can be found on the IMPROVE github (LINK TODO). A summary of models can be found here (TODO). 
+Repositories for all curated models can be found on the `IMPROVE github <https://github.com/JDACS4C-IMPROVE/>`_. A list of models can be found :doc:`here <DrugResponsePrediction>`. 
 Here we clone the LGBM model.
 
 .. code-block:: bash
