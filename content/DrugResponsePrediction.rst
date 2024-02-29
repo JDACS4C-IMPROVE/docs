@@ -6,7 +6,7 @@ In precision oncology, there is a need for models to be able to accurately predi
 .. toctree::
    :titlesonly:
 
-   Scientific Question <app_drp_intro>
+   Problem Formulation <app_drp_intro>
    Benchmark Data <CSA_Benchmark_Datasets>
    Models <Models>
 
