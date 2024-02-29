@@ -6,7 +6,7 @@ We welcome members of the community to use the IMPROVE framework and benchmark d
 .. toctree::
    :titlesonly:
 
-   # How to Contribute <ModelContributor-HowTo>
+   # ModelContributor-HowTo
    Tutorial <unified_interface>
-   # Data Conventions <develop-data-mgmt>
+
 
