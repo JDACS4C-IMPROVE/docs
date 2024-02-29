@@ -8,6 +8,5 @@ We welcome members of the community to use the IMPROVE framework and benchmark d
 
    # How to Contribute <ModelContributor-HowTo>
    Tutorial <unified_interface>
-   Data Conventions <develop-data-mgmt>
-   Containerized Models <quickstart-build-and-deploy-models>
+   # Data Conventions <develop-data-mgmt>
 
