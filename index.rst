@@ -6,6 +6,9 @@
 Welcome to IMPROVE's documentation!
 ===================================
 
+
+
+
 .. toctree::
    :maxdepth: 2
    :titlesonly:
@@ -15,7 +18,7 @@ Welcome to IMPROVE's documentation!
    content/QuickStart
    content/BenchmarkEvaluationSchemes
    content/DrugResponsePrediction
+   content/UserGuide
    content/ModelContributorGuide
-   # content/acknowledgment
 
 Access the code base https://github.com/JDACS4C-IMPROVE/
