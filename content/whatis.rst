@@ -11,7 +11,7 @@ IMPROVE aims to establish methodology to systematically and rigorously compare s
 4) IMPROVE Community Curated Models: models for each application from the scientific communitity that have been curated into the IMPROVE framework
 
 
-IMPROVE can be applied to a variety of supervised learning models. We have begun with the :doc:`Drug Response Prediction <app_drp_intro>`problem, standardizing :doc:`community models <Models>` that predict pan-cancer, pan-drug, single drug response for precision oncology with a standardized :doc:`benchmark dataset <CSA_Benchmark_Datasets>`.
+IMPROVE can be applied to a variety of supervised learning models. We have begun with the :doc:`Drug Response Prediction <app_drp_intro>` problem, standardizing :doc:`community models <Models>` that predict pan-cancer, pan-drug, single drug response for precision oncology with a standardized :doc:`benchmark dataset <CSA_Benchmark_Datasets>`.
 
 
 
