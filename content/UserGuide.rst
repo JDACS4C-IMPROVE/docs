@@ -5,5 +5,6 @@ The following guides walk through how to run various aspects of the IMPROVE work
 .. toctree::
    :titlesonly:
 
+   Building Containters <quickstart-build-and-deploy-models>
    CSA <quickstart-csa-prerequisites>
    HPO <quickstart-hpo-experiment>
