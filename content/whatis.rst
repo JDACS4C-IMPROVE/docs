@@ -4,14 +4,14 @@ IMPROVE aims to establish methodology to systematically and rigorously compare s
 
 1) IMPROVE Framework: standardized scaffolding for machine learning models, written in Python
 
-2) IMPROVE Benchmark Datasets: a collection of standardized data for each application to allow for benchmarking of models
+2) IMPROVE :doc:`Evaluation Schemes <BenchmarkEvaluationSchemes>`: workflows to evaluated and compare models
 
-3) IMPROVE Evaluation Schemes: workflows to evaluated and compare models
+3) IMPROVE Benchmark Datasets: a collection of standardized data for each application to allow for benchmarking of models
 
-4) IMPROVE Community Curated Models: models from the scientific communitity that have been curated into the IMPROVE framework
+4) IMPROVE Community Curated Models: models for each application from the scientific communitity that have been curated into the IMPROVE framework
 
 
-IMPROVE can be applied to a variety of supervised learning models. We have begun with the Drug Response Prediction problem, standardizing community models that predict pan-cancer, pan-drug, single drug response for precision oncology with a standardized benchmark dataset.
+IMPROVE can be applied to a variety of supervised learning models. We have begun with the :doc:`Drug Response Prediction <app_drp_intro>`problem, standardizing :doc:`community models <Models>` that predict pan-cancer, pan-drug, single drug response for precision oncology with a standardized :doc:`benchmark dataset <CSA_Benchmark_Datasets>`.
 
 
 
