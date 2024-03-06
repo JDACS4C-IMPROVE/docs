@@ -1,5 +1,5 @@
 ===========================
-Unified Interface
+Tutorial
 ===========================
 
 IMPROVE comparison workflows require that prediction models adhere a unified code interface.
@@ -344,6 +344,8 @@ Below is a preprocessing script that takes :ref:`cross-study analysis benchmark 
    </details>
 
 
+
+
 As mentioned earlier, all the required code sections are designated with *[Req]*.
 One of the requirements is to define two lists of directories: ``app_preproc_params`` and ``model_preproc_params``.
 Each dictionary (dict) specifies keyword arguments.
@@ -560,6 +562,8 @@ Below is a training script that takes the generated data from the :ref:`preproce
 
    </details>
 
+
+
 Similar to the :ref:`preprocessing <Preprocessing>` script, the training script requires defining two parameter lists: ``app_train_params`` and ``model_train_params``.
 
 
@@ -722,6 +726,8 @@ Below is an inference script that takes the generated test data from the :ref:`p
 .. raw:: html
 
    </details>
+
+
 
 Similar to the :ref:`training <Training>` script, the inference script requires defining two parameter lists: ``app_infer_params`` and ``model_infer_params``. In the case of LightGBM, both lists are empty.
 

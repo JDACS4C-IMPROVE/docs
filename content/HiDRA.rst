@@ -1,4 +1,0 @@
-=====
-HiDRA
-=====
-Placeholder.
