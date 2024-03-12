@@ -1,16 +1,14 @@
 Welcome to Our Documentation
 =============================
 
-.. _getting-started:
-
 Getting Started
 ---------------
 
 This section provides an overview of how to get started with our project.
 
-To learn more, see the :ref:`installation`.
+To learn more, see the :ref:`installation-section`.
 
-.. _installation:
+.. _installation-section:
 
 Installation
 ------------
@@ -20,8 +18,6 @@ Follow these steps to install the project:
 1. Ensure you meet the prerequisites.
 2. Download the project from our repository.
 3. Follow the installation instructions.
-
-.. _configuration:
 
 Configuration
 -------------
