@@ -10,14 +10,14 @@ Your model must be CANDLE compliant, containerized, and packaged in a singularit
 + train.sh
 + infer.sh
 
-`IMPROVE Singularity repository <https://github.com/JDACS4C-IMPROVE/Singularity>`_
 
 Steps 
 _____
 
 1. Install prerequisites
-2. :ref:`Create config files <Config Overview>` for experiment. 
-3. :ref:`Run <Run>` HPO with supervisor::
+2. Preprocess data
+3. :ref:`Create config files <Config Overview>` for experiment. 
+4. :ref:`Run <Run>` HPO with supervisor::
         supervisor ${location} ${workflow} ${config}
 4. :ref:`Analysis <Analysis>`
 
