@@ -83,32 +83,70 @@ More information on Polaris job submitting (nodes, walltime, queue, etc...) can 
     .. code-block:: JSON
 
         [
-        
+
+          {
+            "name": "train_ml_data_dir",
+            "type": "constant",
+            "value": "/tmp/weaverr/Data/ml_data/GraphDRP/CCLE-CCLE/split_0"
+          },
+          {
+            "name": "val_ml_data_dir",
+            "type": "constant",
+            "value": "/tmp/weaverr/Data/ml_data/GraphDRP/CCLE-CCLE/split_0"
+          },
+          {
+            "name": "model_outdir",
+            "type": "constant",
+            "value": "/tmp/weaverr/Data/out_models/GraphDRP/CCLE/split_0"
+          },
+
           {
             "name": "learning_rate",
             "type": "float",
+            "use_log_scale": true,
             "lower": 0.000001,
-            "upper": 0.0001,
-            "sigma": 0.00005
+            "upper": 0.0001
           },
-        
+          {
+            "name": "canc_num_layers",
+            "type": "int",
+            "lower": 1,
+            "upper": 9
+          },
           {
             "name": "batch_size",
             "type": "ordered",
             "element_type": "int",
-            "values": [256, 512, 1028],
+            "values": [16, 32, 64, 128, 256, 512],
             "sigma": 1
           },
-        
+          {
+            "name": "warmup_type",
+            "type": "ordered",
+            "element_type": "string",
+            "values": ["none", "linear", "quadratic", "exponential"],
+            "sigma": 0.5
+          },
+          {
+            "name": "optimizer",
+            "type": "categorical",
+            "element_type": "string",
+            "values": [
+              "Adam",
+              "SGD",
+              "RMSprop"
+            ]
+          },
+
           {
             "name": "epochs",
             "type": "constant",
-            "value": 5
+            "value": 150
           }
         
         ]
 
-Make sure to set the hyperparameter space to what you desire. The upper and lower describe the bounds of the hyperparameter. Higher sigma causes more extensive mutations in the genetic algorithm. More about the hyperparameter file can be found here: https://github.com/ECP-CANDLE/Supervisor/blob/develop/workflows/GA/README.md
+Make sure to set the hyperparameter space to what you desire, the above file is an example. The upper and lower describe the bounds of the hyperparameter. Hyperparameters of float, int, ordered, categorical, and constant types are supported, with ordered and categorical hyperparameters supporting float, int, and string types. Log scale exploration is also supported for float and int hyperparameter types. More about additional customization and methods can be found here: https://github.com/ECP-CANDLE/Supervisor/blob/develop/workflows/GA/README.md
 
 
 Supervisor setup
