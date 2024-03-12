@@ -43,33 +43,6 @@ _____________________
     pip install numpy deap
 
 
-Environment for Job Submitting
-_____________________
-
-If on a job-submitting computation system, it's important that the IMPROVE environment is activated for the job. This may require you to add the following line to your ``~/.bashrc`` file, which changes your default login environment: ``conda activate IMPROVE``. Here's an example of how your the end of your ``~/.bashrc`` file might look:
-
-.. code-block:: bash
-
-    # >>> conda initialize >>>
-    # !! Contents within this block are managed by 'conda init' !!
-    __conda_setup="$('/home/weaverr/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-    if [ $? -eq 0 ]; then
-        eval "$__conda_setup"
-    else
-        if [ -f "/home/weaverr/miniconda3/etc/profile.d/conda.sh" ]; then
-            . "/home/weaverr/miniconda3/etc/profile.d/conda.sh"
-        else
-            export PATH="/home/weaverr/miniconda3/bin:$PATH"
-        fi
-    fi
-    unset __conda_setup
-    # <<< conda initialize <<<
-    
-    conda activate IMPROVE
-
-After this change, you will need to enter ``source ~/.bashrc`` again to update.
-
-
 Installing swift-t
 _____________________
 
