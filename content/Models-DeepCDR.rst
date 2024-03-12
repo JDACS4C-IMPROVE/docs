@@ -5,22 +5,20 @@ Cancer Drug Response Prediction via a Hybrid Graph Convolutional Network
 
 Model Architecture
 --------------------
-DeepCDR is a hybrid graph convolutional neural network (GCN) that has been developed for drug response prediction that uses both drug features, and multiomics features. This network consists of a uniform graph convolution network (UGCN) for accommodating drug-level features, which respects the structures of the chemical components of drugs, and several subnetworks for extracting cancer cell line information.
+DeepCDR is a hybrid graph convolutional network (GCN) that consists of a uniform graph convolutional network (UGCN) to represent the chemical features of cancer drugs and several subnetworks for processing different multi-omic profiles. The UGCN takes the adjacency information of atoms in the drug molecules by aggregating the features of the neighboring atoms into consideration, and the subnetworks extract features for the cancer omic profiles from cell line information. Both these features are later concatenated and passed through a 1D convolutional neural network (CNN) to predict the cancer drug response (CDR). DeepCDR is one of the first models to use GCNs and multi-omic profiles to predict CDR.
 
 Feature Representation
 --------------------
 
-   * Response data: 
-
-      * 
-
    * Cancer features: 
 
-      * 
+      * Gene Expression: extracted by subnetwork
+      * DNA Methylation: extracted by subnetwork
+      * Mutation: extracted by subnetwork
 
    * Drug features: 
 
-       * 
+       * SMILES: neighboring and feature information of the drug molecules are processed using a UGCN
 
 
 
