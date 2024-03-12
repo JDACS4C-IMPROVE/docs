@@ -54,7 +54,7 @@ A directory with copy-and-customize config files can be found at <https://github
     export NUM_ITERATIONS=3
     export POPULATION_SIZE=2
     
-    # GA Settings
+    # GA Settings (optional)
     export GA_STRATEGY='mu_plus_lambda'
     export OFFSPRING_PROPORTION=0.5
     export MUT_PROB=0.8
@@ -70,7 +70,6 @@ A directory with copy-and-customize config files can be found at <https://github
     # you can save there. If not, make a directory in /tmp or somewhere else you can write.
 
     # Lambda Settings
-    # export CANDLE_CUDA_OFFSET=2
     # export CANDLE_DATA_DIR=/tmp/<user>/data_dir
     
     # Polaris Settings
