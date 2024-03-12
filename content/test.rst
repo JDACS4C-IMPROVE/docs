@@ -8,7 +8,7 @@ Getting Started
 
 This section provides an overview of how to get started with our project.
 
-To learn more, see the :ref:`installation-section`.
+To learn more, see the :ref:`installation`.
 
 .. _installation:
 
