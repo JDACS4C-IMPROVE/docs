@@ -22,6 +22,20 @@ _____
 4. :ref:`Analysis <Analysis>`
 
 
+
+.. _Preprocess Data:
+
+Preprocess Data
+___________________
+
+This step is only necessary if your data has not already been preprocessed and stored on your filesystem. To preprocess your data, you'll need to call ``preprocess.sh`` in your singularity container with the needed command line arguments. Preprocess with the following command:
+
+.. code-block:: bash
+
+    singularity exec --bind $IMPROVE_DATA_DIR:/IMPROVE_DATA_DIR <path_to_sif_file>.sif preprocess.sh /IMPROVE_DATA_DIR --train_split_file <dataset>_split_0_train.txt \
+    --val_split_file <dataset>_split_0_val.txt --ml_data_outdir /IMPROVE_DATA_DIR/<desired_outdir>
+
+
 .. _Config Overview:
 
 Create config files
@@ -87,17 +101,17 @@ More information on Polaris job submitting (nodes, walltime, queue, etc...) can 
           {
             "name": "train_ml_data_dir",
             "type": "constant",
-            "value": "/tmp/weaverr/Data/ml_data/GraphDRP/CCLE-CCLE/split_0"
+            "value": "<train_data_dir>"
           },
           {
             "name": "val_ml_data_dir",
             "type": "constant",
-            "value": "/tmp/weaverr/Data/ml_data/GraphDRP/CCLE-CCLE/split_0"
+            "value": "<val_data_dir>"
           },
           {
             "name": "model_outdir",
             "type": "constant",
-            "value": "/tmp/weaverr/Data/out_models/GraphDRP/CCLE/split_0"
+            "value": "<desired_outdir>"
           },
 
           {
@@ -108,7 +122,7 @@ More information on Polaris job submitting (nodes, walltime, queue, etc...) can 
             "upper": 0.0001
           },
           {
-            "name": "canc_num_layers",
+            "name": "num_layers",
             "type": "int",
             "lower": 1,
             "upper": 9
