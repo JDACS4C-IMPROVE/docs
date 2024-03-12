@@ -5,22 +5,18 @@ A transformer-based model for predicting cancer drug response
 
 Model Architecture
 --------------------
-DeepTTA (DeepTTC on GitHub) model is a Deep Learning model that uses dual convergence approach, where separate networks are responsible for learning embeddings for cell lines and drug representations, and afterward Multi-Layer Perceptron (MLP) classifier is trained to predict drug response. Drug features are encoded via transformer architecture that uses an attention mechanism to find correlations between Explainable Substructure Partition Fingerprint (ESPF) encodings of drugs. Gene expressions are encoded by MLP with three hidden layers with the sizes of 1024, 256, and 64.
+DeepTTC (or DeepTTA) is a deep learning-based drug response prediction method with state-of-the-art performance. This model is composed of two separate subnetworks that learn representations of the cell line gene expression data and drug SMILES encoding. Gene expression representations are obtained with the help of a multi-layer perceptron with three hidden layers of sizes 1024, 256, and 64. 
 
 Feature Representation
 --------------------
 
-   * Response data: 
-
-      * 
-
    * Cancer features: 
 
-      * 
+      * Gene expression: as continuous values
 
    * Drug features: 
 
-       * 
+       * Drug SMILES: split into Explainable Substructure Partition Fingertips from the pre-defined dictionary & compact embedding via a transformer-based encoder with the attention mechanism and 128-dim output
 
 
 
