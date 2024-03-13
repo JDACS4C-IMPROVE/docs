@@ -57,6 +57,8 @@ Currently, we utilized 9 models for the cross-study analysis. We forked the orig
    Models-DualGCN
    Models-DeepCDR
    Models-PathDSP
+   Models-LGBM
+   Models-UNO
 
 
 References

@@ -5,22 +5,18 @@ Hierarchical Network for Drug Response Prediction with Attention
 
 Model Architecture
 --------------------
-HiDRA consists of four smaller networks: a drug feature encoding network, which takes SMILES strings converted to Morgan fingerprints; a set of gene-level networks which encode expression data for genes in each pathway; a pathway-level network that takes in output of the individual gene-level networks; and a prediction network that uses drug encodings and pathway output to predict ln(IC50). Each sub-network consists of two dense layers and an attention module (tanh + softmax activation).
+HiDRA starts with a dense two-layer drug encoding network. The gene expression data is then split up into pathways based on KEGG data, and each pathway has its own dense encoding network with gene-level and pathway-level attention modules that incorporate the drug encodings. Finally, a dense two-layer network takes concatenated drug and pathway outputs and generates an response prediction.
 
 Feature Representation
 --------------------
 
-   * Response data: 
-
-      * 
-
    * Cancer features: 
 
-      * 
+      * Gene Expression: converted to z-scores for each cell line, genes not present in the KEGG pathway data are removed
 
    * Drug features: 
 
-       * 
+       * Drug Fingerprints: 512-bit Morgan fingerprints generated from SMILES strings with rdkit
 
 
 

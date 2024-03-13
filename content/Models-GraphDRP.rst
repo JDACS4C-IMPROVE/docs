@@ -5,23 +5,19 @@ Graph Convolutional Networks for Drug Response Prediction
 
 Model Architecture
 --------------------
-GraphDRP consists of two subnetworks that learn from input features of cancer cell lines (CCLs) and drugs to predict IC50, a dose-independent treatment response. The encoded feature representations by the two subnetworks are concatenated and passed through dense layers for the prediction of IC50. Each CCL is represented by a vector of 735 binary features including variant conding and copy number alterations. Each drug is represented with a graph molecular structure where nodes and edges represent, respectively, the atoms and bonds of the a molecule (each atom is represented by 78 features). The CCL subnetwork consists of three 1-D CNNs followed by dense layers. For the drug subnetworks, four different configurations of graph neural network (GNN) modules have been explored, including GCN, GAT, and GIN.
+GraphDRP consists of two subnetworks that learn from input features of cancer cell lines (CCLs) and drugs to predict drug response. The encoded feature representations by the two subnetworks are concatenated and passed through dense layers for the prediction. Each CCL is represented by a vector of binary features including variant conding and copy number alterations. Each drug is represented with a graph molecular structure where nodes and edges represent, respectively, the atoms and bonds of the a molecule. The CCL subnetwork consists of three 1-D CNNs followed by dense layers. 
 
 Feature Representation
 --------------------
-The script preprocess.py uses raw data to generate ML data that can be used to train and test with GraphDRP. The necessary raw data are automatically downloaded from the FTP server using a candle_lib utility function get_file() and processed:
 
-   * Response data: IC50 values
+   * Cancer features:
 
-      * (PANCANCER_IC.csv) are transformed using 1 / (1 + pow(math.exp(float(ic50)), -0.1)).
+      * Mutation: as binary
+      * Copy Number Variation: as binary
 
-   * Cancer features: 735 binary features, including mutations and copy number alterations
+   * Drug features: 
 
-      * not modified
-
-   * Drug features: SMILES strings
-
-       * converted into graph structure where nodes represent atoms and edges represent the bonds (each atom is represented by 78 features).
+       * SMILES: converted into graph structure where nodes represent atoms and edges represent the bonds (each atom is represented by 78 features)
 
 
 URLs
