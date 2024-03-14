@@ -1,11 +1,11 @@
 =================
-PaccMann (MCA)
+PaccMann-MCA
 =================
 Prediction of AntiCancer Compound sensitivity with Multi-modal Attention-based Neural Networks
 
 Model Architecture
 --------------------
-The Paccmann-MCA model is composed of a network propagation layer, an attention-based gene expression encoder, a SMILES embedding layer and a SMILES encoder. The gene expression encoder generates attention weights to encode the cell-line gene expression. The model uses multiscale convolutional attention (MCA) mechanism for the SMILES encoders. The MCA mechanism enables to incorporate both positional information and long-range dependencies using a combination of convolutional layers and contextual attention mechanisms. Finally the encoded drug and cell-line features are concatenated and input to fully connected dense layers to predict the drug response.
+The PaccMann-MCA model is composed of a network propagation layer, an attention-based gene expression encoder, a SMILES embedding layer and a SMILES encoder. The gene expression encoder generates attention weights to encode the cell-line gene expression. The model uses multiscale convolutional attention (MCA) mechanism for the SMILES encoders. The MCA mechanism enables to incorporate both positional information and long-range dependencies using a combination of convolutional layers and contextual attention mechanisms. Finally the encoded drug and cell-line features are concatenated and inputted to fully connected dense layers to predict the drug response.
 
 Feature Representation
 --------------------
