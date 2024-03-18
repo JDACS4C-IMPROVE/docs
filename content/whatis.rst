@@ -1,6 +1,6 @@
 What is the IMPROVE project?
 ============================
-IMPROVE aims to establish methodology to systematically and rigorously compare supervised learning models. To this end, IMPROVE has two components:
+IMPROVE aims to establish methodology to systematically and rigorously compare supervised learning models. To this end, IMPROVE has four components:
 
 1) IMPROVE Framework: standardized scaffolding for machine learning models, written in Python
 

@@ -1,5 +1,5 @@
 =================
-UNO
+Uno
 =================
 Unified Drug Response Predictor
 
