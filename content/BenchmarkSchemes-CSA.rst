@@ -5,7 +5,6 @@ Cross-Study Analysis
 
 Cross-Study Analysis (CSA) looks at the ability of models to generalize across different datasets. For each model, the CSA workflow generates an N-by-N table of prediction performance scores (N = number of datasets). Scores on the diagonal indicate performance when trained and tested on different splits of the same dataset, whereas off-diagonal scores indicate performance when trained and tested on different datasets
 
-Put a figure here.
 
 Workflow
 ----------
