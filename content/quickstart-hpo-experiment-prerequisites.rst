@@ -37,7 +37,7 @@ _____________________
 
     conda create --name IMPROVE python=3.9.16
     conda activate IMPROVE
-    cd ~/<desired_supervisor_directory>
+    # change to a directory for supervisor if desired
     git clone https://github.com/ECP-CANDLE/Supervisor.git
     cd Supervisor && export PATH=$PATH:$(pwd)/bin
     git checkout develop
