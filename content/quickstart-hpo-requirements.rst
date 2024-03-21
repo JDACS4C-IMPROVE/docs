@@ -16,13 +16,6 @@ Your model must be IMPROVE compliant, reading arguments from a '.txt' file and o
 + train.sh
 + infer.sh
 
-.. _Preprocess Data:
-
-Preprocess Data
-___________________
-
-This step is only necessary if your data has not already been preprocessed and stored on your filesystem. To preprocess your data, you'll need to call ``preprocess.sh`` in your singularity container with the needed command line arguments. Preprocess using the following command with your arguments:
-
 .. code-block:: bash
 
     singularity exec --bind $IMPROVE_DATA_DIR:/IMPROVE_DATA_DIR <path_to_sif_file>.sif preprocess.sh /IMPROVE_DATA_DIR --train_split_file <dataset>_split_0_train.txt \
