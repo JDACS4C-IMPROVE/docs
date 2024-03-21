@@ -4,6 +4,8 @@ Hyper Parameter Optimization (HPO)
 Requirements
 ____________
 
+The following are the requirements to run HPO on your model.
+
 Your model must be IMPROVE compliant, containerized, and packaged in a singularity image. You can identify the image file by the **\*.sif** suffix. Default definition files can be found in the `IMPROVE Singularity repository <https://github.com/JDACS4C-IMPROVE/Singularity>`_. The container should expose the following interface scripts:
 
 + preprocess.sh
