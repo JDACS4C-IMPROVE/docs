@@ -18,8 +18,9 @@ Your model must be IMPROVE compliant, reading arguments from a '.txt' file and o
 
 .. code-block:: bash
 
-    singularity exec --bind $IMPROVE_DATA_DIR:/IMPROVE_DATA_DIR <path_to_sif_file>.sif preprocess.sh /IMPROVE_DATA_DIR --train_split_file <dataset>_split_0_train.txt \
-    --val_split_file <dataset>_split_0_val.txt --ml_data_outdir /IMPROVE_DATA_DIR/<desired_outdir>
+    singularity exec --bind $IMPROVE_DATA_DIR:/IMPROVE_DATA_DIR <path_to_sif_file>.sif preprocess.sh /IMPROVE_DATA_DIR \ 
+    --train_split_file <dataset>_split_0_train.txt --val_split_file <dataset>_split_0_val.txt \ 
+    --ml_data_outdir /IMPROVE_DATA_DIR/<desired_outdir>
 
 
 To test your scripts with containerization, it's recommended you build a container and run the following commands (customized with your arguments):
@@ -27,14 +28,14 @@ To test your scripts with containerization, it's recommended you build a contain
 .. code-block:: bash
 
     singularity exec --bind $IMPROVE_DATA_DIR:/IMPROVE_DATA_DIR <path_to_sif_file>.sif preprocess.sh /IMPROVE_DATA_DIR \ 
---train_split_file  <dataset>_split_0_train.txt --val_split_file <dataset>_split_0_val.txt \ 
---ml_data_outdir /IMPROVE_DATA_DIR/<desired_outdir>
+    --train_split_file  <dataset>_split_0_train.txt --val_split_file <dataset>_split_0_val.txt \ 
+    --ml_data_outdir /IMPROVE_DATA_DIR/<desired_outdir>
 
 .. code-block:: bash
 
     singularity exec --bind $IMPROVE_DATA_DIR:/IMPROVE_DATA_DIR <path_to_sif_file>.sif preprocess.sh /IMPROVE_DATA_DIR \ 
---train_split_file <dataset>_split_0_train.txt --val_split_file <dataset>_split_0_val.txt \ 
---ml_data_outdir /IMPROVE_DATA_DIR/<desired_outdir>
+    --train_split_file <dataset>_split_0_train.txt --val_split_file <dataset>_split_0_val.txt \ 
+    --ml_data_outdir /IMPROVE_DATA_DIR/<desired_outdir>
 
 
 .. code-block:: bash
