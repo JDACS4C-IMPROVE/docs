@@ -48,7 +48,7 @@ This step is only necessary if your data has not already been preprocessed and s
 Create config files
 ___________________
 
-A directory with copy-and-customize config files can be found at <https://github.com/ECP-CANDLE/Tests/tree/main/sv-tool/deap-generic>, along with a README about the settings used. Create with the following steps:
+A directory with copy-and-customize config files here at `Example Files <https://github.com/ECP-CANDLE/Tests/tree/main/sv-tool/deap-generic>`_., along with a `README <https://github.com/ECP-CANDLE/Tests/blob/main/sv-tool/deap-generic/README.adoc>`_ that explains the settings used. Create with the following steps:
 
 1. ``mkdir Experiment && cd Experiment``
 
