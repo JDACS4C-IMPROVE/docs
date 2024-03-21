@@ -27,7 +27,7 @@ _____
 Install Prerequisites
 ___________________
 
-Refer to the `Prequisites Guide <https://github.com/JDACS4C-IMPROVE/docs/blob/RylieWeaver9-HPO/content/quickstart-hpo-prerequisites.rst>`_.
+Refer to the `Prequisites Guide <https://github.com/JDACS4C-IMPROVE/docs/blob/RylieWeaver9-HPO/content/quickstart-hpo-experiment-prerequisites.rst>`_.
 
 
 .. _Preprocess Data:
