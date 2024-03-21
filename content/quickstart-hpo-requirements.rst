@@ -23,15 +23,8 @@ To test your scripts with containerization, it's recommended you build a contain
 .. code-block:: bash
 
     singularity exec --bind $IMPROVE_DATA_DIR:/IMPROVE_DATA_DIR <path_to_sif_file>.sif preprocess.sh /IMPROVE_DATA_DIR \ 
-    --train_split_file  <dataset>_split_0_train.txt --val_split_file <dataset>_split_0_val.txt \ 
-    --ml_data_outdir /IMPROVE_DATA_DIR/<desired_outdir>
-
-.. code-block:: bash
-
-    singularity exec --bind $IMPROVE_DATA_DIR:/IMPROVE_DATA_DIR <path_to_sif_file>.sif preprocess.sh /IMPROVE_DATA_DIR \ 
     --train_split_file <dataset>_split_0_train.txt --val_split_file <dataset>_split_0_val.txt \ 
     --ml_data_outdir /IMPROVE_DATA_DIR/<desired_outdir>
-
 
 .. code-block:: bash
     singularity exec --nv --bind $IMPROVE_DATA_DIR:/IMPROVE_DATA_DIR <path_to_sif_file>.sif train.sh <gpu_num> /IMPROVE_DATA_DIR \ 
