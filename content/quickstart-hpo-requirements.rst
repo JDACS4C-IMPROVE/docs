@@ -7,6 +7,7 @@ ____________
 The following are the requirements as a model curator for others to run HPO on your model.
 
 
+
 IMPROVE MODEL (Defined for Containerization)
 ____________________________________________
 
@@ -15,12 +16,6 @@ Your model must be IMPROVE compliant, reading arguments from a '.txt' file and o
 + preprocess.sh
 + train.sh
 + infer.sh
-
-.. code-block:: bash
-
-    singularity exec --bind $IMPROVE_DATA_DIR:/IMPROVE_DATA_DIR <path_to_sif_file>.sif preprocess.sh /IMPROVE_DATA_DIR \ 
-    --train_split_file <dataset>_split_0_train.txt --val_split_file <dataset>_split_0_val.txt \ 
-    --ml_data_outdir /IMPROVE_DATA_DIR/<desired_outdir>
 
 
 To test your scripts with containerization, it's recommended you build a container and run the following commands (customized with your arguments):
@@ -41,6 +36,7 @@ To test your scripts with containerization, it's recommended you build a contain
 .. code-block:: bash
     singularity exec --nv --bind $IMPROVE_DATA_DIR:/IMPROVE_DATA_DIR <path_to_sif_file>.sif train.sh <gpu_num> /IMPROVE_DATA_DIR \ 
 --train_ml_data_dir <path> --val_ml_data_dir <dir> --model_outdir <path> --test_ml_data_dir <path>
+
 
 
 HYPERPARAMETER SPACE
