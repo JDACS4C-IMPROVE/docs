@@ -29,8 +29,8 @@ The relevant parameters for the GA algorithm are defined in `cfg-*.sh` scripts (
 
 Note that these parameters all have defaults. For a minimal effort HPO run, only `num_iterations` and `population_size` need to be specified in order to define the size of the run.
 
-Genetic Algorithm
-^^^^^^^^^^^^^^^^^
+Mechanics
+^^^^^^^^^
 
 The Genetic Algorithm is made to model evolution and natural selection by applying crossover (mating), mutation, and selection to a population in many iterations
 (generations).
