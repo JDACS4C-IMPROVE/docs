@@ -38,10 +38,67 @@ ____________________
 
 You will also need to define the hyperparameter space, which will override the arguments in the .txt file. For this reason, any pathing arguments needed for your train script will also need to be defined as 'constant' hyperparameters in the space (such as train_ml_data_dir below).
 
-The upper and lower describe the bounds of the hyperparameter. Hyperparameters of float, int, ordered, categorical, and constant types are supported, with ordered and categorical hyperparameters supporting float, int, and string types. Log scale exploration is also supported for float and int hyperparameter types. More about additional customization and methods can be found here: https://github.com/ECP-CANDLE/Supervisor/blob/develop/workflows/GA/README.md
+At a high level, the upper and lower describe the bounds of the hyperparameter. Hyperparameters of float, int, ordered, categorical, and constant types are supported, with ordered and categorical hyperparameters supporting float, int, and string types. Log scale exploration is also supported for float and int hyperparameter types.
 
+More specifically, the hyperparameter configuration file has a json format consisting of a
+list of json dictionaries, each one of which defines a hyperparameter. Each dictionary has the following required keys:
 
-1. Create parameter file *hyperparams.json*:
+- name: the name of the hyperparameter (e.g. _epochs_)
+- type: determines how the initial population (i.e. the hyperparameter sets) are initialized from the named parameter and how those values are subsequently mutated by the GA. Type is one of `constant`, `int`, `float`, `logical`, `categorical`, or `ordered`.
+  - `constant`:
+    - each model is initialized with the same specifed value
+    - mutation always returns the same specified value
+  - `int`:
+    - each model is initialized with an int randomly drawn from the range defined by `lower` and `upper` bounds
+    - mutation is peformed by adding the results of a random draw from
+      a gaussian distribution to the current value, where the gaussian distribution's mu is 0 and its sigma is specified by the `sigma` entry.
+  - `float`:
+    - each model is initialized with a float randomly drawn from the range defined by `lower` and `upper` bounds
+    - mutation is peformed by adding the results of a random draw from
+      a gaussian distribution to the current value, where the gaussian distribution's mu is 0 and its sigma is specified by the `sigma` entry.
+  - `logical`:
+    - each model is initialized with a random boolean.
+    - mutation flips the logical value
+  - `categorical`:
+    - each model is initialized with an element chosen at random from the list of elements in `values`.
+    - mutation chooses an element from the `values` list at random
+  - `ordered`:
+    - each model is inititalized with an element chosen at random from the list of elements in `values`.
+    - given the index of the current value in the list of `values`, mutation selects the element _n_ number of indices away, where n is the result of a random draw between 1 and `sigma` and then is negated with a 0.5 probability.
+
+The following keys are required depending on value of the `type` key.
+
+If the `type` is `constant`:
+
+- `value`: the constant value
+
+If the `type` is `int`, or `float`:
+
+- `lower`: the lower bound of the range to draw from
+- `upper`: the upper bound of the range to draw from
+
+If the `type` is `categorical`:
+
+- `values`: the list of elements to choose from
+- `element_type`: the type of the elements to choose from. One of `int`, `float`, `string`, or `logical`
+
+If the `type` is `ordered`:
+
+- `values`: the list of elements to choose from
+- `element_type`: the type of the elements to choose from. One of `int`, `float`, `string`, or `logical`
+
+The following keys are optional depending on value of the `type` key.
+
+If the `type` is `constant` or `float`:
+
+- `use_log_scale`: whether to apply mutation on log_10 of the hyperparameter or not
+- `sigma`: the sigma value used by the mutation operator. Roughly, it controls the size of mutations (see above).
+
+If the `type` is `ordered`:
+
+- `sigma`: the sigma value used by the mutation operator. Roughly, it controls the size of mutations (see above).
+
+A sample hyperparameter definition file:
 
     .. code-block:: JSON
 
@@ -68,7 +125,8 @@ The upper and lower describe the bounds of the hyperparameter. Hyperparameters o
             "type": "float",
             "use_log_scale": true,
             "lower": 0.000001,
-            "upper": 0.0001
+            "upper": 0.0001,
+            "sigma": 0.1
           },
           {
             "name": "num_layers",
@@ -87,8 +145,7 @@ The upper and lower describe the bounds of the hyperparameter. Hyperparameters o
             "name": "warmup_type",
             "type": "ordered",
             "element_type": "string",
-            "values": ["none", "linear", "quadratic", "exponential"],
-            "sigma": 0.5
+            "values": ["none", "linear", "quadratic", "exponential"]
           },
           {
             "name": "optimizer",
@@ -108,3 +165,5 @@ The upper and lower describe the bounds of the hyperparameter. Hyperparameters o
           }
         
         ]
+
+Note that any other keys are ignored by the workflow but can be used to add additional information about the hyperparameter. For example, the sample files could contain a `comment` entry that contains additional information about that hyperparameter and its use.
