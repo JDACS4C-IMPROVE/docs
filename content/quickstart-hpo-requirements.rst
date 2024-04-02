@@ -41,7 +41,11 @@ You will also need to define the hyperparameter space, which will override the a
 At a high level, the upper and lower describe the bounds of the hyperparameter. Hyperparameters of float, int, ordered, categorical, and constant types are supported, with ordered and categorical hyperparameters supporting float, int, and string types. Log scale exploration is also supported for float and int hyperparameter types.
 
 More specifically, the hyperparameter configuration file has a json format consisting of a
-list of json dictionaries, each one of which defines a hyperparameter. Each dictionary has the following required keys:
+list of json dictionaries, each one of which defines a hyperparameter and how it is explored:
+
+
+Universal Keys
+--------------
 
 - name: the name of the hyperparameter (e.g. _epochs_)
 - type: determines how the initial population (i.e. the hyperparameter sets) are initialized from the named parameter and how those values are subsequently mutated by the GA. Type is one of `constant`, `int`, `float`, `logical`, `categorical`, or `ordered`.
@@ -66,7 +70,12 @@ list of json dictionaries, each one of which defines a hyperparameter. Each dict
     - each model is inititalized with an element chosen at random from the list of elements in `values`.
     - given the index of the current value in the list of `values`, mutation selects the element _n_ number of indices away, where n is the result of a random draw between 1 and `sigma` and then is negated with a 0.5 probability.
 
-|
+
+Type Specific Keys
+------------------
+
+Required
+^^^^^^^^
 
 The following keys are required depending on value of the `type` key.
 
@@ -89,7 +98,9 @@ If the `type` is `ordered`:
 - `values`: the list of elements to choose from
 - `element_type`: the type of the elements to choose from. One of `int`, `float`, `string`, or `logical`
 
-|
+
+Optional
+^^^^^^^^
 
 The following keys are optional depending on value of the `type` key.
 
@@ -102,7 +113,9 @@ If the `type` is `ordered`:
 
 - `sigma`: the sigma value used by the mutation operator. Roughly, it controls the size of mutations (see above).
 
-|
+
+Example File
+------------
 
 A sample hyperparameter definition file:
 
