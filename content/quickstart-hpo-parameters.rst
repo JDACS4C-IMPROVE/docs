@@ -10,8 +10,8 @@ The Genetic Algorithm (GA) operates on principles derived from evolutionary biol
 In order to carry out a minimal-effort hyperparameter search using the defaults, only `num_iterations` and `population_size` need to be specified.
 
 
-GA Parameters and Mechanics
----------------------------
+Parameters
+----------
 
 The following is an explain of the parameters used for the genetic algorithm (GA), and how they interact with the hyperparameter space given. The GA workflow uses the Python DEAP package (http://deap.readthedocs.io/en/master) to optimize hyperparameters using a genetic algorithm.
 
@@ -30,7 +30,7 @@ The relevant parameters for the GA algorithm are defined in `cfg-*.sh` scripts (
 Note that these parameters all have defaults. For a minimal effort HPO run, only `num_iterations` and `population_size` need to be specified in order to define the size of the run.
 
 Mechanics
-^^^^^^^^^
+---------
 
 The Genetic Algorithm is made to model evolution and natural selection by applying crossover (mating), mutation, and selection to a population in many iterations
 (generations).
