@@ -1,5 +1,17 @@
 
-# Hyperparameter Optimization (HPO) via Genetic Algorithm (GA)
+Hyperparameter Optimization (HPO) via Genetic Algorithm (GA)
+============================================================
+
+High Level Framework
+--------------------
+
+The Genetic Algorithm (GA) operates on principles derived from evolutionary biology to optimize model hyperparameters. This method iteratively evolves a population of candidate solutions towards better accuracy. In each iteration, or generation, the algorithm produced offspring with new but similar genes (hyperparameters) from the parent generation via mutation and/or mating (crossover), selects individuals (sets of model hyperparameters) based on their fitness (IMPROVE_RESULT). The "fittest" individuals are then recombined and mutated to produce offspring, introducing new variations into the population. The process involves key operations: crossover (or mating), where segments of parameter sets from two parents are combined; mutation, where random changes are introduced to individual parameters ; and selection, where the best individuals are selected to carry over to the next generation. Over numerous generations, the population evolves, ideally converging towards an optimal set of hyperparameters.
+
+In order to carry out a minimal-effort hyperparameter search using the defaults, only `num_iterations` and `population_size` need to be specified.
+
+
+GA Parameters and Mechanics
+---------------------------
 
 The following is an explain of the parameters used for the genetic algorithm (GA), and how they interact with the hyperparameter space given. The GA workflow uses the Python DEAP package (http://deap.readthedocs.io/en/master) to optimize hyperparameters using a genetic algorithm.
 
