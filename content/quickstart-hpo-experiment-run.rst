@@ -169,7 +169,7 @@ More information on Polaris job submitting (nodes, walltime, queue, etc...) can 
         
         ]
 
-Make sure to set the hyperparameter space to what you desire, the above file is an example. The upper and lower describe the bounds of the hyperparameter. Hyperparameters of float, int, ordered, categorical, and constant types are supported, with ordered and categorical hyperparameters supporting float, int, and string types. Log scale exploration is also supported for float and int hyperparameter types. More about additional customization and methods can be found here: https://github.com/ECP-CANDLE/Supervisor/blob/develop/workflows/GA/README.md
+Make sure to set the hyperparameter space to what you desire, the above file is an example. The upper and lower describe the bounds of the hyperparameter. Hyperparameters of float, int, ordered, categorical, and constant types are supported, with ordered and categorical hyperparameters supporting float, int, and string types. Log scale exploration is also supported for float and int hyperparameter types. More about additional customization and methods can be found in the `HPO Parameters Guide <https://github.com/JDACS4C-IMPROVE/docs/blob/RylieWeaver9-HPO/content/quickstart-hpo-parameters.rst>`_.
 
 
 Supervisor setup
