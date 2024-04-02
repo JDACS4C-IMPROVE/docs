@@ -66,6 +66,7 @@ list of json dictionaries, each one of which defines a hyperparameter. Each dict
     - each model is inititalized with an element chosen at random from the list of elements in `values`.
     - given the index of the current value in the list of `values`, mutation selects the element _n_ number of indices away, where n is the result of a random draw between 1 and `sigma` and then is negated with a 0.5 probability.
 
+
 The following keys are required depending on value of the `type` key.
 
 If the `type` is `constant`:
@@ -86,6 +87,7 @@ If the `type` is `ordered`:
 
 - `values`: the list of elements to choose from
 - `element_type`: the type of the elements to choose from. One of `int`, `float`, `string`, or `logical`
+
 
 The following keys are optional depending on value of the `type` key.
 
