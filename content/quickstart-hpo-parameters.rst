@@ -132,49 +132,70 @@ If the `type` is `ordered`:
 
 A sample hyperparameter definition file:
 
-```javascript
-[
-  {
-    name: "activation",
-    type: "categorical",
-    element_type: "string",
-    values: [
-      "softmax",
-      "elu",
-      "softplus",
-      "softsign",
-      "relu",
-      "tanh",
-      "sigmoid",
-      "hard_sigmoid",
-      "linear",
-    ],
-  },
+    .. code-block:: JSON
 
-  {
-    name: "optimizer",
-    type: "categorical",
-    element_type: "string",
-    values: ["adam", "rmsprop"],
-  },
+        [
 
-  {
-    name: "lr",
-    type: "float",
-    use_log_scale: true,
-    lower: 0.0001,
-    upper: 0.01,
-    sigma: "0.1",
-  },
+          {
+            "name": "train_ml_data_dir",
+            "type": "constant",
+            "value": "<train_data_dir>"
+          },
+          {
+            "name": "val_ml_data_dir",
+            "type": "constant",
+            "value": "<val_data_dir>"
+          },
+          {
+            "name": "model_outdir",
+            "type": "constant",
+            "value": "<desired_outdir>"
+          },
 
-  {
-    name: "batch_size",
-    type: "ordered",
-    element_type: "int",
-    values: [16, 32, 64, 128, 256],
-    sigma: 1,
-  },
-];
-```
+          {
+            "name": "learning_rate",
+            "type": "float",
+            "use_log_scale": true,
+            "lower": 0.000001,
+            "upper": 0.0001
+          },
+          {
+            "name": "num_layers",
+            "type": "int",
+            "lower": 1,
+            "upper": 9
+          },
+          {
+            "name": "batch_size",
+            "type": "ordered",
+            "element_type": "int",
+            "values": [16, 32, 64, 128, 256, 512],
+            "sigma": 1
+          },
+          {
+            "name": "warmup_type",
+            "type": "ordered",
+            "element_type": "string",
+            "values": ["none", "linear", "quadratic", "exponential"],
+            "sigma": 0.5
+          },
+          {
+            "name": "optimizer",
+            "type": "categorical",
+            "element_type": "string",
+            "values": [
+              "Adam",
+              "SGD",
+              "RMSprop"
+            ]
+          },
+
+          {
+            "name": "epochs",
+            "type": "constant",
+            "value": 150
+          }
+        
+        ]
 
 Note that any other keys are ignored by the workflow but can be used to add additional information about the hyperparameter. For example, the sample files could contain a `comment` entry that contains additional information about that hyperparameter and its use.
