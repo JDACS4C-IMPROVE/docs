@@ -4,22 +4,45 @@ Hyper Parameter Optimization (HPO)
 Requirements
 ____________
 
-Your model must be CANDLE compliant, containerized, and packaged in a singularity image. You can identify the image file by the **\*.sif** suffix. Default definition files can be found in the `IMPROVE Singularity repository <https://github.com/JDACS4C-IMPROVE/Singularity>`_. Follow the :doc:`install instruction <quickstart-build-and-deploy-models>` to deploy curated default models. The container should expose the following interface scripts:
+The following are the requirements to run HPO on your model.
+
+Your model must be IMPROVE compliant, containerized, and packaged in a singularity image. You can identify the image file by the **\*.sif** suffix. Default definition files can be found in the `IMPROVE Singularity repository <https://github.com/JDACS4C-IMPROVE/Singularity>`_. The container should expose the following interface scripts:
 
 + preprocess.sh
 + train.sh
 + infer.sh
 
-`IMPROVE Singularity repository <https://github.com/JDACS4C-IMPROVE/Singularity>`_
 
 Steps 
 _____
 
 1. Install prerequisites
-2. :ref:`Create config files <Config Overview>` for experiment. 
-3. :ref:`Run <Run>` HPO with supervisor::
+2. Preprocess data
+3. :ref:`Create config files <Config Overview>` for experiment. 
+4. :ref:`Run <Run>` HPO with supervisor::
         supervisor ${location} ${workflow} ${config}
 4. :ref:`Analysis <Analysis>`
+
+
+.. Install Prerequisites:
+
+Install Prerequisites
+___________________
+
+Refer to the `Prequisites Guide <https://github.com/JDACS4C-IMPROVE/docs/blob/RylieWeaver9-HPO/content/quickstart-hpo-experiment-prerequisites.rst>`_.
+
+
+.. _Preprocess Data:
+
+Preprocess Data
+___________________
+
+This step is only necessary if your data has not already been preprocessed and stored on your filesystem. To preprocess your data, you'll need to call ``preprocess.sh`` in your singularity container with the needed command line arguments. Preprocess using the following command with your arguments:
+
+.. code-block:: bash
+
+    singularity exec --bind $IMPROVE_DATA_DIR:/IMPROVE_DATA_DIR <path_to_sif_file>.sif preprocess.sh /IMPROVE_DATA_DIR --train_split_file <dataset>_split_0_train.txt \
+    --val_split_file <dataset>_split_0_val.txt --ml_data_outdir /IMPROVE_DATA_DIR/<desired_outdir>
 
 
 .. _Config Overview:
@@ -27,7 +50,7 @@ _____
 Create config files
 ___________________
 
-A directory with copy-and-customize config files can be found at <https://github.com/ECP-CANDLE/Tests/tree/main/sv-tool/deap-generic>, along with a README about the settings used. Create with the following steps:
+A directory with copy-and-customize config files here at `Example Files <https://github.com/ECP-CANDLE/Tests/tree/main/sv-tool/deap-generic>`_, along with a `README <https://github.com/ECP-CANDLE/Tests/blob/main/sv-tool/deap-generic/README.adoc>`_ that explains the settings used. Create with the following steps:
 
 1. ``mkdir Experiment && cd Experiment``
 
@@ -54,7 +77,7 @@ A directory with copy-and-customize config files can be found at <https://github
     export NUM_ITERATIONS=3
     export POPULATION_SIZE=2
     
-    # GA Settings
+    # GA Settings (optional)
     export GA_STRATEGY='mu_plus_lambda'
     export OFFSPRING_PROPORTION=0.5
     export MUT_PROB=0.8
@@ -70,7 +93,6 @@ A directory with copy-and-customize config files can be found at <https://github
     # you can save there. If not, make a directory in /tmp or somewhere else you can write.
 
     # Lambda Settings
-    # export CANDLE_CUDA_OFFSET=2
     # export CANDLE_DATA_DIR=/tmp/<user>/data_dir
     
     # Polaris Settings
@@ -84,32 +106,70 @@ More information on Polaris job submitting (nodes, walltime, queue, etc...) can 
     .. code-block:: JSON
 
         [
-        
+
+          {
+            "name": "train_ml_data_dir",
+            "type": "constant",
+            "value": "<train_data_dir>"
+          },
+          {
+            "name": "val_ml_data_dir",
+            "type": "constant",
+            "value": "<val_data_dir>"
+          },
+          {
+            "name": "model_outdir",
+            "type": "constant",
+            "value": "<desired_outdir>"
+          },
+
           {
             "name": "learning_rate",
             "type": "float",
+            "use_log_scale": true,
             "lower": 0.000001,
-            "upper": 0.0001,
-            "sigma": 0.00005
+            "upper": 0.0001
           },
-        
+          {
+            "name": "num_layers",
+            "type": "int",
+            "lower": 1,
+            "upper": 9
+          },
           {
             "name": "batch_size",
             "type": "ordered",
             "element_type": "int",
-            "values": [256, 512, 1028],
+            "values": [16, 32, 64, 128, 256, 512],
             "sigma": 1
           },
-        
+          {
+            "name": "warmup_type",
+            "type": "ordered",
+            "element_type": "string",
+            "values": ["none", "linear", "quadratic", "exponential"],
+            "sigma": 0.5
+          },
+          {
+            "name": "optimizer",
+            "type": "categorical",
+            "element_type": "string",
+            "values": [
+              "Adam",
+              "SGD",
+              "RMSprop"
+            ]
+          },
+
           {
             "name": "epochs",
             "type": "constant",
-            "value": 5
+            "value": 150
           }
         
         ]
 
-Make sure to set the hyperparameter space to what you desire. The upper and lower describe the bounds of the hyperparameter. Higher sigma causes more extensive mutations in the genetic algorithm. More about the hyperparameter file can be found here: https://github.com/ECP-CANDLE/Supervisor/blob/develop/workflows/GA/README.md
+Make sure to set the hyperparameter space to what you desire, the above file is an example. The upper and lower describe the bounds of the hyperparameter. Hyperparameters of float, int, ordered, categorical, and constant types are supported, with ordered and categorical hyperparameters supporting float, int, and string types. Log scale exploration is also supported for float and int hyperparameter types. More about additional customization and methods can be found in the `HPO Parameters Guide <https://github.com/JDACS4C-IMPROVE/docs/blob/RylieWeaver9-HPO/content/quickstart-hpo-parameters.rst>`_.
 
 
 Supervisor setup
@@ -157,82 +217,6 @@ Running an HPO experiment on lambda. The model image is in */software/improve/im
     supervisor conda GA cfg-1.sh
 
 
-.. _Config Example:
-
-cfg-1.sh:
-
-.. code-block:: bash
-
-    source_cfg -v cfg-my-settings.sh
-    
-    export CANDLE_MODEL_TYPE="SINGULARITY"
-    export MODEL_NAME=/software/improve/images/DeepTTC.sif
-    export PARAM_SET_FILE=hyperparams.json
-
-
-cfg-my-settings.sh:
-
-.. code-block:: bash
-
-    echo SETTINGS
-    
-    # General Settings
-    export PROCS=4
-    export PPN=4
-    export WALLTIME=01:00:00
-    export NUM_ITERATIONS=1
-    export POPULATION_SIZE=2
-    
-    # GA Settings
-    export STRATEGY='mu_plus_lambda'
-    export OFF_PROP=0.5
-    export MUT_PROB=0.8
-    export CX_PROB=0.2
-    export MUT_INDPB=0.5
-    export CX_INDPB=0.5
-    export TOURNAMENT_SIZE=4
-    
-    # Lambda Settings
-    # export CANDLE_CUDA_OFFSET=2
-    # export CANDLE_DATA_DIR=/tmp/<user>/data_dir
-    
-    # Polaris Settings
-    # export QUEUE="debug"
-    # export CANDLE_DATA_DIR=/home/<user>/data_dir
-
-
-hyperparams.json:
-
-.. code-block:: JSON
-
-    [
-    
-      {
-        "name": "learning_rate",
-        "type": "float",
-        "lower": 0.000001,
-        "upper": 0.0001,
-        "sigma": 0.00005
-      },
-    
-      {
-        "name": "batch_size",
-        "type": "ordered",
-        "element_type": "int",
-        "values": [256, 512, 1028],
-        "sigma": 1
-      },
-    
-      {
-        "name": "epochs",
-        "type": "constant",
-        "value": 5
-      }
-    
-    ]
-
-
-
 Debugging
 _______
 
@@ -264,4 +248,4 @@ To analyze the HPO run, there are two recommended methods. The first provides a 
 
 (2) Secondly, the user could secure copy the output.csv file, then use google colab to show tables and plot. The secure copy command should be run in your terminal (not logged into Argonne's computation system) as the following: ``scp <user>@<computation_address>:~/path/to/your/output.csv \path\on\local\computer``. For example, as secure copy command could look like: ``scp weaverr@polaris.alcf.anl.gov:~/data_dir/DeepTTC-testing/Output/finished_EXP060/output.csv \Users\rylie\Argonne\HPO``. Note that this assumes the user is using Unix. If running a Unix-like system on Windows, the command will look like ``scp <user>@<computation_address>:~/path/to/your/output.csv /c/Users/username/Path/On/Local/Computer``.
 
-Once the file is secure copied to your local computer, it can be loaded into and used in google colab. A generalizable, plug-and-play colab file is being made for easy use. Simply make a copy and follow the instructions: https://colab.research.google.com/drive/1Us5S9Ty7qGtibT5TcwM9rTE7EIA9V33t?usp=sharing
+Once the file is secure copied to your local computer, it can be loaded into and used in google colab. For an example, follow the example and instructions here: https://colab.research.google.com/drive/1Us5S9Ty7qGtibT5TcwM9rTE7EIA9V33t?usp=sharing
