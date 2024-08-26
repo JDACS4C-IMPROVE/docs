@@ -15,6 +15,7 @@ The IMPROVE project aims to standardize execution of supervised learning models 
    :titlesonly:
    :caption: Contents:
 
+<<<<<<< HEAD
    content/WHATIS
    content/QuickStart
    content/EVALUATION
@@ -23,5 +24,14 @@ The IMPROVE project aims to standardize execution of supervised learning models 
    content/USING
    content/API
    content/ReleaseNotes
+=======
+   content/whatis
+   content/quickstart
+   content/developer
+   # content/unified_interface
+   content/applications
+   content/benchmarks
+   content/acknowledgment
+>>>>>>> main
 
 Access the code base https://github.com/JDACS4C-IMPROVE/
