@@ -1,5 +1,8 @@
 Quickstart
 =================================
+
+NATASHA: update this! 
+
 This quickstart guide is intended to help you install IMPROVE within a conda environment and preprocessing, train, and infer using a curated model and benchmark datasets.
 Here we use LGBM as a example of a model in the IMPROVE framework to walk throught the necessary steps to predict drug response using curated IMPROVE Drug Response Datasets.
 

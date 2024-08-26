@@ -1,36 +1,27 @@
-Curating a Community Model
---------------------------
+Curating Models
+=================================
 
-Automated training of a collection of models and using those models in inference mode under a wide range of conditions is made possible through standardization while maintainiing a best effort representation of the authors original architecture and huperparameters.
+A central goal of the IMPROVE framework is the automated execution of community deep learning models so that they can be compared to each other under a wide range of conditions.
 
-Curated community model are standardized using CANDLE libraries. A tutorial on how to modify a community model to be CANDLE compliant can be found here https://ecp-candle.github.io/Candle/tutorials/writing_candle_code.html. The candle_lib API documentation can be found here https://ecp-candle.github.io/Candle/candle_lib.
+Three standards needed to automate execution across a collection of models address command line parameters, model hyperparameters, and the return value from a successful training process.
 
-1. Standard candle arguement parser will be used.
+1.  Standard command line parameters are needed so that code that calls to multiple models can be simplified by only knowing one set of command line parameter keywords.
 
-   a. CANDLE keywords should be used for command line arguements if the CANDLE keyword exists.  If you have the ECP-CANDLE/Benchmarks repository, run --help on any benchmark. SEE ALSO:
+2.  Model hyperparameter keywords then map to the command line parameter keywords you can specify in a (model) file. Generally, each should contain at least a default model file containing the hyperparameter keywords and values from the original publication.
 
-   -    https://ecp-candle.github.io/Candle/tutorials/default_parameters.html
+3.  The validation loss is generally the return value of the call to run() or main(). 
 
-   CODE EXAMPLE:
-   
-   b. All model arguements are passed to the model by way of the candle --config_file option. For example:
-   
-   ```
-   cadre_candle.py --config_file some_file_name
-   ```
-   
-   b. Non-standard keywords (meaning not represented in the candle keywords) shall be added to the additional_definitions so that they can be included in that they are properly passed to and parsed by the model.  If these keywords (arguments) are not in additional_definitions they can't be changed from the command line.
+The IMPROVE library provides stable interfaces that standardize the interfaces of a set of otherwise heterogenous deep learning software.
+We welcome members of the community to use the IMPROVE framework and benchmark data to standardize and compare their models. 
 
-2. Idealy, the data loader is implemented as a python module named <model>.py. Minimally, the data loader should use `candle.file_utils.get_file()`.
 
-    SEE ALSO: GraphDRP data document to see how we talk about data and how we distinguish between raw data and ML data.
+The following guides explain various aspects of the IMPROVE framework.
 
-    EXAMPLE: 
 
-3. Models shall use candle checkpointing.
+.. toctree::
+   :titlesonly:
 
-4. There will be a data_loader that is implemented by/in the <model>.py file, or uses a candle default data_loader.
+   Curating Steps <curating_steps>
+   Step-by-Step Example <curating_tutorial>
+   Contributing a Model <curating_contribute>
 
-5. This data_loader shall be used to load data for training and inferencing.
-
-6. The naming of the data loader shall conform to a CANDLE standard.

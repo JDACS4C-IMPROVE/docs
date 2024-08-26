@@ -1,16 +1,15 @@
-=================
 Applications
 =================
 
-Collection of various scientific applications of IMPROVE.
+The IMPROVE project currently curates model and benchmark datasets for two applications: Drug Response Prediction (DRP) and Drug Synergy Prediction (Synergy).
+Details of these applications, including curated models and datasets can be found below.
 
 .. toctree::
-   :maxdepth: 1
+   :titlesonly:
 
-   app_drp_intro
+   Drug Response Prediction <app_drp>
+   Synergy <app_synergy>
 
 
-.. toctree::
-   :maxdepth: 1
 
-   app_docking_intro
+

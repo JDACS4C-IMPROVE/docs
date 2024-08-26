@@ -1,4 +1,0 @@
-Installing on Mac prerequisites
-===============================
-
-

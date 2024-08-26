@@ -22,9 +22,9 @@ For more information
 .. toctree::
    :titlesonly:
 
-   Background
-   Future Directions <FutureDirections>
-   Acknowledgments <acknowledgment>
+   Background <whatis_background>
+   Future Directions <whatis_future>
+   Acknowledgments <whatis_acknowledgment>
 
 
 Access the code base https://github.com/JDACS4C-IMPROVE/
