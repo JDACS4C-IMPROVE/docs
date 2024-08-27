@@ -60,7 +60,7 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 html_theme = "sphinx_rtd_theme"
 html_theme_options = {
     'collapse_navigation': False,
-    'display_version': True
+    'display_version': False
 }
 #html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
@@ -84,8 +84,8 @@ if build_all_docs is not None:
     # we set the html_context wit current version and empty languages and versions for now
     html_context = {'current_version' : current_version, 'versions' : []}
     # and we append all versions accordingly, we treat the main branch as latest 
-    if (current_version == 'latest'):
-        html_context['versions'].append(['latest', pages_root])
+    #if (current_version == 'latest'):
+    html_context['versions'].append(['latest', pages_root])
     # and loop over all other versions from our yaml file to set versions 
     with open("versions.yaml", "r") as yaml_file:
         docs = yaml.safe_load(yaml_file)

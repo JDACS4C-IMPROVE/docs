@@ -6,6 +6,9 @@
 Welcome to IMPROVE's documentation!
 ===================================
 
+Version: latest
+------------------
+
 The IMPROVE project aims to standardize execution of supervised learning models to facilitate benchmarking and comparison of models. We have created a Python-based IMPROVE framework that encases community models and IMPROVE benchmarking schemes for model comparision. As a seminal case, we have curated community models and a benchmark dataset for single drug response prediction. Do you have a model you would like to easily compare to state-of-the-art models? Try IMPROVE!
 
 
