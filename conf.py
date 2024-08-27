@@ -71,43 +71,4 @@ html_theme_options = {
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 
-###############
-# get the environment variable build_all_docs and pages_root
-build_all_docs = os.environ.get("build_all_docs")
-pages_root = os.environ.get("pages_root", "")
 
-# if not there, we dont call this
-if build_all_docs is not None:
-  # we get the current language and version
-  current_version = os.environ.get("current_version")
-
-  # we set the html_context wit current language and version 
-  # and empty languages and versions for now
-  html_context = {
-    'current_version' : current_version,
-    'versions' : [],
-  }
-
-
-  # and we append all versions and langauges accordingly 
-  # we treat t he main branch as latest 
-if (current_version == 'latest'):
-  #  html_context['languages'].append(['en', pages_root])
-  #  html_context['languages'].append(['de', pages_root+'/de'])
-
-  #if (current_language == 'en'):
-    html_context['versions'].append(['latest', pages_root])
-  #if (current_language == 'de'):
-  #  html_context['versions'].append(['latest', pages_root+'/de'])
-
-  # and loop over all other versions from our yaml file
-  # to set versions and languages
-with open("versions.yaml", "r") as yaml_file:
-    docs = yaml.safe_load(yaml_file)
-
-  #if (current_version != 'latest'):
-  #  for language in docs[current_version].get('languages', []):
-  #    html_context['languages'].append([language, pages_root+'/'+current_version+'/'+language])
-
-for version, details in docs.items():
-    html_context['versions'].append([version, pages_root+'/'+version+'/'])
