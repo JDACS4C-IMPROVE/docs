@@ -15,11 +15,11 @@ The IMPROVE project aims to standardize execution of supervised learning models 
    :titlesonly:
    :caption: Contents:
 
-   content/WHATIS
+   content/whatis
    content/QuickStart
    content/EVALUATION
-   content/APPLICATIONS
-   content/CURATING
+   content/applications
+   content/curating
    content/USING
    content/API
    content/ReleaseNotes

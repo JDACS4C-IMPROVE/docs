@@ -40,10 +40,11 @@ Flowchart illustrating the curation, processing, and assembly of benchmark data 
    
 
 Data Location
-============
+----------------
 - https://ftp.mcs.anl.gov/pub/candle/public/improve/benchmarks/single_drug_drp/benchmark-data-pilot1/csa_data/raw_data/
 Data File Description
-============ 
+-----------------------
+
 #. “y_data” folder includes drug response data
     #. response.tsv: multiple dose-independent response metrics.
 #. “splits” folder includes sample indices corresponding to rows in “response.tsv” in “y_data” folder. Sample index starts with 0. Take CCLE as an example to explain sample index files.
