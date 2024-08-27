@@ -84,8 +84,8 @@ if build_all_docs is not None:
     # we set the html_context wit current version and empty languages and versions for now
     html_context = {'current_version' : current_version, 'versions' : []}
     # and we append all versions accordingly, we treat the main branch as latest 
-    if (current_version == 'latest'):
-        html_context['versions'].append(['latest', pages_root])
+    #if (current_version == 'latest'):
+    html_context['versions'].append(['latest', pages_root])
     # and loop over all other versions from our yaml file to set versions 
     with open("versions.yaml", "r") as yaml_file:
         docs = yaml.safe_load(yaml_file)
