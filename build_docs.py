@@ -25,7 +25,7 @@ os.environ["pages_root"] = "https://jdacs4c-improve.github.io/docs"
 
 # manually the main branch build in the current supported languages
 build_doc("latest", "main")
-move_dir("./_build/html/", "../pages/")
+move_dir("./_build/html/", "./pages/")
 
 
 # reading the yaml file
@@ -36,4 +36,4 @@ with open("versions.yaml", "r") as yaml_file:
 for version, details in docs.items():
   tag = details.get('tag', '') 
   build_doc(version, tag)
-  move_dir("./_build/html/", "../pages/"+version+'/')
+  move_dir("./_build/html/", "./pages/"+version+'/')
