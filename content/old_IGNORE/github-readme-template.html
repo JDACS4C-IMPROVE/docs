@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UNO &mdash; IMPROVE 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            IMPROVE
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">UNO</a><ul>
+<li><a class="reference internal" href="#unified-drug-response-predictor">Unified-Drug-Response-Predictor</a><ul>
+<li><a class="reference internal" href="#description">Description</a></li>
+<li><a class="reference internal" href="#user-community">User Community</a></li>
+<li><a class="reference internal" href="#usability">Usability</a></li>
+<li><a class="reference internal" href="#uniqueness">Uniqueness</a></li>
+<li><a class="reference internal" href="#components">Components</a></li>
+<li><a class="reference internal" href="#technical-section">Technical Section</a></li>
+<li><a class="reference internal" href="#setup">Setup</a></li>
+<li><a class="reference internal" href="#training">Training</a></li>
+<li><a class="reference internal" href="#inference">Inference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">IMPROVE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">UNO</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/content/old_IGNORE/github-readme-template.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="uno">
+<h1>UNO<a class="headerlink" href="#uno" title="Permalink to this heading"></a></h1>
+<section id="unified-drug-response-predictor">
+<h2>Unified-Drug-Response-Predictor<a class="headerlink" href="#unified-drug-response-predictor" title="Permalink to this heading"></a></h2>
+<section id="description">
+<h3>Description<a class="headerlink" href="#description" title="Permalink to this heading"></a></h3>
+<p>The Unified Drug Response Predictor benchmark, also called Uno, is a deep neural network for modeling cell line response to treatments of single or paired drugs. The model takes cell line molecular features, drug properties, and dose information as input and predicts the response in percentage growth. The model uses a multi-tower structure for processing different feature types individually before concatenating them for the final layers. The model also unifies treatment input types of single drugs and drug pairs by allocating two slots for drugs and, in the case of drug pairs, dividing the concentration into the two slots. The authors of this model have integrated datasets from multiple public sources of drug response studies and provided options for training models with selections of subsets.</p>
+</section>
+<section id="user-community">
+<h3>User Community<a class="headerlink" href="#user-community" title="Permalink to this heading"></a></h3>
+<p>Cancer biology data modeling; Machine Learning; Bioinformatics; Computational Biology</p>
+</section>
+<section id="usability">
+<h3>Usability<a class="headerlink" href="#usability" title="Permalink to this heading"></a></h3>
+<p>To use the untrained model, users must be familiar with processing and feature extraction of molecular drug data, gene expression, and training of neural networks. The input to the model is preprocessed data. Users should have extended experience with preprocessing this data.</p>
+</section>
+<section id="uniqueness">
+<h3>Uniqueness<a class="headerlink" href="#uniqueness" title="Permalink to this heading"></a></h3>
+<p>The community can use a neural network and multiple machine learning techniques to predict drug response. The general rule is that classical methods like random forests would perform better for small datasets, while neural network approaches like Uno would perform better for relatively larger datasets. The baseline for comparison can be: mean response, linear regression, or random forest regression.</p>
+</section>
+<section id="components">
+<h3>Components<a class="headerlink" href="#components" title="Permalink to this heading"></a></h3>
+<p>The following components are in the Model and Data Clearinghouse (MoDaC):
+* The [Unified Drug Response Predictor (Uno)](<a class="reference external" href="https://modac.cancer.gov/searchTab?dme_data_id=NCI-DME-MS01-7654821">https://modac.cancer.gov/searchTab?dme_data_id=NCI-DME-MS01-7654821</a>) asset contains the untrained model and trained model:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>The model topology file is uno.model.json.</p></li>
+<li><p>The trained model is defined by combining the untrained model (uno.model.json) and model weights (uno.model.h5).</p></li>
+<li><p>The trained model is used in inference.</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p>The [Pilot 1 Cancer Drug Response Prediction Dataset](<a class="reference external" href="https://modac.cancer.gov/searchTab?dme_data_id=NCI-DME-MS01-8088592">https://modac.cancer.gov/searchTab?dme_data_id=NCI-DME-MS01-8088592</a>) asset contains the processed training and test data.</p></li>
+</ul>
+</section>
+<section id="technical-section">
+<h3>Technical Section<a class="headerlink" href="#technical-section" title="Permalink to this heading"></a></h3>
+</section>
+<section id="setup">
+<h3>Setup<a class="headerlink" href="#setup" title="Permalink to this heading"></a></h3>
+<p>To set up the Python environment needed to train and run this model:
+1. Install [conda](<a class="reference external" href="https://docs.conda.io/en/latest/">https://docs.conda.io/en/latest/</a>) package manager.
+2. Clone this repository.
+3. Create the environment as shown below.</p>
+<p><code class="docutils literal notranslate"><span class="pre">`bash</span> <span class="pre">conda</span> <span class="pre">env</span> <span class="pre">create</span> <span class="pre">-f</span> <span class="pre">environment.yml</span> <span class="pre">-n</span> <span class="pre">UNO</span>
+<span class="pre">`</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">`conda</span> <span class="pre">activate</span> <span class="pre">UNO</span>
+<span class="pre">`</span></code></p>
+</section>
+<section id="training">
+<h3>Training<a class="headerlink" href="#training" title="Permalink to this heading"></a></h3>
+<p>To train the model from scratch, execute the script [uno_baseline_keras2.py](uno_baseline_keras2.py). This script does the following:
+* Reads the model configuration parameters from [uno_default_model.txt](uno_default_model.txt).
+* Downloads the training data and splits it to training/validation sets.
+* Creates and trains the Keras model.
+* Saves the best-trained model based on the validation accuracy.</p>
+<p>Training Uno on all data sources is slow. The <cite>–train_sources</cite> parameter can be used to test the code with a smaller set of training data. An example command line is the following.</p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">python</span> <span class="pre">uno_baseline_keras2.py</span> <span class="pre">--train_sources</span> <span class="pre">gCSI</span> <span class="pre">--cache</span> <span class="pre">cache/gCSI</span> <span class="pre">--use_landmark_genes</span> <span class="pre">True</span> <span class="pre">--preprocess_rnaseq</span> <span class="pre">source_scale</span> <span class="pre">--no_feature_source</span> <span class="pre">True</span> <span class="pre">--no_response_source</span> <span class="pre">True</span>
+<span class="pre">`</span></code></p>
+<p>A faster example is given in the <cite>uno_by_drug_example.txt</cite> configuration file. This example focuses on a single drug (paclitaxel) and trains at 15s/epoch on a single P100.</p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">python</span> <span class="pre">uno_baseline_keras2.py</span> <span class="pre">--config_file</span> <span class="pre">uno_by_drug_example.txt</span>
+<span class="pre">`</span></code></p>
+</section>
+<section id="inference">
+<h3>Inference<a class="headerlink" href="#inference" title="Permalink to this heading"></a></h3>
+<p>To test the trained model in inference, execute the script [uno_infer2.py](uno_infer2.py). This script does the following:
+* Downloads the trained model.
+* Downloads the processed test dataset with the corresponding labels.
+* Performs inference on the test dataset.
+* Reports the accuracy of the model on the test dataset.</p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">python</span> <span class="pre">uno_infer2.py</span> <span class="pre">--train_sources</span> <span class="pre">CTRP</span> <span class="pre">GDSC</span> <span class="pre">NCI60</span> <span class="pre">SCL</span> <span class="pre">SCLC</span> <span class="pre">ALMANAC</span>&#160; <span class="pre">--use_landmark_genes</span> <span class="pre">True</span> <span class="pre">--preprocess_rnaseq</span> <span class="pre">source_scale</span> <span class="pre">--no_feature_source</span> <span class="pre">True</span> <span class="pre">--no_response_source</span> <span class="pre">True</span> <span class="pre">--test_sources</span> <span class="pre">gCSI</span>
+<span class="pre">`</span></code></p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, IMPROVE Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      Version: 
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      
+      <br>
+      </dl>
+    </div>
+  </div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

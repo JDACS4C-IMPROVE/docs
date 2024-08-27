@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>v0.1.0-alpha &mdash; IMPROVE 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            IMPROVE
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">v0.1.0-alpha</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#parameters">Parameters</a></li>
+<li><a class="reference internal" href="#updating-v0-0-3-curated-models">Updating v0.0.3 curated models</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">IMPROVE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">v0.1.0-alpha</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/content/release_v0.1.0.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="v0-1-0-alpha">
+<h1>v0.1.0-alpha<a class="headerlink" href="#v0-1-0-alpha" title="Permalink to this heading"></a></h1>
+<p>For models previously curated as part of the IMPROVE project, please see the following checklist:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="release_v0.1.0_checklist.html">v0.1.0 Checklist</a></li>
+</ul>
+</div>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h2>
+<p>This release TAKE TEXT FROM ALEX</p>
+</section>
+<section id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this heading"></a></h2>
+<p>Parameters are detailed in <span class="xref std std-doc">api_overview</span>. Of note, the parameters for each step (i.e. preprocess, train, infer) are now separate.</p>
+</section>
+<section id="updating-v0-0-3-curated-models">
+<h2>Updating v0.0.3 curated models<a class="headerlink" href="#updating-v0-0-3-curated-models" title="Permalink to this heading"></a></h2>
+<p><strong>Updating Environment</strong></p>
+<ul class="simple">
+<li><p>Make an environment without candle lib. Since many packages are installed by candlelib, you may need to add other packages to your environment now.</p></li>
+<li><p>For now, set the PYTHONPATH as usual, this will be replaced with pip install shortly.</p></li>
+<li><p>No environment variables need to be set, the csa_data directory can be set by command line (see below)</p></li>
+</ul>
+<p><strong>Updating Import Statements</strong></p>
+<ul>
+<li><p>For initalizing parameters, there is a different import for each of the three scripts:</p>
+<ul class="simple">
+<li><p>Preprocess</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">improvelib.applications.drug_response_prediction.config</span> <span class="kn">import</span> <span class="n">DRPPreprocessConfig</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Train</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">improvelib.applications.drug_response_prediction.config</span> <span class="kn">import</span> <span class="n">DRPTrainConfig</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Infer</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">improvelib.applications.drug_response_prediction.config</span> <span class="kn">import</span> <span class="n">DRPInferConfig</span>
+</pre></div>
+</div>
+</li>
+<li><p>If your code uses str2bool, change the import to the following:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">improvelib.utils</span> <span class="kn">import</span> <span class="n">str2bool</span>
+</pre></div>
+</div>
+</li>
+<li><p>For other framework functions (previously from <code class="code docutils literal notranslate"><span class="pre">improve</span> <span class="pre">import</span> <span class="pre">framework</span> <span class="pre">as</span> <span class="pre">frm</span></code>) use:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">improvelib.utils</span> <span class="k">as</span> <span class="nn">frm</span>
+</pre></div>
+</div>
+</li>
+<li><p>For DataLoaders in Preprocess, use the following:</p>
+<ul class="simple">
+<li><p>DrugsLoader</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">improvelib.applications.drug_response_prediction.drug_utils</span> <span class="k">as</span> <span class="nn">drugs</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>OmicsLoader</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">improvelib.applications.drug_response_prediction.omics_utils</span> <span class="k">as</span> <span class="nn">omics</span>
+</pre></div>
+</div>
+<p>In the body of the code, references to <code class="code docutils literal notranslate"><span class="pre">drp.OmicsLoader()</span></code> should be changed to <code class="code docutils literal notranslate"><span class="pre">omics.OmicsLoader()</span></code></p>
+<ul class="simple">
+<li><p>DrugResponseLoader</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">improvelib.applications.drug_response_prediction.drp_utils</span> <span class="k">as</span> <span class="nn">drp</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p><strong>Updating main()</strong></p>
+<ul>
+<li><p>Create the cfg object for the appropriate script:</p>
+<ul class="simple">
+<li><p>Preprocess</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cfg</span> <span class="o">=</span> <span class="n">DRPPreprocessConfig</span><span class="p">()</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Train</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cfg</span> <span class="o">=</span> <span class="n">DRPTrainConfig</span><span class="p">()</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Infer</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cfg</span> <span class="o">=</span> <span class="n">DRPInferConfig</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p>Initialize parameters. Note that instead of <code class="code docutils literal notranslate"><span class="pre">default_model</span></code> now <code class="code docutils literal notranslate"><span class="pre">default_config</span></code> is used to specify the default configuration file.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">params</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">initialize_parameters</span><span class="p">(</span>
+    <span class="n">pathToModelDir</span><span class="o">=</span><span class="n">filepath</span><span class="p">,</span>
+    <span class="n">default_config</span><span class="o">=</span><span class="s2">&quot;your_configuration_file.txt&quot;</span><span class="p">,</span>
+    <span class="n">default_model</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">additional_cli_section</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">additional_definitions</span><span class="o">=</span><span class="n">additional_definitions</span><span class="p">,</span>
+    <span class="n">required</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p><strong>Updating References to Input and Output Directories</strong></p>
+<p>File Structure (input outputs dirs now, include CSA requirements for infer)</p>
+<p><strong>Updating the Default Configuration File</strong></p>
+<p>Things have to be in each section now</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, IMPROVE Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      Version: 
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      
+      <br>
+      </dl>
+    </div>
+  </div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

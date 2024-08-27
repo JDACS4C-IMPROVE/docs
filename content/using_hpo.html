@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hyper Parameter Optimization (HPO) &mdash; IMPROVE 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            IMPROVE
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Hyper Parameter Optimization (HPO)</a><ul>
+<li><a class="reference internal" href="#requirements">Requirements</a></li>
+<li><a class="reference internal" href="#steps">Steps</a></li>
+<li><a class="reference internal" href="#install-prerequisites">Install Prerequisites</a></li>
+<li><a class="reference internal" href="#preprocess-data">Preprocess Data</a></li>
+<li><a class="reference internal" href="#create-config-files">Create config files</a></li>
+<li><a class="reference internal" href="#supervisor-setup">Supervisor setup</a></li>
+<li><a class="reference internal" href="#example">Example</a></li>
+<li><a class="reference internal" href="#debugging">Debugging</a></li>
+<li><a class="reference internal" href="#results">Results</a></li>
+<li><a class="reference internal" href="#analysis">Analysis</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">IMPROVE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Hyper Parameter Optimization (HPO)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/content/using_hpo.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="hyper-parameter-optimization-hpo">
+<h1>Hyper Parameter Optimization (HPO)<a class="headerlink" href="#hyper-parameter-optimization-hpo" title="Permalink to this heading"></a></h1>
+<p>NATASHA: have this checked, easier to follow, fix broken links</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="using_hpo_prerequisites.html">HPO Prerequisites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_hpo_req.html">HPO Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_hpo_parameters.html">HPO Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_hpo-debug-without-containers-lambda.html">HPO without Containers</a></li>
+</ul>
+</div>
+<section id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this heading"></a></h2>
+<p>The following are the requirements to run HPO on your model.</p>
+<p>Your model must be IMPROVE compliant, containerized, and packaged in a singularity image. You can identify the image file by the <strong>*.sif</strong> suffix. Default definition files can be found in the <a class="reference external" href="https://github.com/JDACS4C-IMPROVE/Singularity">IMPROVE Singularity repository</a>. The container should expose the following interface scripts:</p>
+<ul class="simple">
+<li><p>preprocess.sh</p></li>
+<li><p>train.sh</p></li>
+<li><p>infer.sh</p></li>
+</ul>
+</section>
+<section id="steps">
+<h2>Steps<a class="headerlink" href="#steps" title="Permalink to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Install prerequisites</p></li>
+<li><p>Preprocess data</p></li>
+<li><p><a class="reference internal" href="#config-overview"><span class="std std-ref">Create config files</span></a> for experiment.</p></li>
+<li><dl class="simple">
+<dt><span class="xref std std-ref">Run</span> HPO with supervisor::</dt><dd><p>supervisor ${location} ${workflow} ${config}</p>
+</dd>
+</dl>
+</li>
+</ol>
+<ol class="arabic simple" start="4">
+<li><p><a class="reference internal" href="#analysis"><span class="std std-ref">Analysis</span></a></p></li>
+</ol>
+</section>
+<section id="install-prerequisites">
+<h2>Install Prerequisites<a class="headerlink" href="#install-prerequisites" title="Permalink to this heading"></a></h2>
+<p>Refer to the <a class="reference external" href="https://github.com/JDACS4C-IMPROVE/docs/blob/RylieWeaver9-HPO/content/quickstart-hpo-experiment-prerequisites.rst">Prequisites Guide</a>.</p>
+</section>
+<section id="preprocess-data">
+<span id="id1"></span><h2>Preprocess Data<a class="headerlink" href="#preprocess-data" title="Permalink to this heading"></a></h2>
+<p>This step is only necessary if your data has not already been preprocessed and stored on your filesystem. To preprocess your data, you’ll need to call <code class="docutils literal notranslate"><span class="pre">preprocess.sh</span></code> in your singularity container with the needed command line arguments. Preprocess using the following command with your arguments:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>singularity<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>--bind<span class="w"> </span><span class="nv">$IMPROVE_DATA_DIR</span>:/IMPROVE_DATA_DIR<span class="w"> </span>&lt;path_to_sif_file&gt;.sif<span class="w"> </span>preprocess.sh<span class="w"> </span>/IMPROVE_DATA_DIR<span class="w"> </span>--train_split_file<span class="w"> </span>&lt;dataset&gt;_split_0_train.txt<span class="w"> </span><span class="se">\</span>
+--val_split_file<span class="w"> </span>&lt;dataset&gt;_split_0_val.txt<span class="w"> </span>--ml_data_outdir<span class="w"> </span>/IMPROVE_DATA_DIR/&lt;desired_outdir&gt;
+</pre></div>
+</div>
+</section>
+<section id="create-config-files">
+<span id="config-overview"></span><h2>Create config files<a class="headerlink" href="#create-config-files" title="Permalink to this heading"></a></h2>
+<p>A directory with copy-and-customize config files here at <a class="reference external" href="https://github.com/ECP-CANDLE/Tests/tree/main/sv-tool/deap-generic">Example Files</a>, along with a <a class="reference external" href="https://github.com/ECP-CANDLE/Tests/blob/main/sv-tool/deap-generic/README.adoc">README</a> that explains the settings used. Create with the following steps:</p>
+<ol class="arabic">
+<li><p><code class="docutils literal notranslate"><span class="pre">mkdir</span> <span class="pre">Experiment</span> <span class="pre">&amp;&amp;</span> <span class="pre">cd</span> <span class="pre">Experiment</span></code></p></li>
+<li><p>Create config file <em>cfg-1.sh</em>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>source_cfg<span class="w"> </span>-v<span class="w"> </span>cfg-my-settings.sh
+
+<span class="nb">export</span><span class="w"> </span><span class="nv">CANDLE_MODEL_TYPE</span><span class="o">=</span><span class="s2">&quot;SINGULARITY&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">MODEL_NAME</span><span class="o">=</span><span class="si">${</span><span class="p">/PATH/TO/SINGULARITY/IMAGE/FILE.sif</span><span class="si">}</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">PARAM_SET_FILE</span><span class="o">=</span><span class="si">${</span><span class="p">/PATH/TO/GA/PARAMETER/FILE.json</span><span class="si">}</span><span class="w"> </span><span class="c1">#e.g hyperparams.json</span>
+</pre></div>
+</div>
+</li>
+<li><p>Create config file <em>cfg-my-settings.sh</em>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span>SETTINGS
+
+<span class="c1"># General Settings</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">PROCS</span><span class="o">=</span><span class="m">4</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">PPN</span><span class="o">=</span><span class="m">4</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">WALLTIME</span><span class="o">=</span><span class="m">01</span>:00:00
+<span class="nb">export</span><span class="w"> </span><span class="nv">NUM_ITERATIONS</span><span class="o">=</span><span class="m">3</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">POPULATION_SIZE</span><span class="o">=</span><span class="m">2</span>
+
+<span class="c1"># GA Settings (optional)</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">GA_STRATEGY</span><span class="o">=</span><span class="s1">&#39;mu_plus_lambda&#39;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">OFFSPRING_PROPORTION</span><span class="o">=</span><span class="m">0</span>.5
+<span class="nb">export</span><span class="w"> </span><span class="nv">MUT_PROB</span><span class="o">=</span><span class="m">0</span>.8
+<span class="nb">export</span><span class="w"> </span><span class="nv">CX_PROB</span><span class="o">=</span><span class="m">0</span>.2
+<span class="nb">export</span><span class="w"> </span><span class="nv">MUT_INDPB</span><span class="o">=</span><span class="m">0</span>.5
+<span class="nb">export</span><span class="w"> </span><span class="nv">CX_INDPB</span><span class="o">=</span><span class="m">0</span>.5
+<span class="nb">export</span><span class="w"> </span><span class="nv">TOURNSIZE</span><span class="o">=</span><span class="m">4</span>
+
+<span class="c1"># Add any additional settings needed for your system. General settings and system settings need to be set by the user, while GA settings don&#39;t need to be changed.</span>
+<span class="c1"># Default settings for lambda and polaris are given here.</span>
+
+<span class="c1"># If you have write access to the shared filesystem on your computation system (such as /lambda_stor),</span>
+<span class="c1"># you can save there. If not, make a directory in /tmp or somewhere else you can write.</span>
+
+<span class="c1"># Lambda Settings</span>
+<span class="c1"># export CANDLE_DATA_DIR=/tmp/&lt;user&gt;/data_dir</span>
+
+<span class="c1"># Polaris Settings</span>
+<span class="c1"># export QUEUE=&quot;debug&quot;</span>
+<span class="c1"># export CANDLE_DATA_DIR=/home/&lt;user&gt;/data_dir</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p>More information on Polaris job submitting (nodes, walltime, queue, etc…) can be found here: <a class="reference external" href="https://docs.alcf.anl.gov/polaris/running-jobs/">https://docs.alcf.anl.gov/polaris/running-jobs/</a></p>
+<ol class="arabic" start="4">
+<li><p>Create parameter file <em>hyperparams.json</em>:</p>
+<blockquote>
+<div><div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;train_ml_data_dir&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;constant&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;train_data_dir&gt;&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;val_ml_data_dir&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;constant&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;val_data_dir&gt;&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;model_outdir&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;constant&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;desired_outdir&gt;&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;learning_rate&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;float&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;use_log_scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;lower&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.000001</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;upper&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0001</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;num_layers&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;int&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;lower&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;upper&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;batch_size&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ordered&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;element_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;int&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">16</span><span class="p">,</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span><span class="w"> </span><span class="mi">64</span><span class="p">,</span><span class="w"> </span><span class="mi">128</span><span class="p">,</span><span class="w"> </span><span class="mi">256</span><span class="p">,</span><span class="w"> </span><span class="mi">512</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;sigma&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;warmup_type&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ordered&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;element_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;none&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;linear&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;quadratic&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;exponential&quot;</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;sigma&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;optimizer&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;categorical&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;element_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="s2">&quot;Adam&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;SGD&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;RMSprop&quot;</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">},</span>
+
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;epochs&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;constant&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="p">]</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ol>
+<p>Make sure to set the hyperparameter space to what you desire, the above file is an example. The upper and lower describe the bounds of the hyperparameter. Hyperparameters of float, int, ordered, categorical, and constant types are supported, with ordered and categorical hyperparameters supporting float, int, and string types. Log scale exploration is also supported for float and int hyperparameter types. More about additional customization and methods can be found in the <a class="reference external" href="https://github.com/JDACS4C-IMPROVE/docs/blob/RylieWeaver9-HPO/content/quickstart-hpo-parameters.rst">HPO Parameters Guide</a>.</p>
+</section>
+<section id="supervisor-setup">
+<h2>Supervisor setup<a class="headerlink" href="#supervisor-setup" title="Permalink to this heading"></a></h2>
+<p>Set up the environment; omit this step if already installed:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create environment</span>
+conda<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>IMPROVE<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.9.16
+conda<span class="w"> </span>activate<span class="w"> </span>IMPROVE
+
+<span class="c1"># Supervisor for running HPO/GA</span>
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/ECP-CANDLE/Supervisor.git
+git<span class="w"> </span>checkout<span class="w"> </span>develop
+<span class="nb">cd</span><span class="w"> </span>Supervisor<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/bin
+
+<span class="c1"># swift-t</span>
+conda<span class="w"> </span>install<span class="w"> </span>--yes<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>-c<span class="w"> </span>swift-t<span class="w"> </span>swift-t
+<span class="c1"># python libraries</span>
+pip<span class="w"> </span>install<span class="w"> </span>numpy<span class="w"> </span>deap
+</pre></div>
+</div>
+</section>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this heading"></a></h2>
+<p>First, go into the directory where you have your configuration files:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>~/Experiment
+</pre></div>
+</div>
+<p>Then, run the command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>supervisor<span class="w"> </span><span class="si">${</span><span class="nv">location</span><span class="si">}</span><span class="w"> </span><span class="si">${</span><span class="nv">workflow</span><span class="si">}</span><span class="w"> </span><span class="si">${</span><span class="nv">config</span><span class="si">}</span>
+</pre></div>
+</div>
+<p>Running an HPO experiment on lambda. The model image is in <em>/software/improve/images/</em>. We will execute the command above with <strong>location</strong> set to <em>conda</em> and <strong>workflow</strong> set to <em>GA</em>. This will use the defaults from your conda environment.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>supervisor<span class="w"> </span>conda<span class="w"> </span>GA<span class="w"> </span>cfg-1.sh
+</pre></div>
+</div>
+</section>
+<section id="debugging">
+<h2>Debugging<a class="headerlink" href="#debugging" title="Permalink to this heading"></a></h2>
+<p>While/after running HPO, there will be <code class="docutils literal notranslate"><span class="pre">model.log</span></code> files which contain the important information regarding that model’s run. They can be found at <code class="docutils literal notranslate"><span class="pre">&lt;candle_data_dir&gt;/&lt;model_name&gt;/Output/EXP&lt;number&gt;/run_&lt;number&gt;</span></code>. To debug, use a <code class="docutils literal notranslate"><span class="pre">grep</span> <span class="pre">-r</span> <span class="pre">&quot;ABORT&quot;</span></code> in the experiment directory <code class="docutils literal notranslate"><span class="pre">&lt;candle_data_dir&gt;/&lt;model_name&gt;/Output/EXP&lt;number&gt;</span></code> to find which run file which is causing the error in your workflow, <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">run_&lt;number&gt;</span></code> to navigate there, and <code class="docutils literal notranslate"><span class="pre">cat</span> <span class="pre">model.log</span></code> to observe the abort and what error caused it. Observing the <code class="docutils literal notranslate"><span class="pre">MODEL_CMD</span></code> (which tells the hyperparameters) and the <code class="docutils literal notranslate"><span class="pre">IMPROVE_RESULT</span></code> (which tells the  evaluation of those hyperparameters) can also be helpful.</p>
+</section>
+<section id="results">
+<h2>Results<a class="headerlink" href="#results" title="Permalink to this heading"></a></h2>
+<p>After running HPO, there will be the turbine output and experiment directories. The <code class="docutils literal notranslate"><span class="pre">turbine_output</span></code> directory is found in the same directory as the config files and contains a <code class="docutils literal notranslate"><span class="pre">final_result_&lt;number&gt;</span></code> file which puts the HPO results in a table. The experiment directory is found at <code class="docutils literal notranslate"><span class="pre">&lt;candle_data_dir&gt;/&lt;model_name&gt;/Output/EXP&lt;number&gt;</span></code> and contains the <code class="docutils literal notranslate"><span class="pre">output.csv</span></code> file which has ALL the hpo parameters and results automatically parsed. The experiment directory also contains the hyperparams.json file you used to help remember the hyperparameter space you explored.</p>
+</section>
+<section id="analysis">
+<span id="id2"></span><h2>Analysis<a class="headerlink" href="#analysis" title="Permalink to this heading"></a></h2>
+<p>To analyze the HPO run, there are two recommended methods. The first provides a ranking of hyperparameter choices. The second provides a ranking and visualization:</p>
+<ol class="arabic simple">
+<li><p>Firstly, the user could run the following commands in the experiment directory. The user is required to define the number of hyperparameters. In the example hyperparams.json file given, this would be 3 (learning_rate, batch_size, epochs). The sorted, unique choices of hyperparameters are put into a new <code class="docutils literal notranslate"><span class="pre">sorted_unique_output.csv</span></code> file.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">num_hyperparams</span><span class="o">=</span><span class="m">3</span>
+<span class="nv">num_columns</span><span class="o">=</span><span class="k">$((</span><span class="nv">num_hyperparams</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1</span><span class="k">))</span>
+<span class="o">(</span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span><span class="w"> </span>output.csv<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>tail<span class="w"> </span>-n<span class="w"> </span>+2<span class="w"> </span>output.csv<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-t,<span class="w"> </span>-k<span class="nv">$num_columns</span><span class="w"> </span>-n<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="o">)</span><span class="w"> </span>&gt;<span class="w"> </span>sorted_unique_output.csv
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Secondly, the user could secure copy the output.csv file, then use google colab to show tables and plot. The secure copy command should be run in your terminal (not logged into Argonne’s computation system) as the following: <code class="docutils literal notranslate"><span class="pre">scp</span> <span class="pre">&lt;user&gt;&#64;&lt;computation_address&gt;:~/path/to/your/output.csv</span> <span class="pre">\path\on\local\computer</span></code>. For example, as secure copy command could look like: <code class="docutils literal notranslate"><span class="pre">scp</span> <span class="pre">weaverr&#64;polaris.alcf.anl.gov:~/data_dir/DeepTTC-testing/Output/finished_EXP060/output.csv</span> <span class="pre">\Users\rylie\Argonne\HPO</span></code>. Note that this assumes the user is using Unix. If running a Unix-like system on Windows, the command will look like <code class="docutils literal notranslate"><span class="pre">scp</span> <span class="pre">&lt;user&gt;&#64;&lt;computation_address&gt;:~/path/to/your/output.csv</span> <span class="pre">/c/Users/username/Path/On/Local/Computer</span></code>.</p></li>
+</ol>
+<p>Once the file is secure copied to your local computer, it can be loaded into and used in google colab. For an example, follow the example and instructions here: <a class="reference external" href="https://colab.research.google.com/drive/1Us5S9Ty7qGtibT5TcwM9rTE7EIA9V33t?usp=sharing">https://colab.research.google.com/drive/1Us5S9Ty7qGtibT5TcwM9rTE7EIA9V33t?usp=sharing</a></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, IMPROVE Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      Version: 
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      
+      <br>
+      </dl>
+    </div>
+  </div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

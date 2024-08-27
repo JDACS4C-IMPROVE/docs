@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Running a single Model with the Supervisor &mdash; IMPROVE 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            IMPROVE
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Running a single Model with the Supervisor</a><ul>
+<li><a class="reference internal" href="#requirements">Requirements</a></li>
+<li><a class="reference internal" href="#steps">Steps</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">IMPROVE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Running a single Model with the Supervisor</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/content/using_hpo-debug-without-containers-lambda.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="running-a-single-model-with-the-supervisor">
+<h1>Running a single Model with the Supervisor<a class="headerlink" href="#running-a-single-model-with-the-supervisor" title="Permalink to this heading"></a></h1>
+<p>NATASHA: Rylie didn’t edit</p>
+<p>Packaging the model code in a container image is benefical for ease of deployment  and running multiple models in parallel but it adds an additional layer for debugging the code directly.
+Here we describe how to run a single model directly with the supervisor without the need to build a container image first.</p>
+<section id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this heading"></a></h2>
+<ol class="arabic">
+<li><p><a class="reference external" href="quickstart-setup-basic-environment.html">Install swift-t and Supervisor</a></p></li>
+<li><p>Your model must be CANDLE compliant:</p>
+<blockquote>
+<div><ul>
+<li><p>Add all the dependencies to run your model</p></li>
+<li><p>Your main model script should follow the following naming convention:</p>
+<blockquote>
+<div><p><cite>MODELNAME_baseline_FRAMEWORK.py</cite></p>
+</div></blockquote>
+</li>
+<li><p>Model code should contain <strong>initialize_parameters()</strong> and <strong>run()</strong>. The workflow will not execute any other functions. So if you have any other function that is needed for your model execution, you may need to put them within either of the two functions.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Credentials and access to lambda</p></li>
+<li><p>Model and dependencies will be installed in your home directory.</p></li>
+</ol>
+</section>
+<section id="steps">
+<h2>Steps<a class="headerlink" href="#steps" title="Permalink to this heading"></a></h2>
+<ol class="arabic">
+<li><p>Login into your account on lambda</p></li>
+<li><p>Activate your conda environment, e.g. <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">IMPROVE</span></code></p></li>
+<li><p>Clone your Model repo, e.g.  <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">ORGANIZATION/MY_MODEL</span></code></p></li>
+<li><p>Set the appropriate python for executing Supervisor workflow. Within Supervisor directory, open:</p>
+<blockquote>
+<div><blockquote>
+<div><p><em>workflows/common/sh/langs-app-lambda.sh</em>.</p>
+</div></blockquote>
+<p>Change the value for <strong>PY</strong> (Python for executing the workflow) to the Python version in your conda environment. Example content:</p>
+</div></blockquote>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># LANGS APP LAMBDA</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;langs-app-lambda ...&quot;</span>
+<span class="nv">SFW</span><span class="o">=</span>/home/woz/Public/sfw
+<span class="nv">PY</span><span class="o">=</span><span class="sb">`</span>which<span class="w"> </span><span class="se">\`</span>python3<span class="se">\`</span><span class="sb">`</span>
+<span class="c1">#Path to your conda environment e.g. /lambda_stor/homes/pvasanthakumari/miniconda/envs/paccmann_predictor/</span>
+<span class="nv">PATH</span><span class="o">=</span><span class="nv">$PY</span>/bin:<span class="nv">$PATH</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;langs-app-lambda done.&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Clone test repo:</p>
+<p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/ECP-CANDLE/Tests.git</span></code></p>
+<p>and switch to <strong>General</strong> branch:</p>
+<p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">General</span></code></p>
+</li>
+<li><p>Copy the generic subdirectory from the Test repository into your model directory, e.g:</p>
+<p><code class="docutils literal notranslate"><span class="pre">cp</span> <span class="pre">-r</span> <span class="pre">Tests/sv-tool/generic</span> <span class="pre">MY_MODEL/</span></code></p>
+</li>
+<li><p>Within <strong>MY_MODEL</strong>/generic, change the content of <em>cfg-1.sh</em> :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>source_cfg<span class="w"> </span>-v<span class="w"> </span>cfg-my-settings.sh
+<span class="nb">export</span><span class="w"> </span><span class="nv">MODEL_NAME</span><span class="o">=</span>MY_MODEL
+<span class="nb">export</span><span class="w"> </span><span class="nv">PYTHONPATH</span><span class="o">=</span><span class="nv">$HOME</span>/MY_MODEL<span class="w">             </span><span class="c1"># path to your model code in your local directory</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">PARAM_SET_FILE</span><span class="o">=</span>general_params.json
+<span class="nb">export</span><span class="w"> </span><span class="nv">FRAMEWORK</span><span class="o">=</span><span class="s2">&quot;pytorch&quot;</span><span class="w">                   </span><span class="c1"># or “keras” see FRAMEWORK part of your file name</span>
+</pre></div>
+</div>
+</li>
+<li><p>Change content of <em>cfg-my-settings.sh</em>. Uncomment lines of code for lambda or Polaris (depending on which machine you are using). Specify path for <strong>CANDLE_DATA_DIR</strong> and CUDA devices.</p></li>
+<li><p>Make sure the Supervisor scripts are in your <a class="reference external" href="quickstart-setup-basic-environment.html">search path</a>.</p></li>
+<li><p>When running Supervisor without container, the workflow will look for data within <strong>CANDLE_DATA_DIR</strong>. You may have to manually download and unzip data into <strong>CANDLE_DATA_DIR</strong>.</p></li>
+<li><p>To execute the workflow, within Your_Model/generic:</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>supervisor<span class="w"> </span>lambda<span class="w"> </span>GA<span class="w"> </span>cfg-1.sh
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>You can find outputs in <em>$HOME/Supervisor/workflows/GA/experiments</em></p></li>
+<li><p>You can also check the workflow output from $HOME/MY_MODEL/generic/turbine-output/out:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">cat</span> <span class="pre">$HOME/MY_MODEL/generic/turbine-output/out-*</span></code></p>
+</div></blockquote>
+</li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, IMPROVE Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      Version: 
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      
+      <br>
+      </dl>
+    </div>
+  </div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

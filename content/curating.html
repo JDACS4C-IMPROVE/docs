@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Curating a Community Model &mdash; IMPROVE 0.1 documentation</title>
+  <title>Curating Models &mdash; IMPROVE 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -14,6 +14,8 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=e031e9a9"></script>
         <script src="../_static/doctools.js?v=888ff710"></script>
         <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
@@ -43,16 +45,11 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="whatis.html">What is the IMPROVE project?</a></li>
-<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart Guides</a></li>
-<li class="toctree-l1"><a class="reference internal" href="developer.html">Developer Guide</a></li>
-<li class="toctree-l1"><a class="reference internal" href="applications.html">Applications</a></li>
-<li class="toctree-l1"><a class="reference internal" href="benchmarks.html">Benchmarks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="acknowledgment.html">Acknowledgments</a></li>
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Curating Models</a></li>
 </ul>
-
+</div>
         </div>
       </div>
     </nav>
@@ -67,7 +64,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Curating a Community Model</li>
+      <li class="breadcrumb-item active">Curating Models</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/content/curating.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -77,40 +74,25 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="curating-a-community-model">
-<h1>Curating a Community Model<a class="headerlink" href="#curating-a-community-model" title="Permalink to this heading">¶</a></h1>
-<p>Automated training of a collection of models and using those models in inference mode under a wide range of conditions is made possible through standardization while maintainiing a best effort representation of the authors original architecture and huperparameters.</p>
-<p>Curated community model are standardized using CANDLE libraries. A tutorial on how to modify a community model to be CANDLE compliant can be found here <a class="reference external" href="https://ecp-candle.github.io/Candle/tutorials/writing_candle_code.html">https://ecp-candle.github.io/Candle/tutorials/writing_candle_code.html</a>. The candle_lib API documentation can be found here <a class="reference external" href="https://ecp-candle.github.io/Candle/candle_lib">https://ecp-candle.github.io/Candle/candle_lib</a>.</p>
-<ol class="arabic">
-<li><p>Standard candle arguement parser will be used.</p>
-<ol class="loweralpha simple">
-<li><p>CANDLE keywords should be used for command line arguements if the CANDLE keyword exists.  If you have the ECP-CANDLE/Benchmarks repository, run –help on any benchmark. SEE ALSO:</p></li>
+  <section id="curating-models">
+<h1>Curating Models<a class="headerlink" href="#curating-models" title="Permalink to this heading"></a></h1>
+<p>A central goal of the IMPROVE framework is the automated execution of community deep learning models so that they can be compared to each other under a wide range of conditions.</p>
+<p>Three standards needed to automate execution across a collection of models address command line parameters, model hyperparameters, and the return value from a successful training process.</p>
+<ol class="arabic simple">
+<li><p>Standard command line parameters are needed so that code that calls to multiple models can be simplified by only knowing one set of command line parameter keywords.</p></li>
+<li><p>Model hyperparameter keywords then map to the command line parameter keywords you can specify in a (model) file. Generally, each should contain at least a default model file containing the hyperparameter keywords and values from the original publication.</p></li>
+<li><p>The validation loss is generally the return value of the call to run() or main().</p></li>
 </ol>
-<ul class="simple">
-<li><p><a class="reference external" href="https://ecp-candle.github.io/Candle/tutorials/default_parameters.html">https://ecp-candle.github.io/Candle/tutorials/default_parameters.html</a></p></li>
+<p>The IMPROVE library provides stable interfaces that standardize the interfaces of a set of otherwise heterogenous deep learning software.
+We welcome members of the community to use the IMPROVE framework and benchmark data to standardize and compare their models.</p>
+<p>The following guides explain various aspects of the IMPROVE framework.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="curating_steps.html">Curating Steps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="curating_tutorial.html">Step-by-Step Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="curating_contribute.html">Contributing a Model</a></li>
 </ul>
-<p>CODE EXAMPLE:</p>
-<ol class="loweralpha simple" start="2">
-<li><p>All model arguements are passed to the model by way of the candle –config_file option. For example:</p></li>
-</ol>
-<p><code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">cadre_candle.py</span> <span class="pre">--config_file</span> <span class="pre">some_file_name</span>
-<span class="pre">`</span></code></p>
-<ol class="loweralpha simple" start="2">
-<li><p>Non-standard keywords (meaning not represented in the candle keywords) shall be added to the additional_definitions so that they can be included in that they are properly passed to and parsed by the model.  If these keywords (arguments) are not in additional_definitions they can’t be changed from the command line.</p></li>
-</ol>
-</li>
-<li><p>Idealy, the data loader is implemented as a python module named &lt;model&gt;.py. Minimally, the data loader should use <cite>candle.file_utils.get_file()</cite>.</p>
-<blockquote>
-<div><p>SEE ALSO: GraphDRP data document to see how we talk about data and how we distinguish between raw data and ML data.</p>
-<p>EXAMPLE:</p>
-</div></blockquote>
-</li>
-<li><p>Models shall use candle checkpointing.</p></li>
-<li><p>There will be a data_loader that is implemented by/in the &lt;model&gt;.py file, or uses a candle default data_loader.</p></li>
-<li><p>This data_loader shall be used to load data for training and inferencing.</p></li>
-<li><p>The naming of the data loader shall conform to a CANDLE standard.</p></li>
-</ol>
+</div>
 </section>
 
 
@@ -134,7 +116,17 @@
       </div>
     </section>
   </div>
-  <script>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      Version: 
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      
+      <br>
+      </dl>
+    </div>
+  </div><script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });

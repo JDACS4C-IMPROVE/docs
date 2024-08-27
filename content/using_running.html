@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Running a Curated Model &mdash; IMPROVE 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            IMPROVE
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Running a Curated Model</a><ul>
+<li><a class="reference internal" href="#from-the-model-repository">From the model repository</a></li>
+<li><a class="reference internal" href="#from-a-container">From a container</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">IMPROVE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Running a Curated Model</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/content/using_running.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="running-a-curated-model">
+<h1>Running a Curated Model<a class="headerlink" href="#running-a-curated-model" title="Permalink to this heading"></a></h1>
+<section id="from-the-model-repository">
+<h2>From the model repository<a class="headerlink" href="#from-the-model-repository" title="Permalink to this heading"></a></h2>
+<p>NATASHA: WRITE THIS</p>
+</section>
+<section id="from-a-container">
+<h2>From a container<a class="headerlink" href="#from-a-container" title="Permalink to this heading"></a></h2>
+<p>NATASHA: have someone check and edit this</p>
+<p>General Form:</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>singularity exec –nv –bind $HOST_DATA_DIR:/candle_data_dir $IIL/$IMAGE $CMD $ARGS
+</pre></div>
+</div>
+</div></blockquote>
+<p>Use case 1. A custom model  file is provided as an argument to train.sh.</p>
+<p>Example:</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">singularity</span> <span class="n">exec</span> <span class="o">--</span><span class="n">nv</span> <span class="o">--</span><span class="n">bind</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">brettin</span><span class="o">/</span><span class="n">improve_data_dir</span><span class="p">:</span><span class="o">/</span><span class="n">candle_data_dir</span> \
+     <span class="o">/</span><span class="n">software</span><span class="o">/</span><span class="n">improve</span><span class="o">/</span><span class="n">images</span><span class="o">/</span><span class="n">GraphDRP</span><span class="p">:</span><span class="mf">0.0.1</span><span class="o">-</span><span class="mf">20221109.</span><span class="n">sif</span>                    \
+     <span class="n">train</span><span class="o">.</span><span class="n">sh</span> <span class="mi">2</span> <span class="o">/</span><span class="n">candle_data_dir</span> <span class="n">GraphDRP</span><span class="o">/</span><span class="n">graphdrp_default_model</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+</div></blockquote>
+<table class="docutils align-center" id="id1">
+<caption><span class="caption-text">Options</span><a class="headerlink" href="#id1" title="Permalink to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameters</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>–nv</p></td>
+<td><p>This option instructs Singularity to use the host NVidia drivers and cuda libraries.</p></td>
+</tr>
+<tr class="row-odd"><td><p>–bind</p></td>
+<td><p>This option instructs Singularity to mount a host file system inside the container. The mount point inside the container will always be candle_data_dir.</p></td>
+</tr>
+<tr class="row-even"><td><p>GraphDRP:0.0.1-20221109.sif</p></td>
+<td><p>This is the Singularity image that contains the GraphDRP model code.</p></td>
+</tr>
+<tr class="row-odd"><td><p>train.sh</p></td>
+<td><p>This is the command that runs inside the container. All containers will have this command. All arguments to follow are passed to train.sh.</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>This is the host GPU device id to be used by code running inside the container. The value is used to set the CUDA_VISIBLE_DEVICES environment variable inside the container.</p></td>
+</tr>
+<tr class="row-odd"><td><p>candle_data_dir</p></td>
+<td><p>The value of the CANDLE_DATA_DIR environment variable that is set inside the container. This enables candle_lib code running inside the container to rewrite input and output paths so that inputs and outputs will be saved on the host’s file system.</p></td>
+</tr>
+<tr class="row-even"><td><p>GraphDRP/graphdrp_default_model.txt</p></td>
+<td><p>This is a custom model file created and saved on the host’s filesystem. The location of the file is relative to CANDLE_DATA_DIR</p></td>
+</tr>
+</tbody>
+</table>
+<p>Use Case 2: Train a model with the default model file.</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">singularity</span> <span class="n">exec</span> <span class="o">--</span><span class="n">nv</span> <span class="o">--</span><span class="n">bind</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">brettin</span><span class="o">/</span><span class="n">candle_data_dir</span><span class="p">:</span><span class="o">/</span><span class="n">candle_data_dir</span> \
+    <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">brettin</span><span class="o">/</span><span class="n">Singularity</span><span class="o">/</span><span class="n">sandboxes</span><span class="o">/</span><span class="n">GraphDRP</span><span class="o">-</span><span class="n">GraphDRP</span><span class="p">:</span><span class="mf">0.0.1</span><span class="o">-</span><span class="mi">20221028</span>    \
+    <span class="n">train</span><span class="o">.</span><span class="n">sh</span> <span class="mi">2</span> <span class="o">/</span><span class="n">candle_data_dir</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Because the number of positional arguments to train.sh is 2, the default model file in the model directory inside the container is used. It still expects /candle_data_dir to be available inside the container as /candle_data_dir is prepended to input and output paths. The default model file would be the one used to closely reproduce the original authors results.</p>
+<p>Use Case 3: Train a model using supported command line arguments.</p>
+<p>In this case, the default model file in the model directory inside the container is read first, and then command line arguments passed to train.sh are used. In the event that both the default model file and the command line arguments contain the same parameter, the command line parameter’s value will take precedence. The first two positional arguments to train.sh must still always be the GPU device id and the mount point inside the container as specified by the –bind option.</p>
+<p>In this use case, train.sh shifts the two positional arguments $1 and $2 and then simply pass the remaining args in $&#64; to the model python script.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, IMPROVE Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      Version: 
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      
+      <br>
+      </dl>
+    </div>
+  </div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

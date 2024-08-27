@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Preprocess API &mdash; IMPROVE 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            IMPROVE
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Preprocess API</a></li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">IMPROVE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Preprocess API</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/content/api_preprocess.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="preprocess-api">
+<h1>Preprocess API<a class="headerlink" href="#preprocess-api" title="Permalink to this heading"></a></h1>
+<p>IMPROVE general preprocess parameters</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
+<col style="width: 40.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Help</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>log_level</p></td>
+<td><p>str</p></td>
+<td><p>“DEBUG”</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>input_dir</p></td>
+<td><p>str</p></td>
+<td><p>“./”</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>output_dir</p></td>
+<td><p>str</p></td>
+<td><p>“./”</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>config_file</p></td>
+<td><p>str</p></td>
+<td><p>None</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>param_log_file</p></td>
+<td><p>str</p></td>
+<td><p>“param_log_file.txt”</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>data_format</p></td>
+<td><p>str</p></td>
+<td><p>“.parquet”</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Drug Response Prediction preprocess parameters</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
+<col style="width: 40.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Help</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>y_data_files</p></td>
+<td><p>str</p></td>
+<td><p>“fake”</p></td>
+<td><p>List of files that contain the y (prediction variable) data. Example: [[‘response.tsv’]]</p></td>
+</tr>
+<tr class="row-odd"><td><p>x_data_canc_files</p></td>
+<td><p>str</p></td>
+<td><p>“fake”</p></td>
+<td><p>List of feature files including gene_system_identifer. Example: [[‘cancer_gene_expression.tsv’, [‘Gene_Symbol’]]]</p></td>
+</tr>
+<tr class="row-even"><td><p>x_data_drug_files</p></td>
+<td><p>str</p></td>
+<td><p>“fake”</p></td>
+<td><p>List of feature files. Example: [[‘drug_SMILES.tsv’]]</p></td>
+</tr>
+<tr class="row-odd"><td><p>canc_col_name</p></td>
+<td><p>str</p></td>
+<td><p>“improve_sample_id”</p></td>
+<td><p>Column name in the y (response) data file that contains the cancer sample ids.</p></td>
+</tr>
+<tr class="row-even"><td><p>drug_col_name”</p></td>
+<td><p>str</p></td>
+<td><p>“improve_chem_id”</p></td>
+<td><p>Column name in the y (response) data file that contains the drug ids.</p></td>
+</tr>
+<tr class="row-odd"><td><p>y_col_name</p></td>
+<td><p>str</p></td>
+<td><p>“auc”</p></td>
+<td><p>Column name in the y data file (e.g., response.tsv), that represents the target variable that the model predicts.</p></td>
+</tr>
+<tr class="row-even"><td><p>y_data_suffix</p></td>
+<td><p>str</p></td>
+<td><p>“y_data”</p></td>
+<td><p>[Dep] Suffix to compose file name for storing true y dataframe.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, IMPROVE Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      Version: 
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      
+      <br>
+      </dl>
+    </div>
+  </div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

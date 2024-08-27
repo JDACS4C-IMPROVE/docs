@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hyperparameter Optimization (HPO) via Genetic Algorithm (GA) &mdash; IMPROVE 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            IMPROVE
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Hyperparameter Optimization (HPO) via Genetic Algorithm (GA)</a><ul>
+<li><a class="reference internal" href="#high-level-framework">High Level Framework</a></li>
+<li><a class="reference internal" href="#parameters">Parameters</a></li>
+<li><a class="reference internal" href="#mechanics">Mechanics</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">IMPROVE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Hyperparameter Optimization (HPO) via Genetic Algorithm (GA)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/content/using_hpo_parameters.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="hyperparameter-optimization-hpo-via-genetic-algorithm-ga">
+<h1>Hyperparameter Optimization (HPO) via Genetic Algorithm (GA)<a class="headerlink" href="#hyperparameter-optimization-hpo-via-genetic-algorithm-ga" title="Permalink to this heading"></a></h1>
+<section id="high-level-framework">
+<h2>High Level Framework<a class="headerlink" href="#high-level-framework" title="Permalink to this heading"></a></h2>
+<p>The Genetic Algorithm (GA) operates on principles derived from evolutionary biology to optimize model hyperparameters. In each generation of the GA, a new set of offspring is created by altering the current population’s hyperparameters, which are akin to biological genes. This alteration occurs through mutation, where random tweaks are made to individual’s hyperparameters, and crossover (or mating), where hyperparameters from two parents are mixed. In the case of HPO, each hyperparameter is analogous to a gene, and each set up hyperparameters an individual. Then, each offspring is evaluated for effectiveness using the IMPROVE_RESULT as a measure of fitness. Finally, there is a selection process that selects out high-performing individuals to carry on to the next generation. Over numerous generations, the population evolves, ideally converging towards an optimal set of hyperparameters.</p>
+<p>In order to carry out a minimal-effort hyperparameter search using the defaults, only <cite>num_iterations</cite> and <cite>population_size</cite> need to be specified.</p>
+</section>
+<section id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this heading"></a></h2>
+<p>The following is an explain of the parameters used for the genetic algorithm (GA), and how they interact with the hyperparameter space given. The GA workflow uses the Python DEAP package (<a class="reference external" href="http://deap.readthedocs.io/en/master">http://deap.readthedocs.io/en/master</a>) to optimize hyperparameters using a genetic algorithm.</p>
+<p>The relevant parameters for the GA algorithm are defined in <cite>cfg-*.sh</cite> scripts (usually in <cite>cfg-my-settings.sh</cite>). These are:</p>
+<ul class="simple">
+<li><p>NUM_ITERATIONS: The number of iterations the GA should perform.</p></li>
+<li><p>POPULATION_SIZE: The maximum number of hyperparameter sets to evaluate in each iteration.</p></li>
+<li><p>GA_STRATEGY: The algorithm used by the GA. Can be one of “simple” or “mu_plus_lambda”.</p></li>
+<li><p>OFFSPRING_PROPORTION: The offspring population size as a proportion of the population size (this is rounded) (specifically for the mu_plus_lambda strategy)</p></li>
+<li><p>MUT_PROB: Probability an individual is mutated.</p></li>
+<li><p>CX_PROB: Probability that mating happens in a selected pair.</p></li>
+<li><p>MUT_INDPB: Probability for each gene to be mutated in a mutated individual.</p></li>
+<li><p>CX_INDPB: Probability for each gene to be swapped in a selected pair.</p></li>
+<li><p>TOURNSIZE: Size of tournaments in selection process.</p></li>
+</ul>
+<p>Note that these parameters all have defaults. For a minimal effort HPO run, only <cite>num_iterations</cite> and <cite>population_size</cite> need to be specified in order to define the size of the run.</p>
+</section>
+<section id="mechanics">
+<h2>Mechanics<a class="headerlink" href="#mechanics" title="Permalink to this heading"></a></h2>
+<p>The Genetic Algorithm is made to model evolution and natural selection by applying crossover (mating), mutation, and selection to a population in many iterations
+(generations).</p>
+<p>In the “simple” strategy, offspring are created with crossover AND mutation, and the selection for the next population happens from ONLY the offspring. In
+the “mu_plus_lambda” strategy, offspring are created with crossover OR mutation, and the selection for the next population happens from BOTH the offpsring
+and parent generation. Also in the mu_plus_lambda strategy, the number of offspring in each generation is a chosen parameter, which can be controlled by the
+user through offspring_prop.</p>
+<p>Mutation intakes two parameters: mut_prob and mut_indpb. The parameter mut_prob represents the probability that an individual will be mutated. Then, once an
+individual is selected as mutated, mut_indpb is the probability that each gene is mutated. For example, if an individual is represented by the array
+[11.4, 7.6, 8.1] where mut_prob=1 and mut_indpb=0.5, there’s a 50 percent chance that 11.4 will be mutated, a 50 percent chance that 7.6 will be mutated,
+and a 50 percent chance that 8.1 will be mutated. Also, if either of mut_prob or mut_indpb equal 0, no mutations will happen. The type of mutation we apply
+depends on the data type because we want to preserve data type under mutation and ‘closeness’ may or may not represent similarity. For example, gaussian
+mutation is rounded for integers to preserve their data type, and mutation is a random draw for categorical variables because being close in a list doesn’t
+equate to similarity.</p>
+<p>Crossover intake two parameters: cx_prob and cx_indpb, which operate much in the same way as cx_prob and cx_indpb. For example, given two individuals
+represented by the arrays [1, 2, 3] and [4, 5, 6] where cx_prob=1 and cx_indpb=0.5, there’s a 50% chance that 1 and 4 will be ‘crossed’, a 50% chance that
+2 and 5 will be ‘crossed’, and a 50% chance that 3 and 6 will be ‘crossed’. Also, if either mut_prov or mut_indpb equal 0, no crossover will happen. The definition
+of ‘crossed’ depends on the crossover function, which must be chosen carefully to protect data types. We use cx_Uniform, which swaps values such that [4, 2, 3],
+[1, 5, 6] is a possible result from crossing the previously defined individuals. One example of a crossover function which doesn’t preserve data types would be
+cx_Blend, which averages values.</p>
+<p>Selection has various customizations, with tournaments being our implementation. In tournament selection, ‘tournsize’ individuals are chosen, and the individual
+with the best fitness score is selected. This repeats until the desired number of individuals are selected. Note that choosing individuals is done with replacement,
+which introduces some randomness to who is selected. Although unlikely, it’s possible for one individual to be the entire next population. It’s also possible for
+the best individual to not be selected as long as tournsize is smaller than the population. However, it is guaranteed that the worst ‘tournsize-1’ individuals are
+not selected for the next generation. Tournsize can be thought of as the selection pressure on the population.</p>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>In the mu_plus_lambda strategy, cx_prob+mut_prob must be less than or equal to 1. This stems from how mutation OR crossover is applied in mu_plus_lambda, as opposed to mutation AND crossover in the simple strategy.</p></li>
+<li><p>GPUs can often sit waiting in most implementations of the Genetic Algorithm because the number of evaluations in each generation is usually variable. However, with a certain configuration, the number of evaluations per generation can be kept at a constant number of your choosing. By using mu_plus_lambda, the size of the offspring population is made through the chosen parameter of offspring_prop. Then, by choosing cx_prob and mut_prob such that cx_prob+mut_prob=1, every offspring is identified as a ‘crossed’ or mutated individual and evaluated. Hence, the number of evaluations in each generation equals lambda. Note that because of cx_indpb and mut_indpb, an individual may be evaluated with actually having different hyperparameters. This also means that by adjusting mut_indpb and cx_indpb, the level of mutation and crossover can be kept low despite cx_prob+mut_prob being high (if desired). Note that the number of evaluations per generation can be kept constant in the simple strategy as well, but the number of evals has to be the population size.</p></li>
+<li><p>The default values are: NUM_ITERATIONS=5  |  POPULATION_SIZE=16  |  GA_STRATEGY=mu_plus_lambda  |  OFFSPRING_PROP=0.5  |  MUT_PROB=0.8  |  CX_PROB=0.2  | MUT_INDPB=0.5  |  CX_INDPB=0.5  |  TOURNSIZE=4</p></li>
+</ul>
+<p>See <a class="reference external" href="https://deap.readthedocs.io/en/master/api/algo.html?highlight=eaSimple#module-deap.algorithms">https://deap.readthedocs.io/en/master/api/algo.html?highlight=eaSimple#module-deap.algorithms</a> for more information.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, IMPROVE Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      Version: 
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      
+      <br>
+      </dl>
+    </div>
+  </div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

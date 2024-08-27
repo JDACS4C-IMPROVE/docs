@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hyper Parameter Optimization (HPO) &mdash; IMPROVE 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            IMPROVE
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Hyper Parameter Optimization (HPO)</a><ul>
+<li><a class="reference internal" href="#requirements">Requirements</a></li>
+<li><a class="reference internal" href="#improve-model-defined-for-containerization">IMPROVE MODEL (Defined for Containerization)</a></li>
+<li><a class="reference internal" href="#hyperparameter-space">HYPERPARAMETER SPACE</a><ul>
+<li><a class="reference internal" href="#universal-keys">Universal Keys</a></li>
+<li><a class="reference internal" href="#type-specific-keys">Type Specific Keys</a><ul>
+<li><a class="reference internal" href="#required">Required</a></li>
+<li><a class="reference internal" href="#optional">Optional</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#example-file">Example File</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">IMPROVE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Hyper Parameter Optimization (HPO)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/content/using_hpo_req.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="hyper-parameter-optimization-hpo">
+<h1>Hyper Parameter Optimization (HPO)<a class="headerlink" href="#hyper-parameter-optimization-hpo" title="Permalink to this heading"></a></h1>
+<section id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this heading"></a></h2>
+<p>The following are the requirements as a model curator for others to run HPO on your model.</p>
+</section>
+<section id="improve-model-defined-for-containerization">
+<h2>IMPROVE MODEL (Defined for Containerization)<a class="headerlink" href="#improve-model-defined-for-containerization" title="Permalink to this heading"></a></h2>
+<p>Your model must be IMPROVE compliant, reading arguments from a ‘.txt’ file and overwriting with command-line arguments. Your model must also be defined in a ‘def’ file for singularity containerization. Default definition files can be found in the <a class="reference external" href="https://github.com/JDACS4C-IMPROVE/Singularity">IMPROVE Singularity repository</a>. The container should expose the following interface scripts:</p>
+<ul class="simple">
+<li><p>preprocess.sh</p></li>
+<li><p>train.sh</p></li>
+<li><p>infer.sh</p></li>
+</ul>
+<p>To test your scripts with containerization, it’s recommended you build a container and run the following commands (customized with your arguments):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>singularity<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>--bind<span class="w"> </span><span class="nv">$IMPROVE_DATA_DIR</span>:/IMPROVE_DATA_DIR<span class="w"> </span>&lt;path_to_sif_file&gt;.sif<span class="w"> </span>preprocess.sh<span class="w"> </span>/IMPROVE_DATA_DIR<span class="w"> </span><span class="se">\</span>
+--train_split_file<span class="w"> </span>&lt;dataset&gt;_split_0_train.txt<span class="w"> </span>--val_split_file<span class="w"> </span>&lt;dataset&gt;_split_0_val.txt<span class="w"> </span><span class="se">\</span>
+--ml_data_outdir<span class="w"> </span>/IMPROVE_DATA_DIR/&lt;desired_outdir&gt;
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>singularity<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>--nv<span class="w"> </span>--bind<span class="w"> </span><span class="nv">$IMPROVE_DATA_DIR</span>:/IMPROVE_DATA_DIR<span class="w"> </span>&lt;path_to_sif_file&gt;.sif<span class="w"> </span>train.sh<span class="w"> </span>&lt;gpu_num&gt;<span class="w"> </span>/IMPROVE_DATA_DIR<span class="w"> </span><span class="se">\</span>
+--train_ml_data_dir<span class="w"> </span>&lt;path&gt;<span class="w"> </span>--val_ml_data_dir<span class="w"> </span>&lt;dir&gt;<span class="w"> </span>--model_outdir<span class="w"> </span>&lt;path&gt;<span class="w"> </span>--test_ml_data_dir<span class="w"> </span>&lt;path&gt;
+</pre></div>
+</div>
+</section>
+<section id="hyperparameter-space">
+<h2>HYPERPARAMETER SPACE<a class="headerlink" href="#hyperparameter-space" title="Permalink to this heading"></a></h2>
+<p>You will also need to define the hyperparameter space, which will override the arguments in the .txt file. For this reason, any pathing arguments needed for your train script will also need to be defined as ‘constant’ hyperparameters in the space (such as train_ml_data_dir below).</p>
+<p>At a high level, the upper and lower describe the bounds of the hyperparameter. Hyperparameters of float, int, ordered, categorical, and constant types are supported, with ordered and categorical hyperparameters supporting float, int, and string types. Log scale exploration is also supported for float and int hyperparameter types.</p>
+<p>More specifically, the hyperparameter configuration file has a json format consisting of a
+list of json dictionaries, each one of which defines a hyperparameter and how it is explored:</p>
+<section id="universal-keys">
+<h3>Universal Keys<a class="headerlink" href="#universal-keys" title="Permalink to this heading"></a></h3>
+<ul>
+<li><p>name: the name of the hyperparameter (e.g. _epochs_)</p></li>
+<li><p>type: determines how the initial population (i.e. the hyperparameter sets) are initialized from the named parameter and how those values are subsequently mutated by the GA. Type is one of <cite>constant</cite>, <cite>int</cite>, <cite>float</cite>, <cite>logical</cite>, <cite>categorical</cite>, or <cite>ordered</cite>.
+- <cite>constant</cite>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>each model is initialized with the same specifed value</p></li>
+<li><p>mutation always returns the same specified value</p></li>
+</ul>
+</div></blockquote>
+<ul>
+<li><p><cite>int</cite>:
+- each model is initialized with an int randomly drawn from the range defined by <cite>lower</cite> and <cite>upper</cite> bounds
+- mutation is peformed by adding the results of a random draw from</p>
+<blockquote>
+<div><p>a gaussian distribution to the current value, where the gaussian distribution’s mu is 0 and its sigma is specified by the <cite>sigma</cite> entry.</p>
+</div></blockquote>
+</li>
+<li><p><cite>float</cite>:
+- each model is initialized with a float randomly drawn from the range defined by <cite>lower</cite> and <cite>upper</cite> bounds
+- mutation is peformed by adding the results of a random draw from</p>
+<blockquote>
+<div><p>a gaussian distribution to the current value, where the gaussian distribution’s mu is 0 and its sigma is specified by the <cite>sigma</cite> entry.</p>
+</div></blockquote>
+</li>
+<li><p><cite>logical</cite>:
+- each model is initialized with a random boolean.
+- mutation flips the logical value</p></li>
+<li><p><cite>categorical</cite>:
+- each model is initialized with an element chosen at random from the list of elements in <cite>values</cite>.
+- mutation chooses an element from the <cite>values</cite> list at random</p></li>
+<li><p><cite>ordered</cite>:
+- each model is inititalized with an element chosen at random from the list of elements in <cite>values</cite>.
+- given the index of the current value in the list of <cite>values</cite>, mutation selects the element _n_ number of indices away, where n is the result of a random draw between 1 and <cite>sigma</cite> and then is negated with a 0.5 probability.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="type-specific-keys">
+<h3>Type Specific Keys<a class="headerlink" href="#type-specific-keys" title="Permalink to this heading"></a></h3>
+<section id="required">
+<h4>Required<a class="headerlink" href="#required" title="Permalink to this heading"></a></h4>
+<p>The following keys are required depending on value of the <cite>type</cite> key.</p>
+<p>If the <cite>type</cite> is <cite>constant</cite>:</p>
+<ul class="simple">
+<li><p><cite>value</cite>: the constant value</p></li>
+</ul>
+<p>If the <cite>type</cite> is <cite>int</cite>, or <cite>float</cite>:</p>
+<ul class="simple">
+<li><p><cite>lower</cite>: the lower bound of the range to draw from</p></li>
+<li><p><cite>upper</cite>: the upper bound of the range to draw from</p></li>
+</ul>
+<p>If the <cite>type</cite> is <cite>categorical</cite>:</p>
+<ul class="simple">
+<li><p><cite>values</cite>: the list of elements to choose from</p></li>
+<li><p><cite>element_type</cite>: the type of the elements to choose from. One of <cite>int</cite>, <cite>float</cite>, <cite>string</cite>, or <cite>logical</cite></p></li>
+</ul>
+<p>If the <cite>type</cite> is <cite>ordered</cite>:</p>
+<ul class="simple">
+<li><p><cite>values</cite>: the list of elements to choose from</p></li>
+<li><p><cite>element_type</cite>: the type of the elements to choose from. One of <cite>int</cite>, <cite>float</cite>, <cite>string</cite>, or <cite>logical</cite></p></li>
+</ul>
+</section>
+<section id="optional">
+<h4>Optional<a class="headerlink" href="#optional" title="Permalink to this heading"></a></h4>
+<p>The following keys are optional depending on value of the <cite>type</cite> key.</p>
+<p>If the <cite>type</cite> is <cite>constant</cite> or <cite>float</cite>:</p>
+<ul class="simple">
+<li><p><cite>use_log_scale</cite>: whether to apply mutation on log_10 of the hyperparameter or not</p></li>
+<li><p><cite>sigma</cite>: the sigma value used by the mutation operator. Roughly, it controls the size of mutations (see above).</p></li>
+</ul>
+<p>If the <cite>type</cite> is <cite>ordered</cite>:</p>
+<ul class="simple">
+<li><p><cite>sigma</cite>: the sigma value used by the mutation operator. Roughly, it controls the size of mutations (see above).</p></li>
+</ul>
+</section>
+</section>
+<section id="example-file">
+<h3>Example File<a class="headerlink" href="#example-file" title="Permalink to this heading"></a></h3>
+<p>A sample hyperparameter definition file:</p>
+<blockquote>
+<div><div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;train_ml_data_dir&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;constant&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;train_data_dir&gt;&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;val_ml_data_dir&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;constant&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;val_data_dir&gt;&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;model_outdir&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;constant&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;desired_outdir&gt;&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;learning_rate&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;float&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;use_log_scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;lower&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.000001</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;upper&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0001</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;sigma&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;num_layers&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;int&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;lower&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;upper&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;batch_size&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ordered&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;element_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;int&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">16</span><span class="p">,</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span><span class="w"> </span><span class="mi">64</span><span class="p">,</span><span class="w"> </span><span class="mi">128</span><span class="p">,</span><span class="w"> </span><span class="mi">256</span><span class="p">,</span><span class="w"> </span><span class="mi">512</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;sigma&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;warmup_type&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ordered&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;element_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;none&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;linear&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;quadratic&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;exponential&quot;</span><span class="p">]</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;optimizer&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;categorical&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;element_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="s2">&quot;Adam&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;SGD&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;RMSprop&quot;</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">},</span>
+
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;epochs&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;constant&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="p">]</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Note that any other keys are ignored by the workflow but can be used to add additional information about the hyperparameter. For example, the sample files could contain a <cite>comment</cite> entry that contains additional information about that hyperparameter and its use.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, IMPROVE Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      Version: 
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      
+      <br>
+      </dl>
+    </div>
+  </div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

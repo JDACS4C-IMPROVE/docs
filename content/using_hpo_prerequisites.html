@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HPO Prerequisites &mdash; IMPROVE 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            IMPROVE
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">HPO Prerequisites</a><ul>
+<li><a class="reference internal" href="#installing-git-and-singularity">Installing git and singularity</a></li>
+<li><a class="reference internal" href="#installing-conda">Installing conda</a></li>
+<li><a class="reference internal" href="#installing-supervisor">Installing supervisor</a></li>
+<li><a class="reference internal" href="#installing-swift-t">Installing swift-t</a><ul>
+<li><a class="reference internal" href="#shared-installations">Shared installations</a></li>
+<li><a class="reference internal" href="#setting-up-a-new-site">Setting up a new site</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">IMPROVE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">HPO Prerequisites</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/content/using_hpo_prerequisites.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="hpo-prerequisites">
+<h1>HPO Prerequisites<a class="headerlink" href="#hpo-prerequisites" title="Permalink to this heading"></a></h1>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com">git</a></p></li>
+<li><p><a class="reference external" href="https://docs.conda.io/en/latest/">conda</a></p></li>
+<li><p><a class="reference external" href="https://apptainer.org">singularity</a></p></li>
+<li><p><a class="reference external" href="https://github.com/swift-lang/swift-t">swift-t</a></p></li>
+<li><p><a class="reference external" href="https://github.com/ECP-CANDLE/Supervisor">Supervisor</a></p></li>
+</ul>
+<section id="installing-git-and-singularity">
+<h2>Installing git and singularity<a class="headerlink" href="#installing-git-and-singularity" title="Permalink to this heading"></a></h2>
+<p>Please refer to the documentation of the tools for install instructions.</p>
+</section>
+<section id="installing-conda">
+<h2>Installing conda<a class="headerlink" href="#installing-conda" title="Permalink to this heading"></a></h2>
+<p>To check if you have conda, use <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">--version</span></code>.</p>
+<p>If you do not have conda installed, install with the following commands:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget<span class="w"> </span>https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+chmod<span class="w"> </span>+x<span class="w"> </span>Miniconda3-latest-Linux-x86_64.sh
+./Miniconda3-latest-Linux-x86_64.sh
+<span class="nb">source</span><span class="w"> </span>~/.bashrc
+</pre></div>
+</div>
+<p>Now, using the <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">--version</span></code> command should give the version you’ve downloaded. If not, close the terminal session and open again, then try <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">--version</span></code>.</p>
+</section>
+<section id="installing-supervisor">
+<h2>Installing supervisor<a class="headerlink" href="#installing-supervisor" title="Permalink to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>IMPROVE<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.9.16
+conda<span class="w"> </span>activate<span class="w"> </span>IMPROVE
+<span class="c1"># change to a directory for supervisor if desired</span>
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/ECP-CANDLE/Supervisor.git
+<span class="nb">cd</span><span class="w"> </span>Supervisor<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/bin
+git<span class="w"> </span>checkout<span class="w"> </span>develop
+pip<span class="w"> </span>install<span class="w"> </span>numpy<span class="w"> </span>deap
+</pre></div>
+</div>
+</section>
+<section id="installing-swift-t">
+<h2>Installing swift-t<a class="headerlink" href="#installing-swift-t" title="Permalink to this heading"></a></h2>
+<p>You need to be in conda environment to proceed. If you aren’t sure:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Same conda env than above</span>
+<span class="c1"># conda create --name IMPROVE python=3.9.16</span>
+<span class="n">conda</span> <span class="n">activate</span> <span class="n">IMPROVE</span>
+</pre></div>
+</div>
+<p>Install swift-t via conda. For detailed instructions please refer to the <a class="reference external" href="http://swift-lang.github.io/swift-t/guide.html">swift-t documentation</a>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>install<span class="w"> </span>--yes<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>-c<span class="w"> </span>swift-t<span class="w"> </span>swift-t
+</pre></div>
+</div>
+<section id="shared-installations">
+<h3>Shared installations<a class="headerlink" href="#shared-installations" title="Permalink to this heading"></a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">supervisor</span></code> tool supports shared installations.  For example, a site administrator can install all of the tools above in a public location.  The user should be able to run <code class="docutils literal notranslate"><span class="pre">supervisor</span></code> from a personal directory with all configuration files and output files there.</p>
+</section>
+<section id="setting-up-a-new-site">
+<h3>Setting up a new site<a class="headerlink" href="#setting-up-a-new-site" title="Permalink to this heading"></a></h3>
+<div class="line-block">
+<div class="line">On a simple Linux system, you will simply need to modify</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">Supervisor/workflows/common/sh/env-local.sh</span></code></div>
+<div class="line">to specify the software locations on your system.</div>
+</div>
+<p>For more complex systems, you will also need to provide scheduler settings in the <code class="docutils literal notranslate"><span class="pre">sched-SITE.sh</span></code> script.</p>
+<p>See the <a class="reference external" href="https://github.com/ECP-CANDLE/Supervisor/tree/develop/bin/#quickstart">supervisor tool doc</a> for more details about how to configure a site.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, IMPROVE Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      Version: 
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      
+      <br>
+      </dl>
+    </div>
+  </div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

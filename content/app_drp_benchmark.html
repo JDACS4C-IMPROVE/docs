@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Benchmark Data for Cross-Study Analysis &mdash; IMPROVE 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            IMPROVE
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Benchmark Data for Cross-Study Analysis</a></li>
+<li><a class="reference internal" href="#data-location">Data Location</a></li>
+<li><a class="reference internal" href="#data-file-description">Data File Description</a></li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">IMPROVE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Benchmark Data for Cross-Study Analysis</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/content/app_drp_benchmark.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="benchmark-data-for-cross-study-analysis">
+<h1>Benchmark Data for Cross-Study Analysis<a class="headerlink" href="#benchmark-data-for-cross-study-analysis" title="Permalink to this heading"></a></h1>
+<p>The benchmark data for Cross-Study Analysis (CSA) include four kinds of data, which are cell line response data, cell line multi-omics data, drug feature data, and data partitions. The figure below illustrates the curation, processing, and assembly of benchmark data, and a unified schema for data curation. Cell line response data were extracted from five sources, including the Cancer Cell Line Encyclopedia (CCLE), the Cancer Therapeutics Response Portal version 2 (CTRPv2), the Genomics of Drug Sensitivity in Cancer version 1 (GDSC1), the Genomics of Drug Sensitivity in Cancer version 2 (GDSC2), and the Genentech Cell Line Screening Initiative (GCSI). These are five large-scale cell line drug screening studies. We extracted their multi-dose viability data and used a unified dose response fitting pipeline to calculate multiple dose-independent response metrics as shown in the figure below, such as the area under the dose response curve (AUC) and the half-maximal inhibitory concentration (IC50). The multi-omics data of cell lines were extracted from the the Dependency Map (DepMap) portal of CCLE, including gene expressions, DNA mutations, DNA methylation, gene copy numbers, protein expressions measured by reverse phase protein array (RPPA), and miRNA expressions. Data preprocessing was performed, such as descritizing gene copy numbers and mapping between different gene identifier systems. Drug information was retrived from PubChem. Based on the drug SMILES (Simplified Molecular Input Line Entry Specification) strings, we calculated their molecular fingerprints and descriptors using the Mordred and RDKit Python packages. Data partition files were generated using the IMPROVE benchmark data preparation pipeline. They indicate, for each modeling analysis run, which samples should be included in the training, validation, and testing sets, for building and evaluating the drug response prediction (DRP) models. The Table below shows the numbers of cell lines, drugs, and experiments in each dataset. Across the five datasets, there are 785 unique cell lines and 749 unique drugs. All cell lines have gene expression, mutation, DNA methylation, and copy number data available. 760 of the cell lines have RPPA protein expressions, and 781 of them have miRNA expressions.</p>
+<figure class="align-default">
+<img alt="../_images/CSA_Benchmark_Data_Workflow.png" class="with-border" src="../_images/CSA_Benchmark_Data_Workflow.png" />
+</figure>
+<p>Flowchart illustrating the curation, processing, and assembly of benchmark data for the CSA model evaluation. Each block indicates one type of data with the data type name shown in the bold font followed by attribute names in the data table. These define a unified data schema that is applied across all five drug screening datasets.</p>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-text">Number of cell lines, drugs, and experiments in the benchmark datasets.</span><a class="headerlink" href="#id1" title="Permalink to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Dataset</p></th>
+<th class="head"><p>Number of cell lines</p></th>
+<th class="head"><p>Number of drugs</p></th>
+<th class="head"><p>Number of experiments</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>CCLE</p></td>
+<td><p>411</p></td>
+<td><p>24</p></td>
+<td><p>9519</p></td>
+</tr>
+<tr class="row-odd"><td><p>CTRPv2</p></td>
+<td><p>720</p></td>
+<td><p>494</p></td>
+<td><p>286665</p></td>
+</tr>
+<tr class="row-even"><td><p>GDSCv1</p></td>
+<td><p>546</p></td>
+<td><p>294</p></td>
+<td><p>171940</p></td>
+</tr>
+<tr class="row-odd"><td><p>GDSCv2</p></td>
+<td><p>470</p></td>
+<td><p>168</p></td>
+<td><p>114644</p></td>
+</tr>
+<tr class="row-even"><td><p>GCSI</p></td>
+<td><p>312</p></td>
+<td><p>16</p></td>
+<td><p>4941</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="data-location">
+<h1>Data Location<a class="headerlink" href="#data-location" title="Permalink to this heading"></a></h1>
+<ul class="simple">
+<li><p><a class="reference external" href="https://ftp.mcs.anl.gov/pub/candle/public/improve/benchmarks/single_drug_drp/benchmark-data-pilot1/csa_data/raw_data/">https://ftp.mcs.anl.gov/pub/candle/public/improve/benchmarks/single_drug_drp/benchmark-data-pilot1/csa_data/raw_data/</a></p></li>
+</ul>
+</section>
+<section id="data-file-description">
+<h1>Data File Description<a class="headerlink" href="#data-file-description" title="Permalink to this heading"></a></h1>
+<ol class="arabic simple">
+<li><dl class="simple">
+<dt>“y_data” folder includes drug response data</dt><dd><ol class="arabic simple">
+<li><p>response.tsv: multiple dose-independent response metrics.</p></li>
+</ol>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>“splits” folder includes sample indices corresponding to rows in “response.tsv” in “y_data” folder. Sample index starts with 0. Take CCLE as an example to explain sample index files.</dt><dd><ol class="arabic simple">
+<li><p>CCLE_all.txt: indices of all samples in CCLE dataset.</p></li>
+<li><p>CCLE_split_0_test.txt: indices of testing samples in split 0 of CCLE dataset.</p></li>
+<li><p>CCLE_split_0_train.txt: indices of training samples in split 0 of CCLE dataset.</p></li>
+<li><p>CCLE_split_0_val.txt: indices of validation samples in split 0 of CCLE dataset.</p></li>
+</ol>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>“x_data” folder includes multi-omics data of cancer cell lines and multi-modal data of drugs.</dt><dd><ol class="arabic simple">
+<li><p>cancer_DNA_methylation.tsv: average DNA methylation values in transcription start sites.</p></li>
+<li><p>cancer_RPPA.tsv: protein expressions measured using RPPA.</p></li>
+<li><p>cancer_copy_number.tsv: continuous gene copy numbers.</p></li>
+<li><p>cancer_discretized_copy_number.tsv: discretized gene copy numbers. -2, -1, 0, 1, 2 indicate deep deletion, heterozygous deletion, neutral, copy number gain, copy number amplification, respectively.</p></li>
+<li><p>cancer_gene_expression.tsv: log2 transformed TPM (transcripts per million reads mapped) gene expression values.</p></li>
+<li><p>cancer_miRNA_expression.tsv: miRNA expression values.</p></li>
+<li><p>cancer_mutation.parquet: binary matrix indicating mutation occurrences. Columns are cell lines. Rows are mutations.</p></li>
+<li><p>cancer_mutation_count.tsv: gene-level mutation counts in cell lines.</p></li>
+<li><p>cancer_mutation_long_format.tsv: each row indicates the occurrence of a mutation in a cell line.</p></li>
+<li><p>drug_SMILES.tsv: SMILES strings of drugs.</p></li>
+<li><p>drug_ecfp4_nbits512.tsv: ecfp4 binary fingerprints of drugs.</p></li>
+<li><p>drug_info.tsv: meta information of drugs.</p></li>
+<li><p>drug_mordred.tsv: Mordred descriptors of drugs.</p></li>
+</ol>
+</dd>
+</dl>
+</li>
+</ol>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, IMPROVE Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      Version: 
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      
+      <br>
+      </dl>
+    </div>
+  </div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
