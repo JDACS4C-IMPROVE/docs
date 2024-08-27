@@ -11,13 +11,13 @@
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
 
-import os
-import sys
-if os.path.isdir('../improve'):
-    sys.path.insert(0, os.path.abspath('../improve/framework.py'))
-else:
-    print("Can't find path.")
-    sys.exit(404)
+#import os
+#import sys
+#if os.path.isdir('../improve'):
+#    sys.path.insert(0, os.path.abspath('../improve/framework.py'))
+#else:
+#    print("Can't find path.")
+#    sys.exit(404)
 
 
 # -- Project information -----------------------------------------------------
