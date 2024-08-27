@@ -1,6 +1,6 @@
 Curating Models
 =================================
-
+NATASHA: edit this
 A central goal of the IMPROVE framework is the automated execution of community deep learning models so that they can be compared to each other under a wide range of conditions.
 
 Three standards needed to automate execution across a collection of models address command line parameters, model hyperparameters, and the return value from a successful training process.
