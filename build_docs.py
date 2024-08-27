@@ -4,11 +4,11 @@
 # in generall we use environment variables to pass values to conf.py, see below
 # and runs the build as we did locally
 def build_doc(version, tag):
-    os.environ["current_version"] = version
-    subprocess.run("git checkout " + tag, shell=True)
-    subprocess.run("git checkout main -- conf.py", shell=True)
-    subprocess.run("git checkout main -- versions.yaml", shell=True)
-    subprocess.run("make html", shell=True)    
+  os.environ["current_version"] = version
+  subprocess.run("git checkout " + tag, shell=True)
+  subprocess.run("git checkout main -- conf.py", shell=True)
+  subprocess.run("git checkout main -- versions.yaml", shell=True)
+  subprocess.run("make html", shell=True)    
 
 # a move dir method because we run multiple builds and bring the html folders to a 
 # location which we then push to github pages

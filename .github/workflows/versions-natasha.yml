@@ -1,0 +1,32 @@
+name: versions-natasha
+
+on:
+  workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      pages: write
+    steps:
+      - uses: actions/checkout@v3
+      - name: build
+        run: |
+          # ... installation of all tools ...
+          # get all tags, and run a python script
+          # which you find below to build all documents
+          git fetch --all
+          mkdir _build
+          python3 build_docs.py
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: ./pages
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
