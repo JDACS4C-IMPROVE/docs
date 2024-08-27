@@ -23,7 +23,7 @@ Data
 ----
 
 Screening data
-==============
+^^^^^^^^^^^^^^^^
 Drug screening experiments can be performed with various pre-clinical cancer models such as cell lines, organoids, and xenografts, where cancer samples are screened against a library of drug compounds. Regardless of specific cancer models, the screening space can be characterized by the involved drugs and cancers. The 2-D matrix illustrates such a space composed of a finite number of known cancer cases and drugs, where the marked coordinates symbolize that treatment responses are available for these combinations. 
 Drug sensitivity results of screening experiments can be organized in a table format, represting the **response data** .
 
@@ -34,7 +34,7 @@ Drug sensitivity results of screening experiments can be organized in a table fo
     Drug screening experiments can be performed with several pre-clinical cancer models.
 
 Feature representations
-=======================
+^^^^^^^^^^^^^^^^^^^^^^^^^
 The different cancers and drugs in a screening experiment can be numerically described using various representations that can be supplied as features to a DL model.
 In most DRP models, cancer is represented using various omics data types which are often provided with public drug screening studies (e.g., CCLE, GDSC). In certain cases, however, additional bioinformatics processing steps are applied to further preprocess omics data for the downstream ML analysis. 
 The drugs are generallity represtend with SMILES strings, fingerprints, descriptors, and molecular graph structures. These representations can be calculated using open-source cheminformatics software packages such as RDKit and Mordred.
@@ -46,7 +46,7 @@ The drugs are generallity represtend with SMILES strings, fingerprints, descript
     Several drug and cancer feature representations that are used as input features for a DRP model.
 
 Raw DRP data
-============
+^^^^^^^^^^^^^
 The data required to develop (train and validate) a pan-cancer and pan-drug DRP model, consists of three primary components: 1) response data, 2) cancer representation, and 3) drug representation.
 These data are generally stored in tabular structures.
 In the context of the DRP problem, we define these data structures as **raw DRP data**.
@@ -58,7 +58,7 @@ In the context of the DRP problem, we define these data structures as **raw DRP 
     Raw DRP data.
 
 ML data
-=======
+^^^^^^^^^
 
 Deep learning (DL) models built using popular DL frameworks can take various types of data from simple CSV to more complex structures such as TFRecords.
 Constructing datasets for DL-based DRP models generally requires combining heterogeneous data such as cancer and drug information and treatment response values.
