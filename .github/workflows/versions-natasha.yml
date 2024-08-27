@@ -17,7 +17,6 @@ jobs:
           # get all tags, and run a python script
           # which you find below to build all documents
           git fetch --all
-          mkdir _build
           python3 build_docs.py
       - name: Setup Pages
         uses: actions/configure-pages@v3
