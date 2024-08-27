@@ -1,14 +1,34 @@
 What is the IMPROVE project?
 ============================
+IMPROVE aims to establish methodology to systematically and rigorously compare supervised learning models. To this end, IMPROVE has four components:
 
-Background
-----------
+1) IMPROVE Framework: standardized scaffolding for machine learning models, written in Python
 
-From 2015 to 2020, the joint DOE-NCI Pilot 1 project has developed a foundational set of machine learning models, related research, and infrastructure for prediction of tumor drug response to single and combination agents. These models have been benchmarked against models in the literature, compared to dozens of alternative formulations (ranging from classical machine learning methods to deep learning), and evaluated on a broad range of available training data. Some of these models have become benchmarks for the ECP-CANDLE project (https://github.com/ECP-Candle/Benchmarks).
+2) IMPROVE :doc:`Evaluation Schemes <BenchmarkEvaluationSchemes>`: workflows to evaluated and compare models
 
-There were many lessons learned during this work that led to the Innovative Methodologies and New Data for Predictive Oncology Model Evaluation (IMPROVE) project. For example, it became clear that while considerable progress has been made in the last decade by the cancer research community in the formulation and training of machine learning models for cancer, the community does not have a common set of well-documented and well-characterized approaches to constructing, training, and validating cancer drug response models.
+3) IMPROVE Benchmark Datasets: a collection of standardized data for each application to allow for benchmarking of models
 
-It is difficult to compare new modelling results in the literature with those from previous studies due to different choices of normalization, encoding, filtering, etc. In addition, there is a lack of well-curated and standardized training and testing datasets, and lack of broadly accepted featurization for both tumors associated data and representations of drugs. Understanding and recognizing new innovations in drug response modeling are less clear due to ongoing challenges with data quality and data integration.
+4) IMPROVE Community Curated Models: models for each application from the scientific communitity that have been curated into the IMPROVE framework
 
-With the IMPROVE project, we address some of the challenges around model comparisons and dataset standardization and availability through the development and provision of a software framework to make it routine practice for the broader community (cancer research and other areas) to compare new machine learning modeling approaches to previous models in a rigorous and comprehensive fashion.
 
+IMPROVE can be applied to a variety of supervised learning models. We have begun with the :doc:`Drug Response Prediction <app_drp_intro>` problem, standardizing :doc:`community models <Models>` that predict pan-cancer, pan-drug, single drug response for precision oncology with a standardized :doc:`benchmark dataset <CSA_Benchmark_Datasets>`.
+
+
+
+
+For more information
+----------------------
+
+.. toctree::
+   :titlesonly:
+
+   Background <whatis_background>
+   Future Directions <whatis_future>
+   Acknowledgments <whatis_acknowledgment>
+
+
+Access the code base https://github.com/JDACS4C-IMPROVE/
+
+References
+---------------------------------
+`1. <https://www.frontiersin.org/articles/10.3389/fmed.2023.1086097/full>`_ A. Partin et al. "Deep learning methods for drug response prediction in cancer: Predominant and emerging trends", Frontiers in Medicine, Section Prediction Oncology, 2023

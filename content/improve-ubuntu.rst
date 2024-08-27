@@ -1,4 +1,0 @@
-Installing IMPROVE on Ubuntu
-============================
-
-

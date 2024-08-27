@@ -1,8 +1,6 @@
-========================
 Drug Response Prediction
 ========================
 
-----
 Modeling drug response
 ----
 
@@ -20,7 +18,7 @@ A special case is drug-specific models designed to make predictions for a drug o
     A neural network architecture for cancer drug response prediction (DRP). The model is pan-cancer and pan-drug where both cancer and drug representations are used to predict the response.
 
 
-----
+
 Data
 ----
 
