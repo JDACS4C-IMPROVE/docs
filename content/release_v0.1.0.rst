@@ -14,11 +14,18 @@ This release TAKE TEXT FROM ALEX
 
 Parameters
 ------------
-Parameters are detailed in :doc:`api_overview`. Of note, the parameters for each step (i.e. preprocess, train, infer) are now separate.
+Parameters are detailed in :doc:`API`. Of note, the parameters for each step (i.e. preprocess, train, infer) are now separate.
+
+Depreciated Parameters
+^^^^^^^^^^^^^^^^^^^^^^^
+
+NATASHA: fill in
 
 Updating v0.0.3 curated models
 ---------------------------------
-**Updating Environment**
+
+Updating Environment
+^^^^^^^^^^^^^^^^^^^^^^
 
 - Make an environment without candle lib. Since many packages are installed by candlelib, you may need to add other packages to your environment now.
 
@@ -26,7 +33,8 @@ Updating v0.0.3 curated models
 
 - No environment variables need to be set, the csa_data directory can be set by command line (see below)
 
-**Updating Import Statements**
+Updating Import Statements
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - For initalizing parameters, there is a different import for each of the three scripts:
 
@@ -83,7 +91,8 @@ Updating v0.0.3 curated models
     import improvelib.applications.drug_response_prediction.drp_utils as drp
 
 
-**Updating main()**
+Updating main()
+^^^^^^^^^^^^^^^^
 
 - Create the cfg object for the appropriate script: 
 
@@ -118,10 +127,12 @@ Updating v0.0.3 curated models
         required=None
     )
 
-**Updating References to Input and Output Directories**
+Updating References to Input and Output Directories
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 File Structure (input outputs dirs now, include CSA requirements for infer)
 
-**Updating the Default Configuration File**
+Updating the Default Configuration File
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Things have to be in each section now
