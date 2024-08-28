@@ -1,7 +1,7 @@
 v0.1.0-alpha
 ===============
 
-For models previously curated as part of the IMPROVE project, please see the following checklist: 
+For models previously curated as part of the IMPROVE project, please follow the instructions below to update your curated model and see the following checklist: 
 
 .. toctree::
    :titlesonly:
@@ -12,6 +12,8 @@ Overview
 ---------
 This release TAKE TEXT FROM ALEX
 
+Also now available on pypi for pip installation.
+
 Parameters
 ------------
 Parameters are detailed in :doc:`API`. Of note, the parameters for each step (i.e. preprocess, train, infer) are now separate.
@@ -20,6 +22,19 @@ Depreciated Parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
 
 NATASHA: fill in
+
+- Preprocess
+  - :code:`ml_data_outdir` is now
+
+- Train
+  - :code:`train_ml_data_dir`
+  - :code:`val_ml_data_dir`
+  - :code:`model_outdir`
+
+- Infer
+  - :code:`test_ml_data_dir`
+  - :code:`model_dir`
+  - :code:`infer_outdir`
 
 Updating v0.0.3 curated models
 ---------------------------------
@@ -40,31 +55,31 @@ Updating Import Statements
 
   - Preprocess
 
-  .. code-block:: python
+  .. code-block::
 
     from improvelib.applications.drug_response_prediction.config import DRPPreprocessConfig
 
   - Train
 
-  .. code-block:: python
+  .. code-block::
 
     from improvelib.applications.drug_response_prediction.config import DRPTrainConfig
 
   - Infer
 
-  .. code-block:: python
+  .. code-block::
 
     from improvelib.applications.drug_response_prediction.config import DRPInferConfig
 
 - If your code uses str2bool, change the import to the following:
 
-  .. code-block:: python
+  .. code-block::
 
     from improvelib.utils import str2bool
 
 - For other framework functions (previously from :code:`improve import framework as frm`) use:
 
-  .. code-block:: python
+  .. code-block::
 
     import improvelib.utils as frm
 
@@ -72,13 +87,13 @@ Updating Import Statements
 
   - DrugsLoader
 
-  .. code-block:: python
+  .. code-block::
 
     import improvelib.applications.drug_response_prediction.drug_utils as drugs
 
   - OmicsLoader
 
-  .. code-block:: python
+  .. code-block::
 
     import improvelib.applications.drug_response_prediction.omics_utils as omics
 
@@ -86,7 +101,7 @@ Updating Import Statements
 
   - DrugResponseLoader
 
-  .. code-block:: python
+  .. code-block:: 
 
     import improvelib.applications.drug_response_prediction.drp_utils as drp
 
@@ -98,25 +113,28 @@ Updating main()
 
   - Preprocess
 
-  .. code-block:: python
+  .. code-block::
 
     cfg = DRPPreprocessConfig()
 
   - Train
 
-  .. code-block:: python
+  .. code-block::
 
     cfg = DRPTrainConfig()
 
   - Infer
 
-  .. code-block:: python
+  .. code-block::
 
     cfg = DRPInferConfig()
 
+- Use relevant parameters for each of the model scripts as :code:`additional_definitions`. 
+For example, in the infer script use :code:`additional_definitions = infer_params` instead of :code:`additional_definitions = preprocess_params + train_params + infer_params`
+
 - Initialize parameters. Note that instead of :code:`default_model` now :code:`default_config` is used to specify the default configuration file.
 
-  .. code-block:: python
+  .. code-block::
 
     params = cfg.initialize_parameters(
         pathToModelDir=filepath,
@@ -135,4 +153,5 @@ File Structure (input outputs dirs now, include CSA requirements for infer)
 Updating the Default Configuration File
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Things have to be in each section now
+The new improvelib API now only reads the parameters in the relevant section as each script is run. 
+If there are parameters that are used in more than one script (e.g. :code:`model_file_name` in both train and infer), these will have to either 1) be set in both the [Train] and [Infer] sections of the config or 2) set in a section named [GLOBAL].
