@@ -25,7 +25,7 @@ Do you have a model you would like to compare with state-of-the-art models? Try 
    :caption: Contents:
 
    content/whatis
-   content/QuickStart
+   content/quickstart
    content/EVALUATION
    content/applications
    content/curating
