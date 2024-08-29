@@ -1,8 +1,8 @@
 Using Models with Workflows
 =================================
-Once a deep learning model has been curated with improvelib, the model can be used in benchmark evaluation schemes at scale. NATASHA: link both of these.
+Once a deep learning model has been :doc:`curated<curating>` with improvelib, the model can be used in :doc:`benchmark evaluation schemes<EVALUATION>` at scale. 
 
-The following guides walk through how to run various aspects of the IMPROVE workflow.
+The following guides walk through how to run various aspects of the IMPROVE workflows.
 
 .. toctree::
    :titlesonly:
