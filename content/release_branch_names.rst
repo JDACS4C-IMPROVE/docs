@@ -4,13 +4,15 @@ GitHub Branch & Tag Names
 Tags
 ------
 
-Release tags will be used to mark releases. Models released with a tag are compatible with the corresponding tag of improvelib. Releases tags follow the v0.0.0 nomenclature.
+Release tags will be used to mark specific software versions. Models released with a particular tag are compatible with the corresponding version (same tag) of the improvelib package. Release tags follow the vX.X.X semantic versioning format.
 
 
 Branches
 ----------
 
-main, master - The branch representing the original forked code.
+IMPROVE repo:
+* master - The latest stable version of the code. This branch will be used to tag version releases.
+* develop - The primary development branch. Features and bug fixes are merged into develop before being considered for release.
 
-develop - This is the branch that improve developers work on.
-
+Curated models:
+* original - The original forked code.
