@@ -4,9 +4,9 @@ NATASHA: have the container instructions checked
 
 From the model repository
 --------------------------
-For a step-by-step example of how run LGBM see: :doc:'quickstart'.
+For a step-by-step example of how run LGBM see: :doc:`quickstart`.
 
-Clone the model and set up the environment
+1. Clone the model and set up the environment
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 #. IMPROVE model repositories can be found here: `https://github.com/JDACS4C-IMPROVE<https://github.com/JDACS4C-IMPROVE>`_. Clone the model repo with:
@@ -23,7 +23,7 @@ Clone the model and set up the environment
 
   pip install improvelib
 
-Download the benchmark data
+2. Download the benchmark data
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 To download Drug Response Prediction benchmark data, run the following in the directory where you would like to store the data:
 
@@ -31,7 +31,7 @@ To download Drug Response Prediction benchmark data, run the following in the di
 
   wget --cut-dirs=8 -P ./ -nH -np -m https://web.cels.anl.gov/projects/IMPROVE_FTP/candle/public/improve/benchmarks/single_drug_drp/benchmark-data-pilot1/csa_data/
 
-Run the model scripts
+3. Run the model scripts
 ^^^^^^^^^^^^^^^^^^^^^^
 By default everything will be saved in the current working directory. This, and all other parameters can be changed by setting parameters on the command line. See :doc:`API` for more information about parameters.
 
@@ -53,9 +53,8 @@ General Form:
  
   singularity exec –nv –bind $HOST_DATA_DIR:/candle_data_dir $IIL/$IMAGE $CMD $ARGS
  
-Use case 1. A custom model  file is provided as an argument to train.sh.
-
-
+Use Case 1: A custom model file is provided as an argument to train.sh
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Example:
  
  .. code-block::
@@ -82,6 +81,8 @@ Example:
 
 
 Use Case 2: Train a model with the default model file.
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Example:
 
   .. code-block::
 
@@ -91,7 +92,8 @@ Use Case 2: Train a model with the default model file.
  
 Because the number of positional arguments to train.sh is 2, the default model file in the model directory inside the container is used. It still expects /candle_data_dir to be available inside the container as /candle_data_dir is prepended to input and output paths. The default model file would be the one used to closely reproduce the original authors results.
  
-Use Case 3: Train a model using supported command line arguments.
+Use Case 3: Train a model using supported command line arguments
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In this case, the default model file in the model directory inside the container is read first, and then command line arguments passed to train.sh are used. In the event that both the default model file and the command line arguments contain the same parameter, the command line parameter’s value will take precedence. The first two positional arguments to train.sh must still always be the GPU device id and the mount point inside the container as specified by the –bind option.
  

@@ -6,8 +6,11 @@ Separating preprocess, train, and infer
 ----------------------------------------
 
 IMPROVE divides deep learning models into three distinct steps:
+
 #. Data **preprocessing** (converting raw data to machine learning (ML) data and splitting the data)
+
 #. Model **training** and saving the best model (based on early stopping)
+
 #. **Inference** (predicting with the model and saving raw predictions)
 
 - Often community models are written as one or two scripts, encompassing multiple steps of the deep learning model. In order to curate the model using IMPROVE, identify where the code should be divided into preprocess, train, and infer.
@@ -53,9 +56,9 @@ Template available HERE - NATASHA. See :doc:`api_config` for more information.
 
 - The default configuation file should be named as follows, where 'model' is the name of your model: :code:`model_default_params.txt`.
 
-Set up main() for your model
+Set up :code:`main()` for your model
 ------------------------------
-There are three required lines in main() for each script. This is the the main() for preprocess:
+There are three required lines in :code:`main()` for each script. This is the the :code:`main()` for preprocess:
 
   .. code-block::
 
