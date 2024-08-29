@@ -56,7 +56,8 @@ Here we create a conda environment for the required packages for LGBM and instal
 
 Run preprocessing script
 -------------------------
-Preprocessing takes the raw data standardized by the IMPROVE project (CSA data), and transforms it into a format appropriate for the model of choice. Data will be divided into input data and y data (e.g. drug response as AUC values) for training, validation, and testing sets to be used in the next two steps. These files are stored in the directory ml_data, in the appropriate sub folders.
+Preprocessing takes the raw data standardized by the IMPROVE project (CSA data), and transforms it into a format appropriate for the model of choice. 
+Data will be divided into input data and y data (e.g. drug response as AUC values) for training, validation, and testing sets to be used in the next two steps. 
 Here we run preprocessing for LGBM.
 
 .. code-block:: bash
@@ -66,7 +67,8 @@ Here we run preprocessing for LGBM.
 
 Run training script
 ---------------------
-The training script trains the model of interest, using the validation set for early stopping. This will generate the trained model, the predictions on the validation data, and the prediction performance scores on the validation data. The trained model and data are stored in the directory out_model.
+The training script trains the model of interest, using the validation set for early stopping. 
+This will generate the trained model, the predictions on the validation data, and the prediction performance scores on the validation data. 
 Here we run training for LGBM.
 
 .. code-block:: bash
@@ -76,7 +78,7 @@ Here we run training for LGBM.
 
 Run inference script
 ---------------------
-The inference script will use the model trained in the previous step to predict drug response for the test set and evaluate the performance of these predictions. This data is stored in the directory out_infer.
+The inference script will use the model trained in the previous step to predict drug response for the test set and evaluate the performance of these predictions. 
 Here we run inference for LGBM.
 
 .. code-block:: bash

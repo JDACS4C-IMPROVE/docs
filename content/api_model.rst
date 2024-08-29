@@ -1,11 +1,11 @@
-Creating Model-specific parameters
-=================================
+Creating Model-Specific Parameters
+====================================
 
 Model-specific parameters should be defined as a list of dictionaries, where each dictionary is a parameter with the following attributes: name, type, default, and help. 
-Other attributes that are compatible with argpase can also be specified, see argparse.ArgumentParser.add_argument() (LINK) for more information.
+Other attributes that are compatible with argparse can also be specified, see `argparse.ArgumentParser.add_argument() <https://docs.python.org/3/library/argparse.html#the-add-argument-method>`_ for more information.
 Defining a parameter with the same name as an existing IMPROVE or application-specific parameter is not allowed.
 
-.. code-block:: python
+.. code-block:: 
 
     my_params_example = [
         {
@@ -38,7 +38,58 @@ Defining a parameter with the same name as an existing IMPROVE or application-sp
 
 
 For clarity, we recommend putting model-specific parameter definitions in a separate file and importing the list to each model script (i.e. preprocess, train, infer).
-You can all model-specific parameters in a single list, or in separate lists for preprocess, train, and infer. This list is passed to initalize_parameters in the main() as additional_definitions.
+You can put all model-specific parameters in a single list, or in separate lists for preprocess, train, and infer. This list is passed to initalize_parameters in the :code:`main()` as additional_definitions.
+
+For example, in :code:`mymodel_param_definitions.py` you can have:
+
+.. code-block:: 
+
+    mymodel_preprocess_params = [
+        {
+            "name": "scaling_type",
+            "type": str,
+            "default": "StandardScaler",
+            "help": "Type of scikitlearn scaling to use.",
+        }
+    ]
+    mymodel_train_params = [
+        {
+            "name": "model_arch",
+            "default": "GINConvNet",
+            "choices": ["GINConvNet", "GATNet", "GAT_GCN", "GCNNet"],
+            "type": str,
+            "help": "Model architecture to run."}
+        }
+    ]
+    mymodel_infer_params = [
+        {
+            "name": "print_time",
+            "type": str2bool,
+            "default": "False",
+            "help": "Whether to print the time or not.",
+        }
+    ]
+
+The appropriate list can then be imported into the appropriate script. For example, in :code:`model_preprocess_improve.py` we would add the following:
+
+.. code-block:: 
+
+    from mymodel_param_definitions import mymodel_preprocess_params
+
+
+Then this list of parameter definitions is passed to :code:`cfg.initialize_parameters` in :code:`main()`:
+
+.. code-block::
+
+    params = cfg.initialize_parameters(
+        pathToModelDir=filepath,
+        default_config="model_default_params.txt",
+        default_model=None,
+        additional_cli_section=None,
+        additional_definitions=mymodel_preprocess_params,
+        required=None
+    )
+
 
 
 
