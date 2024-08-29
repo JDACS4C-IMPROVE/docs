@@ -1,12 +1,7 @@
 v0.1.0-alpha
 ===============
 
-For models previously curated as part of the IMPROVE project, please follow the instructions below to update your curated model and see the following checklist: 
-
-.. toctree::
-   :titlesonly:
-
-   v0.1.0 Checklist <release_v0.1.0_checklist>
+For models previously curated as part of the IMPROVE project, please follow the instructions below to update your curated model and see the checklist at the bottom of the page. 
 
 Overview
 ---------
@@ -155,3 +150,23 @@ Updating the Default Configuration File
 
 The new improvelib API now only reads the parameters in the relevant section as each script is run. 
 If there are parameters that are used in more than one script (e.g. :code:`model_file_name` in both train and infer), these will have to either 1) be set in both the [Train] and [Infer] sections of the config or 2) set in a section named [GLOBAL].
+
+
+INTERNAL USE - Curated Model Checklist - v0.1.0
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+All of the following should be completed for the update of curated models from the legacy version (v0.0.3) to the latest version (v0.1.0).
+
+- Tag the legacy version 
+  - Ensure the current develop branch works with IMPROVE v0.0.3, 
+  - Update the readme to refer to the v0.0.3-beta tag according to Alex's example in GraphDRP.
+  - Tag the code in the current develop branch with v0.0.3-beta.
+- Change environment and code with the above instructions and confirm it runs successfully.
+- Code should not use environmental variables.
+- Code should not be dependent on candlelib.
+- In infer, use :code:`input_model_dir` and :code:`input_data_dir` as appropriate so the CSA workflow functions properly.
+- Default config should be named model_default_params.txt.
+- Update readme to include new instructions for set up of environment with pip installation of improvelib (and without candlelib).
+- Check the documentation page for your model (:doc:`app_drp_models`) and make sure it is accurate. Tell Natasha if it isn't.
+- Send Natasha a list of your model-specific parameters (or a link to them).
+- Tell Alex the model has been updated according to this page.

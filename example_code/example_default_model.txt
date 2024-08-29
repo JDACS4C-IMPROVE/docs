@@ -1,7 +1,0 @@
-[global]
-# create benchmark for model name
-model_name="Example"
-
-# set location and name of training data
-data_url="https://ftp.mcs.anl.gov/pub/candle/public/improve/examples"
-train_data='example.csv'

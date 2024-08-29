@@ -7,7 +7,7 @@ The following guides walk through how to run various aspects of the IMPROVE work
 .. toctree::
    :titlesonly:
 
-   Running a Model <using_running>
+   Running a Single Model <using_running>
    Building Containers <using_containers_build>
    CSA <using_csa>
    HPO <using_hpo>
