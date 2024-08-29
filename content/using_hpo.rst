@@ -1,6 +1,5 @@
 Hyper Parameter Optimization (HPO)
 ==================================
-NATASHA: have this checked, easier to follow, fix broken links
 
 .. toctree::
    :titlesonly:
@@ -39,8 +38,7 @@ _____
 Install Prerequisites
 ___________________
 
-Refer to the `Prequisites Guide <https://github.com/JDACS4C-IMPROVE/docs/blob/RylieWeaver9-HPO/content/quickstart-hpo-experiment-prerequisites.rst>`_.
-
+Refer to the :ref:`Prerequisites Guide <using_hpo_prerequisites>`
 
 .. _Preprocess Data:
 
@@ -179,7 +177,7 @@ More information on Polaris job submitting (nodes, walltime, queue, etc...) can 
         
         ]
 
-Make sure to set the hyperparameter space to what you desire, the above file is an example. The upper and lower describe the bounds of the hyperparameter. Hyperparameters of float, int, ordered, categorical, and constant types are supported, with ordered and categorical hyperparameters supporting float, int, and string types. Log scale exploration is also supported for float and int hyperparameter types. More about additional customization and methods can be found in the `HPO Parameters Guide <https://github.com/JDACS4C-IMPROVE/docs/blob/RylieWeaver9-HPO/content/quickstart-hpo-parameters.rst>`_.
+Make sure to set the hyperparameter space to what you desire, the above file is an example. The upper and lower describe the bounds of the hyperparameter. Hyperparameters of float, int, ordered, categorical, and constant types are supported, with ordered and categorical hyperparameters supporting float, int, and string types. Log scale exploration is also supported for float and int hyperparameter types. More about additional customization and methods can be found in the `HPO Parameters Guide <using_hpo_prerequisites>`_.
 
 
 Supervisor setup
@@ -256,6 +254,6 @@ To analyze the HPO run, there are two recommended methods. The first provides a 
     num_columns=$((num_hyperparams + 1))
     (head -n 1 output.csv && tail -n +2 output.csv | sort -t, -k$num_columns -n | uniq) > sorted_unique_output.csv
 
-(2) Secondly, the user could secure copy the output.csv file, then use google colab to show tables and plot. The secure copy command should be run in your terminal (not logged into Argonne's computation system) as the following: ``scp <user>@<computation_address>:~/path/to/your/output.csv \path\on\local\computer``. For example, as secure copy command could look like: ``scp weaverr@polaris.alcf.anl.gov:~/data_dir/DeepTTC-testing/Output/finished_EXP060/output.csv \Users\rylie\Argonne\HPO``. Note that this assumes the user is using Unix. If running a Unix-like system on Windows, the command will look like ``scp <user>@<computation_address>:~/path/to/your/output.csv /c/Users/username/Path/On/Local/Computer``.
+(2) Secondly, the user could secure copy the output.csv file, then use google colab to show tables and plot. The secure copy command should be run in your terminal (not logged into Argonne's computation system) as the following: ``scp <user>@<computation_address>:~/path/to/your/output.csv \path\on\local\computer``. For example, as secure copy command could look like: ``scp <username>r@polaris.alcf.anl.gov:~/data_dir/DeepTTC-testing/Output/finished_EXP060/output.csv \Users\<username>\Argonne\HPO``. Note that this assumes the user is using Unix. If running a Unix-like system on Windows, the command will look like ``scp <user>@<computation_address>:~/path/to/your/output.csv /c/Users/username/Path/On/Local/Computer``.
 
 Once the file is secure copied to your local computer, it can be loaded into and used in google colab. For an example, follow the example and instructions here: https://colab.research.google.com/drive/1Us5S9Ty7qGtibT5TcwM9rTE7EIA9V33t?usp=sharing
