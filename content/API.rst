@@ -21,6 +21,6 @@ Additionally, general IMPROVE parameters are used for every model, as well as ap
    Preprocess <api_preprocess>
    Train <api_train>
    Infer <api_infer>
-   Creating model params <api_model>
+   Creating Model-Specific Parameters <api_model>
    Configuration Files <api_config>
 
