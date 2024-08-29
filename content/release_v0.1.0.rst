@@ -159,15 +159,27 @@ INTERNAL USE - Curated Model Checklist - v0.1.0
 All of the following should be completed for the update of curated models from the legacy version (v0.0.3) to the latest version (v0.1.0).
 
 - Tag the legacy version 
-  - Ensure the current develop branch works with IMPROVE v0.0.3, 
+
+  - Ensure the current develop branch works with IMPROVE v0.0.3.
+
   - Update the readme to refer to the v0.0.3-beta tag according to Alex's example in GraphDRP.
+
   - Tag the code in the current develop branch with v0.0.3-beta.
+
 - Change environment and code with the above instructions and confirm it runs successfully.
+
 - Code should not use environmental variables.
+
 - Code should not be dependent on candlelib.
+
 - In infer, use :code:`input_model_dir` and :code:`input_data_dir` as appropriate so the CSA workflow functions properly.
+
 - Default config should be named model_default_params.txt.
+
 - Update readme to include new instructions for set up of environment with pip installation of improvelib (and without candlelib).
+
 - Check the documentation page for your model (:doc:`app_drp_models`) and make sure it is accurate. Tell Natasha if it isn't.
+
 - Send Natasha a list of your model-specific parameters (or a link to them).
+
 - Tell Alex the model has been updated according to this page.
