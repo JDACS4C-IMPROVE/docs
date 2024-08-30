@@ -1,13 +1,14 @@
 v0.1.0-alpha
 ===============
 
-For models previously curated as part of the IMPROVE project, please follow the instructions below to update your curated model and see the checklist at the bottom of the page. 
+.. For models previously curated as part of the IMPROVE project (version `v0.0.3-beta`), please follow the instructions below to update your curated model and see the checklist at the bottom of the page. 
+To ensure compatibility with the IMPROVE software release `v0.1.0-alpha`, please update your curated model. Follow the instructions below and refer to the checklist at the bottom of the page. In addition, use models `GraphDRP <https://github.com/JDACS4C-IMPROVE/GraphDRP/tree/develop>`_ and `LGBM <https://github.com/JDACS4C-IMPROVE/LGBM/tree/develop>`_ as examples. `TODO` make sure links for the models are correct!
 
 Overview
 ---------
-This release TAKE TEXT FROM ALEX
+IMPROVE version `0.1.0-alpha` aims to expand the user base and encourage broader adoption the software. This version features updates to accommodate various users and contributors, both internal and external, including those involved with the development of the core IMPROVE library, application-specific modules (such as drug response prediction and drug property prediction), benchmark datasets, and model contributions. Additionally, this version provides a simplified and more user-friendly interface, as demonstrated by intuitive help outputs, comprehensive READMEs, and documentation that facilitate easy switching between versions.
 
-Also now available on pypi for pip installation.
+This version is now available on pypi for pip installation. `TODO`: update pypi
 
 Parameters
 ------------
