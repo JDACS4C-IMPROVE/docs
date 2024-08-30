@@ -8,7 +8,7 @@ Overview
 ---------
 IMPROVE version `0.1.0-alpha` aims to expand the user base and encourage broader adoption the software. This version features updates to accommodate various users and contributors, both internal and external, including those involved with the development of the core IMPROVE library, application-specific modules (such as drug response prediction and drug property prediction), benchmark datasets, and model contributions. Additionally, this version provides a simplified and more user-friendly interface, as demonstrated by intuitive help outputs, comprehensive READMEs, and documentation that facilitate easy switching between versions.
 
-This version is now available on pypi for pip installation. `TODO`: update pypi
+This version is now available on pypi for pip installation. `TODO`: update pypi AND link here
 
 Parameters
 ------------
@@ -20,17 +20,24 @@ Depreciated Parameters
 NATASHA: fill in
 
 - Preprocess
-  - :code:`ml_data_outdir` is now
+
+  - :code:`ml_data_outdir` is now :code:`output_dir`
 
 - Train
-  - :code:`train_ml_data_dir`
-  - :code:`val_ml_data_dir`
-  - :code:`model_outdir`
+
+  - :code:`train_ml_data_dir` is now :code:`input_dir`
+
+  - :code:`val_ml_data_dir` is now :code:`input_dir`
+
+  - :code:`model_outdir` is now :code:`output_dir`
 
 - Infer
-  - :code:`test_ml_data_dir`
-  - :code:`model_dir`
-  - :code:`infer_outdir`
+
+  - :code:`test_ml_data_dir` is now :code:`input_data_dir`
+
+  - :code:`model_dir` is now :code:`input_model_dir`
+
+  - :code:`infer_outdir` is now :code:`output_dir`
 
 Updating v0.0.3 curated models
 ---------------------------------
@@ -42,7 +49,7 @@ Updating Environment
 
 - For now, set the PYTHONPATH as usual, this will be replaced with pip install shortly.
 
-- No environment variables need to be set, the csa_data directory can be set by command line (see below)
+- No environment variables need to be set, the IMPROVE_DATA_DIR directory is now set by command line with :code:`--input_dir your/path/to/csa_data/raw_data` or in the config.
 
 Updating Import Statements
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -102,7 +109,7 @@ Updating Import Statements
     import improvelib.applications.drug_response_prediction.drp_utils as drp
 
 
-Updating main()
+Updating :code:`main()`
 ^^^^^^^^^^^^^^^^
 
 - Create the cfg object for the appropriate script: 
@@ -141,10 +148,20 @@ For example, in the infer script use :code:`additional_definitions = infer_param
         required=None
     )
 
+
+If your model uses Supplemental Data
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+There should be a shell script that downloads the data in the repo. Use :code:`input_supp_data_dir` to set the path to this directory.
+
+
 Updating References to Input and Output Directories
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-File Structure (input outputs dirs now, include CSA requirements for infer)
+All scripts have a single :code:`output_dir`. Preprocess and train scripts have a single :code:`input_dir`. 
+The infer script has two input directories, one for the saved model (:code:`input_model_dir`) and one for the ML data for the inference split (:code:`input_data_dir`). 
+These are all set by default to the current working directory, but it is important to ensure that the correct input directories (i.e. model and data) are used in the code in the infer script so that workflows function correctly.
+
 
 Updating the Default Configuration File
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -160,13 +177,27 @@ All of the following should be completed for the update of curated models from t
 
 - Tag the legacy version 
 
-  - Ensure the current develop branch works with IMPROVE v0.0.3.
+  - Make sure your model works with the legacy version (tagged v0.0.3-beta) of the IMPROVE lib. https://github.com/JDACS4C-IMPROVE/IMPROVE/tree/v0.0.3-beta This means that all 3 model scripts run with the csa benchmark datasets.
 
-  - Update the readme to refer to the v0.0.3-beta tag according to Alex's example in GraphDRP.
+  - Update the README.md to follow the same structure as much as possible in these examples. Make sure the install instructions refer to the v0.0.3-beta tag.
+    
+    - https://github.com/JDACS4C-IMPROVE/GraphDRP/tree/legacy-v0.0.3-beta
 
-  - Tag the code in the current develop branch with v0.0.3-beta.
+    - https://github.com/JDACS4C-IMPROVE/LGBM/tree/legacy-v0.0.3-beta
 
-- Change environment and code with the above instructions and confirm it runs successfully.
+  - Create branch legacy-v0.0.3-beta. See examples:
+  
+    - https://github.com/JDACS4C-IMPROVE/GraphDRP/tree/legacy-v0.0.3-beta
+
+    - https://github.com/JDACS4C-IMPROVE/LGBM/tree/legacy-v0.0.3-beta
+
+  - Create tag v0.0.3-beta with :code:`git tag v0.0.3-beta` then :code:`git push origin v0.0.3-beta`. See examples:
+
+    - https://github.com/JDACS4C-IMPROVE/GraphDRP/tree/v0.0.3-beta
+
+    - https://github.com/JDACS4C-IMPROVE/LGBM/tree/v0.0.3-beta
+
+- Change environment and code with the above instructions and confirm it runs successfully. This code should stay on the develop branch for now.
 
 - Code should not use environmental variables.
 
