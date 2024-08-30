@@ -183,7 +183,11 @@ Make sure to set the hyperparameter space to what you desire, the above file is 
 Supervisor setup
 ________________
 
-Set up the environment; omit this step if already installed:
+Supervisor is built on the Swift/T workflow language and the EMEWS Framework.
+
+Supervisor is pre-installed on many relevant HPC systems.  In these cases, you simply have to select the previously-developed "site" configuration already available.
+
+If not already installed, follow these steps:
 
 .. code-block:: bash
 
@@ -200,8 +204,8 @@ Set up the environment; omit this step if already installed:
     conda install --yes -c conda-forge -c swift-t swift-t
     # python libraries
     pip install numpy deap
-     
-    
+
+Note that on clusters with specific MPI implementations, you must build Swift/T: https://swift-lang.github.io/swift-t/guide.html#_installation
 
 Example
 _______
