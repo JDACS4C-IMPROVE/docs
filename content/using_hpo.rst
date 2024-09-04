@@ -14,7 +14,6 @@ Hyper Parameter Optimization (HPO)
    HPO Prerequisites <using_hpo_prerequisites>
    HPO Requirements <using_hpo_req>
    HPO Parameters <using_hpo_parameters>
-   HPO without Containers <using_hpo-debug-without-containers-lambda>
 
 
 Requirements
