@@ -34,7 +34,7 @@ Templates available HERE - NATASHA.
 
 - All scripts have a single :code:`output_dir`. Preprocess and train scripts have a single :code:`input_dir`. The infer script has two input directories, one for the saved model (:code:`input_model_dir`) and one for the ML data for the inference split (:code:`input_data_dir`). These are all set by default to the current working directory, but it is important to ensure that the correct input directories (i.e. model and data) are used in the code in the infer script so that workflows function correctly.
 
-- Other model-specific parameters not included as part of IMPROVE can be defined as described here: :doc:`api_model`.
+- Other model-specific parameters not included as part of IMPROVE can be defined as described here: :doc:`api_model`. If model-specific parameters are defined NATASHA FINISH THIS AND COORD WITH API AND BELOW.
 
 - IMPROVE model files should be named as follows, where 'model' is the name of your model:
 
@@ -50,9 +50,9 @@ Template available HERE - NATASHA. See :doc:`api_config` for more information.
 
 - The config file should contain all the relevant default values for the model's parameters.
 
-- The config file should have three sections: :code:`[Preprocess]`, :code:`[Train]`, and :code:`[Infer]`. You may also include the section :code:`[GLOBAL]` and parameters set here will be seen by all three scripts.
+- The config file should have three sections: :code:`[Preprocess]`, :code:`[Train]`, and :code:`[Infer]`. 
 
-- For parameters that are used in more than one script (e.g. :code:`model_file_name` in both train and infer), these will have to either 1) be set in both the :code:`[Train]` and :code:`[Infer]` sections of the config or 2) set in a section named :code:`[GLOBAL]`.
+- For parameters that are used in more than one script (e.g. :code:`model_file_name` in both train and infer), these will have to be set in both the :code:`[Train]` and :code:`[Infer]` sections of the config.
 
 - The default configuation file should be named as follows, where 'model' is the name of your model: :code:`model_default_params.txt`.
 
@@ -82,13 +82,7 @@ There are three required lines in :code:`main()` for each script. This is the th
   
   - :code:`default_config` is the default configuration file, as a string.
 
-  - :code:`default_model`
-
-  - :code:`additional_cli_section`
-
-  - :code:`additional_definitions`
-
-  - :code:`required`
+  - :code:`additional_definitions` is the list of model-specific parameters.
 
 - The third line calls :code:`run()` with the parameters. As dicussed, :code:`run()` contains the model code.
 
@@ -113,13 +107,6 @@ To use IMPROVE benchmark Drug Response Prediction data, data loaders are provide
     train_split_file = CCLE_split_0_train.txt
     val_split_file = CCLE_split_0_val.txt
     test_split_file = CCLE_split_0_test.txt
-
-
-- Build the paths for the benchmark dataset as follows (this is already present in the template):
-
-  .. code-block::
-
-    params = frm.build_paths(params)
 
 - Create objects to load the features for drugs and cells (omics) loader as follows:
 
