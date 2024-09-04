@@ -2,11 +2,11 @@ Hyper Parameter Optimization (HPO)
 ==================================
 
 .. figure:: ../images/SV-code-deap.png
-    :width: 350
-    :align: center
+    :width: 600
+    :align: left
 
-  The above figure provides an overview of the newer tool-driven approach using the `supervisor` command-line tool with `cfg` scripts and `SUPERVISOR_PATH`. Login and Compute node internals show the DEAP-driven Genetic Algorithm (GA) workflow for Hyperparameter Optimization (HPO) on any supercomputer.
-  **Color Coding**: Blue boxes indicate user edits, while white boxes are primarily provided by Supervisor.
+    The above figure provides an overview of the newer tool-driven approach using the `supervisor` command-line tool with `cfg` scripts and `SUPERVISOR_PATH`. Login and Compute node internals show the DEAP-driven Genetic Algorithm (GA) workflow for Hyperparameter Optimization (HPO) on any supercomputer.
+    **Color Coding**: Blue boxes indicate user edits, while white boxes are primarily provided by Supervisor.
 
 .. toctree::
    :titlesonly:
