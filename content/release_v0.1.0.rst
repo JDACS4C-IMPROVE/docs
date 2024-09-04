@@ -31,6 +31,8 @@ NATASHA: fill in
 
   - :code:`model_outdir` is now :code:`output_dir`
 
+  - :code:`y_data_preds_suffix`, :code:`json_scores_suffix`, and :code:`pred_col_name_suffix` are now hard-coded.
+
 - Infer
 
   - :code:`test_ml_data_dir` is now :code:`input_data_dir`
@@ -38,6 +40,8 @@ NATASHA: fill in
   - :code:`model_dir` is now :code:`input_model_dir`
 
   - :code:`infer_outdir` is now :code:`output_dir`
+
+  - :code:`y_data_preds_suffix`, :code:`json_scores_suffix`, and :code:`pred_col_name_suffix` are now hard-coded.
 
 Updating v0.0.3 curated models
 ---------------------------------
@@ -147,7 +151,7 @@ Updating :code:`main()`
 Updating IMPROVE Functions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-- - Building paths is now done automatically. This line should be removed:
+- Building paths is now done automatically. This line should be removed:
 
   .. code-block::
 
