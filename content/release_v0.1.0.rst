@@ -132,8 +132,7 @@ Updating :code:`main()`
 
     cfg = DRPInferConfig()
 
-- Use relevant parameters for each of the model scripts as :code:`additional_definitions`. 
-For example, in the infer script use :code:`additional_definitions = infer_params` instead of :code:`additional_definitions = preprocess_params + train_params + infer_params`
+- Use relevant parameters for each of the model scripts as :code:`additional_definitions`. For example, in the infer script use :code:`additional_definitions = infer_params` instead of :code:`additional_definitions = preprocess_params + train_params + infer_params`
 
 - Initialize parameters. Note that instead of :code:`default_model` now :code:`default_config` is used to specify the default configuration file.
 
@@ -145,7 +144,7 @@ For example, in the infer script use :code:`additional_definitions = infer_param
         additional_definitions=additional_definitions,
     )
 
-Updating IMPROVE functions
+Updating IMPROVE Functions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - - Building paths is now done automatically. This line should be removed:
@@ -201,10 +200,6 @@ Updating IMPROVE functions
 
 
 
-If your model uses Supplemental Data
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-There should be a shell script that downloads the data in the repo. Use :code:`input_supp_data_dir` to set the path to this directory.
 
 
 Updating References to Input and Output Directories
@@ -214,14 +209,27 @@ All scripts have a single :code:`output_dir`. Preprocess and train scripts have 
 The infer script has two input directories, one for the saved model (:code:`input_model_dir`) and one for the ML data for the inference split (:code:`input_data_dir`). 
 These are all set by default to the current working directory, but it is important to ensure that the correct input directories (i.e. model and data) are used in the code in the infer script so that workflows function correctly.
 
+Updating Model-specific Parameter Definitions
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Model-specific parameter definitions should be in a file named :code:`model_params_def.py`. This file should contain three lists, one for each script (see below). These lists should be imported into the appropriate scripts (e.g. for *preprocess* use :code:`from model_params_def import preprocess_params`). For more information see :doc:`api_model`.
+
+  .. code-block::
+
+    from improvelib.utils import str2bool
+
+    preprocess_params = []
+    train_params = []
+    infer_params = []
+
 
 Updating the Default Configuration File
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The new improvelib API now only reads the parameters in the relevant section as each script is run. 
-If there are parameters that are used in more than one script (e.g. :code:`model_file_name` in both train and infer), these will have to either 1) be set in both the [Train] and [Infer] sections of the config or 2) set in a section named [GLOBAL].
+If there are parameters that are used in more than one script (e.g. :code:`model_file_name` in both train and infer), these will have to be set in both the [Train] and [Infer] sections of the config.
 
-Changes to running code
+Changes to Running Code
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
 - The path to csa_data can be set in the config or by command line. See example:
@@ -238,6 +246,12 @@ Changes to running code
 
 
 - With the above changes to :code:`compute_performance_scores` in *Infer*, inference scores will not automatically be computed. Set :code:`calc_infer_scores = True` in the config or :code:`--calc_infer_scores True` on the command line.
+
+If your model uses Supplemental Data
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+There should be a shell script that downloads the data in the repo. Use :code:`input_supp_data_dir` to set the path to this directory.
+
 
 INTERNAL USE - Curated Model Checklist - v0.1.0
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

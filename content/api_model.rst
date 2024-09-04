@@ -40,11 +40,11 @@ Defining a parameter with the same name as an existing IMPROVE or application-sp
 For clarity, we recommend putting model-specific parameter definitions in a separate file and importing the list to each model script (i.e. preprocess, train, infer).
 You can put all model-specific parameters in a single list, or in separate lists for preprocess, train, and infer. This list is passed to initalize_parameters in the :code:`main()` as additional_definitions.
 
-For example, in :code:`mymodel_param_definitions.py` you can have:
+For example, in :code:`model_params_def.py` you can have:
 
 .. code-block:: 
 
-    mymodel_preprocess_params = [
+    preprocess_params = [
         {
             "name": "scaling_type",
             "type": str,
@@ -52,7 +52,7 @@ For example, in :code:`mymodel_param_definitions.py` you can have:
             "help": "Type of scikitlearn scaling to use.",
         }
     ]
-    mymodel_train_params = [
+    train_params = [
         {
             "name": "model_arch",
             "default": "GINConvNet",
@@ -61,7 +61,7 @@ For example, in :code:`mymodel_param_definitions.py` you can have:
             "help": "Model architecture to run."}
         }
     ]
-    mymodel_infer_params = [
+    infer_params = [
         {
             "name": "print_time",
             "type": str2bool,
