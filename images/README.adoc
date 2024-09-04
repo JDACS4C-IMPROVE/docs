@@ -10,3 +10,5 @@ The `code` figures show something more like reality.  These component blocks cor
 The `test` figures refer to the older test-driven development approach, in which the user would reuse or write and run a `test` script that would load up settings and invoke the Workflow Shell (`workflow.sh`).
 
 The `tool` figures refer to the newer tool-driven approach, in which the user invokes the `supervisor` command-line tool against a `cfg` script.  Other settings are loaded via `SUPERVISOR_PATH`.
+
+Blue boxes are heavily edited by the user.  White boxes are mostly provided by Supervisor.
