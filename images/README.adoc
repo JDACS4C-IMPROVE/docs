@@ -11,4 +11,6 @@ The `test` figures refer to the older test-driven development approach, in which
 
 The `tool` figures refer to the newer tool-driven approach, in which the user invokes the `supervisor` command-line tool against a `cfg` script.  Other settings are loaded via `SUPERVISOR_PATH`.
 
+The `deap` figures show more detail for the popular DEAP-drive Genetic Algorithm (GA) workflow for HPO.
+
 Blue boxes are heavily edited by the user.  White boxes are mostly provided by Supervisor.
