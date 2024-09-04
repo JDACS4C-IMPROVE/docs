@@ -2,68 +2,48 @@ Preprocess API
 =================================
 
 IMPROVE general preprocess parameters
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-log_level
+*log_level*
+  | **Type:** str
+  | **Default:** "DEBUG"
+  | **Help:** Set log levels. Default is WARNING. Levels are: DEBUG, INFO, WARNING, ERROR, CRITICAL, NOTSET 
 
-  Type: str
-  
-  Default: "DEBUG"
-  
-  Help: Set log levels. Default is WARNING. Levels are: DEBUG, INFO, WARNING, ERROR, CRITICAL, NOTSET 
+*input_dir*
+  | **Type:** str
+  | **Default:** "./"
+  | **Help:** Base directory for input data. All additional input pathes will be relative to the base input directory.
 
-input_dir
+*output_dir*
+  | **Type:** str
+  | **Default:** "./"
+  | **Help:** Base directory for output data. All additional relative output pathes will be placed into the base output directory.
 
-  Type: str
-  
-  Default: "./"
-  
-  Help: Base directory for input data. All additional input pathes will be relative to the base input directory.
+*config_file*
+  | **Type:** str
+  | **Default:** None
+  | **Help:** Config file in INI format.
 
-output_dir
+*param_log_file*
+  | **Type:** str
+  | **Default:** "param_log_file.txt"
+  | **Help:** Log of final parameters used for run. Saved in output_dir if file name, can be an absolute path.
 
-  Type: str
-  
-  Default: "./"
-  
-  Help: Base directory for output data. All additional relative output pathes will be placed into the base output directory.
+*data_format*
+  | **Type:** str
+  | **Default:** ".parquet"
+  | **Help:** File format to save the ML data file (e.g., '.pt', '.tfrecords')
 
-config_file
-
-  Type: str
-  
-  Default: None
-  
-  Help: Config file in INI format.
-
-param_log_file
-
-  Type: str
-  
-  Default: "param_log_file.txt"
-  
-  Help: Log of final parameters used for run. Saved in output_dir if file name, can be an absolute path.
-
-data_format
-
-  Type: str
-  
-  Default: ".parquet"
-  
-  Help: File format to save the ML data file (e.g., '.pt', '.tfrecords')
-
-
-input_supp_data_dir
-
-  Type: str
-
-  Default: None
-
-  Help: Dir containing supplementary data in addition to benchmark data (usually model-specific data)
+*input_supp_data_dir*
+  | **Type:** str
+  | **Default:** None
+  | **Help:** Dir containing supplementary data in addition to benchmark data (usually model-specific data)
 
 
 
 
 Drug Response Prediction preprocess parameters
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. list-table:: 
    :widths: 25 25 25 50
