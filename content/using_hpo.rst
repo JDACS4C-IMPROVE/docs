@@ -1,6 +1,13 @@
 Hyper Parameter Optimization (HPO)
 ==================================
 
+.. figure:: ../images/SV-code-deap.png
+    :width: 350
+    :align: center
+
+  The above figure provides an overview of the newer tool-driven approach using the `supervisor` command-line tool with `cfg` scripts and `SUPERVISOR_PATH`. Login and Compute node internals show the DEAP-driven Genetic Algorithm (GA) workflow for Hyperparameter Optimization (HPO) on any supercomputer.
+  **Color Coding**: Blue boxes indicate user edits, while white boxes are primarily provided by Supervisor.
+
 .. toctree::
    :titlesonly:
 
@@ -183,7 +190,11 @@ Make sure to set the hyperparameter space to what you desire, the above file is 
 Supervisor setup
 ________________
 
-Set up the environment; omit this step if already installed:
+Supervisor is built on the Swift/T workflow language and the EMEWS Framework.
+
+Supervisor is pre-installed on many relevant HPC systems.  In these cases, you simply have to select the previously-developed "site" configuration already available.
+
+If not already installed, follow these steps:
 
 .. code-block:: bash
 
@@ -200,8 +211,8 @@ Set up the environment; omit this step if already installed:
     conda install --yes -c conda-forge -c swift-t swift-t
     # python libraries
     pip install numpy deap
-     
-    
+
+Note that on clusters with specific MPI implementations, you must build Swift/T: https://swift-lang.github.io/swift-t/guide.html#_installation
 
 Example
 _______
