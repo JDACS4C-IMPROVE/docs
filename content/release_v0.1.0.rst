@@ -6,7 +6,7 @@ To ensure compatibility with the IMPROVE software release `v0.1.0-alpha`, please
 
 Overview
 ---------
-IMPROVE version `0.1.0-alpha` aims to expand the user base and encourage broader adoption the software. This version features updates to accommodate various users and contributors, both internal and external, including those involved with the development of the core IMPROVE library, application-specific modules (such as drug response prediction and drug property prediction), benchmark datasets, and model contributions. Additionally, this version provides a simplified and more user-friendly interface, as demonstrated by intuitive help outputs, comprehensive READMEs, and documentation that facilitate easy switching between versions.
+IMPROVE version `0.1.0-alpha` aims to expand the user base and encourage broader adoption of the software. This version features updates to accommodate various users and contributors, both internal and external, including those involved with the development of the core IMPROVE library, application-specific modules (such as drug response prediction and drug property prediction), benchmark datasets, and model contributions. Additionally, this version provides a simplified and more user-friendly interface, as demonstrated by intuitive help outputs, comprehensive READMEs, and documentation that facilitate easy switching between versions.
 
 This version is now available on pypi for pip installation. `TODO`: update pypi AND link here
 
@@ -14,7 +14,7 @@ Parameters
 ------------
 Parameters are detailed in :doc:`API`. Of note, the parameters for each step (i.e. preprocess, train, infer) are now separate.
 
-Depreciated Parameters
+Deprecated Parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
 
 NATASHA: fill in
@@ -47,7 +47,7 @@ Updating Environment
 
 - Make an environment without candle lib. Since many packages are installed by candlelib, you may need to add other packages to your environment now.
 
-- For now, set the PYTHONPATH as usual, this will be replaced with pip install shortly.
+- For now, set the PYTHONPATH as usual, this will be replaced with pip install shortly. You can also run this `bash script <https://github.com/JDACS4C-IMPROVE/GraphDRP/blob/framework-api/setup_improve.sh>`_ with :code:`source setup_improve.sh` to set up the environment. Running this script will clone IMPROVE repo, checkout the required branch, and set the PYTHONPATH (it will also download the csa benchmark dataset if it's not already downloaded).
 
 - No environment variables need to be set, the IMPROVE_DATA_DIR directory is now set by command line with :code:`--input_dir your/path/to/csa_data/raw_data` or in the config.
 
@@ -92,15 +92,15 @@ Updating Import Statements
 
   .. code-block::
 
-    import improvelib.applications.drug_response_prediction.drug_utils as drugs
+    import improvelib.applications.drug_response_prediction.drug_utils as drugs_utils
 
   - OmicsLoader
 
   .. code-block::
 
-    import improvelib.applications.drug_response_prediction.omics_utils as omics
+    import improvelib.applications.drug_response_prediction.omics_utils as omics_utils
 
-  In the body of the code, references to :code:`drp.OmicsLoader()` should be changed to :code:`omics.OmicsLoader()`
+  In the body of the code, references to :code:`drp.OmicsLoader()` and :code:`drp.DrugssLoader()` should be changed to :code:`omics_utils.OmicsLoader()` and :code:`drugs_utils.DrugsLoader()`, respectively.
 
   - DrugResponseLoader
 
