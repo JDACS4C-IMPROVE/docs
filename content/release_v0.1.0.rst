@@ -161,11 +161,13 @@ Updating IMPROVE Functions
 
     frm.build_ml_data_file_name(data_format=params["data_format"], stage="test")
 
-- Update the arguments in :code:`build_model_path` in *train* and *infer*. Parameters are now explicitly passed. See example:
+- Update the arguments in :code:`build_model_path` in *train* and *infer*. Parameters are now explicitly passed. Make sure :code:`model_dir` is :code:`params["output_dir"]` in *train* and :code:`params["input_model_dir"]` in *infer*. See example for *infer*:
 
   .. code-block::
 
-    frm.build_model_path(model_file_name=params["model_file_name"], model_file_format=params["model_file_format"], model_dir=params["input_model_dir"])
+    frm.build_model_path(model_file_name=params["model_file_name"], 
+        model_file_format=params["model_file_format"], 
+        model_dir=params["input_model_dir"])
 
 - Update the arguments in :code:`save_stage_ydf` in *preprocess*. Parameters are now explicitly passed. See example:
 
