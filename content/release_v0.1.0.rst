@@ -145,7 +145,7 @@ Updating :code:`main()`
     params = cfg.initialize_parameters(
         pathToModelDir=filepath,
         default_config="your_configuration_file.txt",
-        additional_definitions=additional_definitions,
+        additional_definitions=additional_definitions
     )
 
 Updating IMPROVE Functions
@@ -156,6 +156,24 @@ Updating IMPROVE Functions
   .. code-block::
 
     params = frm.build_paths(params)
+
+- Update the name of :code:`build_ml_data_name` to :code:`build_ml_data_name` in *preprocess*, *train*, and *infer* and update the arguments. Parameters are now explicitly passed. See example:
+
+  .. code-block::
+
+    frm.build_ml_data_file_name(data_format=params["data_format"], stage="test")
+
+- Update the arguments in :code:`build_model_path` in *train* and *infer*. Parameters are now explicitly passed. See example:
+
+  .. code-block::
+
+    frm.build_model_path(model_file_name=params["model_file_name"], model_file_format=params["model_file_format"], model_dir=params["input_model_dir"])
+
+- Update the arguments in :code:`save_stage_ydf` in *preprocess*. Parameters are now explicitly passed. See example:
+
+  .. code-block::
+
+    frm.save_stage_ydf(ydf=rsp, stage=stage, output_dir=params["output_dir"])
 
 - Update the arguments in :code:`store_predictions_df` in *train* and *infer*. Parameters are now explicitly passed. See example:
 
@@ -201,8 +219,6 @@ Updating IMPROVE Functions
     compute_metrics(train_true, train_pred, params["metric_type"])
 
 - The list :code:`metrics_list` is not required now and should be deleted. This list is hard-coded in :code:`compute_metrics` using :code:`metric_type`.
-
-
 
 
 
