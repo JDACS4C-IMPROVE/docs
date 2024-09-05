@@ -17,8 +17,6 @@ Parameters are detailed in :doc:`API`. Of note, the parameters for each step (i.
 Deprecated Parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-NATASHA: fill in
-
 - Preprocess
 
   - :code:`ml_data_outdir` is now :code:`output_dir`
@@ -157,7 +155,7 @@ Updating IMPROVE Functions
 
     params = frm.build_paths(params)
 
-- Update the name of :code:`build_ml_data_name` to :code:`build_ml_data_name` in *preprocess*, *train*, and *infer* and update the arguments. Parameters are now explicitly passed. See example:
+- Update the name of :code:`build_ml_data_name` to :code:`build_ml_data_file_name` in *preprocess*, *train*, and *infer* and update the arguments. Parameters are now explicitly passed. See example:
 
   .. code-block::
 
