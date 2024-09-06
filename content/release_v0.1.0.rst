@@ -316,6 +316,8 @@ All of the following should be completed for the update of curated models from t
 
 - Update readme to include new instructions for set up of environment with pip installation of improvelib (and without candlelib).
 
+- Update :code:`setup_improve.sh` to the correct improvelib branch (:code:`improve_branch="develop"`).
+
 - Check the documentation page for your model (:doc:`app_drp_models`) and make sure it is accurate. Tell Natasha if it isn't.
 
 - Send Natasha a list of your model-specific parameters (or a link to them).
