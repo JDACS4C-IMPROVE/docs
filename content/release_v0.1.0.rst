@@ -41,6 +41,8 @@ Deprecated Parameters
 
   - :code:`y_data_preds_suffix`, :code:`json_scores_suffix`, and :code:`pred_col_name_suffix` are now hard-coded.
 
+  - :code:`test_batch` is now :code:`infer_batch`.
+
 Updating v0.0.3 curated models
 ---------------------------------
 
