@@ -1,6 +1,5 @@
 Curating a Model
 ===========================
-NATASHA: add template links
 
 Separating preprocess, train, and infer
 ----------------------------------------
@@ -24,7 +23,7 @@ IMPROVE divides deep learning models into three distinct steps:
 
 Place model code in appropriate templates
 -------------------------------------------
-Templates available HERE - NATASHA.
+Templates available in :doc:`curating_templates` and on `GitHub <https://github.com/JDACS4C-IMPROVE/IMPROVE/tree/develop/templates>`_.
 
 - Model code should be placed in :code:`run()`, which is called by :code:`main()`, but :code:`run()` can call other functions as needed.
 
@@ -46,7 +45,7 @@ Templates available HERE - NATASHA.
 
 Create default configuration file
 -----------------------------------
-Template available HERE - NATASHA. See :doc:`api_config` for more information.
+Templates available in :doc:`curating_templates` and on `GitHub <https://github.com/JDACS4C-IMPROVE/IMPROVE/tree/develop/templates>`_. See :doc:`api_config` for more information.
 
 - The config file should contain all the relevant default values for the model's parameters.
 
