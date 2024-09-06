@@ -17,5 +17,6 @@ The following guides explain various the process of model curation in detail.
 
    Curating Steps <curating_steps>
    Step-by-Step Example <curating_tutorial>
+   Templates <curating_templates>
    Contributing a Model <curating_contribute>
 
