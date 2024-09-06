@@ -62,7 +62,7 @@ Here we run preprocessing for LGBM.
 
 .. code-block:: bash
 
-    python lgbm_preprocess_improve.py --input_dir ./csa_data/raw_data
+    python lgbm_preprocess_improve.py --input_dir ./csa_data/raw_data --output_dir exp_result
 
 
 Run training script
@@ -73,7 +73,7 @@ Here we run training for LGBM.
 
 .. code-block:: bash
 
-    python lgbm_train_improve.py
+    python lgbm_train_improve.py --input_dir exp_result --output_dir exp_result
 
 
 Run inference script
@@ -83,23 +83,20 @@ Here we run inference for LGBM.
 
 .. code-block:: bash
 
-    python lgbm_infer_improve.py
+    python lgbm_infer_improve.py --input_data_dir exp_result --input_model_dir exp_result --output_dir exp_result --calc_infer_score true
 
 
 Output
 -------
-By default the output from all scripts is saved in the current working directory (LGBM in this example). 
+By default the output from all scripts is saved in the current working directory. In this example, everything is saved in :code:`exp_result`.
 
-- Preprocess: the ML data 
+- Preprocess: the ML data (model input data)
 
-- Train: 
-  - the saved model (here :code:`model.txt`)
-  - the validation scores (:code:`val_scores.json`)
-  - the predicted response data on the validation split (:code:`val_y_data_predicted.csv`)
+- Train:
+  - the saved model (here :code:`model.txt`) <br>
+  - the validation scores (:code:`val_scores.json`) <br>
+  - the predicted response data on the validation split (:code:`val_y_data_predicted.csv`) <br>
 
 - Infer:
-  - the inference scores (:code:`test_score.json`)
-  - the predicted response data on the inference split (:code:`test_y_data_predicted.csv`)
-
-  
-
+  - the inference scores (:code:`test_score.json`) <br>
+  - the predicted response data on the inference split (:code:`test_y_data_predicted.csv`) <br>
