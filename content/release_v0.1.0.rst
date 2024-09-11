@@ -222,6 +222,8 @@ Updating IMPROVE Functions
 
 - The list :code:`metrics_list` is not required now and should be deleted. This list is hard-coded in :code:`compute_metrics` using :code:`metric_type`.
 
+- In *infer*, make sure that :code:`run()` does not return test_scores, as this is now only generated if :code:`calc_infer_scores` is :code:`True`.
+
 
 
 Updating References to Input and Output Directories

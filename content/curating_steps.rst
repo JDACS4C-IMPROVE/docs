@@ -135,5 +135,9 @@ To use IMPROVE benchmark Drug Response Prediction data, data loaders are provide
 - Preprocess the data and save in :code:`output_dir`. The implementation of this will depend on your specfic model. Keep in mind that the drug and omics loader provide features for all drugs and cell lines in the benchmark dataset.
 
 
+If your model uses Supplemental Data
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+There should be a shell script that downloads the data in the repo. Use :code:`input_supp_data_dir` to set the path to this directory.
 
 
