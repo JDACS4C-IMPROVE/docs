@@ -10,6 +10,8 @@ All the outputs from this train script are saved in :code:`params["output_dir"]`
 
 - Prediction performance scores on val data: calculated using the raw model predictions and the true values for performance metrics specified by :code:`metric_type`. The scores are saved as json in :code:`val_scores.json`.
 
+The file should be named :code:`mymodel_train_improve.py` where 'mymodel' is the name of your model.
+
 .. code-block:: python
 
     import sys

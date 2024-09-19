@@ -16,59 +16,83 @@ Cross-study analysis workflow using Parsl parallel processing library
 
 Setting up CSA with Parsl
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+This Parsl workflow has been configured for use on lambda at Argonne National Laboratory. 
+For other systems, we recommend using the :doc:`Brute Force method <using_csa_bruteforce>`.
+We recommend running a test with two target datasets, one source dataset, and two splits with two GPUs before performing the full run.
+
 If you are setting up CSA with Parsl for the first time with your model:
 
 - Copy the scripts from `here <https://github.com/JDACS4C-IMPROVE/IMPROVE/tree/develop/workflows/parsl_csa>`_ to your model repo.
 
-- Change :code:`<MODEL_NAME>` to your model name (e.g. :code:`graphdrp`).
+- Configure the configuration file :code:`csa_params.ini`.
+
+  - Change :code:`<MODEL_NAME>` to your model name (e.g. :code:`graphdrp`).
+
+  - Change :code:`<NAME_OF_YOUR_MODEL_CONDA_ENVIRONMENT>` to your model environment name.
+
+  - Change :code:`epochs` as necessary.
+
+  - Change :code:`available_accelerators` to the available GPUs.
+
+  - For testing purposes, change:
+  
+    - :code:`source_datasets = ["gCSI"]`
+
+    - :code:`target_datasets = ["gCSI", "CCLE"]`
+
+    - :code:`split = ["0", "1"]`
+
+  - For complete runs, change:
+
+    - :code:`source_datasets = ["gCSI", "CCLE", "GDSCv1", "GDSCv2", "CTRPv2"]`
+
+    - :code:`target_datasets = ["gCSI", "CCLE", "GDSCv1", "GDSCv2", "CTRPv2"]`
+
+    - :code:`split = ["0","1","2","3","4","5","6","7","8","9"]`
+
+    - :code:`available_accelerators=["0","1","2","3","4","5","6","7"]`
+
+- Add your model's hyperparameters to :code:`hyperparameters_default.json`.
 
 - Commit changes to develop branch.
 
 Running CSA with Parsl
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1. Clone your model repo (example here for GraphDRP):
+1. Clone your model repo:
 
 .. code-block:: bash
 
-  git clone https://github.com/JDACS4C-IMPROVE/GraphDRP.git
-  cd GraphDRP
+  git clone https://github.com/JDACS4C-IMPROVE/<YOUR_MODEL>
+  cd <YOUR_MODEL>
   git checkout develop
-  cd ..
 
-2. Create environment and install dependencies (example here for GraphDRP):
+2. Create Parsl environment:
 
-   a. Create conda env using :code:`env_gdrp_37_improve.yml` and activate the environment
+.. code-block:: bash
 
-   .. code-block:: bash
+  conda create -n parsl parsl numpy pandas scikit-learn pyyaml -y
+  conda activate parsl
 
-     conda env create -f env_gdrp_37_improve.yml
-     conda activate graphdrp_py37_improve
+3. Set up IMPROVE:
 
-   b. (TODO: PIP INSTALL) 
+.. code-block:: bash
 
-   c. Install Parsl (2023.6.19):
+  source setup_improve.sh
 
-   .. code-block:: bash
-
-     pip install parsl 
-
-   If you see an error during execution you may have to do this:
-
-   .. code-block:: bash
-
-     export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libffi.so.7
-
-
-3. (TODO: change to download_csa.sh after pip install and stable branches/release.) TEMP FOR CURATORS: Set PYTHONPATH per usual to the correct (currently develop) branch of improvelib. Make sure csa_data is in the model repo.
-
-4. Run cross study analysis using PARSL (see below for how to change CSA parameters):
+4. Run preprocessing using Parsl (if using a config other than :code:`csa_params.ini` you can specific it with :code:`--config_file`):
 
 .. code-block:: bash
 
   python workflow_csa.py
 
-5. Analyze results:
+5. Run full cross study analysis using  (if using a config other than :code:`csa_params.ini` you can specific it with :code:`--config_file`):
+
+.. code-block:: bash
+
+  python workflow_preprocess.py
+
+6. Analyze results:
 
 After executing the workflow, the inference results, including test data predictions and performance scores, will be available in the output directory specified by the user. 
 These results will be organized into subfolders based on the source dataset, target dataset, and split.
@@ -114,13 +138,6 @@ Changing CSA Parameters
 
 **hyperparameters.json** contains a dictionary of optimized hyperparameters for the models. The key to the dictionary is the model name, which contains another dictionary with source dataset names as keys. The two hyperparameters considered for this analysis are: batch_size and learning_rate. 
 The hyperparameters are optimized using [Supervisor](https://github.com/JDACS4C-IMPROVE/HPO).
-
-
-To run cross study analysis with a different configuration file:
-
-.. code-block:: bash
-  
-  python workflow_csa.py --config_file <CONFIG_FILE>
 
 
 

@@ -9,6 +9,7 @@ All the outputs from this train script are saved in :code:`params["output_dir"]`
 
 - Prediction performance scores on test data: calculated using the raw model predictions and the true values for performance metrics specified by :code:`metric_type`. The scores are saved as json in :code:`test_scores.json`.
 
+The file should be named :code:`mymodel_infer_improve.py` where 'mymodel' is the name of your model.
 
 .. code-block:: python
 

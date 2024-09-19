@@ -8,7 +8,7 @@ All the outputs from this preprocessing script are saved in :code:`params["outpu
 
 - Dataframes with true y values and additional metadata.
 
-The file should be saved as :code:`model_preprocess_improve.py`.
+The file should be named :code:`mymodel_preprocess_improve.py` where 'mymodel' is the name of your model.
 
 .. code-block:: python
 

@@ -2,6 +2,7 @@ Configuration File Template
 ================================
 
 Below is an example of a configuration file. You should place the values of parameters (IMPROVE, application-specific, and model-specific) under each appropriate section (preprocess, train, and infer).
+The file should be named :code:`mymodel_params.txt` where 'mymodel' is the name of your model.
 
 .. code-block:: 
 
