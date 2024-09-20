@@ -2,8 +2,7 @@
 Learning Curve Analysis
 =======================
 
-Learning curves plot the generalization performance of a model as a function of training set size. 
-
+Learning curve analysis allows to evaluate how prediction performance improves as the training set size increases, providing insights into the model's data scaling properties.
 
 Workflow
 ---------
