@@ -1,16 +1,13 @@
 Curating Models
 =================================
 
-In order to stardardize and compare deep learning models at scale with benchmark data in a range of evaluation schemes, 
-the model input/output, hyperparameters, and evaluation metrics must be in a stardard framework. We have developed the IMPROVE
-library to meet this need. The IMPROVE library provides stable interfaces that standardize a set of 
-otherwise heterogenous deep learning software. We refer to the process of wrapping deep learning model code with the IMPROVE 
-library's functionality as *curating the model*.
+To facilitate standardized, large-scale evaluation and comparison of prediction models using benchmark datasets and various evaluation schemes, it's essential to have a consistent framework for model input/output, hyperparameters settings, and evaluation metrics.
+The IMPROVE library addresses this need by offering well-defined interfaces that generalize across a variety of deep learning and machine learning frameworks.
+The process of integrating a prediction model's code with the IMPROVE library's functionalities is referred to as "curating" the model.
 
-We welcome members of the community to use the IMPROVE framework and benchmark data to standardize and compare their models. 
+We invite the community to leverage the IMPROVE framework and benchmark data to standardize, evaluate, and compare their models.
 
-The following guides explain various the process of model curation in detail.
-
+The following guides provide detailed explanations of the model curation process.
 
 .. toctree::
    :titlesonly:

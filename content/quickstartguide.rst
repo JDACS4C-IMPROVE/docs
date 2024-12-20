@@ -1,25 +1,25 @@
 Quickstart
 =================================
-This quickstart guide is intended to help you install IMPROVE within a conda environment and preprocessing, train, and infer using a curated model and benchmark datasets.
-Here we use LGBM as a example of a model in the IMPROVE framework to walk throught the necessary steps to predict drug response using curated IMPROVE Drug Response Datasets.
-
+This quickstart guide is intended to help you install IMPROVE within a conda environment and run preprocessing, train, and infer using a curated model and benchmark datasets.
+Here, we demonstrate how to use LGBM, a standardized IMPROVE model built with the LightGBM package, to predict drug response using curated a Drug Response Dataset. This walkthrough will guide you through the essential steps involved in utilizing IMPROVE for drug response prediction.
 
 Requirements
---------------
+-----------------------------
 
 - `git <https://github.com>`_
 - `conda <https://docs.conda.io/en/latest/>`_
 
 
-Clone a Model of Interest
----------------------------
+Clone Model
+-----------------------------
 Repositories for all curated models can be found on the `IMPROVE github <https://github.com/JDACS4C-IMPROVE/>`_. 
-A list of Drug Response Prediction models can be found here: :doc:`app_drp_models`. 
+A list of drug response prediction models can be found here: :doc:`app_drp_models`. 
 Here we clone the LGBM model.
 
 .. code-block:: bash
 
     git clone https://github.com/JDACS4C-IMPROVE/LGBM
+
 
 
 Download Benchmark Dataset
@@ -41,10 +41,11 @@ B. By running the download_csa script
     cd LGBM
     sh ./download_csa.sh
 
+
 Set up Environment
--------------------
-Each model has specific requirements, details of which can be found in the readme of each model repository.
-Here we create a conda environment for the required packages for LGBM and install the IMPROVE library.
+-----------------------------
+Each model has specific package requirements, which are detailed in the README file of their respective repositories.
+Here we create a conda environment to install the necessary packages for LGBM and the IMPROVE library.
 
 .. code-block:: bash
 
@@ -55,9 +56,8 @@ Here we create a conda environment for the required packages for LGBM and instal
 
 
 Run preprocessing script
--------------------------
-Preprocessing takes the raw data standardized by the IMPROVE project (CSA data), and transforms it into a format appropriate for the model of choice. 
-Data will be divided into input data and y data (e.g. drug response as AUC values) for training, validation, and testing sets to be used in the next two steps. 
+-----------------------------
+The preprocessing script takes the raw benchmark data, standardized by the IMPROVE project (CSA data), and transforms it into a model-compatible format. This process generates train, validation, and test data files, which will be utilized in the subsequent training and inference steps.
 Here we run preprocessing for LGBM.
 
 .. code-block:: bash
@@ -66,9 +66,8 @@ Here we run preprocessing for LGBM.
 
 
 Run training script
----------------------
-The training script trains the model of interest, using the validation set for early stopping. 
-This will generate the trained model, the predictions on the validation data, and the prediction performance scores on the validation data. 
+-----------------------------
+The training script uses the training data to train the model and the validation data for early stopping. Upon completion, this process generates the trained model, predictions on the validation data, and corresponding performance scores.
 Here we run training for LGBM.
 
 .. code-block:: bash
@@ -77,8 +76,8 @@ Here we run training for LGBM.
 
 
 Run inference script
----------------------
-The inference script will use the model trained in the previous step to predict drug response for the test set and evaluate the performance of these predictions. 
+-----------------------------
+The inference script uses the previously trained model to generate drug response predictions for the test set, subsequently computing prediction performance scores (e.g., r-squared).
 Here we run inference for LGBM.
 
 .. code-block:: bash
@@ -87,16 +86,16 @@ Here we run inference for LGBM.
 
 
 Output
--------
+-----------------------------
 By default the output from all scripts is saved in the current working directory. In this example, everything is saved in :code:`exp_result`.
 
 - Preprocess: the ML data (model input data)
 
 - Train:
   - the saved model (here :code:`model.txt`) <br>
-  - the validation scores (:code:`val_scores.json`) <br>
-  - the predicted response data on the validation split (:code:`val_y_data_predicted.csv`) <br>
+  - the validation data performance scores (:code:`val_scores.json`) <br>
+  - the predicted response data on the validation set (:code:`val_y_data_predicted.csv`) <br>
 
 - Infer:
-  - the inference scores (:code:`test_score.json`) <br>
-  - the predicted response data on the inference split (:code:`test_y_data_predicted.csv`) <br>
+  - the test data performance scores (:code:`test_score.json`) <br>
+  - the predicted response data on the test data (:code:`test_y_data_predicted.csv`) <br>

@@ -16,7 +16,7 @@ The IMPROVE software stack offers Python-based tools for standardizing model cod
 
 We have been using anti-cancer drug response prediction (DRP) as a use case to drive the development of the IMPROVE software. As part of this effort, we have curated DRP community models to conform to a standardized structure and compiled a benchmark dataset for monotherapy DRP.
 
-Do you have a model you would like to compare with state-of-the-art models? Try IMPROVE!
+Want to benchmark your model against others in the community? Try IMPROVE!
 
 
 .. toctree::

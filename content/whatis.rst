@@ -2,16 +2,16 @@ What is the IMPROVE project?
 ============================
 IMPROVE aims to establish methodology to systematically and rigorously compare supervised learning models. To this end, IMPROVE has four components:
 
-1) IMPROVE Framework: standardized scaffolding for machine learning models, written in Python
+1) IMPROVE Python Package (improvelib): Python tools and protocols for standardizing model code structure, facilitating modular code allowing to design complex workflows
 
-2) IMPROVE :doc:`Evaluation Schemes <BenchmarkEvaluationSchemes>`: workflows to evaluated and compare models
+2) IMPROVE Workflows :doc:`Evaluation Schemes <BenchmarkEvaluationSchemes>`: distributed and modular workflows for large-scale model evaluation and downstream model comparison
 
-3) IMPROVE Benchmark Datasets: a collection of standardized data for each application to allow for benchmarking of models
+3) Benchmark Datasets: standardized datasets (for each scientific application), enabling consistent and rigorous model benchmarking
 
-4) IMPROVE Community Curated Models: models for each application from the scientific communitity that have been curated into the IMPROVE framework
+4) Community Curated Models: A diverse collection of models from the scientific community (a collocation per application), curated within the IMPROVE framework and organized by application, providing a baseline for comparison
 
 
-IMPROVE can be applied to a variety of supervised learning models. We have begun with the :doc:`Drug Response Prediction <app_drp_intro>` problem, standardizing :doc:`community models <Models>` that predict pan-cancer, pan-drug, single drug response for precision oncology with a standardized :doc:`benchmark dataset <CSA_Benchmark_Datasets>`.
+IMPROVE can be applied to a variety of supervised learning models. We have begun with the :doc:`Drug Response Prediction <app_drp_intro>` problem, standardizing pan-cancer, pan-drug :doc:`community models <Models>` that predict monotherapy drug response with a standardized :doc:`benchmark dataset <CSA_Benchmark_Datasets>`.
 
 
 
@@ -32,3 +32,6 @@ Access the code base https://github.com/JDACS4C-IMPROVE/
 References
 ---------------------------------
 `1. <https://www.frontiersin.org/articles/10.3389/fmed.2023.1086097/full>`_ A. Partin et al. "Deep learning methods for drug response prediction in cancer: Predominant and emerging trends", Frontiers in Medicine, Section Prediction Oncology, 2023
+
+1. JC. Overbeek and A. Partin et al. "Assessing reusability of deep learning-based monotherapy drug response prediction models trained with omics data", arXiv, 2024
+
