@@ -2,7 +2,7 @@ Brute Force Cross-Study Analysis
 ==================================
 NATASHA: in progress, updating as scripts are updated.
 
-The concept behind Cross-Study Analysis (CSA) is detailed :doc:`here <eval_csa>`. 
+The concept behind Cross-Study Analysis (CSA) is detailed :doc:`here <using_csa>`. 
 The brute force method uses a script to loop through the relevant datasets and splits to execute the Cross-Study Analysis.
 
 Setting up CSA with the Brute Force method
