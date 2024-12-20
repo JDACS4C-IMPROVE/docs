@@ -13,7 +13,7 @@ To comply with the IMPROVE model structure, prediction models must include three
 | 3. Infer
 | Uses the saved model to perform inference with the inference split of the ML data.
 
-Additionally, general IMPROVE parameters are used for every model, as well as application-specific parameters (e.g. DRP). Model curators can create model-specific parameters, and these can be found HERE. `TODO` define HERE
+Additionally, general IMPROVE parameters are used for every model, as well as application-specific parameters (e.g. DRP). Model curators can create model-specific parameters, and these can be found :doc:`here <api_model>`. 
 
 
 
