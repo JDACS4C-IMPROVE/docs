@@ -1,7 +1,7 @@
 Scaling Cross-Study Analysis with Parsl
 =========================================
 
-The concept behind Cross-Study Analysis (CSA) is detailed :doc:`here <eval_csa>`. 
+The concept behind Cross-Study Analysis (CSA) is detailed :doc:`here <using_csa>`. 
 To enable parallel execution, Parsl parallel processing library [1] is used to implement the cross-study analysis workflow. 
 The figure below illustrates the cross-study workflow with Parsl. The main components of the workflow - preprocess, train and infer - are implemented as Parsl apps, each returning ‘futures’ that monitor progress of the execution. 
 For example, once preprocessing for CCLE split 1 is complete, the corresponding ‘preprocess_futures’ will trigger training for CCLE split 1. Inference begins after training, as indicated by ‘train_futures’. 

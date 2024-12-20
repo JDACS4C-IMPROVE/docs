@@ -26,7 +26,6 @@ Want to benchmark your model against others in the community? Try IMPROVE!
 
    content/whatis
    content/quickstartguide
-   content/EVALUATION
    content/applications
    content/curating
    content/USING
