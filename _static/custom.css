@@ -2,10 +2,7 @@
     max-width: 75% !important;
 }
 
-.rst-content .functiondef .admonition-title {
+.admonition.functiondef > .admonition-title {
     background: #b99976
  }
  
- .rst-content .functiondef {
-    background: #e5d3b3
- }
