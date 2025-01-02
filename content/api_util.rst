@@ -5,7 +5,7 @@ NATASHA: fill this in
 The following functions are part of improvelib and should be used to standardize aspects of the workflow.
 
 .. admonition:: build_ml_data_file_name
-    :class: definition
+    :class: functiondef
 
     Creates the name of the ML data file in the form of XXX.
 
