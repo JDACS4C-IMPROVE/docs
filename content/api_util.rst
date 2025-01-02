@@ -6,16 +6,33 @@ The following functions are part of improvelib and should be used to standardize
 
 .. topic:: build_ml_data_file_name
 
-    Creates the name of the ML data file in the form of XXX.
+    Returns the name of the ML data file in the form of <stage>_data.<format>, e.g. train_data.pt.
+
+    Used in *preprocess*, *train*, and *infer*.
 
     Inputs:
-        one
-        two
+        data_format (str)
+        
+        stage (str)
     
     Returns:
-        three (str)
+        str: data file name
 
-build_model_path
+.. topic:: build_model_path
+
+    Returns the path to save/load the trained model.
+
+    Used in *train* and *infer*.
+
+    Inputs:
+        model_file_name (str): Name of model file.
+
+        model_file_format (str): Type of file for model (e.g. '.pt').
+
+        model dir (Path or str): Directory path to save the model.
+
+    Returns:
+        pathlib.Path: path to model.
 
 save_stage_ydf
 
