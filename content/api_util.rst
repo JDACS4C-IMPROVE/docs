@@ -208,17 +208,19 @@ Omics Utility Functions (omics_utils)
         inp_fnames (List[str]): List of input filenames extracted from inp.
 
     Example:
-        from improve import drug_resp_pred as drp
-        params = {
-            "x_data_canc_files": "[['cancer_gene_expression.tsv', 'Gene_Symbol'], "
-                                 "['cancer_copy_number.tsv', 'Entrez']]",
-            "canc_col_name": "SampleID",
-            "x_data_path": "/path/to/omics/data"
-        }
-        omics_loader = drp.OmicsLoader(params)
-        print(omics_loader)
-        print(dir(omics_loader))
-        gene_expression_data = omics_loader["cancer_gene_expression.tsv"]
+        .. code-block::
+
+            from improve import drug_resp_pred as drp
+            params = {
+                "x_data_canc_files": "[['cancer_gene_expression.tsv', 'Gene_Symbol'], "
+                                    "['cancer_copy_number.tsv', 'Entrez']]",
+                "canc_col_name": "SampleID",
+                "x_data_path": "/path/to/omics/data"
+            }
+            omics_loader = drp.OmicsLoader(params)
+            print(omics_loader)
+            print(dir(omics_loader))
+            gene_expression_data = omics_loader["cancer_gene_expression.tsv"]
 
 
 
@@ -292,12 +294,12 @@ Response Utility Functions (drp_utils)
         verbose (bool): Verbosity flag.
 
     Example:
-    .. code-block:: 
+        .. code-block::
 
-        from improve import drug_resp_pred as drp
-        drp_loader = drp.DrugResponseLoader(params)
-        print(drp_loader)
-        print(dir(drp_loader))
-        rsp = drp_loader["response.tsv"]
+            from improve import drug_resp_pred as drp
+            drp_loader = drp.DrugResponseLoader(params)
+            print(drp_loader)
+            print(dir(drp_loader))
+            rsp = drp_loader["response.tsv"]
 
 
