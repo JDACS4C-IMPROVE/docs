@@ -9,11 +9,13 @@ We invite the community to leverage the IMPROVE framework and benchmark data to 
 
 The following guides provide detailed explanations of the model curation process.
 
+If you would like to contribute a curated model to the IMPROVE project, please :doc:`contact us <CONTACT>`.
+
 .. toctree::
    :titlesonly:
 
    Curating Steps <curating_steps>
    Step-by-Step Example <curating_tutorial>
    Templates <curating_templates>
-   Contributing a Model <curating_contribute>
+
 

@@ -16,15 +16,18 @@ The file should be named :code:`mymodel_infer_improve.py` where 'mymodel' is the
     import sys
     from pathlib import Path
     from typing import Dict
+
+    import pandas as pd
+
     # [Req] IMPROVE imports
     from improvelib.applications.drug_response_prediction.config import DRPInferConfig
     from improvelib.utils import str2bool
     import improvelib.utils as frm
     from model_params_def import infer_params
-    # [MODEL] Model-specific imports, as needed
 
-    # [Req]
-    filepath = Path(__file__).resolve().parent 
+    # Model-specific imports, as needed
+
+    filepath = Path(__file__).resolve().parent # [Req]
 
 
     # [Req]
@@ -35,7 +38,8 @@ The file should be named :code:`mymodel_infer_improve.py` where 'mymodel' is the
             params (dict): dict of IMPROVE parameters and parsed values.
 
         Returns:
-            dict: prediction performance scores computed on test data.
+            dict: prediction performance scores computed on test data according
+                to the metrics_list.
         """
         # --------------------------------------------------------------------
         # [Req] Create data names for test set and build model path
@@ -44,18 +48,18 @@ The file should be named :code:`mymodel_infer_improve.py` where 'mymodel' is the
         modelpath = frm.build_model_path(
             model_file_name=params["model_file_name"], 
             model_file_format=params["model_file_format"], 
-            model_dir=params["input_model_dir"])
+            model_dir=params["output_dir"])
 
         # --------------------------------------------------------------------
-        # [MODEL] Load inference data (ML data)
-        # --------------------------------------------------------------------
-
-        # --------------------------------------------------------------------
-        # [MODEL] CUDA/CPU device, as needed
+        # Load inference data (ML data)
         # --------------------------------------------------------------------
 
         # --------------------------------------------------------------------
-        # [MODEL] Load best model and compute predictions
+        # CUDA/CPU device, as needed
+        # --------------------------------------------------------------------
+
+        # --------------------------------------------------------------------
+        # Load best model and compute predictions
         # --------------------------------------------------------------------
 
         # ------------------------------------------------------
@@ -66,7 +70,8 @@ The file should be named :code:`mymodel_infer_improve.py` where 'mymodel' is the
             y_pred=your_test_predicted, 
             stage="test",
             y_col_name=params["y_col_name"],
-            output_dir=params["output_dir"]
+            output_dir=params["output_dir"],
+            input_dir=params["input_data_dir"]
         )
 
         # ------------------------------------------------------

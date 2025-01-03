@@ -10,9 +10,11 @@ Release tags will be used to mark specific software versions. Models released wi
 Branches
 ----------
 
-IMPROVE repo: <br>
-* master - The latest stable version of the code. This branch will be used to tag version releases. <br>
+IMPROVE repo:
+
+* master - The latest stable version of the code. This branch will be used to tag version releases.
 * develop - The primary development branch. Features and bug fixes are merged into develop before being considered for release. <br>
 
-Curated models: <br>
+Curated models:
+
 * original - The original forked code.
