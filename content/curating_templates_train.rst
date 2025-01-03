@@ -17,16 +17,17 @@ The file should be named :code:`mymodel_train_improve.py` where 'mymodel' is the
     import sys
     from pathlib import Path
     from typing import Dict
+
     # [Req] IMPROVE imports
     from improvelib.applications.drug_response_prediction.config import DRPTrainConfig
     from improvelib.utils import str2bool
     import improvelib.utils as frm
     from improvelib.metrics import compute_metrics
     from model_params_def import train_params
-    # [MODEL] Model-specific imports, as needed
 
-    # [Req]
-    filepath = Path(__file__).resolve().parent 
+    # Model-specific imports, as needed
+
+    filepath = Path(__file__).resolve().parent # [Req]
 
     # [Req]
     def run(params: Dict):
@@ -36,13 +37,14 @@ The file should be named :code:`mymodel_train_improve.py` where 'mymodel' is the
             params (dict): dict of IMPROVE parameters and parsed values.
 
         Returns:
-            dict: performance scores computed on val data.
+            dict: prediction performance scores computed on validation data
+                according to the metrics_list.
         """
         # --------------------------------------------------------------------
         # [Req] Create data names for train/val sets and build model path
         # --------------------------------------------------------------------
-        train_data_fname = frm.build_ml_data_file_name(data_format=params["data_format"], stage="train") 
-        val_data_fname = frm.build_ml_data_file_name(data_format=params["data_format"], stage="val")
+        train_data_fname = frm.build_ml_data_file_name(data_format=params["data_format"], stage="train")  # [Req]
+        val_data_fname = frm.build_ml_data_file_name(data_format=params["data_format"], stage="val")  # [Req]
 
         modelpath = frm.build_model_path(
             model_file_name=params["model_file_name"], 
@@ -50,23 +52,23 @@ The file should be named :code:`mymodel_train_improve.py` where 'mymodel' is the
             model_dir=params["output_dir"])
 
         # --------------------------------------------------------------------
-        # [MODEL] Load model input data (ML data) for train and val
+        # Load model input data (ML data) for train and val
         # --------------------------------------------------------------------
 
         # --------------------------------------------------------------------
-        # [MODEL] CUDA/CPU device, as needed
+        # CUDA/CPU device, as needed
         # --------------------------------------------------------------------
 
         # --------------------------------------------------------------------
-        # [MODEL] Prepare model
+        # Prepare model
         # --------------------------------------------------------------------
 
         # --------------------------------------------------------------------
-        # [MODEL] Train. Iterate over epochs.
+        # Train. Iterate over epochs.
         # --------------------------------------------------------------------
 
         # --------------------------------------------------------------------
-        # [MODEL] Load best model and compute predictions
+        # Load best model and compute predictions
         # --------------------------------------------------------------------
 
         # --------------------------------------------------------------------
@@ -77,7 +79,8 @@ The file should be named :code:`mymodel_train_improve.py` where 'mymodel' is the
             y_pred=your_val_predicted, 
             stage="val",
             y_col_name=params["y_col_name"],
-            output_dir=params["output_dir"]
+            output_dir=params["output_dir"],
+            input_dir=params["input_dir"]
         )
 
         # --------------------------------------------------------------------

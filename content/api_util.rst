@@ -2,6 +2,9 @@ Utility Functions
 ====================
 NATASHA: fill this in
 
+IMPROVE general utility functions
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 The following functions are part of improvelib and should be used to standardize aspects of the workflow.
 
 .. topic:: build_ml_data_file_name
@@ -40,3 +43,6 @@ store_predictions_df
 
 compute_performance_scores
 
+
+IMPROVE Drug Response Prediction utility functions
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

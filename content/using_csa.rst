@@ -22,8 +22,8 @@ This workflow is repeated for all the screening studies.
 
 Cross study analysis workflow for analyzing a single study
 
-To implement this workflow with a brute-force approach, see :ref:`<using_csa_bruteforce>`
-To implement this workflow at scale with Parsl, see :ref:`<using_csa_parsl>`
+To implement this workflow with a brute-force approach, see :doc:`<using_csa_bruteforce>`
+To implement this workflow at scale with Parsl, see :doc:`<using_csa_parsl>`
 
 Metrics
 ------------

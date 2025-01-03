@@ -12,6 +12,7 @@ The following guides walk through how to run various aspects of the IMPROVE work
 
 .. toctree::
    :titlesonly:
+   :maxdepth: 2
 
    Running a Single Model <using_running>
    Building Containers <using_containers_build>
