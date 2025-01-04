@@ -11,29 +11,132 @@ The cross-study analysis workflow using Parsl has been successfully implemented 
 
 .. figure:: ../images/using_csa_parsl_diagram.png
    :class: with-border
+   :align: center
+   :width: 75%
 
-Cross-study analysis workflow using Parsl parallel processing library
+   Cross-study analysis workflow using Parsl parallel processing library
+
 
 Setting up CSA with Parsl
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-----------------------------------
 This Parsl workflow has been configured for use on lambda at Argonne National Laboratory. 
 For other systems, we recommend using the :doc:`Brute Force method <using_csa_bruteforce>`.
-We recommend running a test with two target datasets, one source dataset, and two splits with two GPUs before performing the full run.
 
-If you are setting up CSA with Parsl for the first time with your model:
 
-- Copy the scripts from `here <https://github.com/JDACS4C-IMPROVE/IMPROVE/tree/develop/workflows/parsl_csa>`_ to your model repo.
+1. Create and activate a conda environment to support improvelib and Parsl
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-- Configure the configuration file :code:`csa_params.ini`.
+.. code-block:: bash
 
-  - Change :code:`<MODEL_NAME>` to your model name (e.g. :code:`graphdrp`).
+  conda create -n parsl parsl numpy pandas scikit-learn pyyaml -y
+  conda activate parsl
 
-  - Change :code:`<NAME_OF_YOUR_MODEL_CONDA_ENVIRONMENT>` to your model environment name.
 
-  - Change :code:`epochs` as necessary.
+2. Clone the model repository
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-  - Change :code:`available_accelerators` to the available GPUs.
+.. code-block:: bash
 
+  git clone <MODEL_REPO>
+  cd MODEL_NAME
+  git checkout <BRANCH>
+
+
+.. important:: 
+
+   Model scripts must be organized as:
+
+      - <MODEL_NAME>_preprocess_improve.py
+
+      - <MODEL_NAME>_train_improve.py
+
+      - <MODEL_NAME>_infer_improve.py
+   Make sure to follow the IMPROVE lib :doc:`documentation <curating>` to ensure the model is compliant with the IMPROVE framework.
+
+
+3. Clone IMPROVE repo and set PYTHONPATH
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Clone the `IMPROVE <https://github.com/JDACS4C-IMPROVE/IMPROVE/tree/develop>`_ repository to a directory of your preference (outside your model directory).
+
+.. code-block:: bash
+
+  cd ..
+  git clone https://github.com/JDACS4C-IMPROVE/IMPROVE
+  cd IMPROVE
+  git checkout develop
+  source setup_improve.sh
+
+
+
+4. Download benchmark data for cross study analysis
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Download benchmark data to the data destination directory using `this <https://github.com/JDACS4C-IMPROVE/IMPROVE/blob/develop/scripts/get-benchmarks>`_. For example:
+
+.. code-block:: bash
+
+   ./scripts/get-benchmarks ./workflows/parsl_csa
+
+
+5. Modify configuration file as needed
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+:code:`csa_params.ini` contains parameters necessary for the workflow. The user can change the parameters inside this configuration file.
+
+- :code:`input_dir` : Path to the benchmark `raw_data` for cross study analysis. 
+
+- :code:`input_supp_data_dir` : Dir containing supplementary data in addition to csa benchmark data (usually model-specific data). A common practice is to provide these data inside a dedicated dir inside model dir (e.g., PathDSP/author_data/...).
+
+- :code:`output_dir` : Path to the output directory. The subdirectories in the `output_dir` will be organized as:
+  
+  - `ml_data`: Contains pre-processed data.
+  
+  - `models`: Contains trained models.
+  
+  - `infer`: Contains inference results.
+
+- :code:`source_datasets`: List of source datasets for cross study analysis. With the current benchmark datasets this can be a subset of CCLE, gCSI, GDSCv1, GDSCv2 and CTRPv2.
+
+- :code:`target_datasets`: List of source datasets for cross study analysis. With the current benchmark datasets this can be a subset of CCLE, gCSI, GDSCv1, GDSCv2 and CTRPv2.
+
+- :code:`split`: Splits of the source datasets for cross study analysis.
+
+- :code:`hyperparameters_file`: Path to the json file containing hyperparameters per dataset. In this template two hyperparameter files are given:
+  
+  - `hyperparameters_hpo.json`: Contains hyperparameters optimized separately on all source datasets.
+  
+  - `hyperparameters_default.json`: Contains default values of the hyperparameters for the model.
+
+- :code:`model_name`: Name of the model for cross study analysis.
+
+- :code:`model_scripts_dir`: Path to the model directory containing the model scripts.
+
+- :code:`model_environment`: Name of your model conda environment.
+
+- :code:`epochs`: Number of epochs for the model.
+
+- :code:`available_accelerators`: List of GPU ids to launch the jobs. The required format is: ["id1","id2"]. For example, if you want to choose GPUs 0 and 1 set available_accelerators = ["0","1"]
+
+- :code:`y_col_name`: Response variable used in the model. eg: `auc`
+
+- :code:`use_singularity`: True, if the model files are available in a singularity container.
+
+- :code:`singularity_image`: Path to the singularity container image file (.sif) of the model scripts (optional).
+
+- :code:`only_cross_study`: True, if only cross study analysis is needed without within study inferences.
+
+.. note::
+
+  hyperparameters.json contains a dictionary of optimized hyperparameters for the models. The key to the dictionary is the model name, which contains another dictionary with source dataset names as keys. The two hyperparameters considered for this analysis are: `batch_size` and `learning_rate`. 
+  The hyperparameters can be optimized using :doc:`Supervisor <using_hpo_supervisor>` or :doc:`DeepHyper <using_hpo_deephyper>`.
+
+
+6. To run cross study analysis using Parsl:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. note::
+  We recommend running a test with two target datasets, one source dataset, and two splits with two GPUs before performing the full run.
+  
   - For testing purposes, change:
   
     - :code:`source_datasets = ["gCSI"]`
@@ -41,7 +144,7 @@ If you are setting up CSA with Parsl for the first time with your model:
     - :code:`target_datasets = ["gCSI", "CCLE"]`
 
     - :code:`split = ["0", "1"]`
-
+    
   - For complete runs, change:
 
     - :code:`source_datasets = ["gCSI", "CCLE", "GDSCv1", "GDSCv2", "CTRPv2"]`
@@ -50,98 +153,81 @@ If you are setting up CSA with Parsl for the first time with your model:
 
     - :code:`split = ["0","1","2","3","4","5","6","7","8","9"]`
 
-    - :code:`available_accelerators=["0","1","2","3","4","5","6","7"]`
 
-- Add your model's hyperparameters to :code:`hyperparameters_default.json`.
 
-- Commit changes to develop branch.
+**Execution without singularity container:**
 
-Running CSA with Parsl
-^^^^^^^^^^^^^^^^^^^^^^^^^
+- Make sure to change the `model_name` parameter in `csa_params.ini` to your <MODEL_NAME>. 
 
-1. Clone your model repo:
+- Change the `model_scripts_dir` parameter in `csa_params.ini` to the path to your model directory.   
+
+- Change the `model_environment` parameter in `csa_params.ini` to the name of your model conda environment.  
+
+- Make changes to `csa_params.ini` as needed for your experiment.
+
+Preprocesssing:
+
+.. code-block:: bash
+  
+   python workflow_preprocess.py
+
+
+To run cross study analysis with default configuration file (csa_params.ini):
 
 .. code-block:: bash
 
-  git clone https://github.com/JDACS4C-IMPROVE/<YOUR_MODEL>
-  cd <YOUR_MODEL>
-  git checkout develop
+   python workflow_csa.py
 
-2. Create Parsl environment:
 
-.. code-block:: bash
-
-  conda create -n parsl parsl numpy pandas scikit-learn pyyaml -y
-  conda activate parsl
-
-3. Set up IMPROVE:
+To run cross study analysis with a different configuration file:
 
 .. code-block:: bash
 
-  source setup_improve.sh
+   python workflow_csa.py --config_file <CONFIG_FILE>
 
-4. Run preprocessing using Parsl (if using a config other than :code:`csa_params.ini` you can specific it with :code:`--config_file`):
+
+**Execution with singularity container:**
+
+- Set use_singularity = True in `csa_params.ini`.
+
+- Change the :code:`singularity_image` parameter in :code:`csa_params.ini` to your <PATH_TO_YOUR_SINGULARITY_CONTAINER>.
+
+- Change the :code:`model_name` parameter in :code:`csa_params.ini` to your <MODEL_NAME>. 
+
+- Change the :code:`model_scripts_dir` parameter in :code:`csa_params.ini` to the path to your model directory.   
+
+- Change the :code:`model_environment` parameter in :code:`csa_params.ini` to the name of your model conda environment.  
+
+- Make changes to :code:`csa_params.ini` as needed for your experiment.
+
+
+Preprocess the raw data:
 
 .. code-block:: bash
 
-  python workflow_csa.py
+   python workflow_preprocess.py
 
-5. Run full cross study analysis using  (if using a config other than :code:`csa_params.ini` you can specific it with :code:`--config_file`):
+To run cross study analysis with default configuration file (csa_params.ini):  
 
 .. code-block:: bash
 
-  python workflow_preprocess.py
+   python workflow_csa.py
 
-6. Analyze results:
+To run cross study analysis with a different configuration file:
+
+.. code-block:: bash
+
+   python workflow_csa.py --config_file <CONFIG_FILE>
+
+
+7. Analyze results
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 After executing the workflow, the inference results, including test data predictions and performance scores, will be available in the output directory specified by the user. 
 These results will be organized into subfolders based on the source dataset, target dataset, and split.
 
-Changing CSA Parameters
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-**csa_params.ini** contains parameters necessary for the workflow. The user can change the parameters inside this configuration file.
-
-- :code:`input_dir`: Location of raw data for cross study analysis. 
-
-- :code:`output_dir`: Location of the output. The subdirectories in the output_dir are organized as:
-
-  - ml_data: Contains pre-processed data
-
-  - models: Contains trained models
-
-  - infer: Contains inference results
-
-- :code:`source_datasets`: List of source_datasets for cross study analysis. With the current benchmark datasets this can be a subset of CCLE, gCSI, GDSCv1, GDSCv2 and CTRPv2
-
-- :code:`target_datasets`: List of source_datasets for cross study analysis. With the current benchmark datasets this can be a subset of CCLE, gCSI, GDSCv1, GDSCv2 and CTRPv2
-
-- :code:`split`: Splits of the source datasets for cross study analysis
-
-- :code:`hyperparameters_file`: Name of the json file containing hyperparameters per dataset. In this template two hyperparameter files are given:
-
-  - hyperparameters_hpo.json: Contains hyperparameters optimized separately on all source datasets
-
-  - hyperparameters_default.json : Contains default values of the hyperparameters for the model
-
-- :code:`model_name`: Name of the model for cross study analysis
-
-- :code:`epochs`: Number of epochs for the model
-
-- :code:`y_col_name`: Response variable used in the model eg: auc
-
-- :code:`use_singularity`: True, if the model files are available in a singularity container
-
-- :code:`singularity_image`: Singularity image file (.sif) of the model scripts (optional)
-
-- :code:`only_cross_study`: True, if only cross study analysis is needed without within study inferences
-
-**hyperparameters.json** contains a dictionary of optimized hyperparameters for the models. The key to the dictionary is the model name, which contains another dictionary with source dataset names as keys. The two hyperparameters considered for this analysis are: batch_size and learning_rate. 
-The hyperparameters are optimized using [Supervisor](https://github.com/JDACS4C-IMPROVE/HPO).
-
-
 
 References
-------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 `1. <https://dl.acm.org/doi/10.1145/3307681.3325400>`_ Y. Babuji et al. "Parsl: Pervasive Parallel Programming in Python", 28th ACM International Symposium on High-Performance Parallel and Distributed Computing (HPDC), 2019
 
