@@ -9,6 +9,7 @@ The objective of this analysis is to assess the generalization capacity of deep 
 
 For the Drug Response Prediction benchmark dataset, CSA compares drug response prediction models' performance across five publicly available cell-line screening studies: CCLE, gCSI, GDSCv1, GDSCv2, and CTRPv2.
 
+
 Workflow
 ------------
 The figure below shows the workflow for analyzing a single screening study. 
@@ -19,8 +20,10 @@ This workflow is repeated for all the screening studies.
 
 .. figure:: ../images/eval_csa_diagram.png
    :class: with-border
+   :align: center
+   :width: 75%
 
-Cross study analysis workflow for analyzing a single study
+   Cross study analysis workflow for analyzing a single study
 
 To implement this workflow with a brute-force approach, see :doc:`using_csa_bruteforce`
 
