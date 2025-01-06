@@ -44,14 +44,15 @@ For other systems, we recommend using the :doc:`Brute Force method <using_csa_br
 
 .. important:: 
 
-   Model scripts must be organized as:
+   1. Model scripts must be organized as:
 
       - <MODEL_NAME>_preprocess_improve.py
 
       - <MODEL_NAME>_train_improve.py
 
       - <MODEL_NAME>_infer_improve.py
-   Make sure to follow the IMPROVE lib :doc:`documentation <curating>` to ensure the model is compliant with the IMPROVE framework.
+   2. Make sure to follow the IMPROVE lib :doc:`documentation <curating>` to ensure the model is compliant with the IMPROVE framework.
+   3. If the model uses supplemental data (i.e. author data), use the provided script in the repo to download this data (e.g. PathDSP/download_author_data.sh).
 
 
 3. Clone IMPROVE repo and set PYTHONPATH
@@ -225,6 +226,7 @@ To run cross study analysis with a different configuration file:
 
 After executing the workflow, the inference results, including test data predictions and performance scores, will be available in the output directory specified by the user. 
 These results will be organized into subfolders based on the source dataset, target dataset, and split.
+To collate and summarize these results, see :doc:`using_csa_postprocess`.
 
 
 References

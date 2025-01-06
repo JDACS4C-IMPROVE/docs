@@ -25,6 +25,7 @@ Want to benchmark your model against others in the community? Try IMPROVE!
    :caption: Contents:
 
    content/whatis
+   content/INSTALLATION
    content/quickstartguide
    content/applications
    content/API

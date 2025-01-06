@@ -29,6 +29,8 @@ To implement this workflow with a brute-force approach, see :doc:`using_csa_brut
 
 To implement this workflow at scale with Parsl, see :doc:`using_csa_parsl`
 
+To post-process CSA workflow results, see :doc:`using_csa_postprocess`
+
 Metrics
 ------------
 For each model, the CSA workflow generates an N-by-N table of prediction performance scores (N = number of datasets). 
@@ -46,4 +48,5 @@ References
 
    Brute-Force CSA <using_csa_bruteforce>
    Scaling CSA <using_csa_parsl>
+   Post-process CSA Results <using_csa_postprocess>
  
