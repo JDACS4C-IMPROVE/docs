@@ -16,10 +16,6 @@ Metrics
 ------------
 HPO workflows report the validation loss (usually MSE) for each set of hyperparameters tested.
 
-References
-------------
-`1. <https://ieeexplore.ieee.org/document/8638041>`_ P. Balaprakash et al. "DeepHyper: Asynchronous Hyperparameter Search for Deep Neural Networks", IEEE, 2018 
-
 
 .. toctree::
    :titlesonly:
