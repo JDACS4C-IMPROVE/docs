@@ -6,12 +6,12 @@ the model to function with IMPROVE :doc:`workflows <USING>`.
 
 File naming conventions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
-<model>_preprocess_improve.py
-<model>_train_improve.py
-<model>_infer_improve.py
-<model>_params.ini
-model_params_def.py
-<model>_environment.yml
+* <model>_preprocess_improve.py
+* <model>_train_improve.py
+* <model>_infer_improve.py
+* <model>_params.ini
+* model_params_def.py
+* <model>_environment.yml
 
 All three (preprocess, train, infer) scripts
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -49,8 +49,7 @@ Infer
 
 Parameters and Configuration File
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-* Model-specific parameters must not include parameters defined in IMPROVE 
-(see parameters for :doc:`preprocess <api_preprocess>`, :doc:`train <api_train>`, and :doc:`infer <api_infer>`).
+* Model-specific parameters must not include parameters defined in IMPROVE (see parameters for :doc:`preprocess <api_preprocess>`, :doc:`train <api_train>`, and :doc:`infer <api_infer>`).
 * All IMPROVE-defined parameters that are used by the model should be used via the IMPROVE parameters
 
     * E.g. :code:`params['patience']` should be used instead of a model defined :code:`early_stop` or simply :code:`100` in train.
@@ -63,8 +62,7 @@ Model Repository
 * The repo should include :code:`setup_improve.sh` with this :doc:`template <curating_templates_downloads>`
 
     * :code:`download_csa.sh` should be present in the repo
-    * If supplemental data not included in the benchmark data is needed by the model, it should be downloaded via a shell script present 
-    in the repo and this script should be included in :code:`setup_improve.sh` 
+    * If supplemental data not included in the benchmark data is needed by the model, it should be downloaded via a shell script present in the repo and this script should be included in :code:`setup_improve.sh` 
     * The param :code:`input_supp_data_dir` should be used in preprocess to denote the default location of this data as downloaded by :code:`setup_improve.sh`
 
 
