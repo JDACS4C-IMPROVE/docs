@@ -10,3 +10,5 @@ Templates for Curating Models
    Inference <curating_templates_infer>
    Model Parameters <curating_templates_modelparam>
    Config File <curating_templates_config>
+   Readme <curating_templates_readme>
+   Download Scripts <curating_templates_downloads>
