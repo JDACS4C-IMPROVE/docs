@@ -17,5 +17,6 @@ If you would like to contribute a curated model to the IMPROVE project, please :
    Curating Steps <curating_steps>
    Step-by-Step Example <curating_tutorial>
    Templates <curating_templates>
+   Requirements for Curated Models <curating_compliance>
 
 
