@@ -29,19 +29,19 @@ Templates available in :doc:`curating_templates` and on `GitHub <https://github.
 
 - Any additional imports should be added as appropriate.
 
-- IMPROVE provided parameters should be used as appropriate so that workflows function properly (e.g. HPO will use the provided :code:`epochs` parameter). Parameters can be retrieved from the params dictionary with the key as so: :code:`params[epochs]`. IMPROVE provided parameters can be found here: :doc:`API`.
+- IMPROVE provided parameters should be used as appropriate so that workflows function properly (e.g. HPO will use the provided :code:`epochs` parameter). Parameters can be retrieved from the params dictionary with the key as so: :code:`params['epochs']`. IMPROVE provided parameters can be found here: :doc:`API`.
 
 - All scripts have a single :code:`output_dir`. Preprocess and train scripts have a single :code:`input_dir`. The infer script has two input directories, one for the saved model (:code:`input_model_dir`) and one for the ML data for the inference split (:code:`input_data_dir`). These are all set by default to the current working directory, but it is important to ensure that the correct input directories (i.e. model and data) are used in the code in the infer script so that workflows function correctly.
 
-- Other model-specific parameters not included as part of IMPROVE can be defined as described here: :doc:`api_model`. If model-specific parameters are defined NATASHA FINISH THIS AND COORD WITH API AND BELOW.
+- Other model-specific parameters not included as part of IMPROVE can be defined as described here: :doc:`api_model`. 
 
-- IMPROVE model files should be named as follows, where 'model' is the name of your model:
+- IMPROVE model files should be named as follows, where '<model>' is the name of your model:
 
-  - For preprocessing: :code:`model_preprocess_improve.py`
+  - For preprocessing: :code:`<model>_preprocess_improve.py`
 
-  - For training: :code:`model_train_improve.py`
+  - For training: :code:`<model>_train_improve.py`
 
-  - For inference: :code:`model_infer_improve.py`
+  - For inference: :code:`<model>_infer_improve.py`
 
 Create default configuration file
 -----------------------------------
@@ -53,7 +53,7 @@ Templates available in :doc:`curating_templates` and on `GitHub <https://github.
 
 - For parameters that are used in more than one script (e.g. :code:`model_file_name` in both train and infer), these will have to be set in both the :code:`[Train]` and :code:`[Infer]` sections of the config.
 
-- The default configuation file should be named as follows, where 'model' is the name of your model: :code:`model_default_params.txt`.
+- The default configuation file should be named as follows, where 'model' is the name of your model: :code:`<model>_params.txt`.
 
 Set up :code:`main()` for your model
 ------------------------------
