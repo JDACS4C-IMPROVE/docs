@@ -31,6 +31,7 @@ Want to benchmark your model against others in the community? Try IMPROVE!
    content/API
    content/curating
    content/USING
+   content/DEVELOPER
    content/ReleaseNotes
    content/PUBS
    content/CONTACT

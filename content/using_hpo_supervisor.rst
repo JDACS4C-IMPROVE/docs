@@ -16,6 +16,256 @@ Hyper Parameter Optimization (HPO) with Supervisor
    HPO Requirements <using_hpo_req>
    HPO Parameters <using_hpo_parameters>
 
+HPO Prerequisites
+===================
+
+- `git <https://github.com>`_
+- `conda <https://docs.conda.io/en/latest/>`_
+- `singularity <https://apptainer.org>`_
+- `swift-t <https://github.com/swift-lang/swift-t>`_
+- `Supervisor <https://github.com/ECP-CANDLE/Supervisor>`_
+
+
+Installing git and singularity
+_____________________________________
+
+Please refer to the documentation of the tools for install instructions.
+
+
+
+Installing supervisor
+_____________________
+
+.. code-block:: bash
+
+    conda create --name IMPROVE python=3.9.16
+    conda activate IMPROVE
+    # change to a directory for supervisor if desired
+    git clone https://github.com/ECP-CANDLE/Supervisor.git
+    cd Supervisor && export PATH=$PATH:$(pwd)/bin
+    git checkout develop
+    pip install numpy deap
+
+
+Installing swift-t
+_____________________
+
+You need to be in conda environment to proceed. If you aren’t sure: ::
+ 
+    # Same conda env than above
+    # conda create --name IMPROVE python=3.9.16
+    conda activate IMPROVE
+
+Install swift-t via conda. For detailed instructions please refer to the `swift-t documentation <http://swift-lang.github.io/swift-t/guide.html>`_:
+
+.. code-block:: bash
+
+    conda install --yes -c conda-forge -c swift-t swift-t
+
+Shared installations
+--------------------
+
+The ``supervisor`` tool supports shared installations.  For example, a site administrator can install all of the tools above in a public location.  The user should be able to run ``supervisor`` from a personal directory with all configuration files and output files there.
+
+Setting up a new site
+---------------------
+
+| On a simple Linux system, you will simply need to modify
+| ``Supervisor/workflows/common/sh/env-local.sh``
+| to specify the software locations on your system.
+
+For more complex systems, you will also need to provide scheduler settings in the ``sched-SITE.sh`` script.
+
+See the `supervisor tool doc <https://github.com/ECP-CANDLE/Supervisor/tree/develop/bin/#quickstart>`_ for more details about how to configure a site.
+
+
+
+
+Requirements
+____________
+
+The following are the requirements as a model curator for others to run HPO on your model.
+
+
+
+IMPROVE MODEL (Defined for Containerization)
+____________________________________________
+
+Your model must be IMPROVE compliant, reading arguments from a '.txt' file and overwriting with command-line arguments. Your model must also be defined in a 'def' file for singularity containerization. Default definition files can be found in the `IMPROVE Singularity repository <https://github.com/JDACS4C-IMPROVE/Singularity>`_. The container should expose the following interface scripts:
+
++ preprocess.sh
++ train.sh
++ infer.sh
+
+
+To test your scripts with containerization, it's recommended you build a container and run the following commands (customized with your arguments):
+
+.. code-block:: bash
+
+    singularity exec --bind $IMPROVE_DATA_DIR:/IMPROVE_DATA_DIR <path_to_sif_file>.sif preprocess.sh /IMPROVE_DATA_DIR \ 
+    --train_split_file <dataset>_split_0_train.txt --val_split_file <dataset>_split_0_val.txt \ 
+    --ml_data_outdir /IMPROVE_DATA_DIR/<desired_outdir>
+
+.. code-block:: bash
+
+    singularity exec --nv --bind $IMPROVE_DATA_DIR:/IMPROVE_DATA_DIR <path_to_sif_file>.sif train.sh <gpu_num> /IMPROVE_DATA_DIR \ 
+    --train_ml_data_dir <path> --val_ml_data_dir <dir> --model_outdir <path> --test_ml_data_dir <path>
+
+
+
+HYPERPARAMETER SPACE
+____________________
+
+You will also need to define the hyperparameter space, which will override the arguments in the .txt file. For this reason, any pathing arguments needed for your train script will also need to be defined as 'constant' hyperparameters in the space (such as train_ml_data_dir below).
+
+At a high level, the upper and lower describe the bounds of the hyperparameter. Hyperparameters of float, int, ordered, categorical, and constant types are supported, with ordered and categorical hyperparameters supporting float, int, and string types. Log scale exploration is also supported for float and int hyperparameter types.
+
+More specifically, the hyperparameter configuration file has a json format consisting of a
+list of json dictionaries, each one of which defines a hyperparameter and how it is explored:
+
+
+Universal Keys
+--------------
+
+- name: the name of the hyperparameter (e.g. _epochs_)
+- type: determines how the initial population (i.e. the hyperparameter sets) are initialized from the named parameter and how those values are subsequently mutated by the GA. Type is one of `constant`, `int`, `float`, `logical`, `categorical`, or `ordered`.
+  - `constant`:
+    - each model is initialized with the same specifed value
+    - mutation always returns the same specified value
+  - `int`:
+    - each model is initialized with an int randomly drawn from the range defined by `lower` and `upper` bounds
+    - mutation is peformed by adding the results of a random draw from
+      a gaussian distribution to the current value, where the gaussian distribution's mu is 0 and its sigma is specified by the `sigma` entry.
+  - `float`:
+    - each model is initialized with a float randomly drawn from the range defined by `lower` and `upper` bounds
+    - mutation is peformed by adding the results of a random draw from
+      a gaussian distribution to the current value, where the gaussian distribution's mu is 0 and its sigma is specified by the `sigma` entry.
+  - `logical`:
+    - each model is initialized with a random boolean.
+    - mutation flips the logical value
+  - `categorical`:
+    - each model is initialized with an element chosen at random from the list of elements in `values`.
+    - mutation chooses an element from the `values` list at random
+  - `ordered`:
+    - each model is inititalized with an element chosen at random from the list of elements in `values`.
+    - given the index of the current value in the list of `values`, mutation selects the element _n_ number of indices away, where n is the result of a random draw between 1 and `sigma` and then is negated with a 0.5 probability.
+
+
+Type Specific Keys
+------------------
+
+Required
+^^^^^^^^
+
+The following keys are required depending on value of the `type` key.
+
+If the `type` is `constant`:
+
+- `value`: the constant value
+
+If the `type` is `int`, or `float`:
+
+- `lower`: the lower bound of the range to draw from
+- `upper`: the upper bound of the range to draw from
+
+If the `type` is `categorical`:
+
+- `values`: the list of elements to choose from
+- `element_type`: the type of the elements to choose from. One of `int`, `float`, `string`, or `logical`
+
+If the `type` is `ordered`:
+
+- `values`: the list of elements to choose from
+- `element_type`: the type of the elements to choose from. One of `int`, `float`, `string`, or `logical`
+
+
+Optional
+^^^^^^^^
+
+The following keys are optional depending on value of the `type` key.
+
+If the `type` is `constant` or `float`:
+
+- `use_log_scale`: whether to apply mutation on log_10 of the hyperparameter or not
+- `sigma`: the sigma value used by the mutation operator. Roughly, it controls the size of mutations (see above).
+
+If the `type` is `ordered`:
+
+- `sigma`: the sigma value used by the mutation operator. Roughly, it controls the size of mutations (see above).
+
+
+Example File
+------------
+
+A sample hyperparameter definition file:
+
+    .. code-block:: JSON
+
+        [
+
+          {
+            "name": "train_ml_data_dir",
+            "type": "constant",
+            "value": "<train_data_dir>"
+          },
+          {
+            "name": "val_ml_data_dir",
+            "type": "constant",
+            "value": "<val_data_dir>"
+          },
+          {
+            "name": "model_outdir",
+            "type": "constant",
+            "value": "<desired_outdir>"
+          },
+
+          {
+            "name": "learning_rate",
+            "type": "float",
+            "use_log_scale": true,
+            "lower": 0.000001,
+            "upper": 0.0001,
+            "sigma": 0.1
+          },
+          {
+            "name": "num_layers",
+            "type": "int",
+            "lower": 1,
+            "upper": 9
+          },
+          {
+            "name": "batch_size",
+            "type": "ordered",
+            "element_type": "int",
+            "values": [16, 32, 64, 128, 256, 512],
+            "sigma": 1
+          },
+          {
+            "name": "warmup_type",
+            "type": "ordered",
+            "element_type": "string",
+            "values": ["none", "linear", "quadratic", "exponential"]
+          },
+          {
+            "name": "optimizer",
+            "type": "categorical",
+            "element_type": "string",
+            "values": [
+              "Adam",
+              "SGD",
+              "RMSprop"
+            ]
+          },
+
+          {
+            "name": "epochs",
+            "type": "constant",
+            "value": 150
+          }
+        
+        ]
+
+Note that any other keys are ignored by the workflow but can be used to add additional information about the hyperparameter. For example, the sample files could contain a `comment` entry that contains additional information about that hyperparameter and its use.
 
 Requirements
 ____________
@@ -268,3 +518,71 @@ To analyze the HPO run, there are two recommended methods. The first provides a 
 (2) Secondly, the user could secure copy the output.csv file, then use google colab to show tables and plot. The secure copy command should be run in your terminal (not logged into Argonne's computation system) as the following: ``scp <user>@<computation_address>:~/path/to/your/output.csv \path\on\local\computer``. For example, as secure copy command could look like: ``scp <username>r@polaris.alcf.anl.gov:~/data_dir/DeepTTC-testing/Output/finished_EXP060/output.csv \Users\<username>\Argonne\HPO``. Note that this assumes the user is using Unix. If running a Unix-like system on Windows, the command will look like ``scp <user>@<computation_address>:~/path/to/your/output.csv /c/Users/username/Path/On/Local/Computer``.
 
 Once the file is secure copied to your local computer, it can be loaded into and used in google colab. For an example, follow the example and instructions here: https://colab.research.google.com/drive/1Us5S9Ty7qGtibT5TcwM9rTE7EIA9V33t?usp=sharing
+
+
+High Level Framework
+--------------------
+
+The Genetic Algorithm (GA) operates on principles derived from evolutionary biology to optimize model hyperparameters. In each generation of the GA, a new set of offspring is created by altering the current population's hyperparameters, which are akin to biological genes. This alteration occurs through mutation, where random tweaks are made to individual's hyperparameters, and crossover (or mating), where hyperparameters from two parents are mixed. In the case of HPO, each hyperparameter is analogous to a gene, and each set up hyperparameters an individual. Then, each offspring is evaluated for effectiveness using the IMPROVE_RESULT as a measure of fitness. Finally, there is a selection process that selects out high-performing individuals to carry on to the next generation. Over numerous generations, the population evolves, ideally converging towards an optimal set of hyperparameters.
+
+In order to carry out a minimal-effort hyperparameter search using the defaults, only `num_iterations` and `population_size` need to be specified.
+
+
+Parameters
+----------
+
+The following is an explain of the parameters used for the genetic algorithm (GA), and how they interact with the hyperparameter space given. The GA workflow uses the Python DEAP package (http://deap.readthedocs.io/en/master) to optimize hyperparameters using a genetic algorithm.
+
+The relevant parameters for the GA algorithm are defined in `cfg-*.sh` scripts (usually in `cfg-my-settings.sh`). These are:
+
+- NUM_ITERATIONS: The number of iterations the GA should perform.
+- POPULATION_SIZE: The maximum number of hyperparameter sets to evaluate in each iteration.
+- GA_STRATEGY: The algorithm used by the GA. Can be one of "simple" or "mu_plus_lambda".
+- OFFSPRING_PROPORTION: The offspring population size as a proportion of the population size (this is rounded) (specifically for the mu_plus_lambda strategy)
+- MUT_PROB: Probability an individual is mutated.
+- CX_PROB: Probability that mating happens in a selected pair.
+- MUT_INDPB: Probability for each gene to be mutated in a mutated individual.
+- CX_INDPB: Probability for each gene to be swapped in a selected pair.
+- TOURNSIZE: Size of tournaments in selection process.
+
+Note that these parameters all have defaults. For a minimal effort HPO run, only `num_iterations` and `population_size` need to be specified in order to define the size of the run.
+
+Mechanics
+---------
+
+The Genetic Algorithm is made to model evolution and natural selection by applying crossover (mating), mutation, and selection to a population in many iterations
+(generations).
+
+In the "simple" strategy, offspring are created with crossover AND mutation, and the selection for the next population happens from ONLY the offspring. In
+the "mu_plus_lambda" strategy, offspring are created with crossover OR mutation, and the selection for the next population happens from BOTH the offpsring
+and parent generation. Also in the mu_plus_lambda strategy, the number of offspring in each generation is a chosen parameter, which can be controlled by the
+user through offspring_prop.
+
+Mutation intakes two parameters: mut_prob and mut_indpb. The parameter mut_prob represents the probability that an individual will be mutated. Then, once an
+individual is selected as mutated, mut_indpb is the probability that each gene is mutated. For example, if an individual is represented by the array
+[11.4, 7.6, 8.1] where mut_prob=1 and mut_indpb=0.5, there's a 50 percent chance that 11.4 will be mutated, a 50 percent chance that 7.6 will be mutated,
+and a 50 percent chance that 8.1 will be mutated. Also, if either of mut_prob or mut_indpb equal 0, no mutations will happen. The type of mutation we apply
+depends on the data type because we want to preserve data type under mutation and 'closeness' may or may not represent similarity. For example, gaussian
+mutation is rounded for integers to preserve their data type, and mutation is a random draw for categorical variables because being close in a list doesn't
+equate to similarity.
+
+Crossover intake two parameters: cx_prob and cx_indpb, which operate much in the same way as cx_prob and cx_indpb. For example, given two individuals
+represented by the arrays [1, 2, 3] and [4, 5, 6] where cx_prob=1 and cx_indpb=0.5, there's a 50% chance that 1 and 4 will be 'crossed', a 50% chance that
+2 and 5 will be 'crossed', and a 50% chance that 3 and 6 will be 'crossed'. Also, if either mut_prov or mut_indpb equal 0, no crossover will happen. The definition
+of 'crossed' depends on the crossover function, which must be chosen carefully to protect data types. We use cx_Uniform, which swaps values such that [4, 2, 3],
+[1, 5, 6] is a possible result from crossing the previously defined individuals. One example of a crossover function which doesn't preserve data types would be
+cx_Blend, which averages values.
+
+Selection has various customizations, with tournaments being our implementation. In tournament selection, 'tournsize' individuals are chosen, and the individual
+with the best fitness score is selected. This repeats until the desired number of individuals are selected. Note that choosing individuals is done with replacement,
+which introduces some randomness to who is selected. Although unlikely, it's possible for one individual to be the entire next population. It's also possible for
+the best individual to not be selected as long as tournsize is smaller than the population. However, it is guaranteed that the worst 'tournsize-1' individuals are
+not selected for the next generation. Tournsize can be thought of as the selection pressure on the population.
+
+Notes:
+
+- In the mu_plus_lambda strategy, cx_prob+mut_prob must be less than or equal to 1. This stems from how mutation OR crossover is applied in mu_plus_lambda, as opposed to mutation AND crossover in the simple strategy.
+- GPUs can often sit waiting in most implementations of the Genetic Algorithm because the number of evaluations in each generation is usually variable. However, with a certain configuration, the number of evaluations per generation can be kept at a constant number of your choosing. By using mu_plus_lambda, the size of the offspring population is made through the chosen parameter of offspring_prop. Then, by choosing cx_prob and mut_prob such that cx_prob+mut_prob=1, every offspring is identified as a 'crossed' or mutated individual and evaluated. Hence, the number of evaluations in each generation equals lambda. Note that because of cx_indpb and mut_indpb, an individual may be evaluated with actually having different hyperparameters. This also means that by adjusting mut_indpb and cx_indpb, the level of mutation and crossover can be kept low despite cx_prob+mut_prob being high (if desired). Note that the number of evaluations per generation can be kept constant in the simple strategy as well, but the number of evals has to be the population size.
+- The default values are: NUM_ITERATIONS=5  |  POPULATION_SIZE=16  |  GA_STRATEGY=mu_plus_lambda  |  OFFSPRING_PROP=0.5  |  MUT_PROB=0.8  |  CX_PROB=0.2  | MUT_INDPB=0.5  |  CX_INDPB=0.5  |  TOURNSIZE=4
+
+See https://deap.readthedocs.io/en/master/api/algo.html?highlight=eaSimple#module-deap.algorithms for more information.

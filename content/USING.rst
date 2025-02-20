@@ -18,3 +18,4 @@ The following guides walk through how to run various aspects of the IMPROVE work
    Building Containers <using_containers_build>
    CSA <using_csa>
    HPO <using_hpo>
+   LCA <using_lc>

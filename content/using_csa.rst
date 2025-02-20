@@ -48,5 +48,6 @@ References
 
    Brute-Force CSA <using_csa_bruteforce>
    Scaling CSA <using_csa_parsl>
+   Swarm CSA <using_csa_swarm>
    Post-process CSA Results <using_csa_postprocess>
  
