@@ -1,13 +1,27 @@
 Installation
 =================================
 
+Requirements
+--------------
+
+* Python >= 3.6
+* pandas
+* requests
+* tqdm
+* typing_extensions
+* pyyaml
+* scikit-learn
+
 Installing improvelib with pip
-------------
-Coming soon
+----------------------------------
+
+.. code-block:: bash
+
+    pip install improvelib
 
 
 Installing improvelib with git
-----------
+---------------------------------
 Clone the IMPROVE repository to a directory of your preference (outside of your drug response prediction (DRP) model's directory).
 
 .. code-block:: bash
@@ -38,3 +52,20 @@ or to a specified definition with the following:
 
     ./scripts/get-benchmarks $DESTINATION/csa_data/raw_data
 
+
+
+Installing conda
+_____________________________________
+
+To check if you have conda, use ``conda --version``.
+
+If you do not have conda installed, install with the following commands:
+
+.. code-block:: bash
+
+    wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+    chmod +x Miniconda3-latest-Linux-x86_64.sh
+    ./Miniconda3-latest-Linux-x86_64.sh
+    source ~/.bashrc
+
+Now, using the ``conda --version`` command should give the version you've downloaded. If not, close the terminal session and open again, then try ``conda --version``.
