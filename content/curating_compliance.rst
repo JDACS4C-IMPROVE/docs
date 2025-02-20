@@ -4,65 +4,80 @@ Ensuring the Curated Model is IMPROVE-compliant
 Following is a list of requirements for a curated model to be IMPROVE-compliant. Adhering to these requirements will allow
 the model to function with IMPROVE :doc:`workflows <USING>`.
 
-File naming conventions
+
+Required files and their naming conventions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
-* <model>_preprocess_improve.py
-* <model>_train_improve.py
-* <model>_infer_improve.py
-* <model>_params.ini
-* model_params_def.py
-* <model>_environment.yml
+A list of files required for compliance, along with their standardized naming patterns:
 
-All three (preprocess, train, infer) scripts
+* ``<model>_preprocess_improve.py``
+* ``<model>_train_improve.py``
+* ``<model>_infer_improve.py``
+* ``<model>_params.ini``
+* ``model_params_def.py``
+* ``<model>_environment.yml``
+
+
+All three stage scripts (preprocess, train, infer)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-* Use :code:`main()` which should:
 
-    * Set params with appropriate stage/application config
-    * Records the time to run :code:`run()` with :code:`from improvelib.utils import Timer`
-    * Calls :code:`run()` which runs the code and returns:
+Each of the three stage scripts uses a :code:`main()` function that:
 
-        * preprocess: returns :code:`output_dir`
-        * train: returns :code:`val_scores`
-        * infer: returns :code:`True`
+* Sets params with the appropriate stage/application config
+* Records execution time of :code:`run()` using :code:`from improvelib.utils import Timer`.
+* Calls :code:`run()`, which executes the stage-specific code and returns:
+  - **Preprocessing**: :code:`output_dir`
+  - **Training**: :code:`val_scores`
+  - **Inference**: :code:`True`
 
 
-Preprocess
-^^^^^^^^^^^^^^^^^^
-* Uses the application-appropriate data loader
-* Saves X data
-* Saves Y data using :code:`save_stage_ydf()`
+Preprocessing
+^^^^^^^^^^^^^^^^^^^
 
-Train
-^^^^^^^^^^^^^^^^^^
-* Saves model with model path determined by :code:`build_model_path()`
-* Saves val predictions with :code:`store_predictions_df()`
-* Saves val scores using :code:`compute_performance_scores()`
-* Early stopping using the param :code:`patience`
-* The model should use GPU by default
+* **Use the appropriate data loader** for your application.
+* **Save the X data** (features).
+* **Save the Y data** using :code:`save_stage_ydf()`.
 
-Infer
-^^^^^^^^^^^^^^^^^^
-* Uses model loaded with model path determined by :code:`build_model_path()`
-* Saves test predictions with :code:`store_predictions_df()`
-* Has option to save test scores using :code:`compute_performance_scores()` if param :code:`calc_infer_scores` is true
-* The model should use GPU by default
 
-Parameters and Configuration File
+Training
+^^^^^^^^^^^^^^
+
+* **Save the model** using a path determined by :code:`build_model_path()`.
+* **Save validation predictions** with :code:`store_predictions_df()`.
+* **Save validation scores** using :code:`compute_performance_scores()`.
+* **Implement early stopping** and use the :code:`patience` parameter.
+* **Use a GPU by default**, if available.
+
+
+Inference
+^^^^^^^^^^^^^^^
+
+* **Load the model** using a path determined by :code:`build_model_path()`.
+* **Save test predictions** with :code:`store_predictions_df()`.
+* **Optionally save test scores** using :code:`compute_performance_scores()` if :code:`calc_infer_scores` is set to ``True``.
+* **Use a GPU by default**, if available.
+
+
+Parameters and configuration file
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-* Model-specific parameters must not include parameters defined in IMPROVE (see parameters for :doc:`preprocess <api_preprocess>`, :doc:`train <api_train>`, and :doc:`infer <api_infer>`).
-* All IMPROVE-defined parameters that are used by the model should be used via the IMPROVE parameters
 
-    * E.g. :code:`params['patience']` should be used instead of a model defined :code:`early_stop` or simply :code:`100` in train.
-    * Model-specific parameters that users may want to change should also utilize IMPROVE parameter handling.
-* IMPROVE-defined parameters that are not used by the model should be set to :code:`None` in the config file.
+* **Avoid duplicating IMPROVE-defined parameters**
+  While you can define model-specific parameters, do not redefine those already established by IMPROVE. Refer to the IMPROVE-defined parameters for :doc:`preprocess <api_preprocess>`, :doc:`train <api_train>`, and :doc:`infer <api_infer>` as needed.
 
-Model Repository
+* **Use IMPROVE-defined parameters for consistent handling**
+  If your model relies on an IMPROVE-defined parameter, access it via the IMPROVE :code:`params` rather than creating a separate variable or using a hard-coded value. For example, use :code:`params['patience']` instead of introducing a new model-specific parameter (e.g., :code:`early_stop`) or typing a value directly (e.g., :code:`100`). Additionally, any model-specific parameter that users may need to adjust should integrate with the IMPROVE parameter handling system.
+
+* **Set unused IMPROVE-defined parameters to :code:`None`**
+  If your model does not require a particular IMPROVE-defined parameter, set it to :code:`None` in the config file. This ensures clarity about which parameters are actually used.
+
+
+Model repository
 ^^^^^^^^^^^^^^^^^^
-* The readme should be updated and follow this :doc:`template <curating_templates_readme>`
-* The repo should include :code:`setup_improve.sh` with this :doc:`template <curating_templates_downloads>`
 
-    * :code:`download_csa.sh` should be present in the repo
-    * If supplemental data not included in the benchmark data is needed by the model, it should be downloaded via a shell script present in the repo and this script should be included in :code:`setup_improve.sh` 
-    * The param :code:`input_supp_data_dir` should be used in preprocess to denote the default location of this data as downloaded by :code:`setup_improve.sh`
+* **README**
+  - Follow the :doc:`template <curating_templates_readme>` to ensure a unified structure.
 
-
+* **Include a :code:`setup_improve.sh` script**
+  - Base it on this :doc:`template <curating_templates_downloads>`.
+  - Ensure :code:`download_csa.sh` is present in the repo.
+  - If the model requires supplemental data (not included in the benchmark data), it should be downloaded via a shell script present in the repo, and this script should be integrated in :code:`setup_improve.sh`
+  - In the preprocessing stage, use the :code:`input_supp_data_dir` parameter to specify the default location where :code:`setup_improve.sh` places any supplemental data.
