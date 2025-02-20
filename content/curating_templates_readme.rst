@@ -1,6 +1,9 @@
 README Template
 ================================
 
+This document provides a structured template for creating a README file for IMPROVE models. Following this template ensures that your model repository is well-documented and easily accessible to researchers and developers.
+
+Below is a standardized example README for a **GraphDRP** model. Replace placeholders with your model-specific details.
 
 
 .. code-block::
