@@ -48,17 +48,17 @@ Currently, we utilized 9 models for the cross-study analysis. We forked the orig
 .. toctree::
    :titlesonly:
 
-   Models-GraphDRP
-   Models-tCNNS
-   Models-DeepTTC
-   Models-IGTD
-   Models-HiDRA
-   Models-Paccman_MCA
-   Models-DualGCN
    Models-DeepCDR
-   Models-PathDSP
+   Models-GraphDRP
+   Models-HiDRA
+   Models-tCNNS
    Models-LGBM
    Models-UNO
+   .. Models-DeepTTC
+   Models-DualGCN
+   Models-IGTD
+   Models-Paccman_MCA
+   Models-PathDSP
 
 
 References
