@@ -1,14 +1,14 @@
 Using Models with Workflows
 =================================
-With the recent explosion in the number and diversity of supervised learning models, there is a need for standardized evaluation schemes and datasets to benchmark models. 
-We are creating both benchmark datasets and benchmark evaluation schemes as part of the IMPROVE framework, beginning with Drug Response Prediction.
+.. With the recent explosion in the number and diversity of supervised learning models, there is a need for standardized evaluation schemes and datasets to benchmark models. We are creating both benchmark datasets and benchmark evaluation schemes as part of the IMPROVE framework, beginning with Drug Response Prediction.
 
-Once a deep learning model has been :doc:`curated<curating>` with improvelib, the model can be used in :doc:`benchmark evaluation schemes<EVALUATION>` at scale. 
+.. Once a deep learning model has been :doc:`curated<curating>` with improvelib, the model can be used in :doc:`benchmark evaluation schemes<EVALUATION>` at scale. 
 
-We currently have benchmark data for :doc:`Drug Response Prediction <CSA_Benchmark_Datasets>`.
+.. We currently have benchmark data for :doc:`Drug Response Prediction <CSA_Benchmark_Datasets>`.
 
+.. The following guides walk through how to run various aspects of the IMPROVE workflows.
 
-The following guides walk through how to run various aspects of the IMPROVE workflows.
+This section helps you get started with using IMPROVE curated models. Whether you're running individual model scripts or executing advanced workflows, you'll find instructions and best practices here.
 
 .. toctree::
    :titlesonly:
@@ -16,6 +16,7 @@ The following guides walk through how to run various aspects of the IMPROVE work
 
    Running a Single Model <using_running>
    Building Containers <using_containers_build>
+   Workflows <workflows_overview>
    CSA <using_csa>
    HPO <using_hpo>
    LCA <using_lc>
