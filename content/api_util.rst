@@ -303,3 +303,228 @@ Response Utility Functions (drp_utils)
             rsp = drp_loader["response.tsv"]
 
 
+IMPROVE Synergy utility functions
+-----------------------------------------
+
+The following functions are part of improvelib and should be used to standardize aspects of the workflow.
+
+.. topic:: get_response_data
+
+    Gets response data for a given split file.
+
+    Used in *preprocess*.
+
+    Args:
+        split_file (Union[str, Path, list of str, list of Path]): Name of split file if in benchmark data, otherwise path to split file. Can be a list of str or Path.
+        
+        benchmark_dir (Union[str, Path]): Path to benchmark data directory.
+        
+        response_file (str): Name of response file (default: 'synergy.tsv')
+        
+        sep (str): Separator for response file (default: '\t').
+    
+    Returns:
+        pd.DataFrame: Response dataframe for given split.
+
+.. topic:: get_all_response_data
+
+    Gets response data for a given split file.
+
+    Used in *preprocess*.
+
+    Args:
+        train_split_file (Union[str, Path, list of str, list of Path]): Name of train split file if in benchmark data, otherwise path to train split file. Can be a list of str or Path.
+        
+        val_split_file (Union[str, Path, list of str, list of Path]): Name of val split file if in benchmark data, otherwise path to val split file. Can be a list of str or Path.
+        
+        test_split_file (Union[str, Path, list of str, list of Path]): Name of test split file if in benchmark data, otherwise path to test split file. Can be a list of str or Path.
+        
+        benchmark_dir (Union[str, Path]): Path to benchmark data directory.
+        
+        response_file (str): Name of response file (default: 'synergy.tsv')
+        
+        sep (str): Separator for response file (default: '\t').
+    
+    Returns:
+        pd.DataFrame: Response dataframe for all splits with col 'split' denoting split type ('train', 'val', or 'test').
+
+
+.. topic:: get_cell_transcriptomics
+
+    Gets cell transcriptomics. Sets index to cell ID and sets dtype to float64.
+
+    Used in *preprocess*.
+
+    Args:
+        file (Union[str, Path]): Name of cell transcriptomics file if in benchmark data, otherwise path to cell transcriptomics file. 
+        
+        benchmark_dir (Union[str, Path]): Path to benchmark data directory.
+        
+        cell_column_name (str): Name of ID column for cell data.
+        
+        norm (list): Normalization to perform on this data.
+    
+    Returns:
+        pd.DataFrame: cell transcriptomics data (with normalization if specified), index set to cell ID.
+
+.. topic:: get_cell_cnv
+
+    Gets cell Copy Number Variation. Sets index to cell ID and sets dtype to float64.
+
+    Used in *preprocess*.
+
+    Args:
+        file (Union[str, Path]): Name of cell Copy Number Variation file if in benchmark data, otherwise path to cell Copy Number Variation file. 
+        
+        benchmark_dir (Union[str, Path]): Path to benchmark data directory.
+        
+        cell_column_name (str): Name of ID column for cell data.
+        
+        norm (list): Normalization to perform on this data.
+    
+    Returns:
+        pd.DataFrame: cell Copy Number Variation data (with normalization if specified), index set to cell ID.
+
+.. topic:: get_cell_mutations
+
+    Gets cell mutation. Sets index to cell ID and sets dtype to float64.
+
+    Used in *preprocess*.
+
+    Args:
+        file (Union[str, Path]): Name of cell mutation file if in benchmark data, otherwise path to cell mutation file. 
+        
+        benchmark_dir (Union[str, Path]): Path to benchmark data directory.
+        
+        cell_column_name (str): Name of ID column for cell data.
+        
+        norm (list): Normalization to perform on this data.
+    
+    Returns:
+        pd.DataFrame: cell mutation data (with normalization if specified), index set to cell ID.
+
+.. topic:: get_response_data
+
+    Gets response data for a given split file.
+
+    Used in *preprocess*.
+
+    Args:
+        split_file (Union[str, Path, list of str, list of Path]): Name of split file if in benchmark data, otherwise path to split file. Can be a list of str or Path.
+        
+        benchmark_dir (Union[str, Path]): Path to benchmark data directory.
+        
+        response_file (str): Name of response file (default: 'synergy.tsv')
+        
+        sep (str): Separator for response file (default: '\t').
+    
+    Returns:
+        pd.DataFrame: Response dataframe for given split.
+
+.. topic:: get_response_data
+
+    Gets response data for a given split file.
+
+    Used in *preprocess*.
+
+    Args:
+        split_file (Union[str, Path, list of str, list of Path]): Name of split file if in benchmark data, otherwise path to split file. Can be a list of str or Path.
+        
+        benchmark_dir (Union[str, Path]): Path to benchmark data directory.
+        
+        response_file (str): Name of response file (default: 'synergy.tsv')
+        
+        sep (str): Separator for response file (default: '\t').
+    
+    Returns:
+        pd.DataFrame: Response dataframe for given split.
+
+.. topic:: get_response_data
+
+    Gets response data for a given split file.
+
+    Used in *preprocess*.
+
+    Args:
+        split_file (Union[str, Path, list of str, list of Path]): Name of split file if in benchmark data, otherwise path to split file. Can be a list of str or Path.
+        
+        benchmark_dir (Union[str, Path]): Path to benchmark data directory.
+        
+        response_file (str): Name of response file (default: 'synergy.tsv')
+        
+        sep (str): Separator for response file (default: '\t').
+    
+    Returns:
+        pd.DataFrame: Response dataframe for given split.
+
+.. topic:: get_response_data
+
+    Gets response data for a given split file.
+
+    Used in *preprocess*.
+
+    Args:
+        split_file (Union[str, Path, list of str, list of Path]): Name of split file if in benchmark data, otherwise path to split file. Can be a list of str or Path.
+        
+        benchmark_dir (Union[str, Path]): Path to benchmark data directory.
+        
+        response_file (str): Name of response file (default: 'synergy.tsv')
+        
+        sep (str): Separator for response file (default: '\t').
+    
+    Returns:
+        pd.DataFrame: Response dataframe for given split.
+
+.. topic:: get_response_data
+
+    Gets response data for a given split file.
+
+    Used in *preprocess*.
+
+    Args:
+        split_file (Union[str, Path, list of str, list of Path]): Name of split file if in benchmark data, otherwise path to split file. Can be a list of str or Path.
+        
+        benchmark_dir (Union[str, Path]): Path to benchmark data directory.
+        
+        response_file (str): Name of response file (default: 'synergy.tsv')
+        
+        sep (str): Separator for response file (default: '\t').
+    
+    Returns:
+        pd.DataFrame: Response dataframe for given split.
+
+.. topic:: get_response_data
+
+    Gets response data for a given split file.
+
+    Used in *preprocess*.
+
+    Args:
+        split_file (Union[str, Path, list of str, list of Path]): Name of split file if in benchmark data, otherwise path to split file. Can be a list of str or Path.
+        
+        benchmark_dir (Union[str, Path]): Path to benchmark data directory.
+        
+        response_file (str): Name of response file (default: 'synergy.tsv')
+        
+        sep (str): Separator for response file (default: '\t').
+    
+    Returns:
+        pd.DataFrame: Response dataframe for given split.
+
+.. topic:: get_response_data
+
+    Gets response data for a given split file.
+
+    Used in *preprocess*.
+
+    Args:
+        * split_file (Union[str, Path, list of str, list of Path]): Name of split file if in benchmark data, otherwise path to split file. Can be a list of str or Path.
+        
+        * benchmark_dir (Union[str, Path]): Path to benchmark data directory.
+        
+        * response_file (str): Name of response file (default: 'synergy.tsv')
+        
+        * sep (str): Separator for response file (default: '\t').
+    
+    Returns:
+        pd.DataFrame: Response dataframe for given split.

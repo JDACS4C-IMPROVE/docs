@@ -92,3 +92,13 @@ Drug Response Prediction training parameters
   | **Type:** str
   | **Default:** "auc"
   | **Help:** Column name in the y data file (e.g., response.tsv), that represents the target variable that the model predicts.
+
+
+Synergy training parameters
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+*y_col_name*
+  | **Type:** str
+  | **Default:** "loewe"
+  | **Help:** "Column name in the y data file (e.g., synergy.tsv), that represents the target variable that the model predicts. 
+  In synergy prediction problem it can be one of ['loewe', 'bliss', 'zip', 'hsa', 'smean', 'css']."
