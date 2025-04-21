@@ -108,3 +108,92 @@ Drug Response Prediction preprocess parameters
 
 
 
+Synergy preprocess parameters
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+*y_data_file*
+  | **Type:** str
+  | **Default:** "synergy.tsv"
+  | **Help:** File that contains the y (prediction variable) data.
+
+*cell_transcriptomic_file*
+  | **Type:** str
+  | **Default:** None
+  | **Help:** "'cell_transcriptomics.tsv' for benchmark data or path to the transcriptomics data. None if not used."
+
+*cell_transcriptomic_transform*
+  | **Type:** str
+  | **Default:** None
+  | **Help:** "List of lists with the type of transformation and the option. Transformations will be performed in the order of the 
+  outer list. For example, [['normalize', 'zscale'], ['subset', 'L1000']] will first normalize the data with z-scaling and then 
+  subset to genes in L1000. For subset, a path to a text file with Entrez IDs separated by new lines can be given. None if not used."
+
+*cell_cnv_file*
+  | **Type:** str
+  | **Default:** None
+  | **Help:** "'cell_cnv_continuous.tsv' or 'cell_cnv_discretized.tsv' for benchmark data or path to the CNV data. None if not used."
+
+*cell_cnv_transform*
+  | **Type:** str
+  | **Default:** None
+  | **Help:** "List of lists with the type of transformation and the option. Transformations will be performed in the order of the 
+  outer list. For example, [['normalize', 'zscale'], ['subset', 'L1000']] will first normalize the data with z-scaling and then 
+  subset to genes in L1000. For subset, a path to a text file with Entrez IDs separated by new lines can be given. None if not used."
+
+*cell_mutation_file*
+  | **Type:** str
+  | **Default:** None
+  | **Help:** "'cell_mutation_delet.tsv' or 'cell_mutation_nonsynon.tsv' for benchmark data or path to the mutation data. None if not used."
+
+*cell_mutation_transform*
+  | **Type:** str
+  | **Default:** None
+  | **Help:** "List of lists with the type of transformation and the option. Transformations will be performed in the order of the 
+  outer list. For example, [['normalize', 'zscale'], ['subset', 'L1000']] will first normalize the data with z-scaling and then 
+  subset to genes in L1000. For subset, a path to a text file with Entrez IDs separated by new lines can be given. None if not used."
+
+*drug_smiles_file*
+  | **Type:** str
+  | **Default:** None
+  | **Help:** "'drug_smiles.tsv' or 'drug_smiles_canonical.tsv' for benchmark data or path to the SMILES data. None if not used."
+
+*drug_mordred_file*
+  | **Type:** str
+  | **Default:** None
+  | **Help:** "'drug_mordred.tsv' for benchmark data or path to the Mordred data. None if not used."
+
+*drug_infomax_file*
+  | **Type:** str
+  | **Default:** None
+  | **Help:** "'drug_infomax.tsv' for benchmark data or path to the Infomax data. None if not used."
+
+*drug_ecfp_file*
+  | **Type:** str
+  | **Default:** None
+  | **Help:** "'drug_ecfp[2/4/6]_nbits[256/1024].tsv' for benchmark data or path to the ECFP data. None if not used."
+
+*cell_column_name*
+  | **Type:** str
+  | **Default:** "DepMapID"
+  | **Help:** "Column name in the y (response) data file that contains the cancer sample IDs."
+
+*drug_column_name*
+  | **Type:** str
+  | **Default:** "DrugID"
+  | **Help:** "Column name in the y (response) data file that contains the cancer sample IDs."
+
+*drug_1_column_name*
+  | **Type:** str
+  | **Default:** "DrugID_row"
+  | **Help:** "Column name in the y (response) data file that contains the first drug IDs."
+
+*drug_2_column_name*
+  | **Type:** str
+  | **Default:** "DrugID_col"
+  | **Help:** "Column name in the y (response) data file that contains the second drug IDs."
+
+*y_col_name*
+  | **Type:** str
+  | **Default:** "loewe"
+  | **Help:** "Column name in the y data file (e.g., synergy.tsv), that represents the target variable that the model predicts. 
+  In synergy prediction problem it can be one of ['loewe', 'bliss', 'zip', 'hsa', 'smean', 'css']."
