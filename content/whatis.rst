@@ -33,5 +33,6 @@ References
 ---------------------------------
 `1. <https://www.frontiersin.org/articles/10.3389/fmed.2023.1086097/full>`_ A. Partin et al. "Deep learning methods for drug response prediction in cancer: Predominant and emerging trends", Frontiers in Medicine, Section Prediction Oncology, 2023
 
-1. JC. Overbeek and A. Partin et al. "Assessing reusability of deep learning-based monotherapy drug response prediction models trained with omics data", arXiv, 2024
+`2. <https://arxiv.org/abs/2409.12215>`_ JC. Overbeek and A. Partin et al. "Assessing Reusability of Deep Learning-Based Monotherapy Drug Response Prediction Models Trained with Omics Data", arXiv, 2024
 
+`3. <https://arxiv.org/abs/2503.14356>`_ A. Partin and P. Vasanthakumari et al. "Benchmarking community drug response prediction models: datasets, models, tools, and metrics for cross-dataset generalization analysis", arXiv, 2025
