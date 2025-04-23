@@ -22,3 +22,7 @@ Feature Representation
 URLs
 --------------------
 - `Original GitHub <https://github.com/JDACS4C-IMPROVE/Benchmarks/tree/preprocess_improve/Pilot1/Uno_IMPROVE>`__
+
+References
+--------------------
+`1. <https://academic.oup.com/bib/article/23/1/bbab356/6370300>`_ F. Xia, et. al. "A cross-study analysis of drug response prediction in cancer cell lines", Briefings in Bioinformatics, 2022
