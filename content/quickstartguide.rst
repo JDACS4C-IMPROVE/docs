@@ -92,10 +92,10 @@ By default the output from all scripts is saved in the current working directory
 - Preprocess: the ML data (model input data)
 
 - Train:
-  - the saved model (here :code:`model.txt`) <br>
-  - the validation data performance scores (:code:`val_scores.json`) <br>
-  - the predicted response data on the validation set (:code:`val_y_data_predicted.csv`) <br>
+  | - the saved model (here :code:`model.txt`)
+  | - the validation data performance scores (:code:`val_scores.json`)
+  | - the predicted response data on the validation set (:code:`val_y_data_predicted.csv`)
 
 - Infer:
-  - the test data performance scores (:code:`test_score.json`) <br>
-  - the predicted response data on the test data (:code:`test_y_data_predicted.csv`) <br>
+  | - the test data performance scores (:code:`test_score.json`)
+  | - the predicted response data on the test data (:code:`test_y_data_predicted.csv`)
