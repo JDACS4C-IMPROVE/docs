@@ -27,14 +27,14 @@ Download Benchmark Dataset
 IMPROVE uses publicly available datasets that have been standardized and harmonized for use in assessing machine learning algorithms. 
 Here we download the Drug Response Prediction Benchmark Dataset (CSA data). There are two options to download this data.
 
-A. Directly with wget
+A. Using :code:`wget`
 
 .. code-block:: bash
 
     cd LGBM
     wget https://web.cels.anl.gov/projects/IMPROVE_FTP/candle/public/improve/benchmarks/single_drug_drp/benchmark-data-pilot1/csa_data/
 
-B. By running the download_csa script
+B. Using `download_csa` script
 
 .. code-block:: bash
 
@@ -89,13 +89,15 @@ Output
 -----------------------------
 By default the output from all scripts is saved in the current working directory. In this example, everything is saved in :code:`exp_result`.
 
-- Preprocess: the ML data (model input data)
+- **Preprocess**: the ML data (model input data)
 
-- Train:
-  | - the saved model (here :code:`model.txt`)
-  | - the validation data performance scores (:code:`val_scores.json`)
-  | - the predicted response data on the validation set (:code:`val_y_data_predicted.csv`)
+- **Train**
+  
+  - the saved model (here :code:`model.txt`)
+  - the validation data performance scores (:code:`val_scores.json`)
+  - the predicted response data on the validation set (:code:`val_y_data_predicted.csv`)
 
-- Infer:
-  | - the test data performance scores (:code:`test_score.json`)
-  | - the predicted response data on the test data (:code:`test_y_data_predicted.csv`)
+- **Infer**
+  
+  - the test data performance scores (:code:`test_score.json`)
+  - the predicted response data on the test data (:code:`test_y_data_predicted.csv`)
