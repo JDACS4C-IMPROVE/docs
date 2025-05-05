@@ -46,6 +46,73 @@ Deprecated Parameters
 Updating v0.0.3 curated models
 ---------------------------------
 
+DRP Benchmarks v2 update
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- Benchmarks no longer have a triple header, and are flexibly loaded. Documentation will be fully updated after push to develop.
+
+- Delete:
+
+  .. code-block::
+
+    import improvelib.applications.drug_response_prediction.drug_utils as drugs_utils
+    import improvelib.applications.drug_response_prediction.omics_utils as omics_utils
+
+- Example change for omics:
+
+  .. code-block::
+
+    omics_obj = omics_utils.OmicsLoader(params)
+    ge = omics_obj.dfs['cancer_gene_expression.tsv']
+
+
+  to
+
+  .. code-block::
+
+    ge = drp.get_cell_transcriptomics(file = params['cell_transcriptomic_file'], 
+                                    benchmark_dir = params['input_dir'], 
+                                    cell_column_name = params['canc_col_name'], 
+                                    norm = params['cell_transcriptomic_transform'])
+    ge = ge.reset_index()
+
+- Example change for drug:
+
+  .. code-block::
+
+    drugs_obj = drugs_utils.DrugsLoader(params)
+    md = drugs_obj.dfs['drug_mordred.tsv']
+
+
+  to
+
+  .. code-block::
+
+    md = drp.get_drug_mordred(file = params['drug_mordred_file'], 
+                benchmark_dir = params['input_dir'], 
+                drug_column_name = params['drug_col_name'])
+
+- Example change for response (change all instances):
+
+  .. code-block::
+
+    rsp_tr = drp.DrugResponseLoader(params,
+                                    split_file=params["train_split_file"],
+                                    verbose=False).dfs["response.tsv"]
+
+
+  to
+
+  .. code-block::
+
+    rsp_tr = drp.get_response_data(split_file=params["train_split_file"], 
+                                   benchmark_dir=params['input_dir'], 
+                                   response_file=params['y_data_file'])
+
+
+
+
+
 Updating Environment
 ^^^^^^^^^^^^^^^^^^^^^^
 
