@@ -5,7 +5,7 @@ All models should have :code:`setup_improve.sh` and :code:`download_csa.sh` pres
 should also be downloaded via shell script and included in :code:`setup_improve.sh` (see below).
 
 Template for :code:`setup_improve.sh`
-------------------------------------
+----------------------------------------
 
 .. code-block:: bash
 

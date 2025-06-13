@@ -1,4 +1,4 @@
-Preprocess API
+Preprocess Parameters
 =================================
 
 IMPROVE general preprocess parameters
@@ -124,9 +124,7 @@ Synergy preprocess parameters
 *cell_transcriptomic_transform*
   | **Type:** str
   | **Default:** None
-  | **Help:** "List of lists with the type of transformation and the option. Transformations will be performed in the order of the 
-  outer list. For example, [['normalize', 'zscale'], ['subset', 'L1000']] will first normalize the data with z-scaling and then 
-  subset to genes in L1000. For subset, a path to a text file with Entrez IDs separated by new lines can be given. None if not used."
+  | **Help:** "List of lists with the type of transformation and the option. Transformations will be performed in the order of the outer list. For example, [['normalize', 'zscale'], ['subset', 'L1000']] will first normalize the data with z-scaling and then subset to genes in L1000. For subset, a path to a text file with Entrez IDs separated by new lines can be given. None if not used."
 
 *cell_cnv_file*
   | **Type:** str
@@ -136,9 +134,7 @@ Synergy preprocess parameters
 *cell_cnv_transform*
   | **Type:** str
   | **Default:** None
-  | **Help:** "List of lists with the type of transformation and the option. Transformations will be performed in the order of the 
-  outer list. For example, [['normalize', 'zscale'], ['subset', 'L1000']] will first normalize the data with z-scaling and then 
-  subset to genes in L1000. For subset, a path to a text file with Entrez IDs separated by new lines can be given. None if not used."
+  | **Help:** "List of lists with the type of transformation and the option. Transformations will be performed in the order of the outer list. For example, [['normalize', 'zscale'], ['subset', 'L1000']] will first normalize the data with z-scaling and then subset to genes in L1000. For subset, a path to a text file with Entrez IDs separated by new lines can be given. None if not used."
 
 *cell_mutation_file*
   | **Type:** str
@@ -148,9 +144,7 @@ Synergy preprocess parameters
 *cell_mutation_transform*
   | **Type:** str
   | **Default:** None
-  | **Help:** "List of lists with the type of transformation and the option. Transformations will be performed in the order of the 
-  outer list. For example, [['normalize', 'zscale'], ['subset', 'L1000']] will first normalize the data with z-scaling and then 
-  subset to genes in L1000. For subset, a path to a text file with Entrez IDs separated by new lines can be given. None if not used."
+  | **Help:** "List of lists with the type of transformation and the option. Transformations will be performed in the order of the outer list. For example, [['normalize', 'zscale'], ['subset', 'L1000']] will first normalize the data with z-scaling and then subset to genes in L1000. For subset, a path to a text file with Entrez IDs separated by new lines can be given. None if not used."
 
 *drug_smiles_file*
   | **Type:** str
@@ -195,5 +189,4 @@ Synergy preprocess parameters
 *y_col_name*
   | **Type:** str
   | **Default:** "loewe"
-  | **Help:** "Column name in the y data file (e.g., synergy.tsv), that represents the target variable that the model predicts. 
-  In synergy prediction problem it can be one of ['loewe', 'bliss', 'zip', 'hsa', 'smean', 'css']."
+  | **Help:** "Column name in the y data file (e.g., synergy.tsv), that represents the target variable that the model predicts. In synergy prediction problem it can be one of ['loewe', 'bliss', 'zip', 'hsa', 'smean', 'css']."

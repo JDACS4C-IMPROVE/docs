@@ -1,4 +1,4 @@
-Using Models with Workflows
+User Guide
 =================================
 .. With the recent explosion in the number and diversity of supervised learning models, there is a need for standardized evaluation schemes and datasets to benchmark models. We are creating both benchmark datasets and benchmark evaluation schemes as part of the IMPROVE framework, beginning with Drug Response Prediction.
 
@@ -15,8 +15,7 @@ This section helps you get started with using IMPROVE curated models. Whether yo
    :maxdepth: 2
 
    Running a Single Model <using_running>
-   Building Containers <using_containers_build>
-   Workflows <workflows_overview>
-   CSA <using_csa>
-   HPO <using_hpo>
-   LCA <using_lc>
+   Curating New Models <curating>
+   Using Workflows <workflows_overview>
+   Using Non-Benchmark Data <using_external_data>
+

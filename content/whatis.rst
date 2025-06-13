@@ -25,6 +25,8 @@ For more information
    Background <whatis_background>
    Future Directions <whatis_future>
    Acknowledgments <whatis_acknowledgment>
+   Publications <PUBS>
+   Contact Us <CONTACT>
 
 
 Access the code base https://github.com/JDACS4C-IMPROVE/

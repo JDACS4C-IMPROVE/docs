@@ -15,9 +15,9 @@ If you would like to contribute a curated model to the IMPROVE project, please :
    :titlesonly:
 
    Curating Steps <curating_steps>
+   Requirements for Curated Models <curating_compliance>
    Step-by-Step Example <curating_tutorial>
    Templates <curating_templates>
-   Requirements for Curated Models <curating_compliance>
-   Curating a Synergy Model <curating_synergy>
+   
 
 

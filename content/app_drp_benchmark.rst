@@ -1,4 +1,4 @@
-Benchmark Data for Cross-Study Analysis  
+Benchmark Data for DRP  
 ===========================================
 The benchmark data for Cross-Study Analysis (CSA) include four kinds of data, which are cell line response data, cell line multi-omics data, drug feature data, and data partitions. The figure below illustrates the curation, processing, and assembly of benchmark data, and a unified schema for data curation. Cell line response data were extracted from five sources, including the Cancer Cell Line Encyclopedia (CCLE), the Cancer Therapeutics Response Portal version 2 (CTRPv2), the Genomics of Drug Sensitivity in Cancer version 1 (GDSC1), the Genomics of Drug Sensitivity in Cancer version 2 (GDSC2), and the Genentech Cell Line Screening Initiative (GCSI). These are five large-scale cell line drug screening studies. We extracted their multi-dose viability data and used a unified dose response fitting pipeline to calculate multiple dose-independent response metrics as shown in the figure below, such as the area under the dose response curve (AUC) and the half-maximal inhibitory concentration (IC50). The multi-omics data of cell lines were extracted from the the Dependency Map (DepMap) portal of CCLE, including gene expressions, DNA mutations, DNA methylation, gene copy numbers, protein expressions measured by reverse phase protein array (RPPA), and miRNA expressions. Data preprocessing was performed, such as descritizing gene copy numbers and mapping between different gene identifier systems. Drug information was retrived from PubChem. Based on the drug SMILES (Simplified Molecular Input Line Entry Specification) strings, we calculated their molecular fingerprints and descriptors using the Mordred and RDKit Python packages. Data partition files were generated using the IMPROVE benchmark data preparation pipeline. They indicate, for each modeling analysis run, which samples should be included in the training, validation, and testing sets, for building and evaluating the drug response prediction (DRP) models. The Table below shows the numbers of cell lines, drugs, and experiments in each dataset. Across the five datasets, there are 785 unique cell lines and 749 unique drugs. All cell lines have gene expression, mutation, DNA methylation, and copy number data available. 760 of the cell lines have RPPA protein expressions, and 781 of them have miRNA expressions.
 
@@ -41,7 +41,9 @@ Flowchart illustrating the curation, processing, and assembly of benchmark data 
 
 Data Location
 ----------------
+
 - https://ftp.mcs.anl.gov/pub/candle/public/improve/benchmarks/single_drug_drp/benchmark-data-pilot1/csa_data/raw_data/
+
 Data File Description
 -----------------------
 

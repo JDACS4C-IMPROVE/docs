@@ -4,6 +4,13 @@ Hyper Parameter Optimization (HPO) with DeepHyper
 An overview of hyperparameter optimization can be found :doc:`here <using_hpo>`. 
 DeepHyper [1] uses Bayesian Optimization with parallel procesing to determine optimal hyperparameters using the validation loss.
 
+.. figure:: ../images/hpo_workflow.png
+   :class: with-border
+   :align: center
+   :width: 90%
+
+   HPO workflow using DeepHyper
+
 Run HPO using DeepHyper with conda
 -----------------------------------------------
 The DeepHyper HPO workflow uses two different conda environments. 

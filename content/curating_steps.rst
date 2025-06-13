@@ -29,19 +29,19 @@ Templates available in :doc:`curating_templates` and on `GitHub <https://github.
 
 - Any additional imports should be added as appropriate.
 
-- IMPROVE provided parameters should be used as appropriate so that workflows function properly (e.g. HPO will use the provided :code:`epochs` parameter). Parameters can be retrieved from the params dictionary with the key as so: :code:`params['epochs']`. IMPROVE provided parameters can be found here: :doc:`API`.
+- IMPROVE provided parameters should be used as appropriate so that workflows function properly (e.g. HPO will use the provided :code:`epochs` parameter). Parameters can be retrieved from the params dictionary with the key as so: :code:`params['epochs']`. IMPROVE provided parameters can be found here: :doc:`api_parameters`.
 
 - All scripts have a single :code:`output_dir`. Preprocess and train scripts have a single :code:`input_dir`. The infer script has two input directories, one for the saved model (:code:`input_model_dir`) and one for the ML data for the inference split (:code:`input_data_dir`). These are all set by default to the current working directory, but it is important to ensure that the correct input directories (i.e. model and data) are used in the code in the infer script so that workflows function correctly.
 
 - Other model-specific parameters not included as part of IMPROVE can be defined as described here: :doc:`api_model`. 
 
-- IMPROVE model files should be named as follows, where '<model>' is the name of your model:
+- IMPROVE model files should be named as follows, where '<MODEL>' is the name of your model:
 
-  - For preprocessing: :code:`<model>_preprocess_improve.py`
+  - For preprocessing: :code:`<MODEL>_preprocess_improve.py`
 
-  - For training: :code:`<model>_train_improve.py`
+  - For training: :code:`<MODEL>_train_improve.py`
 
-  - For inference: :code:`<model>_infer_improve.py`
+  - For inference: :code:`<MODEL>_infer_improve.py`
 
 Create default configuration file
 -----------------------------------
@@ -53,25 +53,29 @@ Templates available in :doc:`curating_templates` and on `GitHub <https://github.
 
 - For parameters that are used in more than one script (e.g. :code:`model_file_name` in both train and infer), these will have to be set in both the :code:`[Train]` and :code:`[Infer]` sections of the config.
 
-- The default configuation file should be named as follows, where 'model' is the name of your model: :code:`<model>_params.txt`.
+- The default configuation file should be named as follows, where '<MODEL>' is the name of your model: :code:`<MODEL>_params.txt`.
 
 Set up :code:`main()` for your model
-------------------------------
-There are three required lines in :code:`main()` for each script. This is the the :code:`main()` for preprocess:
+-----------------------------------------
+There should be :code:`main()` for each script, which does three things: 1) gets the parameters 2) calls :code:`run()` and 3) records the time it takes for the model to run. This is the the :code:`main()` for preprocess in a DRP model:
 
   .. code-block::
 
-    def main(args):
-        cfg = DRPPreprocessConfig()
-        params = cfg.initialize_parameters(
-            pathToModelDir=filepath,
-            default_config="model_default_params.txt",
-            default_model=None,
-            additional_cli_section=None,
-            additional_definitions=preprocess_params,
-            required=None
-        )
-        output_dir = run(params)
+      def main(args):
+          cfg = DRPPreprocessConfig()
+          params = cfg.initialize_parameters(pathToModelDir=filepath,
+                                            default_config="<MODEL>_params.ini",
+                                            additional_definitions=preprocess_params)
+          timer_preprocess = frm.Timer()
+          ml_data_outdir = run(params)
+          timer_preprocess.save_timer(dir_to_save=params["output_dir"], 
+                                      filename='runtime_preprocess.json', 
+                                      extra_dict={"stage": "preprocess"})
+          print("\nFinished data preprocessing.")
+  
+  .. note::
+
+    Remember to use the Config that is appropriate for both your stage (preprocess/train/infer) and your application (DRP, Synergy, etc).
 
 - The first line (:code:`cfg = DRPPreprocessConfig()`) initializes the configuration object for each script as appropriate.
 
@@ -83,7 +87,13 @@ There are three required lines in :code:`main()` for each script. This is the th
 
   - :code:`additional_definitions` is the list of model-specific parameters.
 
-- The third line calls :code:`run()` with the parameters. As dicussed, :code:`run()` contains the model code.
+- The third line initializes the Timer.
+
+- The fourth line calls :code:`run()` with the parameters. As dicussed, :code:`run()` contains the model code.
+
+- The fifth line ends the Timer and saves the time to a JSON file in the output_dir.
+
+- The last (optional) line prints a message indicating that the script is finished and ran successfully.
 
 Ensure the model runs with original data
 -----------------------------------------
@@ -94,7 +104,7 @@ Ensure the model runs with original data
 
 Implement IMPROVE benchmark data
 -------------------------------------
-To use IMPROVE benchmark Drug Response Prediction data, data loaders are provided.
+To use IMPROVE benchmark data, functions to load the data are provided.
 
 - Download benchmark dataset. This should be in the input folder for preprocess
 
@@ -107,21 +117,34 @@ To use IMPROVE benchmark Drug Response Prediction data, data loaders are provide
     val_split_file = CCLE_split_0_val.txt
     test_split_file = CCLE_split_0_test.txt
 
-- Create objects to load the features for drugs and cells (omics) loader as follows:
+- Set the appropriate parameters for the feature types your would like to use. See here for available parameters. 
+  See here for details on feature types. This should be the name of the file in the benchmark dataset.
+  Alternately, a path to another file can be provided. See here for how to format these files correctly. The available features are detailed here: :doc:`app_drp_benchmark`.
 
   .. code-block::
 
-    drugs_obj = drugs.DrugsLoader(params)
-    omics_obj = omics.OmicsLoader(params)
+    [Preprocess]
+    cell_transcriptomics_file = cancer_gene_expression.tsv
 
-  You can retrieve the necessary features dataframes (e.g. gene expression and mordred) as follows:
+- Load the features with :doc:`api_drp_util_get_x_data` like so:
 
   .. code-block::
 
-    gene_expression = omics_obj.dfs['cancer_gene_expression.tsv']
-    mordred = drugs_obj.dfs['drug_mordred.tsv']
+    omics = drp.get_x_data(file = params['cell_transcriptomic_file'], 
+                                        benchmark_dir = params['input_dir'], 
+                                        column_name = params['canc_col_name'])
 
-  The available features are detailed here: :doc:`app_drp_benchmark`.
+
+  Ensure that the column name is set to the correct parameter for your feature type and application. 
+  The column name parameter names for each application can be found here: :doc:`api_preprocess`.
+
+- Determine the transformations on the training set.
+
+- Preprocess the train, val, and test datasets.
+
+- Save the ML data.
+
+- Save the y data.
 
 - Create three objects to load the response data for the three different splits:
 
