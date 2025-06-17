@@ -5,7 +5,7 @@ The following functions are part of improvelib and should be used to standardize
 
 .. toctree::
 
-   get_response_data <api_utils_get_response_data>
+   get_y_data <api_utils_get_y_data>
    get_x_data <api_utils_get_x_data>
    get_response_with_features <api_utils_get_response_with_features>
    get_features_in_response <api_utils_get_features_in_response>
