@@ -1,0 +1,27 @@
+.wy-nav-content {
+    max-width: 90% !important;
+}
+
+
+.topic {
+    padding: 15px 20px;
+    padding-bottom: 0 !important;
+    margin-bottom: 20px;
+    border: 1px solid #D0D0D0;
+    border-radius: 6px;
+    color: black;
+    background-color: #F0F0F0;
+}
+
+.topic-title {
+    font-weight: bold;
+    background-color: #D0D0D0;
+    padding: 10px 20px;
+    margin: -15px -20px 0 -20px;
+    border-radius: 4px 4px 0 0;
+    color: black;
+}
+
+
+ul { margin-top: 0; margin-bottom: 0;}
+ol { margin-top: 0; margin-bottom: 0;}
