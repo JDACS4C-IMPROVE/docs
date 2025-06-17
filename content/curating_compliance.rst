@@ -6,7 +6,7 @@ the model to function with IMPROVE :doc:`workflows <USING>`.
 
 
 Required files and their naming conventions
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 A list of files required for compliance, along with their standardized naming patterns:
 
 * ``<model>_preprocess_improve.py``
@@ -18,13 +18,14 @@ A list of files required for compliance, along with their standardized naming pa
 
 
 All three stage scripts (preprocess, train, infer)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Each of the three stage scripts uses a :code:`main()` function that:
 
 * Sets params with the appropriate stage/application config
 * Records execution time of :code:`run()` using :code:`from improvelib.utils import Timer`.
 * Calls :code:`run()`, which executes the stage-specific code and returns:
+
   - **Preprocessing**: :code:`output_dir`
   - **Training**: :code:`val_scores`
   - **Inference**: :code:`True`
@@ -74,9 +75,11 @@ Model repository
 ^^^^^^^^^^^^^^^^^^
 
 * **README**
+
   - Follow the :doc:`template <curating_templates_readme>` to ensure a unified structure.
 
 * **Include a :code:`setup_improve.sh` script**
+
   - Base it on this :doc:`template <curating_templates_downloads>`.
   - Ensure :code:`download_csa.sh` is present in the repo.
   - If the model requires supplemental data (not included in the benchmark data), it should be downloaded via a shell script present in the repo, and this script should be integrated in :code:`setup_improve.sh`

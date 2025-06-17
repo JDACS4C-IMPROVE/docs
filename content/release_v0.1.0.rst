@@ -1,14 +1,19 @@
 v0.1.0-alpha
 ===============
 
-.. For models previously curated as part of the IMPROVE project (version `v0.0.3-beta`), please follow the instructions below to update your curated model and see the checklist at the bottom of the page. 
-To ensure compatibility with the IMPROVE software release `v0.1.0-alpha`, please update your curated model. Follow the instructions below and refer to the checklist at the bottom of the page. In addition, use models `GraphDRP <https://github.com/JDACS4C-IMPROVE/GraphDRP/tree/develop>`_ and `LGBM <https://github.com/JDACS4C-IMPROVE/LGBM/tree/develop>`_ as examples. `TODO` make sure links for the models are correct!
+To ensure compatibility with the IMPROVE software release `v0.1.0`, please update your curated model. Follow the instructions below and 
+refer to the checklist at the bottom of the page. In addition, use models `GraphDRP <https://github.com/JDACS4C-IMPROVE/GraphDRP/tree/v0.1.0>`_ 
+and `LGBM <https://github.com/JDACS4C-IMPROVE/LGBM/tree/v0.1.0>`_ as examples. 
 
 Overview
 ---------
-IMPROVE version `0.1.0-alpha` aims to expand the user base and encourage broader adoption of the software. This version features updates to accommodate various users and contributors, both internal and external, including those involved with the development of the core IMPROVE library, application-specific modules (such as drug response prediction and drug property prediction), benchmark datasets, and model contributions. Additionally, this version provides a simplified and more user-friendly interface, as demonstrated by intuitive help outputs, comprehensive READMEs, and documentation that facilitate easy switching between versions.
+IMPROVE version `0.1.0` aims to expand the user base and encourage broader adoption of the software. This version features updates 
+to accommodate various users and contributors, both internal and external, including those involved with the development of the core 
+IMPROVE library, application-specific modules (such as drug response prediction and drug property prediction), benchmark datasets, 
+and model contributions. Additionally, this version provides a simplified and more user-friendly interface, as demonstrated by 
+intuitive help outputs, comprehensive READMEs, and documentation that facilitate easy switching between versions.
 
-This version is now available on pypi for pip installation. `TODO`: update pypi AND link here
+This version is now available on pypi for pip installation `here <https://pypi.org/project/improvelib/0.1.0/>`_.
 
 Parameters
 ------------
@@ -46,79 +51,12 @@ Deprecated Parameters
 Updating v0.0.3 curated models
 ---------------------------------
 
-DRP Benchmarks v2 update
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-- Benchmarks no longer have a triple header, and are flexibly loaded. Documentation will be fully updated after push to develop.
-
-- Delete:
-
-  .. code-block::
-
-    import improvelib.applications.drug_response_prediction.drug_utils as drugs_utils
-    import improvelib.applications.drug_response_prediction.omics_utils as omics_utils
-
-- Example change for omics:
-
-  .. code-block::
-
-    omics_obj = omics_utils.OmicsLoader(params)
-    ge = omics_obj.dfs['cancer_gene_expression.tsv']
-
-
-  to
-
-  .. code-block::
-
-    ge = drp.get_cell_transcriptomics(file = params['cell_transcriptomic_file'], 
-                                    benchmark_dir = params['input_dir'], 
-                                    cell_column_name = params['canc_col_name'], 
-                                    norm = params['cell_transcriptomic_transform'])
-    ge = ge.reset_index()
-
-- Example change for drug:
-
-  .. code-block::
-
-    drugs_obj = drugs_utils.DrugsLoader(params)
-    md = drugs_obj.dfs['drug_mordred.tsv']
-
-
-  to
-
-  .. code-block::
-
-    md = drp.get_drug_mordred(file = params['drug_mordred_file'], 
-                benchmark_dir = params['input_dir'], 
-                drug_column_name = params['drug_col_name'])
-
-- Example change for response (change all instances):
-
-  .. code-block::
-
-    rsp_tr = drp.DrugResponseLoader(params,
-                                    split_file=params["train_split_file"],
-                                    verbose=False).dfs["response.tsv"]
-
-
-  to
-
-  .. code-block::
-
-    rsp_tr = drp.get_response_data(split_file=params["train_split_file"], 
-                                   benchmark_dir=params['input_dir'], 
-                                   response_file=params['y_data_file'])
-
-
-
-
-
 Updating Environment
 ^^^^^^^^^^^^^^^^^^^^^^
 
 - Make an environment without candle lib. Since many packages are installed by candlelib, you may need to add other packages to your environment now.
 
-- For now, set the PYTHONPATH as usual, this will be replaced with pip install shortly. You can also run this `bash script <https://github.com/JDACS4C-IMPROVE/GraphDRP/blob/framework-api/setup_improve.sh>`_ with :code:`source setup_improve.sh` to set up the environment. Running this script will clone IMPROVE repo, checkout the required branch, and set the PYTHONPATH (it will also download the csa benchmark dataset if it's not already downloaded).
+- Set the PYTHONPATH as usual. You can also run :code:`source setup_improve.sh` to set up the environment. Running this script will clone IMPROVE repo, checkout the required branch, and set the PYTHONPATH (it will also download the csa benchmark dataset if it's not already downloaded).
 
 - No environment variables need to be set, the IMPROVE_DATA_DIR directory is now set by command line with :code:`--input_dir your/path/to/csa_data/raw_data` or in the config.
 
@@ -181,7 +119,7 @@ Updating Import Statements
 
 
 Updating :code:`main()`
-^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 - Create the cfg object for the appropriate script: 
 

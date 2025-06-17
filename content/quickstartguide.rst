@@ -12,13 +12,15 @@ Requirements
 
 Clone Model
 -----------------------------
-Repositories for all curated models can be found on the `IMPROVE github <https://github.com/JDACS4C-IMPROVE/>`_. 
+Repositories for all curated models can be found on the `IMPROVE GitGub <https://github.com/JDACS4C-IMPROVE/>`_. 
 A list of drug response prediction models can be found here: :doc:`app_drp_models`. 
 Here we clone the LGBM model.
 
 .. code-block:: bash
 
     git clone https://github.com/JDACS4C-IMPROVE/LGBM
+    cd LGBM
+    git checkout v0.1.0
 
 
 
@@ -52,7 +54,7 @@ Here we create a conda environment to install the necessary packages for LGBM an
     conda create -n LGBM python=3.7 pip lightgbm=3.1.1 --yes
     conda activate LGBM
     pip install pyarrow==12.0.1
-    pip install improvelib
+    pip install improvelib==0.1.0
 
 
 Run preprocessing script

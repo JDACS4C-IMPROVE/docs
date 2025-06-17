@@ -8,7 +8,7 @@ Model Architecture
 PathDSP first converts the cancer and drug features into pathway-level enrichment scores using a network-based approach, then feeds those into a fully connected neural network (FNN) with four hidden layers.
 
 Feature Representation
---------------------
+---------------------------
 
    * Cancer features: 
 

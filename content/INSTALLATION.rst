@@ -17,7 +17,7 @@ Installing improvelib with pip
 
 .. code-block:: bash
 
-    pip install improvelib
+    pip install improvelib==0.1.0
 
 
 Installing improvelib with git
@@ -28,7 +28,7 @@ Clone the IMPROVE repository to a directory of your preference (outside of your 
 
     git clone https://github.com/JDACS4C-IMPROVE/IMPROVE
     cd IMPROVE
-    git checkout develop
+    git checkout v0.1.0
 
 
 .. note::

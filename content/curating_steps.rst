@@ -56,7 +56,7 @@ Templates available in :doc:`curating_templates` and on `GitHub <https://github.
 - The default configuation file should be named as follows, where 'model' is the name of your model: :code:`<model>_params.txt`.
 
 Set up :code:`main()` for your model
-------------------------------
+----------------------------------------
 There are three required lines in :code:`main()` for each script. This is the the :code:`main()` for preprocess:
 
   .. code-block::

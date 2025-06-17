@@ -4,14 +4,17 @@ IMPROVE aims to establish methodology to systematically and rigorously compare s
 
 1) IMPROVE Python Package (improvelib): Python tools and protocols for standardizing model code structure, facilitating modular code allowing to design complex workflows
 
-2) IMPROVE Workflows :doc:`Evaluation Schemes <BenchmarkEvaluationSchemes>`: distributed and modular workflows for large-scale model evaluation and downstream model comparison
+2) IMPROVE Workflows :doc:`Evaluation Schemes <workflows_overview>`: distributed and modular workflows for large-scale model evaluation and downstream model comparison
 
 3) Benchmark Datasets: standardized datasets (for each scientific application), enabling consistent and rigorous model benchmarking
 
 4) Community Curated Models: A diverse collection of models from the scientific community (a collocation per application), curated within the IMPROVE framework and organized by application, providing a baseline for comparison
 
 
-IMPROVE can be applied to a variety of supervised learning models. We have begun with the :doc:`Drug Response Prediction <app_drp_intro>` problem, standardizing pan-cancer, pan-drug :doc:`community models <Models>` that predict monotherapy drug response with a standardized :doc:`benchmark dataset <CSA_Benchmark_Datasets>`.
+IMPROVE can be applied to a variety of supervised learning models. We have begun with 
+the :doc:`Drug Response Prediction <app_drp_intro>` problem, standardizing pan-cancer, 
+pan-drug :doc:`community models <app_drp_models>` that predict monotherapy drug response with a 
+standardized :doc:`benchmark dataset <app_drp_benchmark>`.
 
 
 

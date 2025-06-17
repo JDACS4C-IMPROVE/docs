@@ -52,7 +52,9 @@ The benchmark data for Synergy was created using this pipeline.
      - 264
      - 208
    
-Note: The 'SMALL' dataset is a collection of smaller experiments and should be used with caution.
+.. warning:: 
+  
+  The 'SMALL' dataset is a collection of smaller experiments and should be used with caution.
 
 Data Location
 ----------------

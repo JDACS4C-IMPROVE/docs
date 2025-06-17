@@ -94,5 +94,4 @@ Synergy inference parameters
 *y_col_name*
   | **Type:** str
   | **Default:** "loewe"
-  | **Help:** "Column name in the y data file (e.g., synergy.tsv), that represents the target variable that the model predicts. 
-  In synergy prediction problem it can be one of ['loewe', 'bliss', 'zip', 'hsa', 'smean', 'css']."
+  | **Help:** "Column name in the y data file (e.g., synergy.tsv), that represents the target variable that the model predicts. In synergy prediction problem it can be one of ['loewe', 'bliss', 'zip', 'hsa', 'smean', 'css']."

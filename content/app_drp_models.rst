@@ -38,7 +38,7 @@ model code structure. The standardization process is executed as follows:
 - Conducting a small-scale cross-study analysis (using a simple Python script)
 - Running IMPROVE library test scripts
 
-Further guidelines and details regarding code restructuring while leveraging the IMPROVE library are discussed in the :doc:`Tutorial <unified_interface>`.
+Further guidelines and details regarding code restructuring while leveraging the IMPROVE library are discussed in :doc:`curating`.
 
 
 Curated Models
@@ -54,10 +54,8 @@ Currently, we utilized 9 models for the cross-study analysis. We forked the orig
    Models-tCNNS
    Models-LGBM
    Models-UNO
-   .. Models-DeepTTC
-   Models-DualGCN
+   Models-DeepTTC
    Models-IGTD
-   Models-Paccman_MCA
    Models-PathDSP
 
 

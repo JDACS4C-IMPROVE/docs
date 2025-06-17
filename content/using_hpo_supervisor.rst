@@ -9,15 +9,10 @@ Hyper Parameter Optimization (HPO) with Supervisor
     The above figure provides an overview of the newer tool-driven approach using the `supervisor` command-line tool with `cfg` scripts and `SUPERVISOR_PATH`. Login and Compute node internals show the DEAP-driven Genetic Algorithm (GA) workflow for Hyperparameter Optimization (HPO) on any supercomputer.
     **Color Coding**: Blue boxes indicate user edits, while white boxes are primarily provided by Supervisor.
 
-.. toctree::
-   :titlesonly:
 
-   HPO Prerequisites <using_hpo_prerequisites>
-   HPO Requirements <using_hpo_req>
-   HPO Parameters <using_hpo_parameters>
 
 HPO Prerequisites
-===================
+-----------------------
 
 - `git <https://github.com>`_
 - `conda <https://docs.conda.io/en/latest/>`_
@@ -284,20 +279,18 @@ _____
 
 1. Install prerequisites
 2. Preprocess data
-3. :ref:`Create config files <Config Overview>` for experiment. 
-4. :ref:`Run <Run>` HPO with supervisor::
+3. Create config files for experiment. 
+4. Run HPO with supervisor::
         supervisor ${location} ${workflow} ${config}
-4. :ref:`Analysis <Analysis>`
+4. Analysis
 
 
-.. Install Prerequisites:
 
 Install Prerequisites
 ___________________
 
-Refer to the :ref:`Prerequisites Guide <using_hpo_prerequisites>`
+Refer to the Prerequisites Guide
 
-.. _Preprocess Data:
 
 Preprocess Data
 ___________________
@@ -309,8 +302,6 @@ This step is only necessary if your data has not already been preprocessed and s
     singularity exec --bind $IMPROVE_DATA_DIR:/IMPROVE_DATA_DIR <path_to_sif_file>.sif preprocess.sh /IMPROVE_DATA_DIR --train_split_file <dataset>_split_0_train.txt \
     --val_split_file <dataset>_split_0_val.txt --ml_data_outdir /IMPROVE_DATA_DIR/<desired_outdir>
 
-
-.. _Config Overview:
 
 Create config files
 ___________________

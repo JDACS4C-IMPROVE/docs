@@ -8,7 +8,7 @@ Model Architecture
 DeepTTC (or DeepTTA) is a deep learning-based drug response prediction method with state-of-the-art performance. This model is composed of two separate subnetworks that learn representations of the cell line gene expression data and drug SMILES encoding. Gene expression representations are obtained with the help of a multi-layer perceptron with three hidden layers of sizes 1024, 256, and 64. 
 
 Feature Representation
---------------------
+-------------------------
 
    * Cancer features: 
 

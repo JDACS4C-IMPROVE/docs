@@ -19,6 +19,7 @@ Every workflow in IMPROVE is organized into three distinct script types:
     Example:
 
     .. code-block:: bash
+
         python workflow_csa.py
 
 
@@ -31,6 +32,7 @@ Every workflow in IMPROVE is organized into three distinct script types:
     Example:
 
     .. code-block:: bash
+
         bash run_model.sh
 
 3. Stage Script (Python)
@@ -41,6 +43,7 @@ Every workflow in IMPROVE is organized into three distinct script types:
     Example:
 
     .. code-block:: bash
+
         python graphdrp_train_improve.py
 
 
@@ -50,6 +53,7 @@ Visual Representation
 The following schematic illustrates the interactions between these scripts:
 
 .. code-block:: text
+    
     Launcher (workflow_csa.py)
     │
     └─→ Runner (run_model.sh)
@@ -76,6 +80,6 @@ Next Steps
 
 Explore individual workflow guides:
 
-* :doc:Cross-Study Analysis (CSA) <workflows/csa>
-* :doc:Learning Curve Analysis (LCA) <workflows/lca>
-* :doc:Hyperparameter Optimization (HPO) <workflows/hpo>
+* :doc:`using_csa`
+* :doc:`using_lc`
+* :doc:`using_hpo`

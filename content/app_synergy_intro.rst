@@ -3,7 +3,7 @@ Synergy Prediction
 
 
 Modeling drug synergy
-----
+------------------------
 
 
 

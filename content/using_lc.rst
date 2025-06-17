@@ -1,14 +1,9 @@
-Learning Curve Analysis Workflows
-====================================
+Learning Curve Analysis (LCA) Workflows
+===========================================
 
 Learning curve analysis allows to evaluate how prediction performance improves as the training set size increases, providing insights into the model's data scaling properties.
 
-Workflow
----------
 
-
-Metrics
---------
 
 
 References
@@ -19,7 +14,7 @@ References
 .. toctree::
    :titlesonly:
 
-   Generate LCA Splits <using_lc_generate_splitse>
+   Generate LCA Splits <using_lc_generate_splits>
    Brute-Force LCA <using_lc_bruteforce>
    Swarm LCA <using_lc_swarm>
    Post-process LCA Results <using_lc_postprocess>

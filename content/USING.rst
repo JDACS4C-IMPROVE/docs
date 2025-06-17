@@ -15,7 +15,6 @@ This section helps you get started with using IMPROVE curated models. Whether yo
    :maxdepth: 2
 
    Running a Single Model <using_running>
-   Building Containers <using_containers_build>
    Workflows <workflows_overview>
    CSA <using_csa>
    HPO <using_hpo>

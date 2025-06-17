@@ -9,7 +9,7 @@ Model Architecture
 DualGCN consists of two Graph Convolutional Networks (GCN) branches, one for protein-protein interaction information (which includes Copy Number Variation and Gene Expression), and one for the chemical structure of the applied drug. Each branch has built-in dropout and batch normalization, where the dropout rate is one of the considered hyperparameters. At the end of the branches, the obtained features are concatenated and fed into a fully connected network (FCN) with three hidden layers, aiming to do the regression analysis between the output of the two branches and the drug response values. 
 
 Feature Representation
---------------------
+-------------------------
 
    * Cancer features: 
 

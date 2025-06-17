@@ -11,7 +11,7 @@ See :doc:`INSTALLATION`.
 Usage
 --------------------
 
-CSA experiment results are often stored in a model directory (e.g., `LGBM/run.csa.small`). Note that CSA post-processing only requires the raw prediction results obtained via inference runs. You can launch post-processing pipeline as follows:
+CSA experiment results are often stored in a model directory (e.g., :code:`LGBM/run.csa.small`). Note that CSA post-processing only requires the raw prediction results obtained via inference runs. You can launch post-processing pipeline as follows:
 
 .. code-block:: bash
 
@@ -23,11 +23,11 @@ CSA experiment results are often stored in a model directory (e.g., `LGBM/run.cs
 Example Usage
 --------------------
 
-In this example, we demontrate how launch the post-processing pipeline with the example data provided in [./LGBM/run.csa.small](./LGBM/run.csa.small).
+In this example, we demontrate how launch the post-processing pipeline with the example data provided in :code:`./LGBM/run.csa.small`.
 
 1. Clone IMPROVE repo
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Clone the `IMPROVE` repository to a directory of your preference.
+Clone the IMPROVE repository to a directory of your preference.
 
 .. code-block:: bash
 
@@ -38,7 +38,7 @@ Clone the `IMPROVE` repository to a directory of your preference.
 
 2. Set PYTHONPATH
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Assuming you are currently inside IMPROVE directory, run the following. This adds IMPROVE repo to `PYTHONPATH`.
+Assuming you are currently inside IMPROVE directory, run the following. This adds IMPROVE repo to :code:`PYTHONPATH`.
 
 .. code-block:: bash
 
@@ -47,11 +47,11 @@ Assuming you are currently inside IMPROVE directory, run the following. This add
 
 3. Run post-processing
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Assuming the CSA results are located in `IMPROVE/workflows/utils/csa/LGBM/run.csa.small`, run the post-processing script:
+Assuming the CSA results are located in :code:`./run.csa.small`, run the post-processing script:
 
 .. code-block:: bash
 
-    python workflows/utils/csa/csa_postproc.py --res_dir workflows/utils/csa/${MODEL_DIR}/${CSA_EXPERIMENT_DIR} --model_name ${MODEL_DIR} --y_col_name auc
+    python workflows/utils/csa/csa_postproc.py --res_dir ./run.csa.small --model_name model --y_col_name auc
 
 
 Argument Definitions

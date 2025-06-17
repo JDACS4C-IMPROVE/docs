@@ -11,7 +11,6 @@ We have curated 2 community synergy models into the IMPROVE framework currently.
 .. toctree::
    :titlesonly:
 
-   Problem Formulation <app_synergy_intro>
    Benchmark Data <app_synergy_benchmark>
    Models <app_synergy_models>
 

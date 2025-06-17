@@ -6,7 +6,7 @@
 Welcome to IMPROVE's documentation!
 ===================================
 
-Version: latest
+Version: v0.1.0
 ------------------
 
 .. The IMPROVE (Innovative Methodologies and New Data for Predictive Oncology Model Evaluation) project is dedicated to standardizing execution of prediction models, facilitating rigorous benchmarking and fair comparison of models. The IMPROVE software stack is a collection of python-based tools for standardizing model codes as well as workflowsfor executing model evaluation and compairsons at scale. As a seminal case, we have curated community models and a benchmark dataset for monotherapy drug response prediction. Do you have a model you would like to compare with other state-of-the-art models? Try IMPROVE!
@@ -31,7 +31,6 @@ Want to benchmark your model against others in the community? Try IMPROVE!
    content/API
    content/curating
    content/USING
-   content/DEVELOPER
    content/ReleaseNotes
    content/PUBS
    content/CONTACT

@@ -7,7 +7,7 @@ Requirements
 ----------------
 
 * :doc:`IMPROVE general environment <INSTALLATION>`
-* [Swarm](https://hpc.nih.gov/apps/swarm.html)
+* `Swarm <https://hpc.nih.gov/apps/swarm.html>`_
 * An IMPROVE-compliant model and its environment
 
 Installation and Setup

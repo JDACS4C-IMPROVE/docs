@@ -7,7 +7,7 @@ Requirements
 ----------------
 
 * :doc:`IMPROVE general environment <INSTALLATION>`
-* [Swarm](https://hpc.nih.gov/apps/swarm.html)
+* `Swarm <https://hpc.nih.gov/apps/swarm.html>`_
 * An IMPROVE-compliant model and its environment
 
 Installation and Setup
@@ -93,13 +93,11 @@ Run the swarm files (example usage for Biowulf):
     swarm --merge-output --partition=gpu --gres=gpu:k80:1 -g 60 --time-per-command 00:30:00 -J model_train infer.swarm
 
 
-You may need to change the memory (:code:`-g`) and time (:code:`--time-per-command`) allocations for your model. The :code:`-J` flag labels the standard out and may be omitted. It may be useful to add job dependencies for train and infer with :code:`--dependency afterany:<JOBID>`. See Biowulf documentation for Swarm [here](https://hpc.nih.gov/apps/swarm.html).
+You may need to change the memory (:code:`-g`) and time (:code:`--time-per-command`) allocations for your model. The :code:`-J` flag labels the standard out and may be omitted. It may be useful to add job dependencies for train and infer with :code:`--dependency afterany:<JOBID>`. See Biowulf documentation for Swarm `here <https://hpc.nih.gov/apps/swarm.html>`_.
 
 Output
 --------
 
-
-## Output
 
 The output will be in the specified `output_dir` with the following structure (with the used source and target names and splits):
 
