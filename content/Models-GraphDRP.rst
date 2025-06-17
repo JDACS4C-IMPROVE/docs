@@ -8,7 +8,7 @@ Model Architecture
 GraphDRP consists of two subnetworks that learn from input features of cancer cell lines (CCLs) and drugs to predict drug response. The encoded feature representations by the two subnetworks are concatenated and passed through dense layers for the prediction. Each CCL is represented by a vector of binary features including variant coding and copy number alterations. Each drug is represented with a graph molecular structure where nodes and edges represent, respectively, the atoms and bonds of the a molecule. The CCL subnetwork consists of three 1-D CNNs followed by dense layers. 
 
 Feature Representation
---------------------
+------------------------
 
    * Cancer features:
 

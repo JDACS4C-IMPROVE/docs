@@ -1,4 +1,4 @@
-IMPROVE API
+IMPROVE API Reference
 =================================
 .. Deep learning models are divided into three distinct steps in the IMPROVE framework, each with their own set of parameters.
 
@@ -18,12 +18,12 @@ Additionally, general IMPROVE parameters are used for every model, as well as ap
 
 
 .. toctree::
+   :includehidden:
    :titlesonly:
 
-   Preprocess <api_preprocess>
-   Train <api_train>
-   Infer <api_infer>
-   Utility Functions <api_util>
-   Creating Model-Specific Parameters <api_model>
-   Configuration Files <api_config>
+   Parameters <api_parameters>
+   improvelib.utils <api_utils>
+   improvelib.metrics <api_metrics>
+
+
 

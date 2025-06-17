@@ -22,18 +22,16 @@ Want to benchmark your model against others in the community? Try IMPROVE!
 .. toctree::
    :maxdepth: 2
    :titlesonly:
+   :includehidden:
    :caption: Contents:
 
    content/whatis
    content/INSTALLATION
    content/quickstartguide
+   content/USING
    content/applications
    content/API
-   content/curating
-   content/USING
    content/DEVELOPER
    content/ReleaseNotes
-   content/PUBS
-   content/CONTACT
 
 Access the code base https://github.com/JDACS4C-IMPROVE/

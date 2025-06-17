@@ -2,15 +2,13 @@ Drug Response Prediction
 ========================
 
 Modeling drug response
-----
+---------------------------
 
-.. pan-drug vs multi-drug: https://www.youtube.com/watch?v=Xbd5S3ZnXKQ
 A drug response prediction (DRP) model can be represented by :math:`r = f(d, c)`, where :math:`f` is the analytical model designed to predict the response :math:`r` of cancer :math:`c` to the treatment by drug :math:`d`.
 The function :math:`f` is implemented with a neural network (NN) architecture.
 This formulation is for pan-cancer and pan-drug prediction model where both cancer and drug representations are needed to predict response.
 A special case is drug-specific models designed to make predictions for a drug or drug family (e.g., drugs with the same mechanism of action (MoA)). These models learn from cancer features only and can be formulated as :math:`r=f_D(c)`. 
 
-.. https://labs.bilimedtech.com/workshops/rst/writing-rst-6.html
 .. figure:: ../images/NN_architecture.png
     :width: 350
     :align: center

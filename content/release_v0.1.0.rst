@@ -1,7 +1,6 @@
 v0.1.0-alpha
 ===============
 
-.. For models previously curated as part of the IMPROVE project (version `v0.0.3-beta`), please follow the instructions below to update your curated model and see the checklist at the bottom of the page. 
 To ensure compatibility with the IMPROVE software release `v0.1.0-alpha`, please update your curated model. Follow the instructions below and refer to the checklist at the bottom of the page. In addition, use models `GraphDRP <https://github.com/JDACS4C-IMPROVE/GraphDRP/tree/develop>`_ and `LGBM <https://github.com/JDACS4C-IMPROVE/LGBM/tree/develop>`_ as examples. `TODO` make sure links for the models are correct!
 
 Overview
@@ -181,7 +180,7 @@ Updating Import Statements
 
 
 Updating :code:`main()`
-^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - Create the cfg object for the appropriate script: 
 

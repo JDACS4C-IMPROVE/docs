@@ -48,13 +48,15 @@ Currently, we utilized 9 models for the cross-study analysis. We forked the orig
 .. toctree::
    :titlesonly:
 
+   Models-LGBM
+   Models-XGBoost-DRP
+   Models-RandomForest-DRP
    Models-DeepCDR
    Models-GraphDRP
    Models-HiDRA
    Models-tCNNS
-   Models-LGBM
    Models-UNO
-   .. Models-DeepTTC
+   Models-DeepTTC
    Models-DualGCN
    Models-IGTD
    Models-Paccman_MCA

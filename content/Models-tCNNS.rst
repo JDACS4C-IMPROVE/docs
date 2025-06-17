@@ -8,7 +8,7 @@ Model Architecture
 tCNNS consists of two 1D convolutional neural network (CNN) branches for distilling the features for drugs and cell lines separately, each with three layers. After the two branches of the CNN, there is a fully connected network (FCN) with three hidden layers, which aims to do the regression analysis between the output of the two branches and the drug response values. tCNNS was one of the first models to apply CNNs to the problem of drug prediction.
 
 Feature Representation
---------------------
+------------------------
 
    * Cancer features:
 

@@ -71,7 +71,16 @@ html_theme_options = {
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
-html_css_files = ['custom.css',]
+html_css_files = ['custom.css', 's5roles.css']
+
+# allows for the use of inline notation, via s5defs.txt and _static/s5roles.css
+# alternative to having this line at the top of every content page where it is needed
+rst_prolog = """
+.. include:: /s5defs.txt
+
+"""
+
+suppress_warnings = ['autosectionlabel.*']
 
 ###############
 # get the environment variable build_all_docs and pages_root

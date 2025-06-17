@@ -1,8 +1,6 @@
 Cross-Study Analysis Workflows
 ===============================
 
-NATASHA: put real or mock 5x5 table of results under metrics
-
 Cross-Study Analysis (CSA) workflow rigorously compares the ability of models to generalize across different datasets. 
 Performance evaluation is conducted to obtain both within-study and cross-study prediction responses. 
 The objective of this analysis is to assess the generalization capacity of deep learning models across different studies. 

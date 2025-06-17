@@ -7,7 +7,7 @@ Model Architecture
 DeepDDS extracts features for drugs with a GCN and cell features with an MLP and concatenates these features to an input vector to a multilayer fully connected network to predict binary classifications of synergy. 
 
 Feature Representation
---------------------
+-------------------------
 
    * Cancer features:
 

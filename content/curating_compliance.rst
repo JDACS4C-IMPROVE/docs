@@ -6,7 +6,7 @@ the model to function with IMPROVE :doc:`workflows <USING>`.
 
 
 Required files and their naming conventions
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 A list of files required for compliance, along with their standardized naming patterns:
 
 * ``<model>_preprocess_improve.py``
@@ -18,7 +18,7 @@ A list of files required for compliance, along with their standardized naming pa
 
 
 All three stage scripts (preprocess, train, infer)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Each of the three stage scripts uses a :code:`main()` function that:
 

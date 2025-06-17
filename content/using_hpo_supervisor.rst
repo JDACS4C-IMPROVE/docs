@@ -9,12 +9,6 @@ Hyper Parameter Optimization (HPO) with Supervisor
     The above figure provides an overview of the newer tool-driven approach using the `supervisor` command-line tool with `cfg` scripts and `SUPERVISOR_PATH`. Login and Compute node internals show the DEAP-driven Genetic Algorithm (GA) workflow for Hyperparameter Optimization (HPO) on any supercomputer.
     **Color Coding**: Blue boxes indicate user edits, while white boxes are primarily provided by Supervisor.
 
-.. toctree::
-   :titlesonly:
-
-   HPO Prerequisites <using_hpo_prerequisites>
-   HPO Requirements <using_hpo_req>
-   HPO Parameters <using_hpo_parameters>
 
 HPO Prerequisites
 ===================
@@ -34,7 +28,7 @@ Please refer to the documentation of the tools for install instructions.
 
 
 Installing supervisor
-_____________________
+_____________________________
 
 .. code-block:: bash
 
@@ -63,12 +57,12 @@ Install swift-t via conda. For detailed instructions please refer to the `swift-
     conda install --yes -c conda-forge -c swift-t swift-t
 
 Shared installations
---------------------
+--------------------------
 
 The ``supervisor`` tool supports shared installations.  For example, a site administrator can install all of the tools above in a public location.  The user should be able to run ``supervisor`` from a personal directory with all configuration files and output files there.
 
 Setting up a new site
----------------------
+----------------------------
 
 | On a simple Linux system, you will simply need to modify
 | ``Supervisor/workflows/common/sh/env-local.sh``
@@ -82,14 +76,14 @@ See the `supervisor tool doc <https://github.com/ECP-CANDLE/Supervisor/tree/deve
 
 
 Requirements
-____________
+_________________
 
 The following are the requirements as a model curator for others to run HPO on your model.
 
 
 
 IMPROVE MODEL (Defined for Containerization)
-____________________________________________
+___________________________________________________
 
 Your model must be IMPROVE compliant, reading arguments from a '.txt' file and overwriting with command-line arguments. Your model must also be defined in a 'def' file for singularity containerization. Default definition files can be found in the `IMPROVE Singularity repository <https://github.com/JDACS4C-IMPROVE/Singularity>`_. The container should expose the following interface scripts:
 
@@ -114,7 +108,7 @@ To test your scripts with containerization, it's recommended you build a contain
 
 
 HYPERPARAMETER SPACE
-____________________
+_________________________
 
 You will also need to define the hyperparameter space, which will override the arguments in the .txt file. For this reason, any pathing arguments needed for your train script will also need to be defined as 'constant' hyperparameters in the space (such as train_ml_data_dir below).
 
@@ -125,29 +119,46 @@ list of json dictionaries, each one of which defines a hyperparameter and how it
 
 
 Universal Keys
---------------
+---------------------
 
 - name: the name of the hyperparameter (e.g. _epochs_)
+
 - type: determines how the initial population (i.e. the hyperparameter sets) are initialized from the named parameter and how those values are subsequently mutated by the GA. Type is one of `constant`, `int`, `float`, `logical`, `categorical`, or `ordered`.
+
   - `constant`:
+
     - each model is initialized with the same specifed value
+
     - mutation always returns the same specified value
+
   - `int`:
+
     - each model is initialized with an int randomly drawn from the range defined by `lower` and `upper` bounds
-    - mutation is peformed by adding the results of a random draw from
-      a gaussian distribution to the current value, where the gaussian distribution's mu is 0 and its sigma is specified by the `sigma` entry.
+
+    - mutation is peformed by adding the results of a random draw from a gaussian distribution to the current value, where the gaussian distribution's mu is 0 and its sigma is specified by the `sigma` entry.
+
   - `float`:
+
     - each model is initialized with a float randomly drawn from the range defined by `lower` and `upper` bounds
-    - mutation is peformed by adding the results of a random draw from
-      a gaussian distribution to the current value, where the gaussian distribution's mu is 0 and its sigma is specified by the `sigma` entry.
+
+    - mutation is peformed by adding the results of a random draw from a gaussian distribution to the current value, where the gaussian distribution's mu is 0 and its sigma is specified by the `sigma` entry.
+
   - `logical`:
+
     - each model is initialized with a random boolean.
+
     - mutation flips the logical value
+
   - `categorical`:
+
     - each model is initialized with an element chosen at random from the list of elements in `values`.
+
     - mutation chooses an element from the `values` list at random
+
   - `ordered`:
+
     - each model is inititalized with an element chosen at random from the list of elements in `values`.
+
     - given the index of the current value in the list of `values`, mutation selects the element _n_ number of indices away, where n is the result of a random draw between 1 and `sigma` and then is negated with a 0.5 probability.
 
 
@@ -180,7 +191,7 @@ If the `type` is `ordered`:
 
 
 Optional
-^^^^^^^^
+^^^^^^^^^^^
 
 The following keys are optional depending on value of the `type` key.
 
@@ -195,7 +206,7 @@ If the `type` is `ordered`:
 
 
 Example File
-------------
+------------------
 
 A sample hyperparameter definition file:
 
@@ -267,8 +278,8 @@ A sample hyperparameter definition file:
 
 Note that any other keys are ignored by the workflow but can be used to add additional information about the hyperparameter. For example, the sample files could contain a `comment` entry that contains additional information about that hyperparameter and its use.
 
-Requirements
-____________
+Requirements for scripts
+_________________________
 
 The following are the requirements to run HPO on your model.
 
@@ -280,27 +291,20 @@ Your model must be IMPROVE compliant, containerized, and packaged in a singulari
 
 
 Steps 
-_____
+__________
 
 1. Install prerequisites
 2. Preprocess data
-3. :ref:`Create config files <Config Overview>` for experiment. 
-4. :ref:`Run <Run>` HPO with supervisor::
-        supervisor ${location} ${workflow} ${config}
-4. :ref:`Analysis <Analysis>`
+3. Create config files for experiment. 
+4. Run HPO with supervisor: supervisor ${location} ${workflow} ${config}
+5. Analysis 
 
 
-.. Install Prerequisites:
 
-Install Prerequisites
-___________________
 
-Refer to the :ref:`Prerequisites Guide <using_hpo_prerequisites>`
 
-.. _Preprocess Data:
-
-Preprocess Data
-___________________
+Preprocess Data, if needed
+____________________________
 
 This step is only necessary if your data has not already been preprocessed and stored on your filesystem. To preprocess your data, you'll need to call ``preprocess.sh`` in your singularity container with the needed command line arguments. Preprocess using the following command with your arguments:
 
@@ -310,10 +314,9 @@ This step is only necessary if your data has not already been preprocessed and s
     --val_split_file <dataset>_split_0_val.txt --ml_data_outdir /IMPROVE_DATA_DIR/<desired_outdir>
 
 
-.. _Config Overview:
 
 Create config files
-___________________
+_______________________
 
 A directory with copy-and-customize config files here at `Example Files <https://github.com/ECP-CANDLE/Tests/tree/main/sv-tool/deap-generic>`_, along with a `README <https://github.com/ECP-CANDLE/Tests/blob/main/sv-tool/deap-generic/README.adoc>`_ that explains the settings used. Create with the following steps:
 
@@ -487,7 +490,7 @@ Running an HPO experiment on lambda. The model image is in */software/improve/im
 
 
 Debugging
-_______
+___________
 
 While/after running HPO, there will be ``model.log`` files which contain the important information regarding that model's run. They can be found at ``<candle_data_dir>/<model_name>/Output/EXP<number>/run_<number>``. To debug, use a ``grep -r "ABORT"`` in the experiment directory ``<candle_data_dir>/<model_name>/Output/EXP<number>`` to find which run file which is causing the error in your workflow, ``cd run_<number>`` to navigate there, and ``cat model.log`` to observe the abort and what error caused it. Observing the ``MODEL_CMD`` (which tells the hyperparameters) and the ``IMPROVE_RESULT`` (which tells the  evaluation of those hyperparameters) can also be helpful.
 
@@ -500,10 +503,9 @@ After running HPO, there will be the turbine output and experiment directories. 
 
 
 
-.. _Analysis:
 
 Analysis
-_______
+____________
 
 To analyze the HPO run, there are two recommended methods. The first provides a ranking of hyperparameter choices. The second provides a ranking and visualization:
 

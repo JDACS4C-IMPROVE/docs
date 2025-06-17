@@ -8,7 +8,7 @@ MatchMaker takes chemical features and gene expression and predicts a synergy sc
 Both subnetworks are input for the third subnetwork (also of three FC layers), which predicts the drug pair synergy. 
 
 Feature Representation
---------------------
+-------------------------
 
    * Cancer features:
 

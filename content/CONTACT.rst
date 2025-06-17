@@ -3,17 +3,9 @@ Contact Us
 
 IMPROVE GitHub: `https://github.com/JDACS4C-IMPROVE <https://github.com/JDACS4C-IMPROVE>`_
 
-For questions or to get involved with IMPROVE, contact Alex Partin at apartin@anl.gov.
+To get involved with IMPROVE or contribute models, contact Alex Partin at apartin@anl.gov.
 
-Contributing Models
----------------------
+For questions or to contribute data, email IMPROVE-AI@nih.gov.
 
-If you have a community model that you would like to contribute to the IMPROVE project, please see the following steps and guidelines.
+To contribute new workflows or applications, see :doc:`DEVELOPER`.
 
-For future use: guidelines on how to contribute models
-
-Contributing Data
---------------------
-
-Contributing Workflows
------------------------
