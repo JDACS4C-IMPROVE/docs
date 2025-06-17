@@ -73,22 +73,4 @@ html_theme_options = {
 html_static_path = ['_static']
 html_css_files = ['custom.css',]
 
-###############
-# get the environment variable build_all_docs and pages_root
-build_all_docs = os.environ.get("build_all_docs")
-pages_root = os.environ.get("pages_root", "")
 
-# if not there, we dont call this
-if build_all_docs is not None:
-    # we get the current language and version
-    current_version = os.environ.get("current_version")
-    # we set the html_context wit current version and empty languages and versions for now
-    html_context = {'current_version' : current_version, 'versions' : []}
-    # and we append all versions accordingly, we treat the main branch as latest 
-    #if (current_version == 'latest'):
-    html_context['versions'].append(['latest', pages_root])
-    # and loop over all other versions from our yaml file to set versions 
-    with open("versions.yaml", "r") as yaml_file:
-        docs = yaml.safe_load(yaml_file)
-    for version, details in docs.items():
-        html_context['versions'].append([version, pages_root+'/'+version+'/'])
