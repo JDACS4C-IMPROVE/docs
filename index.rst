@@ -6,9 +6,9 @@
 Welcome to IMPROVE's documentation!
 ===================================
 
-.. warning:: v0.1.0
+.. warning::
 
-   This documentation is for the most recent release of IMPROVE. You can see the latest version of IMPROVE `here <https://jdacs4c-improve.github.io/docs/>`_.
+   This documentation is for the most recent release of IMPROVE (v0.1.0). You can see the latest version of IMPROVE `here <https://jdacs4c-improve.github.io/docs/>`_.
 
 
 
