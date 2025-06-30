@@ -24,14 +24,14 @@ Used in *preprocess*.
   Name of column containing the split ID (default: 'split_id').
 
 **sep** : str, optional
-  Separator for response file (default: '\t').
+  Separator for y data file (default: '\t').
 
 .. container:: utilhead:
   
   Returns:
 
 **df** : pd.DataFrame
-  Response dataframe for given split.
+  Y data dataframe for given split.
 
 .. container:: utilhead:
   

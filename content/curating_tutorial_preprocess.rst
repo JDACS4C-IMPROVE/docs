@@ -143,9 +143,9 @@ First we load the y (response) data for the training split with :doc:`api_utils_
 .. code-block:: python
 
     print("Load train response data.")
-    response_train = frm.get_response_data(split_file=params["train_split_file"], 
+    response_train = frm.get_y_data(split_file=params["train_split_file"], 
                                    benchmark_dir=params['input_dir'], 
-                                   response_file=params['y_data_file'])
+                                   y_data_file=params['y_data_file'])
 
 Next we find the y data that has matching features for all the feature types we are using (for XGBoost we are using 
 transcriptomics for cell line features and Mordred descriptors for drug features) with :doc:`api_utils_get_response_with_features`.
@@ -154,10 +154,10 @@ Then we subset to the features that are present in this training y data set with
 .. code-block:: python
     
     print("Find intersection of training data.")
-    response_train = frm.get_response_with_features(response_train, omics, params['canc_col_name'])
-    response_train = frm.get_response_with_features(response_train, drugs, params['drug_col_name'])
-    omics_train = frm.get_features_in_response(omics, response_train, params['canc_col_name'])
-    drugs_train = frm.get_features_in_response(drugs, response_train, params['drug_col_name'])
+    response_train = frm.get_y_data_with_features(response_train, omics, params['canc_col_name'])
+    response_train = frm.get_y_data_with_features(response_train, drugs, params['drug_col_name'])
+    omics_train = frm.get_features_in_y_data(omics, response_train, params['canc_col_name'])
+    drugs_train = frm.get_features_in_y_data(drugs, response_train, params['drug_col_name'])
 
 Then we determine the transformation values on the features that are in the training set for the transformations specified in the parameters
 (here :code:`params['cell_transcriptomic_transform']` and :code:`params['cell_mordred_transform']`) using :doc:`api_utils_determine_transform`.
@@ -182,19 +182,19 @@ loop to ensure the preprocessing is the same for all three stage datasets. We se
        print(f"Prepare data for stage {stage}.")
 
 Inside this loop we find intersection of the data, transform the data, merge the data, and save the data. 
-First we load the response data and find the intersection of the data with :doc:`api_utils_get_response_data`, 
-:doc:`api_utils_get_response_with_features`, and :doc:`api_utils_get_features_in_response`:
+First we load the response data and find the intersection of the data with :doc:`api_utils_get_y_data`, 
+:doc:`api_utils_get_y_data_with_features`, and :doc:`api_utils_get_features_in_y_data`:
 
 .. code-block:: python
 
         print(f"Find intersection of {stage} data.")
-        response_stage = frm.get_response_data(split_file=split_file, 
+        response_stage = frm.get_y_data(split_file=split_file, 
                                 benchmark_dir=params['input_dir'], 
-                                response_file=params['y_data_file'])
-        response_stage = frm.get_response_with_features(response_stage, omics, params['canc_col_name'])
-        response_stage = frm.get_response_with_features(response_stage, drugs, params['drug_col_name'])
-        omics_stage = frm.get_features_in_response(omics, response_stage, params['canc_col_name'])
-        drugs_stage = frm.get_features_in_response(drugs, response_stage, params['drug_col_name'])
+                                y_data_file=params['y_data_file'])
+        response_stage = frm.get_y_data_with_features(response_stage, omics, params['canc_col_name'])
+        response_stage = frm.get_y_data_with_features(response_stage, drugs, params['drug_col_name'])
+        omics_stage = frm.get_features_in_y_data(omics, response_stage, params['canc_col_name'])
+        drugs_stage = frm.get_features_in_y_data(drugs, response_stage, params['drug_col_name'])
 
 Next we tranform the data using the dictionary we created above with :doc:`api_utils_transform_data`:
 
