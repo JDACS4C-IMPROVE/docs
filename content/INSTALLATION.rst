@@ -45,7 +45,9 @@ To use improvelib, specify the full path to the IMPROVE library with $PYTHONPATH
 
 Downloading IMPROVE benchmark datasets
 -------------------------------------------
-We currently have benchmark data for Drug Response Prediction. This data can be downloaded from this `link <https://web.cels.anl.gov/projects/IMPROVE_FTP/candle/public/improve/benchmarks/single_drug_drp/benchmark-data-pilot1/>`_ 
+We currently have benchmark data for :doc:`Drug Response Prediction <app_drp_benchmark>` and :doc:`Synergy <app_synergy_benchmark>`. 
+
+This data can be downloaded from this `link <https://web.cels.anl.gov/projects/IMPROVE_FTP/candle/public/improve/benchmarks/single_drug_drp/benchmark-data-pilot1/>`_ 
 or to a specified definition with the following:
 
 .. code-block:: bash

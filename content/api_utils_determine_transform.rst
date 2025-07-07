@@ -1,7 +1,7 @@
 determine_transform
 -----------------------------------------
 
-:funcelse:`improvelib.applications.drug_response_prediction.drp_utils.`:funcname:`determine_transform`:funcelse:`(x_data_df, x_data_name, x_transform_list, output_dir)`
+:funcelse:`improvelib.utils.`:funcname:`determine_transform`:funcelse:`(x_data_df, x_data_name, x_transform_list, output_dir)`
 
 Sets the transformations (imputations, scaling, and/or subsetting) features based on a list of lists of [[strategy, subtype]]. 
 Saves a dictionary containing the details needed to perform the specified transformations on all sets.
@@ -18,10 +18,10 @@ The following [strategy, subtype] can be specified for transformations:
 
 * :code:`scale`
 
-  * :code:`std` or :code:`StandardScaler`: scales with sklearn.preprocessing.StandardScaler()
-  * :code:`minmax` or :code:`MinMaxScaler`: scales with sklearn.preprocessing.MinMaxScaler()
-  * :code:`minabs` or :code:`MinAbsScaler`: scales with sklearn.preprocessing.MinAbsScaler()
-  * :code:`robust` or :code:`RobustScaler`: scales with sklearn.preprocessing.RobustScaler()
+  * :code:`std` or :code:`StandardScaler`: scales with `sklearn.preprocessing.StandardScaler() <https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html>`_
+  * :code:`minmax` or :code:`MinMaxScaler`: scales with `sklearn.preprocessing.MinMaxScaler() <https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.MinMaxScaler.html>`_
+  * :code:`minabs` or :code:`MinAbsScaler`: scales with `sklearn.preprocessing.MinAbsScaler() <https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.MinMaxScaler.html>`_
+  * :code:`robust` or :code:`RobustScaler`: scales with `sklearn.preprocessing.RobustScaler() <https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.RobustScaler.html>`_
 
 * :code:`subset`
 
@@ -65,15 +65,15 @@ None
   Example
 
 Before determining the transformations using the training set, it is important to only use features that are in the training set and have features for both drug and cell.
-This can be easily performed by calling :doc:`api_utils_get_response_with_features` and :doc:`api_utils_get_features_in_response` like so:
+This can be easily performed by calling :doc:`api_utils_get_y_data_with_features` and :doc:`api_utils_get_features_in_y_data` like so:
 
 .. code-block::
 
     print("Find intersection of training data.")
-    response_train = drp.get_response_with_features(response_train, omics, params['canc_col_name'])
-    response_train = drp.get_response_with_features(response_train, drugs, params['drug_col_name'])
-    omics_train = drp.get_features_in_response(omics, response_train, params['canc_col_name'])
-    drugs_train = drp.get_features_in_response(drugs, response_train, params['drug_col_name'])
+    response_train = drp.get_y_data_with_features(response_train, omics, params['canc_col_name'])
+    response_train = drp.get_y_data_with_features(response_train, drugs, params['drug_col_name'])
+    omics_train = drp.get_features_in_y_data(omics, response_train, params['canc_col_name'])
+    drugs_train = drp.get_features_in_y_data(drugs, response_train, params['drug_col_name'])
 
 Once your data contains only the features necessary for the training set, transformations can be determined:
 

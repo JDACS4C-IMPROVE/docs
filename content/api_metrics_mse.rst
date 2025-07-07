@@ -3,7 +3,7 @@ mse
 
 :funcelse:`improvelib.metrics.`:funcname:`mse`:funcelse:`(y_true, y_pred)`
 
-Compute Mean Squared Error (MSE). Uses sklearn.metrics.mean_square_error().
+Compute Mean Squared Error (MSE). Uses `sklearn.metrics.mean_square_error() <https://scikit-learn.org/stable/modules/generated/sklearn.metrics.mean_squared_error.html>`_.
 
 Used in :doc:`api_metrics_compute_metrics` and can be used directly.
 

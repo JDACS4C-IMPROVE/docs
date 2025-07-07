@@ -3,7 +3,7 @@ spearman
 
 :funcelse:`improvelib.metrics.`:funcname:`spearman`:funcelse:`(y_true, y_pred)`
 
-Compute Spearman Correlation Coefficient (SCC). Uses scipy.stats.mstats.spearmanr().
+Compute Spearman Correlation Coefficient (SCC). Uses `scipy.stats.mstats.spearmanr() <https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.mstats.spearmanr.html>`_.
 
 Used in :doc:`api_metrics_compute_metrics` and can be used directly.
 

@@ -1,7 +1,7 @@
 get_x_data
 -----------------------------------------
 
-:funcelse:`improvelib.applications.drug_response_prediction.drp_utils.`:funcname:`get_x_data`:funcelse:`(file, benchmark_dir, column_name, dtype=None)`
+:funcelse:`improvelib.utils.`:funcname:`get_x_data`:funcelse:`(file, benchmark_dir, column_name, dtype=None)`
 
 Gets x data. Sets index to ID. Sets dtype if specified.
 

@@ -5,7 +5,7 @@ This script `xgboostdrp_preprocess_improve.py <https://github.com/JDACS4C-IMPROV
 The naming convention for the preprocessing script is `<MODEL>_preprocess_improve.py`. 
 
 **Inputs:**
-The benchmark data directory is set with :code:`params['input_dir']`. Alternate data can be provided, see :doc:`using_alternate_data`.
+The benchmark data directory is set with :code:`params['input_dir']`. Alternate data can be provided, see :doc:`using_external_data`.
 Models can use any of the provided benchmark studies/splits by changing the value of :code:`param['train_split_file']`, :code:`param['val_split_file']`, and :code:`param['test_split_file']`.
 
 * **y_data**: The file with the factor IDs and observation values.
@@ -138,7 +138,7 @@ scaling the data. For example, in this XGBoost model we have set :code:`cell_tra
 which will first subset the genes to only those in the LINCS1000 set, and then apply the standard scaler to the data. 
 See :doc:`api_utils_determine_transform` for more information on all the available transformations.
 
-First we load the y (response) data for the training split with :doc:`api_utils_get_response_data`.
+First we load the y (response) data for the training split with :doc:`api_utils_get_y_data` and remove any NaN values for the data we are using (in this case AUC).
 
 .. code-block:: python
 
@@ -146,10 +146,11 @@ First we load the y (response) data for the training split with :doc:`api_utils_
     response_train = frm.get_y_data(split_file=params["train_split_file"], 
                                    benchmark_dir=params['input_dir'], 
                                    y_data_file=params['y_data_file'])
+    response_train = response_train.dropna(subset=[params['y_col_name']])
 
 Next we find the y data that has matching features for all the feature types we are using (for XGBoost we are using 
-transcriptomics for cell line features and Mordred descriptors for drug features) with :doc:`api_utils_get_response_with_features`.
-Then we subset to the features that are present in this training y data set with :doc:`api_utils_get_features_in_response`.
+transcriptomics for cell line features and Mordred descriptors for drug features) with :doc:`api_utils_get_y_data_with_features`.
+Then we subset to the features that are present in this training y data set with :doc:`api_utils_get_features_in_y_data`.
 
 .. code-block:: python
     
@@ -182,7 +183,7 @@ loop to ensure the preprocessing is the same for all three stage datasets. We se
        print(f"Prepare data for stage {stage}.")
 
 Inside this loop we find intersection of the data, transform the data, merge the data, and save the data. 
-First we load the response data and find the intersection of the data with :doc:`api_utils_get_y_data`, 
+First we load the response data, remove NaN values for our data, and find the intersection of the data with :doc:`api_utils_get_y_data`, 
 :doc:`api_utils_get_y_data_with_features`, and :doc:`api_utils_get_features_in_y_data`:
 
 .. code-block:: python
@@ -191,6 +192,7 @@ First we load the response data and find the intersection of the data with :doc:
         response_stage = frm.get_y_data(split_file=split_file, 
                                 benchmark_dir=params['input_dir'], 
                                 y_data_file=params['y_data_file'])
+        response_stage = response_stage.dropna(subset=[params['y_col_name']])
         response_stage = frm.get_y_data_with_features(response_stage, omics, params['canc_col_name'])
         response_stage = frm.get_y_data_with_features(response_stage, drugs, params['drug_col_name'])
         omics_stage = frm.get_features_in_y_data(omics, response_stage, params['canc_col_name'])

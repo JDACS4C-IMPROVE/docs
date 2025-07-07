@@ -7,6 +7,10 @@ Model Architecture
 --------------------
 HiDRA starts with a dense two-layer drug encoding network. The gene expression data is then split up into pathways based on KEGG data, and each pathway has its own dense encoding network with gene-level and pathway-level attention modules that incorporate the drug encodings. Finally, a dense two-layer network takes concatenated drug and pathway outputs and generates a response prediction.
 
+Model Type
+---------------
+Regression
+
 Feature Representation
 -------------------------
 

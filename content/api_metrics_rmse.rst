@@ -3,8 +3,8 @@ rmse
 
 :funcelse:`improvelib.metrics.`:funcname:`rmse`:funcelse:`(y_true, y_pred)`
 
-Compute Root Mean Squared Error (RMSE). Uses sklearn.metrics.root_mean_square_error() for sklearn v1.4.0 and higher, 
-sklearn.metrics.mean_square_error(squared=False) for sklearn v0.22.0 up to v1.4.0 and the square root of sklearn.metrics.mean_square_error() for lower versions.
+Compute Root Mean Squared Error (RMSE). Uses `sklearn.metrics.root_mean_square_error() <https://scikit-learn.org/stable/modules/generated/sklearn.metrics.root_mean_squared_error.html>`_ for sklearn v1.4.0 and higher, 
+`sklearn.metrics.mean_square_error(squared=False) <https://scikit-learn.org/stable/modules/generated/sklearn.metrics.mean_squared_error.html>`_ for sklearn v0.22.0 up to v1.4.0 and the square root of `sklearn.metrics.mean_square_error() <https://scikit-learn.org/stable/modules/generated/sklearn.metrics.mean_squared_error.html>`_ for lower versions.
 
 Used in :doc:`api_metrics_compute_metrics` and can be used directly.
 

@@ -3,7 +3,7 @@ bacc
 
 :funcelse:`improvelib.metrics.`:funcname:`bacc`:funcelse:`(y_true, y_pred)`
 
-Compute balanced accuracy. Uses sklearn.metrics.balanced_accuracy_score().
+Compute balanced accuracy. Uses `sklearn.metrics.balanced_accuracy_score() <https://scikit-learn.org/stable/modules/generated/sklearn.metrics.balanced_accuracy_score.html>`_.
 
 Used in :doc:`api_metrics_compute_metrics` and can be used directly.
 

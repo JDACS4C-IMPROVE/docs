@@ -3,7 +3,7 @@ acc
 
 :funcelse:`improvelib.metrics.`:funcname:`acc`:funcelse:`(y_true, y_pred)`
 
-Compute accuracy. Uses sklearn.metrics.accuracy_score().
+Compute accuracy. Uses `sklearn.metrics.accuracy_score() <https://scikit-learn.org/stable/modules/generated/sklearn.metrics.accuracy_score.html>`_.
 
 Used in :doc:`api_metrics_compute_metrics` and can be used directly.
 

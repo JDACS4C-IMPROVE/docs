@@ -1,7 +1,7 @@
 Synergy Prediction Models
 =================================
 
-The IMPROVE project has curated a number of Synergy models.
+The IMPROVE project has curated a number of drug synergy prediction models.
 Model curation involves selecting a subset of community models and then modifying their software scripts to conform to a unified code structure.
 
 The primary focus is on pan-cancer pan-drug models. Descriptions of the curated models and links to the code can be found below.
@@ -12,7 +12,7 @@ Model Selection
 
 Qualitative selection criteria:
 
-- Models providing open-source code with: 1) comprehensive installation instructions of the computational environment, 2) data preprocessing scripts that take feature and response data and transform them into model input data, 3) scripts which execute model training.
+- Models providing open-source code with: 1) comprehensive installation instructions of the computational environment, 2) data preprocessing scripts that take feature and synergy data and transform them into model input data, 3) scripts which execute model training.
 - Deep learning models implemented in TensorFlow/Keras or PyTorch.
 - Focus on pan-cancer multi-drug models utilizing cancer and drug representations as input features.
 - Preference for models utilizing conventional features.
@@ -41,10 +41,14 @@ Further guidelines and details regarding code restructuring while leveraging the
 
 Curated Models
 -----------------------
-Currently, we have curated two synergy models. We forked the original repositories and conducted the model selection and standardization procedures as discussed above.
+Currently, we have curated two community synergy models and two ML synergy models. 
+We forked the original repositories and conducted the model selection and standardization 
+procedures as discussed above.
 
 .. toctree::
    :titlesonly:
 
    Models-Synergy-Matchmaker
    Models-Synergy-DeepDDS
+   Models-Synergy-RandomForest
+   Models-Synergy-XGBoost

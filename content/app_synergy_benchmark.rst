@@ -1,6 +1,6 @@
 Benchmark Data for Synergy 
 =============================
-The benchmark data for Synergy was created using this pipeline. 
+The benchmark data for Synergy was created using `this pipeline <https://github.com/JDACS4C-IMPROVE/IMPROVE/blob/develop/benchmark_data/synergy/pipeline.py>`_. 
 
 
 .. list-table:: Number of cell lines, drugs, and experiments in the benchmark datasets.

@@ -3,7 +3,7 @@ recall
 
 :funcelse:`improvelib.metrics.`:funcname:`recall`:funcelse:`(y_true, y_pred)`
 
-Compute the recall. Uses sklearn.metrics.recall_score().
+Compute the recall. Uses `sklearn.metrics.recall_score() <https://scikit-learn.org/stable/modules/generated/sklearn.metrics.recall_score.html>`_.
 
 Used in :doc:`api_metrics_compute_metrics` and can be used directly.
 

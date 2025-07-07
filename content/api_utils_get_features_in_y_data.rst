@@ -1,7 +1,7 @@
 get_features_in_y_data
 -----------------------------------------
 
-:funcelse:`improvelib.applications.drug_response_prediction.drp_utils.`:funcname:`get_features_in_y_data`:funcelse:`(feature_df, y_data_df, column_name)`
+:funcelse:`improvelib.utils.`:funcname:`get_features_in_y_data`:funcelse:`(feature_df, y_data_df, column_name)`
 
 Takes a feature DataFrame and a y data DataFame and returns the feature DataFrame that 
 contains only features that are present in the given y data DataFrame.

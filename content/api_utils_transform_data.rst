@@ -1,7 +1,7 @@
 transform_data
 -----------------------------------------
 
-:funcelse:`improvelib.applications.drug_response_prediction.drp_utils.`:funcname:`transform_data`:funcelse:`(df, transform_file_name, preprocess_dir)`
+:funcelse:`improvelib.utils.`:funcname:`transform_data`:funcelse:`(df, transform_file_name, preprocess_dir)`
 
 
 Transforms (imputes, scales, and/or subsets) features based the transformations determined on the training set with :doc:`api_utils_determine_transform`. 

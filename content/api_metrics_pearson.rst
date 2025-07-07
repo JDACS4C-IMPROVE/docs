@@ -3,7 +3,7 @@ pearson
 
 :funcelse:`improvelib.metrics.`:funcname:`pearson`:funcelse:`(y_true, y_pred)`
 
-Compute Pearson Correlation Coefficient (PCC). Uses scipy.stats.mstats.pearsonr().
+Compute Pearson Correlation Coefficient (PCC). Uses `scipy.stats.mstats.pearsonr() <https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.mstats.pearsonr.html>`_.
 
 Used in :doc:`api_metrics_compute_metrics` and can be used directly.
 

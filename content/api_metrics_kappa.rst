@@ -3,7 +3,7 @@ kappa
 
 :funcelse:`improvelib.metrics.`:funcname:`kappa`:funcelse:`(y_true, y_pred)`
 
-Compute Cohen's kappa. Uses sklearn.metrics.cohen_kappa_score().
+Compute Cohen's kappa. Uses `sklearn.metrics.cohen_kappa_score() <https://scikit-learn.org/stable/modules/generated/sklearn.metrics.cohen_kappa_score.html>`_.
 
 Used in :doc:`api_metrics_compute_metrics` and can be used directly.
 

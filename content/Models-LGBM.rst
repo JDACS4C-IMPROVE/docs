@@ -7,6 +7,10 @@ Model Architecture
 --------------------
 LGBM uses the LightGBM gradient boosting framework to predict drug response from gene expression of cancer cell lines and drug features. It is an efficient tree based learning algorithm.
 
+Model Type
+---------------
+Regression
+
 Feature Representation
 -------------------------
 

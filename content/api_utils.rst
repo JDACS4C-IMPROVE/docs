@@ -7,8 +7,8 @@ The following functions are part of improvelib and should be used to standardize
 
    get_y_data <api_utils_get_y_data>
    get_x_data <api_utils_get_x_data>
-   get_response_with_features <api_utils_get_response_with_features>
-   get_features_in_response <api_utils_get_features_in_response>
+   get_y_data_with_features <api_utils_get_y_data_with_features>
+   get_y_data_in_response <api_utils_get_features_in_y_data>
    determine_transform <api_utils_determine_transform>
    transform_data <api_utils_transform_data>
    build_ml_data_file_name <api_utils_build_ml_data_file_name>

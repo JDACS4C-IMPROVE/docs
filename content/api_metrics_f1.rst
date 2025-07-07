@@ -3,7 +3,7 @@ f1
 
 :funcelse:`improvelib.metrics.`:funcname:`f1`:funcelse:`(y_true, y_pred)`
 
-Compute the F1 score. Uses sklearn.metrics.f1_score().
+Compute the F1 score. Uses `sklearn.metrics.f1_score() <https://scikit-learn.org/stable/modules/generated/sklearn.metrics.f1_score.html>`_.
 
 Used in :doc:`api_metrics_compute_metrics` and can be used directly.
 

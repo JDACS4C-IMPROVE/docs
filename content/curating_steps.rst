@@ -126,7 +126,7 @@ To use IMPROVE benchmark data, functions to load the data are provided.
     [Preprocess]
     cell_transcriptomics_file = cancer_gene_expression.tsv
 
-- Load the features with :doc:`api_drp_util_get_x_data` like so:
+- Load the features with :doc:`api_utils_get_x_data` like so:
 
   .. code-block::
 
