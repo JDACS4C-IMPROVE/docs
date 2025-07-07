@@ -7,6 +7,10 @@ Model Architecture
 MatchMaker takes chemical features and gene expression and predicts a synergy score by training two parallel drug subnetworks of three FC layers for drug specific representation on each cell line. 
 Both subnetworks are input for the third subnetwork (also of three FC layers), which predicts the drug pair synergy. 
 
+Model Type
+---------------
+Regression
+
 Feature Representation
 -------------------------
 

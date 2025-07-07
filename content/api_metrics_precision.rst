@@ -3,7 +3,7 @@ precision
 
 :funcelse:`improvelib.metrics.`:funcname:`precision`:funcelse:`(y_true, y_pred)`
 
-Compute the precision. Uses sklearn.metrics.precision_score().
+Compute the precision. Uses `sklearn.metrics.precision_score() <https://scikit-learn.org/stable/modules/generated/sklearn.metrics.precision_score.html>`_.
 
 Used in :doc:`api_metrics_compute_metrics` and can be used directly.
 

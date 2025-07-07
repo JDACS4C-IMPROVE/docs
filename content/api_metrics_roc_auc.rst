@@ -3,7 +3,7 @@ roc_auc
 
 :funcelse:`improvelib.metrics.`:funcname:`roc_auc`:funcelse:`(y_true, y_prob)`
 
-Compute the Receiver Operating Characteristic AUC. Uses sklearn.metrics.roc_auc_score().
+Compute the Receiver Operating Characteristic AUC. Uses `sklearn.metrics.roc_auc_score() <https://scikit-learn.org/stable/modules/generated/sklearn.metrics.roc_auc_score.html>`_.
 
 Used in :doc:`api_metrics_compute_metrics` and can be used directly.
 

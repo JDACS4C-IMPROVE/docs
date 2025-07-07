@@ -22,8 +22,11 @@ Data
 
 Screening data
 ^^^^^^^^^^^^^^^^
-Drug screening experiments can be performed with various pre-clinical cancer models such as cell lines, organoids, and xenografts, where cancer samples are screened against a library of drug compounds. Regardless of specific cancer models, the screening space can be characterized by the involved drugs and cancers. The 2-D matrix illustrates such a space composed of a finite number of known cancer cases and drugs, where the marked coordinates symbolize that treatment responses are available for these combinations. 
-Drug sensitivity results of screening experiments can be organized in a table format, represting the **response data** .
+Drug screening experiments can be performed with various pre-clinical cancer models such as cell lines, organoids, and xenografts, 
+where cancer samples are screened against a library of drug compounds. Regardless of specific cancer models, the screening space 
+can be characterized by the involved drugs and cancers. The 2-D matrix illustrates such a space composed of a finite number of 
+known cancer cases and drugs, where the marked coordinates symbolize that treatment responses are available for these combinations. 
+Drug sensitivity results of screening experiments can be organized in a table format, representing the **response data** .
 
 .. figure:: ../images/Screening_data.png
     :width: 500

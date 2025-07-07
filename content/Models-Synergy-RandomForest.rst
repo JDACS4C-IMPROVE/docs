@@ -1,6 +1,6 @@
-RandomForest-DRP
-=================
-Random Forest implementation for Drug Response Prediction
+RandomForest-Synergy
+==========================
+Random Forest implementation for Synergy
 
 Model Architecture
 --------------------
@@ -27,7 +27,7 @@ Feature Representation
 URLs
 --------------------
 - `Scikit-learn Random Forest documentation <https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html>`__
-- `IMPROVE GitHub <https://github.com/JDACS4C-IMPROVE/RandomForest-DRP>`__
+- `IMPROVE GitHub <https://github.com/JDACS4C-IMPROVE/RandomForest-Synergy>`__
 
 References
 --------------------

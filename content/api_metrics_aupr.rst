@@ -3,7 +3,8 @@ aupr
 
 :funcelse:`improvelib.metrics.`:funcname:`aupr`:funcelse:`(y_true, y_prob)`
 
-Compute the Precision-Recall curve AUC. Uses sklearn.metrics.precision_recall_curve() and sklearn.metrics.auc().
+Compute the Precision-Recall curve AUC. Uses `sklearn.metrics.precision_recall_curve() <https://scikit-learn.org/stable/modules/generated/sklearn.metrics.precision_recall_curve.html>`_ 
+and `sklearn.metrics.auc() <https://scikit-learn.org/stable/modules/generated/sklearn.metrics.auc.html>`_.
 
 Used in :doc:`api_metrics_compute_metrics` and can be used directly.
 

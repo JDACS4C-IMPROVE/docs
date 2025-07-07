@@ -3,7 +3,7 @@ r_square
 
 :funcelse:`improvelib.metrics.`:funcname:`r_square`:funcelse:`(y_true, y_pred)`
 
-Compute R2 Coefficient. Uses sklearn.metrics.r2_score().
+Compute R2 Coefficient. Uses `sklearn.metrics.r2_score() <https://scikit-learn.org/stable/modules/generated/sklearn.metrics.r2_score.html>`_.
 
 Used in :doc:`api_metrics_compute_metrics` and can be used directly.
 

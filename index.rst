@@ -37,5 +37,6 @@ Want to benchmark your model against others in the community? Try IMPROVE!
    content/API
    content/DEVELOPER
    content/ReleaseNotes
+   content/FAQs
 
 Access the code base https://github.com/JDACS4C-IMPROVE/

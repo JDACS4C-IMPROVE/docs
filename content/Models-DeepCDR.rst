@@ -7,6 +7,10 @@ Model Architecture
 --------------------
 DeepCDR is a hybrid graph convolutional network (GCN) that consists of a uniform graph convolutional network (UGCN) to represent the chemical features of cancer drugs and several subnetworks for processing different multi-omic profiles. The UGCN takes the adjacency information of atoms in the drug molecules by aggregating the features of the neighboring atoms into consideration, and the subnetworks extract features for the cancer omic profiles from cell line information. Both these features are later concatenated and passed through a 1D convolutional neural network (CNN) to predict the cancer drug response (CDR). DeepCDR is one of the first models to use GCNs and multi-omic profiles to predict CDR.
 
+Model Type
+---------------
+Regression
+
 Feature Representation
 ------------------------
 

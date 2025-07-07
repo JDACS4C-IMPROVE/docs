@@ -1,6 +1,6 @@
-XGBoost-DRP
+XGBoost-Synergy
 =================
-XGBoost implementation for Drug Response Prediction
+XGBoost implementation for Synergy
 
 Model Architecture
 --------------------
@@ -27,7 +27,7 @@ Feature Representation
 URLs
 --------------------
 - `XGBoost documentation <https://xgboost.readthedocs.io/en/stable/>`__
-- `IMPROVE GitHub <https://github.com/JDACS4C-IMPROVE/XGBoost-DRP>`__
+- `IMPROVE GitHub <https://github.com/JDACS4C-IMPROVE/XGBoost-Synergy>`__
 
 References
 --------------------

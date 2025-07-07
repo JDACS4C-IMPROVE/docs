@@ -1,7 +1,7 @@
 get_y_data
 -----------------------------------------
 
-:funcelse:`improvelib.applications.drug_response_prediction.drp_utils.`:funcname:`get_y_data`:funcelse:`(split_file, benchmark_dir, y_data_file, split_id='split_id', sep='\t')`
+:funcelse:`improvelib.utils.`:funcname:`get_y_data`:funcelse:`(split_file, benchmark_dir, y_data_file, split_id='split_id', sep='\t')`
 
 Gets y data for a given split file.
 

@@ -1,7 +1,7 @@
 get_y_data_with_features
 -----------------------------------------
 
-:funcelse:`improvelib.applications.drug_response_prediction.drp_utils.`:funcname:`get_y_data_with_features`:funcelse:`(y_data_df, feature_df, column_name)`
+:funcelse:`improvelib.utils.`:funcname:`get_y_data_with_features`:funcelse:`(y_data_df, feature_df, column_name)`
 
 Takes a y data DataFrame and feature DataFrame(s) and returns a y data DataFrame
 that contains only rows that have available features for the feature type(s) provided. 
