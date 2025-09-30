@@ -6,6 +6,7 @@ Requirements
 
 * Python >= 3.6
 * pandas
+* numpy >= 1.19.0
 * requests
 * tqdm
 * typing_extensions
@@ -47,12 +48,13 @@ Downloading IMPROVE benchmark datasets
 -------------------------------------------
 We currently have benchmark data for :doc:`Drug Response Prediction <app_drp_benchmark>` and :doc:`Synergy <app_synergy_benchmark>`. 
 
-This data can be downloaded from this `link <https://web.cels.anl.gov/projects/IMPROVE_FTP/candle/public/improve/benchmarks/single_drug_drp/benchmark-data-pilot1/>`_ 
-or to a specified definition with the following:
+* The DRP data can be downloaded from this `link <https://web.cels.anl.gov/projects/IMPROVE_FTP/candle/public/improve/benchmarks/drp_data_v0.2.0/>`_.
 
-.. code-block:: bash
+* The Synergy data can be downloaded from this `link <https://web.cels.anl.gov/projects/IMPROVE_FTP/candle/public/improve/benchmarks/synergy_data_v0.2.0/>`_.
 
-    ./scripts/get-benchmarks $DESTINATION/csa_data/raw_data
+
+
+
 
 
 
