@@ -52,3 +52,4 @@ procedures as discussed above.
    Models-Synergy-DeepDDS
    Models-Synergy-RandomForest
    Models-Synergy-XGBoost
+   Models-Synergy-LGBM

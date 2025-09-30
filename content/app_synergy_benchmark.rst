@@ -56,7 +56,7 @@ Note: The 'SMALL' dataset is a collection of smaller experiments and should be u
 
 Data Location
 ----------------
-- ADD FTP
+- https://ftp.mcs.anl.gov/pub/candle/public/improve/benchmarks/single_drug_drp/benchmark-data-pilot1/synergy_data_v0.2.0/
 
 Data File Description
 -----------------------

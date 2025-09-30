@@ -51,16 +51,11 @@ Currently, we utilized 9 models for the cross-study analysis. We forked the orig
    Models-LGBM
    Models-XGBoost-DRP
    Models-RandomForest-DRP
-   Models-DeepCDR
    Models-GraphDRP
-   Models-HiDRA
    Models-tCNNS
    Models-UNO
    Models-DeepTTC
-   Models-DualGCN
-   Models-IGTD
-   Models-Paccman_MCA
-   Models-PathDSP
+   Models-SimpleLinearNN
 
 
 References
